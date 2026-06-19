@@ -370,6 +370,9 @@ body { overflow-x: hidden; }
   .bhs-hic-lbl { display: none; }
   .bhs-hic { min-width: auto; padding: 8px; }
 }
+@media (max-width: 900px) {
+  .bhs-hdr-search { display: none; }
+}
 @media (max-width: 600px) {
   .bhs-hdr { padding: 0 12px; gap: 8px; }
 }
