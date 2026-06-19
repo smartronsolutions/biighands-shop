@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!--
+  Biighands Shop — Global Header
+  Inherits website.layout so it appears on EVERY website page.
+  Pattern: inject before //header, then hide Odoo's native header.
+-->
+<record id="bhs_header_view" model="ir.ui.view">
+  <field name="name">biighands_shop_website.header</field>
+  <field name="key">biighands_shop_website.header</field>
+  <field name="inherit_id" ref="website.layout"/>
+  <field name="type">qweb</field>
+  <field name="arch" type="xml">
+
+    <xpath expr="//header" position="before">
+
+<style>
+/* ============================================================
+   BIIGHANDS SHOP — GLOBAL HEADER
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap');
+
+/* Hide Odoo native header / navbar / footer */
+#wrapwrap > header,
+.o_main_navbar { display:none !important; }
+
+/* Push all page content below our 152px fixed header */
+#wrapwrap > main {
+  padding-top: 152px !important;
+  margin-top: 0 !important;
+}
+
+/* Homepage has bhs-page that starts right away — no extra gap */
+#wrapwrap > main .bhs-page { padding-top: 0 !important; }
+
+body { overflow-x: hidden; }
+
+/* ── ANNOUNCEMENT BAR ─────────────────────────── */
+.bhs-h-ann {
+  background: #0D2B2B;
+  height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; overflow: hidden;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9100;
+}
+.bhs-h-ann-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; width: 100%;
+}
+.bhs-h-ann-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.82);
+  font-family: 'Inter', sans-serif; white-space: nowrap;
+  padding: 0 20px;
+  border-right: 1px solid rgba(255,255,255,.1);
+}
+.bhs-h-ann-item:last-child { border-right: none; }
+.bhs-h-ann-item b { color: #AEEBEC; }
+.bhs-h-ann-item .bhs-h-ann-icon { font-size: 13px; }
+.bhs-h-ann-close {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; color: rgba(255,255,255,.4);
+  font-size: 16px; line-height: 1; padding: 0; transition: color .2s;
+}
+.bhs-h-ann-close:hover { color: #fff; }
+
+/* ── MAIN HEADER ──────────────────────────────── */
+.bhs-h-main {
+  position: fixed; top: 36px; left: 0; right: 0; z-index: 9099;
+  height: 72px;
+  background: #080E0E;
+  border-bottom: 1px solid rgba(19,194,197,.12);
+  display: flex; align-items: center;
+  padding: 0 32px; gap: 20px;
+  backdrop-filter: blur(12px);
+  transition: box-shadow .3s;
+}
+.bhs-h-main.scrolled { box-shadow: 0 4px 28px rgba(0,0,0,.35); }
+
+/* Logo */
+.bhs-h-logo {
+  text-decoration: none !important;
+  display: flex; align-items: center; flex-shrink: 0;
+}
+.bhs-h-logo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px; font-weight: 900; color: #fff;
+  letter-spacing: -1px; line-height: 1;
+}
+.bhs-h-logo-text em { color: #13C2C5; font-style: normal; }
+.bhs-h-logo-img { height: 42px; width: auto; display: block; }
+
+/* Search */
+.bhs-h-search {
+  flex: 1; max-width: 620px;
+  display: flex; align-items: center;
+}
+.bhs-h-search-wrap {
+  width: 100%; display: flex;
+  background: #fff; border-radius: 8px; overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color .2s, box-shadow .2s;
+}
+.bhs-h-search-wrap:focus-within {
+  border-color: #13C2C5;
+  box-shadow: 0 0 0 4px rgba(19,194,197,.18);
+}
+.bhs-h-search-cat {
+  background: #F1F5F9; border: none; border-right: 1px solid #E2E8F0;
+  padding: 0 14px; font-size: 12px; font-weight: 600; color: #374151;
+  cursor: pointer; white-space: nowrap; outline: none;
+  font-family: 'Inter', sans-serif; min-width: 0;
+  display: none; /* hidden on mobile, shown on desktop */
+}
+.bhs-h-search-input {
+  flex: 1; border: none; outline: none; padding: 0 16px;
+  font-size: 14px; color: #1A1A1A; background: transparent;
+  font-family: 'Inter', sans-serif; min-width: 0;
+  height: 44px;
+}
+.bhs-h-search-input::placeholder { color: #9CA3AF; }
+.bhs-h-search-btn {
+  background: #13C2C5; border: none; cursor: pointer;
+  padding: 0 20px; height: 44px; display: flex; align-items: center; justify-content: center;
+  transition: background .2s; flex-shrink: 0;
+}
+.bhs-h-search-btn:hover { background: #037C7C; }
+.bhs-h-search-btn svg { color: #fff; }
+
+/* Right icons */
+.bhs-h-right {
+  display: flex; align-items: center; gap: 4px; flex-shrink: 0;
+}
+.bhs-h-icon-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; padding: 8px 12px; border-radius: 8px;
+  text-decoration: none !important; color: rgba(255,255,255,.78) !important;
+  background: transparent; border: none; cursor: pointer;
+  transition: all .2s; font-family: 'Inter', sans-serif; position: relative;
+  min-width: 52px;
+}
+.bhs-h-icon-btn:hover { background: rgba(255,255,255,.06); color: #13C2C5 !important; }
+.bhs-h-icon-btn svg { flex-shrink: 0; }
+.bhs-h-icon-lbl { font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+
+/* Cart badge */
+.bhs-h-cart-badge {
+  position: absolute; top: 4px; right: 8px;
+  background: #13C2C5; color: #fff;
+  font-size: 10px; font-weight: 800; line-height: 1;
+  min-width: 18px; height: 18px; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4px;
+}
+
+/* Account dropdown */
+.bhs-h-acc { position: relative; }
+.bhs-h-acc-drop {
+  position: absolute; top: calc(100% + 12px); right: 0;
+  min-width: 200px;
+  background: #0F1A1A; border: 1px solid rgba(19,194,197,.2);
+  border-radius: 12px; padding: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: all .2s; z-index: 9200;
+}
+.bhs-h-acc-drop.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.bhs-h-acc-drop a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  font-size: 13px; color: rgba(255,255,255,.75) !important;
+  text-decoration: none !important;
+  transition: all .15s; font-family: 'Inter', sans-serif;
+}
+.bhs-h-acc-drop a:hover { background: rgba(19,194,197,.1); color: #13C2C5 !important; }
+.bhs-h-acc-sep { height: 1px; background: rgba(255,255,255,.08); margin: 6px 2px; }
+
+/* CTA sign-in banner in dropdown */
+.bhs-h-acc-cta {
+  background: linear-gradient(135deg, #0D2B2B, #064444);
+  border-radius: 8px; padding: 14px; margin-bottom: 6px; text-align: center;
+}
+.bhs-h-acc-cta p { font-size: 12px; color: rgba(255,255,255,.55); margin: 0 0 10px; font-family: 'Inter', sans-serif; }
+.bhs-h-acc-cta a.solid {
+  display: block; background: #13C2C5; color: #fff !important;
+  font-size: 13px; font-weight: 800; padding: 9px 0; border-radius: 7px;
+  text-align: center; text-decoration: none !important; margin-bottom: 6px;
+  transition: background .2s;
+}
+.bhs-h-acc-cta a.solid:hover { background: #037C7C !important; }
+.bhs-h-acc-cta a.outline {
+  display: block; border: 1px solid rgba(19,194,197,.35); color: #13C2C5 !important;
+  font-size: 13px; font-weight: 700; padding: 8px 0; border-radius: 7px;
+  text-align: center; text-decoration: none !important;
+  transition: all .2s;
+}
+.bhs-h-acc-cta a.outline:hover { border-color: #13C2C5; background: rgba(19,194,197,.08) !important; }
+
+/* ── CATEGORY NAV STRIP ───────────────────────── */
+.bhs-h-nav {
+  position: fixed; top: 108px; left: 0; right: 0; z-index: 9098;
+  height: 44px; background: #13C2C5;
+  display: flex; align-items: stretch;
+  overflow: hidden;
+}
+.bhs-h-nav-inner {
+  max-width: 1400px; margin: 0 auto; width: 100%;
+  display: flex; align-items: stretch; padding: 0 32px; gap: 0;
+}
+.bhs-h-nav-all {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 20px; background: rgba(0,0,0,.15);
+  font-size: 13px; font-weight: 800; color: #fff !important;
+  text-decoration: none !important; white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,.2);
+  transition: background .2s;
+}
+.bhs-h-nav-all:hover { background: rgba(0,0,0,.28); color: #fff !important; }
+.bhs-h-nav-links {
+  display: flex; align-items: stretch; flex: 1; overflow-x: auto; gap: 0;
+  scrollbar-width: none;
+}
+.bhs-h-nav-links::-webkit-scrollbar { display: none; }
+.bhs-h-nav-links a {
+  display: flex; align-items: center;
+  padding: 0 16px; font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.9) !important; text-decoration: none !important;
+  white-space: nowrap; transition: all .18s;
+  border-right: 1px solid rgba(255,255,255,.12);
+}
+.bhs-h-nav-links a:hover { background: rgba(255,255,255,.18); color: #fff !important; }
+.bhs-h-nav-links a.hot { color: #FFF !important; font-weight: 800; }
+.bhs-h-nav-links a.hot::after { content: '🔥'; margin-left: 4px; font-size: 11px; }
+.bhs-h-nav-right {
+  display: flex; align-items: center; gap: 0; margin-left: auto;
+  border-left: 1px solid rgba(255,255,255,.2);
+}
+.bhs-h-nav-right a {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 16px; font-size: 12px; font-weight: 700;
+  color: rgba(255,255,255,.9) !important; text-decoration: none !important;
+  white-space: nowrap; transition: background .18s;
+}
+.bhs-h-nav-right a:hover { background: rgba(0,0,0,.15); color: #fff !important; }
+
+/* ── HAMBURGER (MOBILE) ───────────────────────── */
+.bhs-h-ham {
+  display: none; flex-direction: column; gap: 5px;
+  justify-content: center; align-items: center;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  padding: 9px 10px; border-radius: 8px; cursor: pointer;
+  width: 42px; height: 42px; flex-shrink: 0;
+}
+.bhs-h-ham span {
+  display: block; width: 20px; height: 2px;
+  background: rgba(255,255,255,.78); border-radius: 2px; transition: all .3s;
+}
+.bhs-h-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.bhs-h-ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.bhs-h-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE DRAWER ────────────────────────────── */
+.bhs-h-mob {
+  position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+  z-index: 9500; background: #080E0E;
+  transform: translateX(-100%); transition: transform .34s cubic-bezier(.4,0,.2,1);
+  overflow-y: auto; padding: 0 0 60px;
+}
+.bhs-h-mob.open { transform: translateX(0); }
+.bhs-h-mob-search {
+  padding: 16px 20px; background: #0D2B2B;
+  border-bottom: 1px solid rgba(19,194,197,.15);
+}
+.bhs-h-mob-search-wrap {
+  display: flex; background: #fff; border-radius: 8px; overflow: hidden;
+}
+.bhs-h-mob-search-wrap input {
+  flex: 1; border: none; outline: none; padding: 11px 14px;
+  font-size: 14px; font-family: 'Inter', sans-serif;
+}
+.bhs-h-mob-search-wrap button {
+  background: #13C2C5; border: none; padding: 0 16px;
+  cursor: pointer; display: flex; align-items: center;
+}
+.bhs-h-mob-links { list-style: none; padding: 0; margin: 0; }
+.bhs-h-mob-links li a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 15px 20px; font-size: 15px; font-weight: 500;
+  color: rgba(255,255,255,.78) !important; text-decoration: none !important;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  font-family: 'Inter', sans-serif; transition: color .15s;
+}
+.bhs-h-mob-links li a:hover { color: #13C2C5 !important; }
+.bhs-h-mob-links li a .mi { font-size: 18px; width: 24px; text-align: center; }
+.bhs-h-mob-sec {
+  padding: 10px 20px 0; font-size: 10px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.25);
+  font-family: 'Inter', sans-serif;
+}
+.bhs-h-mob-btns { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
+.bhs-h-mob-btn {
+  display: block; text-align: center; padding: 14px;
+  border-radius: 10px; font-size: 15px; font-weight: 800;
+  text-decoration: none !important; font-family: 'Inter', sans-serif; transition: all .2s;
+}
+.bhs-h-mob-btn.teal { background: #13C2C5; color: #fff !important; }
+.bhs-h-mob-btn.teal:hover { background: #037C7C; }
+.bhs-h-mob-btn.outline {
+  background: transparent; color: #13C2C5 !important;
+  border: 1.5px solid rgba(19,194,197,.4);
+}
+.bhs-h-mob-btn.outline:hover { background: rgba(19,194,197,.08); }
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 1100px) {
+  .bhs-h-main { padding: 0 20px; }
+  .bhs-h-nav-inner { padding: 0 20px; }
+  .bhs-h-search-cat { display: none; }
+}
+@media (max-width: 900px) {
+  .bhs-h-nav { display: none; }
+  #wrapwrap > main { padding-top: 108px !important; }
+  .bhs-h-ham { display: flex !important; }
+  .bhs-h-icon-btn .bhs-h-icon-lbl { display: none; }
+  .bhs-h-icon-btn { min-width: auto; padding: 8px; }
+}
+@media (max-width: 600px) {
+  .bhs-h-main { padding: 0 14px; gap: 12px; }
+  .bhs-h-search { max-width: none; }
+  #wrapwrap > main { padding-top: 108px !important; }
+}
+@media (max-width: 420px) {
+  .bhs-h-ann { display: none; }
+  .bhs-h-main { top: 0; }
+  .bhs-h-mob { top: 72px; }
+  #wrapwrap > main { padding-top: 72px !important; }
+}
+</style>
+
+<!-- ══ ANNOUNCEMENT BAR ══════════════════════════════ -->
+<div class="bhs-h-ann" id="bhsAnn">
+  <div class="bhs-h-ann-inner">
+    <div class="bhs-h-ann-item">
+      <span class="bhs-h-ann-icon">🚚</span>
+      <span><b>FREE DELIVERY</b> on orders over $50</span>
+    </div>
+    <div class="bhs-h-ann-item">
+      <span class="bhs-h-ann-icon">📦</span>
+      <span>Click &amp; Collect — <b>Ready in 1 Hour</b></span>
+    </div>
+    <div class="bhs-h-ann-item">
+      <span class="bhs-h-ann-icon">⚡</span>
+      <span>Same Day Dispatch <b>before 3pm</b></span>
+    </div>
+    <div class="bhs-h-ann-item" style="display:flex">
+      <span class="bhs-h-ann-icon">🏷️</span>
+      <span><b>Trade Accounts</b> — Exclusive Pricing</span>
+    </div>
+  </div>
+  <button class="bhs-h-ann-close" id="bhsAnnClose" type="button" title="Close">&#10005;</button>
+</div>
+
+<!-- ══ MAIN HEADER ════════════════════════════════════ -->
+<header class="bhs-h-main" id="bhsHeader" role="banner">
+
+  <!-- Logo -->
+  <a href="/home" class="bhs-h-logo">
+    <span class="bhs-h-logo-text">biig<em>hands</em></span>
+  </a>
+
+  <!-- Search bar -->
+  <div class="bhs-h-search">
+    <form class="bhs-h-search-wrap" action="/shop" method="get" role="search">
+      <input
+        type="text" name="search"
+        class="bhs-h-search-input"
+        placeholder="Search 10,000+ products..."
+        autocomplete="off"
+        aria-label="Search products"
+      />
+      <button type="submit" class="bhs-h-search-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- Right icons -->
+  <div class="bhs-h-right">
+
+    <!-- Track Order -->
+    <a href="/my/orders" class="bhs-h-icon-btn" title="Track Order">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <span class="bhs-h-icon-lbl">Track</span>
+    </a>
+
+    <!-- Account Dropdown -->
+    <div class="bhs-h-acc" id="bhsAcc">
+      <button class="bhs-h-icon-btn" id="bhsAccBtn" type="button" title="Account">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="bhs-h-icon-lbl">Account</span>
+      </button>
+      <div class="bhs-h-acc-drop" id="bhsAccDrop">
+        <t t-if="website.is_public_user()">
+          <div class="bhs-h-acc-cta">
+            <p>Sign in for faster checkout,<br/>order tracking &amp; trade pricing</p>
+            <a href="/web/login" class="solid">Sign In</a>
+            <a href="/web/signup" class="outline">Create Account</a>
+          </div>
+          <a href="/web/login">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            Sign In
+          </a>
+          <a href="/web/signup">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            Register
+          </a>
+        </t>
+        <t t-if="not website.is_public_user()">
+          <a href="/my/home">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            My Account
+          </a>
+          <a href="/my/orders">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            My Orders
+          </a>
+          <a href="/my/invoices">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Invoices
+          </a>
+          <div class="bhs-h-acc-sep"></div>
+          <a href="/web/session/logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Logout
+          </a>
+        </t>
+      </div>
+    </div>
+
+    <!-- Cart -->
+    <a href="/shop/cart" class="bhs-h-icon-btn" title="Cart" id="bhsCartBtn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="bhs-h-cart-badge" id="bhsCartCount" style="display:none">0</span>
+      <span class="bhs-h-icon-lbl">Cart</span>
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button class="bhs-h-ham" id="bhsHam" type="button" aria-label="Menu" style="display:none">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ══ CATEGORY NAV STRIP ═════════════════════════════ -->
+<nav class="bhs-h-nav" id="bhsNav" aria-label="Shop categories">
+  <div class="bhs-h-nav-inner">
+    <a href="/shop" class="bhs-h-nav-all">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      All Departments
+    </a>
+    <div class="bhs-h-nav-links">
+      <a href="/shop">Power Tools</a>
+      <a href="/shop">Hand Tools</a>
+      <a href="/shop">Plumbing</a>
+      <a href="/shop">Electrical</a>
+      <a href="/shop">Workwear &amp; PPE</a>
+      <a href="/shop">Fixings</a>
+      <a href="/shop">Outdoor</a>
+      <a href="/shop">Lighting</a>
+      <a href="/shop">Storage</a>
+      <a href="/shop">Heating</a>
+      <a href="/shop" class="hot">Deals</a>
+    </div>
+    <div class="bhs-h-nav-right">
+      <a href="/shop">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        New Arrivals
+      </a>
+      <a href="/shop">
+        🏷️ Clearance
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE DRAWER ══════════════════════════════════ -->
+<div class="bhs-h-mob" id="bhsMob" aria-hidden="true">
+  <div class="bhs-h-mob-search">
+    <form class="bhs-h-mob-search-wrap" action="/shop" method="get">
+      <input type="text" name="search" placeholder="Search products..."/>
+      <button type="submit">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <div class="bhs-h-mob-btns">
+    <t t-if="website.is_public_user()">
+      <a href="/web/login"  class="bhs-h-mob-btn teal">Sign In</a>
+      <a href="/web/signup" class="bhs-h-mob-btn outline">Create Account</a>
+    </t>
+    <t t-if="not website.is_public_user()">
+      <a href="/my/home"   class="bhs-h-mob-btn teal">My Account</a>
+      <a href="/my/orders" class="bhs-h-mob-btn outline">My Orders</a>
+    </t>
+  </div>
+
+  <p class="bhs-h-mob-sec">Categories</p>
+  <ul class="bhs-h-mob-links">
+    <li><a href="/shop"><span class="mi">🔧</span> Power Tools</a></li>
+    <li><a href="/shop"><span class="mi">🔨</span> Hand Tools</a></li>
+    <li><a href="/shop"><span class="mi">🚿</span> Plumbing</a></li>
+    <li><a href="/shop"><span class="mi">⚡</span> Electrical</a></li>
+    <li><a href="/shop"><span class="mi">🦺</span> Workwear &amp; PPE</a></li>
+    <li><a href="/shop"><span class="mi">🪛</span> Fixings &amp; Fasteners</a></li>
+    <li><a href="/shop"><span class="mi">🌿</span> Outdoor &amp; Garden</a></li>
+    <li><a href="/shop"><span class="mi">💡</span> Lighting</a></li>
+    <li><a href="/shop"><span class="mi">📦</span> Storage</a></li>
+    <li><a href="/shop"><span class="mi">🌡️</span> Heating &amp; Cooling</a></li>
+    <li><a href="/shop"><span class="mi">🏷️</span> Clearance Deals</a></li>
+  </ul>
+
+  <p class="bhs-h-mob-sec">Account</p>
+  <ul class="bhs-h-mob-links">
+    <t t-if="not website.is_public_user()">
+      <li><a href="/my/home"><span class="mi">👤</span> My Account</a></li>
+      <li><a href="/my/orders"><span class="mi">📋</span> My Orders</a></li>
+      <li><a href="/shop/cart"><span class="mi">🛒</span> My Cart</a></li>
+      <li><a href="/web/session/logout"><span class="mi">🚪</span> Logout</a></li>
+    </t>
+    <t t-if="website.is_public_user()">
+      <li><a href="/web/login"><span class="mi">🔑</span> Sign In</a></li>
+      <li><a href="/web/signup"><span class="mi">✍️</span> Register</a></li>
+    </t>
+  </ul>
+</div>
+
+<!-- ══ HEADER JAVASCRIPT ══════════════════════════════ -->
+<script>
+(function () {
+  "use strict";
+
+  var ann     = document.getElementById('bhsAnn');
+  var annCls  = document.getElementById('bhsAnnClose');
+  var hdr     = document.getElementById('bhsHeader');
+  var nav     = document.getElementById('bhsNav');
+  var ham     = document.getElementById('bhsHam');
+  var mob     = document.getElementById('bhsMob');
+  var accBtn  = document.getElementById('bhsAccBtn');
+  var accDrop = document.getElementById('bhsAccDrop');
+  var accWrap = document.getElementById('bhsAcc');
+
+  /* ── Announcement close ── */
+  if (annCls) {
+    annCls.addEventListener('click', function () {
+      if (ann) ann.style.display = 'none';
+      if (hdr) hdr.style.top = '0';
+      if (nav) nav.style.top = '72px';
+    });
+  }
+
+  /* ── Scroll shadow ── */
+  if (hdr) {
+    window.addEventListener('scroll', function () {
+      hdr.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+
+  /* ── Hamburger ── */
+  if (ham &amp;&amp; mob) {
+    ham.addEventListener('click', function () {
+      var open = mob.classList.toggle('open');
+      ham.classList.toggle('open', open);
+      mob.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mob.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        mob.classList.remove('open');
+        ham.classList.remove('open');
+        mob.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ── Account dropdown ── */
+  if (accBtn &amp;&amp; accDrop) {
+    accBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      accDrop.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+      if (accWrap &amp;&amp; !accWrap.contains(e.target)) {
+        accDrop.classList.remove('open');
+      }
+    });
+  }
+
+  /* ── Cart badge: read from Odoo cart quantity ── */
+  function updateCart () {
+    var el = document.getElementById('bhsCartCount');
+    if (!el) return;
+    var badge = document.querySelector('.my_cart_quantity');
+    if (badge) {
+      var n = parseInt(badge.textContent) || 0;
+      el.textContent = n;
+      el.style.display = n > 0 ? 'flex' : 'none';
+    }
+  }
+  setTimeout(updateCart, 800);
+  document.addEventListener('odoo.product.cart.update', updateCart);
+
+  /* ── Active nav highlight ── */
+  var path = window.location.pathname;
+  document.querySelectorAll('.bhs-h-nav-links a').forEach(function (a) {
+    if (a.getAttribute('href') === path) {
+      a.style.background = 'rgba(255,255,255,.22)';
+      a.style.color = '#fff';
+    }
+  });
+
+})();
+</script>
+
+    </xpath>
+
+    <!-- Hide Odoo's native header -->
+    <xpath expr="//header" position="attributes">
+      <attribute name="style">display:none!important</attribute>
+    </xpath>
+
+  </field>
+</record>
+
+</data>
+</odoo>

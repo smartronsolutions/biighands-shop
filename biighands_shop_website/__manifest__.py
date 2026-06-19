@@ -4,7 +4,10 @@
     'version': '19.0.1.0',
     'category': 'Website',
     'depends': ['website', 'website_sale'],
-    'data': ['views/home.xml'],
+    'data': [
+        'views/header.xml',
+        'views/home.xml',
+    ],
     'installable': True,
     'license': 'LGPL-3',
 }
