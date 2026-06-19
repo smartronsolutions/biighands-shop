@@ -2,446 +2,330 @@
 <odoo>
 <data>
 
-<template id="bhs_auth_login_layout" inherit_id="web.login_layout" name="Biighands Auth Pages">
-  <xpath expr="//div[hasclass('container') and hasclass('py-5')]" position="replace">
-    <t t-set="bhs_is_signup" t-value="request.httprequest.path == '/web/signup'"/>
-    <t t-set="bhs_is_reset"  t-value="request.httprequest.path == '/web/reset_password'"/>
-    <style>
-      /* ============================================================
-         BIIGHANDS AUTH — VIP Premium Dark Design
-         ============================================================ */
-      *, *::before, *::after { box-sizing: border-box; }
-      body.bg-100 {
-        background: #060D0D !important;
-        min-height: 100vh;
-        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      }
+<!--
+  Auth pages (login / signup / reset_password) — CSS-only approach.
+  Exactly like website_biighands/views/bh_common.xml:
+  • Inherit website.layout → inject <style> into <head>
+  • Target .oe_website_login_container (present on all auth pages)
+  • Use ::before on .container to create the left brand panel as a CSS grid column
+  • .o_database_list becomes the right form column automatically
+  No xpath on web.login_layout needed.
+-->
+<record id="bhs_auth_css" model="ir.ui.view">
+  <field name="name">biighands_shop.auth_css</field>
+  <field name="key">biighands_shop_website.auth_css</field>
+  <field name="inherit_id" ref="website.layout"/>
+  <field name="type">qweb</field>
+  <field name="arch" type="xml">
+    <xpath expr="//head" position="inside">
+<style>
+/* ============================================================
+   BIIGHANDS SHOP — Auth Pages VIP Design
+   Targets: /web/login  /web/signup  /web/reset_password
+   ============================================================ */
 
-      /* ── Layout ─────────────────────────────── */
-      .bhs-auth {
-        min-height: 100vh;
-        display: grid;
-        grid-template-columns: 1fr 488px;
-        position: relative;
-        overflow: hidden;
-      }
+/* ── Page bg ── */
+#wrapwrap main:has(.oe_website_login_container) {
+  padding-top: 0 !important;
+  background: #060D0D !important;
+}
 
-      /* ── LEFT: Brand Panel ───────────────────── */
-      .bhs-auth-left {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 52px 64px;
-        overflow: hidden;
-      }
-      .bhs-auth-bg {
-        position: absolute; inset: 0;
-        background: url('/biighands_shop_website/static/images/banner2.png') center / cover no-repeat;
-        z-index: 0;
-      }
-      .bhs-auth-overlay {
-        position: absolute; inset: 0;
-        background: linear-gradient(
-          120deg,
-          rgba(6,13,13,.97) 0%,
-          rgba(6,13,13,.93) 38%,
-          rgba(6,13,13,.72) 68%,
-          rgba(6,13,13,.45) 100%
-        );
-        z-index: 1;
-      }
-      .bhs-auth-grid {
-        position: absolute; inset: 0; z-index: 2;
-        background-image:
-          linear-gradient(rgba(19,194,197,.045) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(19,194,197,.045) 1px, transparent 1px);
-        background-size: 64px 64px;
-      }
-      .bhs-auth-glow {
-        position: absolute; z-index: 2;
-        top: 15%; left: -80px;
-        width: 440px; height: 440px; border-radius: 50%;
-        background: radial-gradient(circle, rgba(19,194,197,.13) 0%, transparent 68%);
-        pointer-events: none;
-      }
-      .bhs-auth-left > * { position: relative; z-index: 3; }
+/* ── Outer container ── */
+#wrapwrap .oe_website_login_container {
+  min-height: 100vh;
+  padding: 0 !important;
+  background: #060D0D;
+  color: #fff;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
 
-      /* Logo */
-      .bhs-auth-logo {
-        display: inline-flex; align-items: center; gap: 11px;
-        text-decoration: none !important; color: #fff !important;
-        font-size: 26px; font-weight: 900; line-height: 1;
-        width: fit-content;
-      }
-      .bhs-auth-logo-icon {
-        display: flex; align-items: center; justify-content: center;
-        width: 40px; height: 40px; border-radius: 9px;
-        background: linear-gradient(135deg, #13C2C5 0%, #037C7C 100%);
-        font-size: 14px; font-weight: 900; color: #fff;
-        letter-spacing: -0.5px; flex-shrink: 0;
-        box-shadow: 0 4px 18px rgba(19,194,197,.35);
-      }
-      .bhs-auth-logo em { color: #13C2C5; font-style: normal; }
+/* Background image + dark overlay */
+#wrapwrap .oe_website_login_container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(6,13,13,.97) 0%, rgba(6,13,13,.90) 40%,
+                    rgba(6,13,13,.55) 70%, rgba(6,13,13,.3) 100%),
+    url('/biighands_shop_website/static/images/banner2.png') center / cover no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
 
-      /* Hero copy */
-      .bhs-auth-hero {
-        flex: 1; display: flex; flex-direction: column;
-        justify-content: center; padding: 64px 0 40px;
-      }
-      .bhs-auth-badge {
-        display: inline-flex; align-items: center; gap: 8px;
-        border: 1px solid rgba(19,194,197,.38);
-        background: rgba(19,194,197,.09);
-        backdrop-filter: blur(8px);
-        border-radius: 30px; padding: 7px 16px 7px 12px;
-        color: #13C2C5; font-size: 11px; font-weight: 900;
-        text-transform: uppercase; letter-spacing: 1.3px;
-        margin-bottom: 30px; width: fit-content;
-      }
-      .bhs-auth-badge i { font-size: 13px; }
-      .bhs-auth-hero h1 {
-        font-size: clamp(44px, 5vw, 72px);
-        font-weight: 900; color: #fff;
-        line-height: 1.0; letter-spacing: -2px;
-        margin: 0 0 22px; max-width: 580px;
-      }
-      .bhs-auth-hero h1 em {
-        color: #13C2C5; font-style: normal;
-        text-shadow: 0 0 70px rgba(19,194,197,.38);
-      }
-      .bhs-auth-hero p {
-        color: rgba(255,255,255,.58);
-        font-size: 16px; line-height: 1.78;
-        max-width: 440px; margin: 0;
-      }
+/* Subtle grid overlay */
+#wrapwrap .oe_website_login_container::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(19,194,197,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19,194,197,.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  z-index: 0;
+  pointer-events: none;
+}
 
-      /* Stats */
-      .bhs-auth-stats {
-        display: flex; align-items: center; gap: 28px;
-        margin-top: 44px; padding-top: 28px;
-        border-top: 1px solid rgba(255,255,255,.08);
-      }
-      .bhs-auth-stat { text-align: left; }
-      .bhs-auth-stat-n {
-        font-size: 28px; font-weight: 900; line-height: 1;
-        letter-spacing: -1px;
-        background: linear-gradient(90deg, #fff 20%, #13C2C5 100%);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      .bhs-auth-stat-l {
-        font-size: 11px; color: rgba(255,255,255,.38);
-        text-transform: uppercase; letter-spacing: 0.8px; margin-top: 5px;
-      }
-      .bhs-auth-stat-sep {
-        width: 1px; height: 34px;
-        background: rgba(255,255,255,.1); flex-shrink: 0;
-      }
+/* ── Inner .container → 2-column grid ── */
+#wrapwrap .oe_website_login_container > .container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
 
-      /* Bottom trust chips */
-      .bhs-auth-chips {
-        display: flex; gap: 10px; flex-wrap: wrap;
-      }
-      .bhs-auth-chip {
-        display: inline-flex; align-items: center; gap: 7px;
-        border: 1px solid rgba(255,255,255,.09);
-        background: rgba(255,255,255,.04);
-        border-radius: 30px; padding: 8px 14px;
-        color: rgba(255,255,255,.55); font-size: 12px;
-        backdrop-filter: blur(8px); transition: border-color .2s;
-      }
-      .bhs-auth-chip:hover { border-color: rgba(19,194,197,.3); }
-      .bhs-auth-chip i { color: #13C2C5; font-size: 12px; }
+/* ── LEFT COLUMN — brand panel via ::before ── */
+#wrapwrap .oe_website_login_container > .container::before {
+  content: "biighands\A \A Professional tools, electrical supplies, and hardware — everything a trade professional needs.\A \A Faster checkout. Order tracking. Trade pricing.";
+  white-space: pre-line;
+  min-height: 100vh;
+  padding: 52px 60px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 16px;
+  line-height: 1.78;
+  color: rgba(255,255,255,.62);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: transparent;
+}
 
-      /* ── RIGHT: Form Panel ───────────────────── */
-      .bhs-auth-right {
-        position: relative;
-        min-height: 100vh;
-        display: flex; align-items: center; justify-content: center;
-        padding: 44px 48px;
-        background: #0A1515;
-        border-left: 1px solid rgba(19,194,197,.1);
-        overflow: hidden;
-      }
-      .bhs-auth-right::before {
-        content: ''; position: absolute;
-        top: -200px; right: -100px;
-        width: 440px; height: 440px; border-radius: 50%;
-        background: radial-gradient(circle, rgba(19,194,197,.1) 0%, transparent 68%);
-        pointer-events: none;
-      }
-      .bhs-auth-right::after {
-        content: ''; position: absolute;
-        bottom: -140px; left: -60px;
-        width: 300px; height: 300px; border-radius: 50%;
-        background: radial-gradient(circle, rgba(19,194,197,.07) 0%, transparent 68%);
-        pointer-events: none;
-      }
+/* Brand name (first line) styled via first-line — limited but works */
+#wrapwrap .oe_website_login_container > .container::after {
+  content: "5,000+ Products  |  Next Day Delivery  |  Trade Pricing";
+  position: absolute;
+  left: 60px;
+  top: 52px;
+  color: #13C2C5;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
 
-      /* Form card */
-      .bhs-auth-card {
-        width: 100%; max-width: 396px;
-        position: relative; z-index: 1;
-      }
-      .bhs-auth-card-logo {
-        display: inline-flex; align-items: center; gap: 10px;
-        text-decoration: none !important; color: #fff !important;
-        font-size: 21px; font-weight: 900; margin-bottom: 34px;
-        width: fit-content;
-      }
-      .bhs-auth-card-logo-icon {
-        display: flex; align-items: center; justify-content: center;
-        width: 34px; height: 34px; border-radius: 7px;
-        background: linear-gradient(135deg, #13C2C5, #037C7C);
-        font-size: 13px; font-weight: 900; color: #fff; flex-shrink: 0;
-        box-shadow: 0 3px 14px rgba(19,194,197,.3);
-      }
-      .bhs-auth-card-logo em { color: #13C2C5; font-style: normal; }
+/* ── RIGHT COLUMN — form card (.o_database_list) ── */
+#wrapwrap .oe_website_login_container .o_database_list {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-left: 1px solid rgba(19,194,197,.12) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: #0A1515 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
 
-      .bhs-auth-card h2 {
-        color: #fff; font-size: 29px; font-weight: 900;
-        letter-spacing: -0.8px; margin: 0 0 8px; line-height: 1.12;
-      }
-      .bhs-auth-card-sub {
-        color: rgba(255,255,255,.45); font-size: 14px;
-        line-height: 1.65; margin: 0 0 30px;
-      }
+/* Glow blobs on form card */
+#wrapwrap .oe_website_login_container .o_database_list::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 440px; height: 440px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(19,194,197,.1) 0%, transparent 68%);
+  pointer-events: none; z-index: 0;
+}
+#wrapwrap .oe_website_login_container .o_database_list::after {
+  content: '';
+  position: absolute;
+  bottom: -140px; left: -60px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(19,194,197,.07) 0%, transparent 68%);
+  pointer-events: none; z-index: 0;
+}
 
-      /* Odoo card reset */
-      .bhs-auth-card .o_database_list,
-      .bhs-auth-card .card {
-        background: transparent !important;
-        border: 0 !important; box-shadow: none !important;
-      }
-      .bhs-auth-card .card-body { padding: 0 !important; }
+#wrapwrap .oe_website_login_container .card-body {
+  padding: 52px 56px !important;
+  position: relative; z-index: 1;
+}
 
-      /* Labels */
-      .bhs-auth-card label {
-        color: rgba(255,255,255,.7) !important;
-        font-size: 13px !important; font-weight: 700 !important;
-        margin-bottom: 8px !important;
-      }
+/* ── Logo area ── */
+#wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 {
+  border-bottom: 1px solid rgba(19,194,197,.12) !important;
+  margin-bottom: 30px !important;
+  padding-bottom: 22px !important;
+  text-align: left !important;
+}
+#wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 img {
+  max-height: 38px !important;
+  filter: brightness(0) invert(1) !important;
+}
 
-      /* Inputs */
-      .bhs-auth-card .form-control,
-      .bhs-auth-card .form-control-sm {
-        min-height: 50px !important;
-        background: rgba(255,255,255,.05) !important;
-        border: 1.5px solid rgba(255,255,255,.11) !important;
-        border-radius: 10px !important;
-        padding: 13px 16px !important;
-        color: #fff !important;
-        font-size: 14px !important;
-        box-shadow: none !important;
-        transition: border-color .2s ease, box-shadow .2s ease,
-                    background .2s ease !important;
-      }
-      .bhs-auth-card .form-control::placeholder {
-        color: rgba(255,255,255,.22) !important;
-      }
-      .bhs-auth-card .form-control:focus {
-        background: rgba(19,194,197,.06) !important;
-        border-color: #13C2C5 !important;
-        box-shadow: 0 0 0 3px rgba(19,194,197,.14) !important;
-        color: #fff !important;
-        outline: none !important;
-      }
-      .bhs-auth-card select.form-control option {
-        background: #0A1515; color: #fff;
-      }
+/* ── Form heading injected via ::before ── */
+#wrapwrap .oe_website_login_container .oe_login_form::before,
+#wrapwrap .oe_website_login_container .oe_signup_form::before,
+#wrapwrap .oe_website_login_container .oe_reset_password_form::before {
+  display: block;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-weight: 900; letter-spacing: -0.7px;
+  color: #fff; line-height: 1.12; margin-bottom: 8px;
+  font-size: 28px;
+}
+#wrapwrap .oe_website_login_container .oe_login_form::before        { content: "Welcome back"; }
+#wrapwrap .oe_website_login_container .oe_signup_form::before       { content: "Create account"; }
+#wrapwrap .oe_website_login_container .oe_reset_password_form::before { content: "Reset password"; }
 
-      /* Submit button */
-      .bhs-auth-card .btn-primary {
-        min-height: 50px !important;
-        border: 0 !important; border-radius: 10px !important;
-        background: linear-gradient(135deg, #13C2C5 0%, #037C7C 100%) !important;
-        color: #fff !important; font-weight: 900 !important;
-        font-size: 15px !important; letter-spacing: 0.3px !important;
-        box-shadow: 0 8px 28px rgba(19,194,197,.28) !important;
-        transition: transform .22s ease, box-shadow .22s ease !important;
-        position: relative !important; overflow: hidden !important;
-      }
-      .bhs-auth-card .btn-primary:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 14px 40px rgba(19,194,197,.42) !important;
-      }
-      .bhs-auth-card .btn-primary:active {
-        transform: translateY(0) !important;
-      }
+#wrapwrap .oe_website_login_container .oe_login_form::after,
+#wrapwrap .oe_website_login_container .oe_signup_form::after,
+#wrapwrap .oe_website_login_container .oe_reset_password_form::after {
+  display: block;
+  font-size: 14px; color: rgba(255,255,255,.45);
+  line-height: 1.65; margin-bottom: 28px;
+}
+#wrapwrap .oe_website_login_container .oe_login_form::after          { content: "Sign in to your Biighands trade account."; }
+#wrapwrap .oe_website_login_container .oe_signup_form::after         { content: "Join thousands of trade professionals."; }
+#wrapwrap .oe_website_login_container .oe_reset_password_form::after { content: "We'll send a recovery link to your email."; }
 
-      /* Links */
-      .bhs-auth-card .btn-link,
-      .bhs-auth-card .card-body a:not(.bhs-auth-card-logo) {
-        color: #13C2C5 !important;
-        font-weight: 700 !important;
-        text-decoration: none !important;
-        transition: color .18s !important;
-      }
-      .bhs-auth-card .btn-link:hover,
-      .bhs-auth-card .card-body a:not(.bhs-auth-card-logo):hover {
-        color: #7DEDED !important;
-      }
+/* ── Labels ── */
+#wrapwrap .oe_website_login_container label {
+  color: rgba(255,255,255,.72) !important;
+  font-size: 13px !important; font-weight: 700 !important;
+  margin-bottom: 8px !important;
+}
 
-      /* Alerts */
-      .bhs-auth-card .alert {
-        border-radius: 10px !important; font-size: 13px !important;
-        background: rgba(220,53,69,.1) !important;
-        border: 1px solid rgba(220,53,69,.28) !important;
-        color: #f8a0a8 !important; padding: 12px 16px !important;
-      }
-      .bhs-auth-card .alert-success,
-      .bhs-auth-card .alert-info {
-        background: rgba(19,194,197,.09) !important;
-        border-color: rgba(19,194,197,.28) !important;
-        color: #7DEDED !important;
-      }
+/* ── Inputs ── */
+#wrapwrap .oe_website_login_container .form-control {
+  min-height: 50px !important;
+  background: rgba(255,255,255,.05) !important;
+  border: 1.5px solid rgba(255,255,255,.11) !important;
+  border-radius: 10px !important;
+  padding: 13px 16px !important;
+  color: #fff !important; font-size: 14px !important;
+  box-shadow: none !important;
+  transition: border-color .2s, box-shadow .2s, background .2s !important;
+}
+#wrapwrap .oe_website_login_container .form-control::placeholder {
+  color: rgba(255,255,255,.22) !important;
+}
+#wrapwrap .oe_website_login_container .form-control:focus {
+  background: rgba(19,194,197,.06) !important;
+  border-color: #13C2C5 !important;
+  box-shadow: 0 0 0 3px rgba(19,194,197,.15) !important;
+  color: #fff !important; outline: none !important;
+}
+#wrapwrap .oe_website_login_container .input-group .btn,
+#wrapwrap .oe_website_login_container .o_show_password {
+  min-height: 50px !important;
+  background: rgba(19,194,197,.07) !important;
+  border-color: rgba(255,255,255,.11) !important;
+  color: #13C2C5 !important;
+  border-radius: 0 10px 10px 0 !important;
+}
+#wrapwrap .oe_website_login_container select.form-control option {
+  background: #0A1515; color: #fff;
+}
 
-      /* Divider / footer */
-      .bhs-auth-foot {
-        margin-top: 22px; padding-top: 18px;
-        border-top: 1px solid rgba(255,255,255,.08);
-        color: rgba(255,255,255,.28); font-size: 12px; text-align: center;
-      }
-      .bhs-auth-foot a {
-        color: #13C2C5 !important; font-weight: 700 !important;
-        text-decoration: none !important;
-      }
+/* ── Submit button ── */
+#wrapwrap .oe_website_login_container .btn-primary {
+  min-height: 50px !important; border: 0 !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #13C2C5 0%, #037C7C 100%) !important;
+  border-color: transparent !important; color: #fff !important;
+  font-weight: 900 !important; font-size: 15px !important;
+  letter-spacing: 0.3px !important;
+  box-shadow: 0 8px 28px rgba(19,194,197,.28) !important;
+  transition: transform .22s, box-shadow .22s !important;
+}
+#wrapwrap .oe_website_login_container .btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 40px rgba(19,194,197,.42) !important;
+}
+#wrapwrap .oe_website_login_container .btn-primary:active {
+  transform: translateY(0) !important;
+}
 
-      /* ── Responsive ─────────────────────────── */
-      @media (max-width: 1080px) {
-        .bhs-auth { grid-template-columns: 1fr 440px; }
-        .bhs-auth-left { padding: 44px 40px; }
-      }
-      @media (max-width: 860px) {
-        .bhs-auth { grid-template-columns: 1fr; }
-        .bhs-auth-left { min-height: auto; padding: 30px 22px 26px; }
-        .bhs-auth-hero { padding: 28px 0 16px; }
-        .bhs-auth-hero h1 { font-size: 38px; letter-spacing: -1.2px; }
-        .bhs-auth-hero p { font-size: 14px; }
-        .bhs-auth-stats { display: none; }
-        .bhs-auth-chips { display: none; }
-        .bhs-auth-right {
-          min-height: auto; padding: 28px 18px 40px;
-          border-left: 0; border-top: 1px solid rgba(19,194,197,.1);
-        }
-        .bhs-auth-right::before, .bhs-auth-right::after { display: none; }
-        .bhs-auth-card { max-width: 460px; }
-      }
-      @media (max-width: 480px) {
-        .bhs-auth-logo { font-size: 22px; }
-        .bhs-auth-hero h1 { font-size: 32px; }
-        .bhs-auth-badge { font-size: 10px; }
-        .bhs-auth-card h2 { font-size: 25px; }
-        .bhs-auth-card-sub { font-size: 13px; }
-      }
-    </style>
+/* ── Links ── */
+#wrapwrap .oe_website_login_container .btn-link,
+#wrapwrap .oe_website_login_container a {
+  color: #13C2C5 !important; font-weight: 700 !important;
+  text-decoration: none !important; transition: color .18s !important;
+}
+#wrapwrap .oe_website_login_container .btn-link:hover,
+#wrapwrap .oe_website_login_container a:hover { color: #7DEDED !important; }
 
-    <div class="bhs-auth">
+/* ── Alerts ── */
+#wrapwrap .oe_website_login_container .alert {
+  border-radius: 10px !important; font-size: 13px !important;
+  line-height: 1.55 !important; padding: 12px 16px !important;
+}
+#wrapwrap .oe_website_login_container .alert-danger {
+  background: rgba(220,53,69,.1) !important;
+  border: 1px solid rgba(220,53,69,.28) !important; color: #f8a0a8 !important;
+}
+#wrapwrap .oe_website_login_container .alert-success,
+#wrapwrap .oe_website_login_container .alert-info {
+  background: rgba(19,194,197,.1) !important;
+  border: 1px solid rgba(19,194,197,.28) !important; color: #7DEDED !important;
+}
 
-      <!-- ═══════════════ LEFT: Brand Panel ═══════════════ -->
-      <section class="bhs-auth-left">
-        <div class="bhs-auth-bg"/>
-        <div class="bhs-auth-overlay"/>
-        <div class="bhs-auth-grid"/>
-        <div class="bhs-auth-glow"/>
+/* ── Footer (signup/login switch) ── */
+#wrapwrap .oe_website_login_container .card-body > .text-center.small {
+  border-top: 1px solid rgba(255,255,255,.08) !important;
+  color: rgba(255,255,255,.35) !important;
+  margin-top: 20px !important; padding-top: 18px !important;
+  font-size: 13px !important;
+}
+#wrapwrap .oe_website_login_container .o_login_auth em { color: rgba(255,255,255,.35) !important; }
+#wrapwrap .oe_website_login_container .o_login_auth .list-group-item {
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(19,194,197,.14) !important;
+  color: rgba(255,255,255,.72) !important;
+  border-radius: 10px;
+}
 
-        <!-- Logo -->
-        <a href="/" class="bhs-auth-logo">
-          <div class="bhs-auth-logo-icon">BH</div>
-          biig<em>hands</em>
-        </a>
-
-        <!-- Hero copy -->
-        <div class="bhs-auth-hero">
-          <div class="bhs-auth-badge">
-            <i class="fa fa-bolt"/>
-            <t t-if="bhs_is_signup">Join the trade network</t>
-            <t t-elif="bhs_is_reset">Secure account recovery</t>
-            <t t-else="">Trade professionals welcome</t>
-          </div>
-          <h1>
-            <t t-if="bhs_is_signup">Build smarter.<br/><em>Order faster.</em></t>
-            <t t-elif="bhs_is_reset">Back to work<br/><em>in minutes.</em></t>
-            <t t-else="">Your trade hub.<br/><em>All in one.</em></t>
-          </h1>
-          <p>
-            <t t-if="bhs_is_signup">Professional tools, electrical supplies, and hardware — all in one account. Faster checkout, order tracking, and trade-grade pricing.</t>
-            <t t-elif="bhs_is_reset">Recover secure access to your orders, saved details, and trade account in just a few steps.</t>
-            <t t-else="">Access your orders, invoices, saved addresses, and the latest deals — all from your Biighands trade account.</t>
-          </p>
-
-          <!-- Stats row -->
-          <div class="bhs-auth-stats">
-            <div class="bhs-auth-stat">
-              <div class="bhs-auth-stat-n">5,000+</div>
-              <div class="bhs-auth-stat-l">Products</div>
-            </div>
-            <div class="bhs-auth-stat-sep"/>
-            <div class="bhs-auth-stat">
-              <div class="bhs-auth-stat-n">Next Day</div>
-              <div class="bhs-auth-stat-l">Delivery</div>
-            </div>
-            <div class="bhs-auth-stat-sep"/>
-            <div class="bhs-auth-stat">
-              <div class="bhs-auth-stat-n">Trade</div>
-              <div class="bhs-auth-stat-l">Pricing</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom trust chips -->
-        <div class="bhs-auth-chips">
-          <div class="bhs-auth-chip"><i class="fa fa-truck"/> Fast delivery</div>
-          <div class="bhs-auth-chip"><i class="fa fa-shield"/> Secure account</div>
-          <div class="bhs-auth-chip"><i class="fa fa-tag"/> Trade pricing</div>
-          <div class="bhs-auth-chip"><i class="fa fa-clock-o"/> 24/7 ordering</div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ RIGHT: Form Panel ═══════════════ -->
-      <section class="bhs-auth-right">
-        <div class="bhs-auth-card">
-
-          <!-- Card logo -->
-          <a href="/" class="bhs-auth-card-logo">
-            <div class="bhs-auth-card-logo-icon">BH</div>
-            biig<em>hands</em>
-          </a>
-
-          <!-- Heading -->
-          <h2>
-            <t t-if="bhs_is_signup">Create account</t>
-            <t t-elif="bhs_is_reset">Reset password</t>
-            <t t-else="">Welcome back</t>
-          </h2>
-          <p class="bhs-auth-card-sub">
-            <t t-if="bhs_is_signup">Join thousands of trade professionals.</t>
-            <t t-elif="bhs_is_reset">We'll send a recovery link to your email.</t>
-            <t t-else="">Sign in to your Biighands trade account.</t>
-          </p>
-
-          <!-- Odoo form slot -->
-          <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list"
-               style="max-width: none;">
-            <div class="card-body">
-              <t t-out="0"/>
-              <div class="bhs-auth-foot" t-if="not disable_footer">
-                <t t-if="not disable_database_manager">
-                  <a href="/web/database/manager">Manage Databases</a>
-                  <span class="mx-1" style="opacity:.3">·</span>
-                </t>
-                <a href="/">Back to shop</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </xpath>
-</template>
+/* ── Responsive ── */
+@media (max-width: 980px) {
+  #wrapwrap .oe_website_login_container > .container {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    min-height: auto;
+  }
+  #wrapwrap .oe_website_login_container > .container::before {
+    min-height: auto;
+    padding: 28px 22px 18px;
+    font-size: 14px;
+    align-items: flex-start;
+  }
+  #wrapwrap .oe_website_login_container > .container::after {
+    position: static;
+    order: -2;
+    font-size: 10px;
+    padding: 24px 22px 0;
+  }
+  #wrapwrap .oe_website_login_container .o_database_list {
+    min-height: auto !important;
+    border-left: 0 !important;
+    border-top: 1px solid rgba(19,194,197,.12) !important;
+  }
+  #wrapwrap .oe_website_login_container .card-body {
+    padding: 32px 28px !important;
+  }
+}
+@media (max-width: 520px) {
+  #wrapwrap .oe_website_login_container > .container::before {
+    display: none;
+  }
+  #wrapwrap .oe_website_login_container .card-body { padding: 24px 18px !important; }
+  #wrapwrap .oe_website_login_container .oe_login_form::before,
+  #wrapwrap .oe_website_login_container .oe_signup_form::before,
+  #wrapwrap .oe_website_login_container .oe_reset_password_form::before { font-size: 23px !important; }
+}
+</style>
+    </xpath>
+  </field>
+</record>
 
 </data>
 </odoo>
