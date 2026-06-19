@@ -1,17 +1,24 @@
 # -*- coding: utf-8 -*-
 from odoo import models
+from odoo.http import request
 
 
-class Website(models.Model):
-    _inherit = 'website'
+class IrHttp(models.AbstractModel):
+    _inherit = 'ir.http'
 
-    def _compute_shop_page_container(self):
-        # theme_prime accesses env.context['category'] directly (KeyError when absent).
-        # Ensure it's always present before delegating to the real compute.
-        if 'category' not in self.env.context:
-            self = self.with_context(category=0)
+    @classmethod
+    def _dispatch(cls, endpoint):
+        # Fix: theme_prime's website.shop_page_container compute does
+        # env.context['category'] directly — raises KeyError when absent.
+        # We patch request.website with 'category' in context so the compute
+        # finds it before QWeb evaluates website.shop_page_container.
         try:
-            return super()._compute_shop_page_container()
-        except AttributeError:
-            # Method doesn't exist in this Odoo/theme version — nothing to do.
+            if '/shop' in request.httprequest.path:
+                website = getattr(request, 'website', None)
+                if website is not None and 'category' not in website.env.context:
+                    cat_raw = request.httprequest.args.get('category', '')
+                    cat_id = int(cat_raw) if cat_raw.isdigit() else 0
+                    request.website = website.with_context(category=cat_id)
+        except Exception:
             pass
+        return super()._dispatch(endpoint)
