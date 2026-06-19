@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+<record id="biighands_shop_home_page" model="website.page">
+  <field name="name">Biighands Shop Home</field>
+  <field name="url">/</field>
+  <field name="type">qweb</field>
+  <field name="is_published">True</field>
+  <field name="website_indexed">True</field>
+  <field name="arch" type="xml">
+<t t-name="biighands_shop_website.home">
+<t t-call="website.layout">
+<t t-set="additional_title">Biighands Shop | Professional Tools and Hardware</t>
+<div id="wrap">
+<div class="bhs-page">
+
+<style>
+/* ============================================================
+   BH SHOP HOME — Screwfix-inspired, cleaner and sharper
+   Images go in:  biighands_shop_website/static/images/
+   banner1.jpg / banner2.jpg / banner3.jpg
+   promo1.jpg  / promo2.jpg
+   brand_1.png … brand_6.png  (optional)
+   ============================================================ */
+
+.bhs-page *, .bhs-page *::before, .bhs-page *::after {
+  box-sizing: border-box; margin: 0; padding: 0;
+}
+.bhs-page {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #1A1A1A;
+  background: #fff;
+}
+
+/* ---------- ANNOUNCEMENT BAR ---------- */
+.bhs-ann {
+  background: #1B3A6B;
+  color: #fff;
+  text-align: center;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.bhs-ann b { color: #FFB800; }
+.bhs-ann .d { margin: 0 12px; opacity: .35; }
+
+/* ---------- HERO SLIDER ---------- */
+.bhs-hero { position: relative; overflow: hidden; background: #0D1B2A; user-select: none; }
+
+.bhs-slide {
+  position: relative;
+  min-height: 500px;
+  display: none;
+  align-items: center;
+}
+.bhs-slide.go { display: flex; animation: bhsIn .5s ease; }
+@keyframes bhsIn { from { opacity: 0; } to { opacity: 1; } }
+
+.bhs-slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bhs-slide-dim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    rgba(13,27,42,.94) 0%,
+    rgba(13,27,42,.60) 48%,
+    rgba(13,27,42,.08) 100%);
+  z-index: 1;
+}
+.bhs-slide-body {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 90px 64px;
+}
+.bhs-tag {
+  display: inline-block;
+  background: #FF6600;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+.bhs-slide-body h1 {
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+  max-width: 600px;
+  margin: 0 0 16px;
+}
+.bhs-slide-body p {
+  font-size: 18px;
+  color: rgba(255,255,255,.78);
+  max-width: 460px;
+  line-height: 1.65;
+  margin: 0 0 34px;
+}
+.bhs-btns { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+.bhs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 34px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+.bhs-btn.solid { background: #FF6600; color: #fff; }
+.bhs-btn.solid:hover { background: #CC5200; color: #fff; transform: translateY(-2px); }
+.bhs-btn.ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.42); }
+.bhs-btn.ghost:hover { background: #fff; color: #1A1A1A; }
+
+/* Carousel controls */
+.bhs-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.38);
+  border: 1.5px solid rgba(255,255,255,.22);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.bhs-arrow:hover { background: #FF6600; border-color: #FF6600; }
+.bhs-prev { left: 20px; }
+.bhs-next { right: 20px; }
+
+.bhs-dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+.bhs-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.4);
+  border: none; cursor: pointer; padding: 0;
+  transition: all .25s;
+}
+.bhs-dot.on { background: #FF6600; width: 24px; border-radius: 4px; }
+
+/* ---------- USP BAR ---------- */
+.bhs-usp { background: #FF6600; }
+.bhs-usp-g {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.bhs-usp-i {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 26px;
+  border-right: 1px solid rgba(255,255,255,.22);
+}
+.bhs-usp-i:last-child { border-right: none; }
+.bhs-usp-ic { font-size: 24px; line-height: 1; flex-shrink: 0; }
+.bhs-usp-t strong { display: block; color: #fff; font-size: 14px; font-weight: 800; }
+.bhs-usp-t small { color: rgba(255,255,255,.82); font-size: 12px; }
+
+/* ---------- SHARED SECTION UTILS ---------- */
+.bhs-w { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+.bhs-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+.bhs-hd h2 { font-size: 26px; font-weight: 800; color: #1B3A6B; letter-spacing: -0.5px; }
+.bhs-hd h2 em { font-style: normal; color: #FF6600; }
+.bhs-all { color: #FF6600; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
+.bhs-all:hover { color: #CC5200; }
+
+/* ---------- CATEGORIES ---------- */
+.bhs-cat-s { padding: 60px 0 40px; }
+.bhs-cat-g {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+.bhs-cat {
+  background: #F4F5F7;
+  border: 1.5px solid #E8E9EC;
+  border-radius: 12px;
+  padding: 22px 12px 18px;
+  text-align: center;
+  text-decoration: none;
+  color: #1A1A1A;
+  transition: all .22s;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.bhs-cat:hover {
+  border-color: #FF6600;
+  background: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(255,102,0,.13);
+  color: #FF6600;
+}
+.bhs-cat-ic {
+  width: 64px; height: 64px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1.5px solid #E8E9EC;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  transition: border-color .2s;
+}
+.bhs-cat:hover .bhs-cat-ic { border-color: #FF6600; }
+.bhs-cat-nm { font-size: 12.5px; font-weight: 700; line-height: 1.35; }
+.bhs-cat-ct { font-size: 11px; color: #6B7280; }
+
+/* ---------- DEALS ---------- */
+.bhs-deals-s { padding: 50px 0 60px; background: #F4F5F7; }
+.bhs-deals-l {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 22px;
+}
+/* Deal hero card */
+.bhs-deal-card {
+  background: linear-gradient(155deg, #1B3A6B 0%, #0D1B2A 100%);
+  border-radius: 14px;
+  padding: 36px 28px;
+  display: flex; flex-direction: column;
+  min-height: 440px;
+  position: relative; overflow: hidden;
+}
+.bhs-deal-card::after {
+  content: '';
+  position: absolute;
+  bottom: -55px; right: -55px;
+  width: 210px; height: 210px;
+  border-radius: 50%;
+  background: rgba(255,102,0,.18);
+}
+.bhs-deal-top { flex: 1; position: relative; z-index: 1; }
+.bhs-d-badge {
+  display: inline-block;
+  background: #FF6600;
+  color: #fff;
+  font-size: 10px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 5px 12px; border-radius: 4px;
+  margin-bottom: 22px;
+}
+.bhs-deal-card h3 { font-size: 28px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 14px; }
+.bhs-deal-card p { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.7; }
+.bhs-d-cta {
+  display: inline-block;
+  background: #FF6600; color: #fff;
+  padding: 13px 26px; border-radius: 6px;
+  font-size: 14px; font-weight: 800;
+  text-decoration: none;
+  margin-top: 28px;
+  position: relative; z-index: 1;
+  transition: background .2s;
+}
+.bhs-d-cta:hover { background: #CC5200; color: #fff; }
+
+/* Product cards grid */
+.bhs-prod-g {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.bhs-prod {
+  background: #fff;
+  border: 1.5px solid #E8E9EC;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none; color: #1A1A1A;
+  display: flex; flex-direction: column;
+  transition: all .2s;
+}
+.bhs-prod:hover {
+  border-color: #FF6600;
+  box-shadow: 0 6px 20px rgba(255,102,0,.12);
+  transform: translateY(-3px);
+}
+.bhs-prod-img {
+  height: 180px;
+  background: #F4F5F7;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+  position: relative;
+}
+.bhs-sticker {
+  position: absolute; top: 10px; left: 10px;
+  background: #FF6600; color: #fff;
+  font-size: 10px; font-weight: 800;
+  padding: 3px 8px; border-radius: 3px;
+  text-transform: uppercase;
+}
+.bhs-sticker.nw { background: #1B3A6B; }
+.bhs-prod-b { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+.bhs-prod-cat { font-size: 11px; color: #6B7280; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+.bhs-prod-nm { font-size: 13.5px; font-weight: 700; line-height: 1.4; margin-bottom: 12px; flex: 1; }
+.bhs-pricing { display: flex; align-items: baseline; gap: 8px; }
+.bhs-price { font-size: 22px; font-weight: 900; color: #FF6600; }
+.bhs-was { font-size: 13px; color: #9CA3AF; text-decoration: line-through; }
+.bhs-atc {
+  display: block; text-align: center;
+  background: #1B3A6B; color: #fff;
+  padding: 10px; font-size: 13px; font-weight: 800;
+  margin-top: 14px; border-radius: 6px;
+  text-decoration: none;
+  transition: background .2s;
+}
+.bhs-atc:hover { background: #FF6600; color: #fff; }
+
+/* ---------- DUAL PROMO ---------- */
+.bhs-promo-s { padding: 60px 0; }
+.bhs-promo-r { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.bhs-promo {
+  border-radius: 14px; height: 290px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+  text-decoration: none;
+  background: #1B3A6B;
+}
+.bhs-promo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(13,27,42,.88) 0%, rgba(13,27,42,.22) 100%);
+  z-index: 1;
+}
+.bhs-promo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.bhs-promo-b { position: relative; z-index: 2; padding: 44px; }
+.bhs-promo-b h3 { font-size: 28px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 10px; }
+.bhs-promo-b p { font-size: 14px; color: rgba(255,255,255,.78); margin-bottom: 22px; line-height: 1.55; }
+.bhs-promo-lnk {
+  display: inline-block; background: #FF6600; color: #fff;
+  padding: 11px 24px; border-radius: 6px;
+  font-size: 13px; font-weight: 800; text-decoration: none;
+  transition: background .2s;
+}
+.bhs-promo-lnk:hover { background: #CC5200; color: #fff; }
+
+/* ---------- BRANDS ---------- */
+.bhs-brands-s {
+  background: #F4F5F7;
+  border-top: 1px solid #E8E9EC;
+  border-bottom: 1px solid #E8E9EC;
+  padding: 44px 0;
+}
+.bhs-brands-lbl { font-size: 13px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 1.2px; text-align: center; margin-bottom: 28px; }
+.bhs-brands-g { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.bhs-brand {
+  background: #fff; border: 1.5px solid #E8E9EC; border-radius: 8px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: #1B3A6B;
+  transition: all .2s;
+}
+.bhs-brand:hover { border-color: #FF6600; color: #FF6600; }
+
+/* ---------- INFO BAND ---------- */
+.bhs-info {
+  background: linear-gradient(90deg, #0D1B2A, #1B3A6B);
+  padding: 64px 24px;
+}
+.bhs-info-g {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px;
+}
+.bhs-info-c { text-align: center; }
+.bhs-info-c .ic { font-size: 40px; margin-bottom: 16px; }
+.bhs-info-c h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.bhs-info-c p { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.65; }
+.bhs-info-c a { color: #FFB800; font-weight: 700; text-decoration: none; }
+.bhs-info-c a:hover { color: #FF6600; }
+
+/* ---------- NEWSLETTER ---------- */
+.bhs-news-s { padding: 64px 24px; background: #fff; }
+.bhs-news-w { max-width: 560px; margin: 0 auto; text-align: center; }
+.bhs-news-w h2 { font-size: 28px; font-weight: 900; color: #1B3A6B; margin-bottom: 10px; }
+.bhs-news-w p { font-size: 15px; color: #4A5568; margin-bottom: 28px; line-height: 1.6; }
+.bhs-news-f { display: flex; gap: 10px; }
+.bhs-news-f input {
+  flex: 1; padding: 13px 18px;
+  border: 1.5px solid #E8E9EC; border-radius: 6px;
+  font-size: 14px; outline: none;
+  transition: border-color .2s;
+}
+.bhs-news-f input:focus { border-color: #FF6600; }
+.bhs-news-f button {
+  background: #FF6600; color: #fff; border: none;
+  padding: 13px 24px; border-radius: 6px;
+  font-size: 14px; font-weight: 800;
+  cursor: pointer; white-space: nowrap;
+  transition: background .2s;
+}
+.bhs-news-f button:hover { background: #CC5200; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1100px) {
+  .bhs-cat-g { grid-template-columns: repeat(4, 1fr); }
+  .bhs-deals-l { grid-template-columns: 1fr; }
+  .bhs-deal-card { min-height: auto; }
+  .bhs-prod-g { grid-template-columns: repeat(3, 1fr); }
+  .bhs-brands-g { grid-template-columns: repeat(4, 1fr); }
+  .bhs-usp-g { grid-template-columns: repeat(2, 1fr); }
+  .bhs-info-g { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .bhs-slide { min-height: 320px; }
+  .bhs-slide-body { padding: 48px 28px; }
+  .bhs-cat-g { grid-template-columns: repeat(3, 1fr); }
+  .bhs-prod-g { grid-template-columns: repeat(2, 1fr); }
+  .bhs-promo-r { grid-template-columns: 1fr; }
+  .bhs-brands-g { grid-template-columns: repeat(3, 1fr); }
+  .bhs-usp-g { grid-template-columns: 1fr; }
+  .bhs-news-f { flex-direction: column; }
+  .bhs-hd h2 { font-size: 20px; }
+  .bhs-arrow { width: 40px; height: 40px; font-size: 17px; }
+}
+@media (max-width: 480px) {
+  .bhs-slide { min-height: 260px; }
+  .bhs-cat-g { grid-template-columns: repeat(2, 1fr); }
+  .bhs-prod-g { grid-template-columns: 1fr; }
+  .bhs-brands-g { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+<!-- ══════════════════════════════════════════════
+     ANNOUNCEMENT BAR
+════════════════════════════════════════════════ -->
+<div class="bhs-ann">
+  &#128666; <b>FREE DELIVERY</b> on orders over $50
+  <span class="d">|</span>
+  &#128230; Click &amp; Collect Available
+  <span class="d">|</span>
+  &#9889; Same Day Dispatch on orders before 3pm
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO SLIDER
+     Add your images to:  biighands_shop_website/static/images/
+     Files:  banner1.jpg  banner2.jpg  banner3.jpg
+════════════════════════════════════════════════ -->
+<div class="bhs-hero" id="bhsHero">
+
+  <!-- SLIDE 1 -->
+  <div class="bhs-slide go">
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner1.jpg'); background-color:#1B3A6B;"></div>
+    <div class="bhs-slide-dim"></div>
+    <div class="bhs-slide-body">
+      <div class="bhs-tag">New Season</div>
+      <h1>Professional Tools<br/>for Every Job</h1>
+      <p>Thousands of trade-quality products at unbeatable prices. Power tools, plumbing, electrical and more.</p>
+      <div class="bhs-btns">
+        <a href="/shop" class="bhs-btn solid">Shop Now &#8594;</a>
+        <a href="/shop" class="bhs-btn ghost">Browse Categories</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="bhs-slide">
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner2.jpg'); background-color:#CC5200;"></div>
+    <div class="bhs-slide-dim"></div>
+    <div class="bhs-slide-body">
+      <div class="bhs-tag">&#128293; Hot Deals</div>
+      <h1>Massive Savings<br/>on Power Tools</h1>
+      <p>Up to 40% off selected power tools and accessories this week only. Limited stock.</p>
+      <div class="bhs-btns">
+        <a href="/shop" class="bhs-btn solid">View Deals &#8594;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="bhs-slide">
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner3.jpg'); background-color:#0D1B2A;"></div>
+    <div class="bhs-slide-dim"></div>
+    <div class="bhs-slide-body">
+      <div class="bhs-tag">Trade Accounts</div>
+      <h1>Open a Trade<br/>Account Today</h1>
+      <p>Exclusive pricing, bulk discounts, and a dedicated account manager for your business.</p>
+      <div class="bhs-btns">
+        <a href="/shop" class="bhs-btn solid">Apply Now &#8594;</a>
+        <a href="/shop" class="bhs-btn ghost">Learn More</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="bhs-arrow bhs-prev" type="button" onclick="bhsPrev()">&#8592;</button>
+  <button class="bhs-arrow bhs-next" type="button" onclick="bhsNext()">&#8594;</button>
+  <div class="bhs-dots">
+    <button class="bhs-dot on" type="button" onclick="bhsGo(0)"></button>
+    <button class="bhs-dot"    type="button" onclick="bhsGo(1)"></button>
+    <button class="bhs-dot"    type="button" onclick="bhsGo(2)"></button>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════
+     USP STRIP
+════════════════════════════════════════════════ -->
+<div class="bhs-usp">
+  <div class="bhs-usp-g">
+    <div class="bhs-usp-i">
+      <div class="bhs-usp-ic">&#128666;</div>
+      <div class="bhs-usp-t"><strong>Free Delivery</strong><small>On orders over $50</small></div>
+    </div>
+    <div class="bhs-usp-i">
+      <div class="bhs-usp-ic">&#128230;</div>
+      <div class="bhs-usp-t"><strong>Click &amp; Collect</strong><small>Ready in 1 hour</small></div>
+    </div>
+    <div class="bhs-usp-i">
+      <div class="bhs-usp-ic">&#9889;</div>
+      <div class="bhs-usp-t"><strong>Same Day Dispatch</strong><small>Order before 3pm</small></div>
+    </div>
+    <div class="bhs-usp-i">
+      <div class="bhs-usp-ic">&#128260;</div>
+      <div class="bhs-usp-t"><strong>Easy Returns</strong><small>30-day hassle-free</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SHOP BY CATEGORY
+     Update hrefs to your actual Odoo category URLs
+════════════════════════════════════════════════ -->
+<div class="bhs-cat-s">
+  <div class="bhs-w">
+    <div class="bhs-hd">
+      <h2>Shop by <em>Category</em></h2>
+      <a href="/shop" class="bhs-all">View All &#8594;</a>
+    </div>
+    <div class="bhs-cat-g">
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#128295;</div>
+        <div class="bhs-cat-nm">Power Tools</div>
+        <div class="bhs-cat-ct">240+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#128296;</div>
+        <div class="bhs-cat-nm">Hand Tools</div>
+        <div class="bhs-cat-ct">180+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#129520;</div>
+        <div class="bhs-cat-nm">Plumbing</div>
+        <div class="bhs-cat-ct">320+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#9889;</div>
+        <div class="bhs-cat-nm">Electrical</div>
+        <div class="bhs-cat-ct">210+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#129381;</div>
+        <div class="bhs-cat-nm">Workwear &amp; PPE</div>
+        <div class="bhs-cat-ct">150+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#128297;</div>
+        <div class="bhs-cat-nm">Fixings &amp; Fasteners</div>
+        <div class="bhs-cat-ct">500+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#127807;</div>
+        <div class="bhs-cat-nm">Outdoor &amp; Garden</div>
+        <div class="bhs-cat-ct">120+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#128161;</div>
+        <div class="bhs-cat-nm">Lighting</div>
+        <div class="bhs-cat-ct">190+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#128230;</div>
+        <div class="bhs-cat-nm">Storage</div>
+        <div class="bhs-cat-ct">90+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#128274;</div>
+        <div class="bhs-cat-nm">Adhesives &amp; Sealants</div>
+        <div class="bhs-cat-ct">110+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#127777;</div>
+        <div class="bhs-cat-nm">Heating &amp; Cooling</div>
+        <div class="bhs-cat-ct">80+ Products</div>
+      </a>
+      <a href="/shop" class="bhs-cat">
+        <div class="bhs-cat-ic">&#127912;</div>
+        <div class="bhs-cat-nm">Decorating</div>
+        <div class="bhs-cat-ct">140+ Products</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TOP DEALS
+════════════════════════════════════════════════ -->
+<div class="bhs-deals-s">
+  <div class="bhs-w">
+    <div class="bhs-hd">
+      <h2>&#128293; Top Deals This Week</h2>
+      <a href="/shop" class="bhs-all">All Deals &#8594;</a>
+    </div>
+    <div class="bhs-deals-l">
+
+      <!-- Feature card -->
+      <div class="bhs-deal-card">
+        <div class="bhs-deal-top">
+          <div class="bhs-d-badge">&#128293; Deal of the Week</div>
+          <h3>Power Tool<br/>Bundles</h3>
+          <p>Complete starter kits from top brands. Everything a professional needs, nothing they don't.</p>
+        </div>
+        <a href="/shop" class="bhs-d-cta">Shop Bundles &#8594;</a>
+      </div>
+
+      <!-- Product cards — replace emoji + text with real Odoo product links -->
+      <div class="bhs-prod-g">
+        <a href="/shop" class="bhs-prod">
+          <div class="bhs-prod-img">&#128296;<span class="bhs-sticker">SAVE 30%</span></div>
+          <div class="bhs-prod-b">
+            <div class="bhs-prod-cat">Power Tools</div>
+            <div class="bhs-prod-nm">18V Cordless Drill Driver Kit with 2x Batteries</div>
+            <div class="bhs-pricing">
+              <span class="bhs-price">$89.99</span>
+              <span class="bhs-was">$128.99</span>
+            </div>
+            <span class="bhs-atc">Add to Cart</span>
+          </div>
+        </a>
+        <a href="/shop" class="bhs-prod">
+          <div class="bhs-prod-img">&#129680;<span class="bhs-sticker nw">NEW</span></div>
+          <div class="bhs-prod-b">
+            <div class="bhs-prod-cat">Power Tools</div>
+            <div class="bhs-prod-nm">Cordless Circular Saw 165mm with Carry Case</div>
+            <div class="bhs-pricing">
+              <span class="bhs-price">$74.99</span>
+            </div>
+            <span class="bhs-atc">Add to Cart</span>
+          </div>
+        </a>
+        <a href="/shop" class="bhs-prod">
+          <div class="bhs-prod-img">&#128297;<span class="bhs-sticker">SAVE 20%</span></div>
+          <div class="bhs-prod-b">
+            <div class="bhs-prod-cat">Fixings</div>
+            <div class="bhs-prod-nm">Premium Hex Bolt Assortment — 400 Piece Kit</div>
+            <div class="bhs-pricing">
+              <span class="bhs-price">$24.99</span>
+              <span class="bhs-was">$31.99</span>
+            </div>
+            <span class="bhs-atc">Add to Cart</span>
+          </div>
+        </a>
+        <a href="/shop" class="bhs-prod">
+          <div class="bhs-prod-img">&#128161;<span class="bhs-sticker">SALE</span></div>
+          <div class="bhs-prod-b">
+            <div class="bhs-prod-cat">Lighting</div>
+            <div class="bhs-prod-nm">LED Worklight 20W COB Folding Tripod Stand</div>
+            <div class="bhs-pricing">
+              <span class="bhs-price">$39.99</span>
+              <span class="bhs-was">$54.99</span>
+            </div>
+            <span class="bhs-atc">Add to Cart</span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     DUAL PROMO BANNERS
+     Add:  biighands_shop_website/static/images/promo1.jpg
+           biighands_shop_website/static/images/promo2.jpg
+════════════════════════════════════════════════ -->
+<div class="bhs-promo-s">
+  <div class="bhs-w">
+    <div class="bhs-promo-r">
+      <a href="/shop" class="bhs-promo">
+        <img src="/biighands_shop_website/static/images/promo1.jpg" alt="Trade Accounts"/>
+        <div class="bhs-promo-b">
+          <h3>Open a<br/>Trade Account</h3>
+          <p>Better prices. Priority dispatch.<br/>Dedicated account manager.</p>
+          <span class="bhs-promo-lnk">Apply Now</span>
+        </div>
+      </a>
+      <a href="/shop" class="bhs-promo" style="background:#CC5200">
+        <img src="/biighands_shop_website/static/images/promo2.jpg" alt="Clearance"/>
+        <div class="bhs-promo-b">
+          <h3>Clearance<br/>Specials</h3>
+          <p>Last chance on hundreds of lines.<br/>Up to 60% off selected stock.</p>
+          <span class="bhs-promo-lnk">Shop Clearance</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     BRANDS — replace text with <img> tags once you have logos
+════════════════════════════════════════════════ -->
+<div class="bhs-brands-s">
+  <div class="bhs-w">
+    <div class="bhs-brands-lbl">Our Trusted Brands</div>
+    <div class="bhs-brands-g">
+      <div class="bhs-brand">Brand 1</div>
+      <div class="bhs-brand">Brand 2</div>
+      <div class="bhs-brand">Brand 3</div>
+      <div class="bhs-brand">Brand 4</div>
+      <div class="bhs-brand">Brand 5</div>
+      <div class="bhs-brand">Brand 6</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     INFO BAND
+════════════════════════════════════════════════ -->
+<div class="bhs-info">
+  <div class="bhs-info-g">
+    <div class="bhs-info-c">
+      <div class="ic">&#128666;</div>
+      <h3>Fast Delivery</h3>
+      <p>Free on orders over $50. Same-day dispatch on thousands of lines. <a href="/shop">Shop now</a></p>
+    </div>
+    <div class="bhs-info-c">
+      <div class="ic">&#127959;&#65039;</div>
+      <h3>Trade Accounts</h3>
+      <p>Exclusive trade pricing and bulk discounts tailored for businesses. <a href="/shop">Apply today</a></p>
+    </div>
+    <div class="bhs-info-c">
+      <div class="ic">&#128222;</div>
+      <h3>Expert Support</h3>
+      <p>Our specialists are ready to help weekdays 9am–5pm. <a href="/contact">Get in touch</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     NEWSLETTER
+════════════════════════════════════════════════ -->
+<div class="bhs-news-s">
+  <div class="bhs-news-w">
+    <h2>Stay in the Loop</h2>
+    <p>Get the latest deals, new arrivals, and trade tips straight to your inbox. No spam, ever.</p>
+    <div class="bhs-news-f">
+      <input type="email" placeholder="Enter your email address"/>
+      <button type="button">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CAROUSEL SCRIPT
+════════════════════════════════════════════════ -->
+<script type="text/javascript">
+(function () {
+  "use strict";
+  var hero = document.getElementById("bhsHero");
+  if (!hero) { return; }
+  var slides = hero.querySelectorAll(".bhs-slide");
+  var dots   = hero.querySelectorAll(".bhs-dot");
+  var cur    = 0;
+  var tmr;
+
+  function show(n) {
+    slides[cur].classList.remove("go");
+    dots[cur].classList.remove("on");
+    cur = ((n % slides.length) + slides.length) % slides.length;
+    slides[cur].classList.add("go");
+    dots[cur].classList.add("on");
+  }
+
+  function tick() {
+    clearInterval(tmr);
+    tmr = setInterval(function () { show(cur + 1); }, 5000);
+  }
+
+  window.bhsNext = function () { show(cur + 1); tick(); };
+  window.bhsPrev = function () { show(cur - 1); tick(); };
+  window.bhsGo   = function (n) { show(n);      tick(); };
+
+  tick();
+}());
+</script>
+
+</div><!-- /bhs-page -->
+</div><!-- /wrap -->
+</t>
+</t>
+  </field>
+</record>
+
+</data>
+</odoo>
