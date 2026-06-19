@@ -8,6 +8,7 @@
         'views/header.xml',
         'views/home.xml',
         'views/auth_pages.xml',
+        'views/footer.xml',
     ],
     'installable': True,
     'license': 'LGPL-3',

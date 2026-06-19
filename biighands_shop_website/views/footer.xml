@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<record id="bhs_footer_view" model="ir.ui.view">
+  <field name="name">biighands_shop_website.footer</field>
+  <field name="key">biighands_shop_website.footer</field>
+  <field name="inherit_id" ref="website.layout"/>
+  <field name="type">qweb</field>
+  <field name="arch" type="xml">
+    <xpath expr="//footer" position="replace">
+
+<style>
+/* ========================================================
+   BIIGHANDS -- FOOTER
+   ======================================================== */
+
+/* Hide Odoo default footer internals */
+#wrapwrap > footer > *:not(#bhs-footer) { display: none !important; }
+
+/* ── FOOTER SHELL ── */
+#bhs-footer {
+  background: #060E0E;
+  border-top: 1px solid rgba(19,194,197,.15);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: rgba(255,255,255,.55);
+}
+
+/* ── NEWSLETTER BAND ── */
+#bhs-footer .bhs-ft-news {
+  background: linear-gradient(135deg, #071818 0%, #0A2020 100%);
+  border-bottom: 1px solid rgba(19,194,197,.12);
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.bhs-ft-news-txt h4 {
+  margin: 0 0 3px;
+  font-size: 16px; font-weight: 800;
+  color: #fff; letter-spacing: -0.3px;
+}
+.bhs-ft-news-txt p {
+  margin: 0; font-size: 13px; color: rgba(255,255,255,.45);
+}
+.bhs-ft-news-form {
+  display: flex; gap: 0; flex: 1; min-width: 260px; max-width: 420px;
+}
+.bhs-ft-news-form input {
+  flex: 1; min-width: 0;
+  background: rgba(255,255,255,.06);
+  border: 1.5px solid rgba(19,194,197,.22);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding: 0 16px; height: 46px;
+  font-size: 13.5px; color: #fff;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color .2s;
+}
+.bhs-ft-news-form input::placeholder { color: rgba(255,255,255,.25); }
+.bhs-ft-news-form input:focus { border-color: rgba(19,194,197,.55); }
+.bhs-ft-news-form button {
+  background: linear-gradient(135deg, #13C2C5, #037C7C);
+  border: none; cursor: pointer;
+  padding: 0 22px; height: 46px;
+  border-radius: 0 10px 10px 0;
+  font-size: 13.5px; font-weight: 800;
+  color: #fff; font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  transition: filter .2s;
+}
+.bhs-ft-news-form button:hover { filter: brightness(1.1); }
+
+/* ── MAIN COLUMNS ── */
+#bhs-footer .bhs-ft-main {
+  max-width: 1280px; margin: 0 auto;
+  padding: 52px 40px 44px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+/* Brand column */
+.bhs-ft-brand .bhs-ft-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 26px; font-weight: 900;
+  color: #fff; letter-spacing: -1px;
+  text-decoration: none !important;
+  display: inline-block; margin-bottom: 14px;
+}
+.bhs-ft-brand .bhs-ft-logo em { color: #13C2C5; font-style: normal; }
+.bhs-ft-brand p {
+  font-size: 13.5px; line-height: 1.7;
+  color: rgba(255,255,255,.45); margin: 0 0 22px;
+  max-width: 280px;
+}
+
+/* Trust badges */
+.bhs-ft-badges {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+}
+.bhs-ft-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(19,194,197,.07);
+  border: 1px solid rgba(19,194,197,.2);
+  border-radius: 7px; padding: 6px 10px;
+  font-size: 11.5px; font-weight: 700;
+  color: rgba(255,255,255,.6);
+}
+.bhs-ft-badge svg { flex-shrink: 0; }
+
+/* Social icons */
+.bhs-ft-social {
+  display: flex; gap: 10px;
+}
+.bhs-ft-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 9px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.55) !important;
+  text-decoration: none !important;
+  transition: all .2s;
+}
+.bhs-ft-social a:hover {
+  background: rgba(19,194,197,.14);
+  border-color: rgba(19,194,197,.4);
+  color: #13C2C5 !important;
+}
+
+/* Link columns */
+.bhs-ft-col h5 {
+  margin: 0 0 16px;
+  font-size: 11.5px; font-weight: 800;
+  letter-spacing: 1.8px; text-transform: uppercase;
+  color: #13C2C5;
+}
+.bhs-ft-col ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.bhs-ft-col ul li a {
+  font-size: 13.5px; font-weight: 500;
+  color: rgba(255,255,255,.5) !important;
+  text-decoration: none !important;
+  transition: color .18s;
+  display: flex; align-items: center; gap: 7px;
+}
+.bhs-ft-col ul li a:hover { color: #13C2C5 !important; }
+.bhs-ft-col ul li a .dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(19,194,197,.4); flex-shrink: 0;
+  transition: background .18s;
+}
+.bhs-ft-col ul li a:hover .dot { background: #13C2C5; }
+
+/* ── BOTTOM BAR ── */
+#bhs-footer .bhs-ft-bottom {
+  border-top: 1px solid rgba(255,255,255,.07);
+  background: #040A0A;
+  padding: 16px 40px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.bhs-ft-copy {
+  font-size: 12.5px; color: rgba(255,255,255,.28);
+}
+.bhs-ft-copy a {
+  color: rgba(255,255,255,.4) !important;
+  text-decoration: none !important;
+  transition: color .18s;
+}
+.bhs-ft-copy a:hover { color: #13C2C5 !important; }
+.bhs-ft-pay {
+  display: flex; align-items: center; gap: 8px;
+}
+.bhs-ft-pay span {
+  font-size: 11px; color: rgba(255,255,255,.25);
+  margin-right: 4px; font-weight: 600; letter-spacing: 0.5px;
+}
+.bhs-ft-pay-icon {
+  display: flex; align-items: center; justify-content: center;
+  height: 24px; padding: 0 8px; border-radius: 5px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: 11px; font-weight: 800;
+  color: rgba(255,255,255,.45);
+  letter-spacing: 0.3px;
+}
+
+/* Back to top */
+.bhs-ft-top {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 9px;
+  background: rgba(19,194,197,.1);
+  border: 1px solid rgba(19,194,197,.25);
+  cursor: pointer; color: #13C2C5;
+  transition: all .2s; flex-shrink: 0;
+}
+.bhs-ft-top:hover {
+  background: rgba(19,194,197,.2);
+  transform: translateY(-2px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  #bhs-footer .bhs-ft-main {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px 28px 36px;
+    gap: 32px;
+  }
+  .bhs-ft-brand { grid-column: 1 / -1; }
+  .bhs-ft-brand p { max-width: 100%; }
+  #bhs-footer .bhs-ft-news { padding: 22px 28px; gap: 20px; }
+}
+@media (max-width: 600px) {
+  #bhs-footer .bhs-ft-main {
+    grid-template-columns: 1fr 1fr;
+    padding: 32px 18px 28px;
+    gap: 24px;
+  }
+  #bhs-footer .bhs-ft-news { padding: 20px 18px; flex-direction: column; align-items: stretch; }
+  .bhs-ft-news-form { max-width: 100%; }
+  #bhs-footer .bhs-ft-bottom { padding: 14px 18px; flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+@media (max-width: 400px) {
+  #bhs-footer .bhs-ft-main { grid-template-columns: 1fr; }
+}
+</style>
+
+<footer id="o_footer_main" style="padding:0!important;background:transparent!important;border:none!important;">
+
+  <div id="bhs-footer">
+
+    <!-- ── NEWSLETTER BAND ── -->
+    <div class="bhs-ft-news">
+      <div class="bhs-ft-news-txt">
+        <h4>Get trade deals in your inbox</h4>
+        <p>Exclusive offers, new arrivals and pricing — no spam, ever.</p>
+      </div>
+      <form class="bhs-ft-news-form" action="/website_mass_mailing/subscribe" method="post">
+        <input type="email" name="email" placeholder="your@email.com" required="required"/>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <!-- ── MAIN COLUMNS ── -->
+    <div class="bhs-ft-main">
+
+      <!-- Brand -->
+      <div class="bhs-ft-brand">
+        <a href="/" class="bhs-ft-logo">biig<em>hands</em></a>
+        <p>Your trusted trade supplier for tools, hardware and building materials. Serving professionals across the UK with fast dispatch and exclusive trade pricing.</p>
+
+        <div class="bhs-ft-badges">
+          <span class="bhs-ft-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#13C2C5" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>
+            Free Delivery over £50
+          </span>
+          <span class="bhs-ft-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#13C2C5" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Same Day Dispatch
+          </span>
+          <span class="bhs-ft-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#13C2C5" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Secure Checkout
+          </span>
+        </div>
+
+        <div class="bhs-ft-social">
+          <a href="#" title="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" title="Twitter / X">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" title="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div class="bhs-ft-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="/shop"><span class="dot"></span>All Products</a></li>
+          <li><a href="/shop"><span class="dot"></span>New Arrivals</a></li>
+          <li><a href="/shop"><span class="dot"></span>Clearance Sale</a></li>
+          <li><a href="/shop"><span class="dot"></span>Trade Accounts</a></li>
+          <li><a href="/shop/cart"><span class="dot"></span>My Cart</a></li>
+        </ul>
+      </div>
+
+      <!-- Account -->
+      <div class="bhs-ft-col">
+        <h5>Account</h5>
+        <ul>
+          <li><a href="/web/login"><span class="dot"></span>Sign In</a></li>
+          <li><a href="/web/signup"><span class="dot"></span>Register</a></li>
+          <li><a href="/my/orders"><span class="dot"></span>My Orders</a></li>
+          <li><a href="/my/home"><span class="dot"></span>Dashboard</a></li>
+          <li><a href="/my/invoices"><span class="dot"></span>Invoices</a></li>
+        </ul>
+      </div>
+
+      <!-- Help -->
+      <div class="bhs-ft-col">
+        <h5>Help</h5>
+        <ul>
+          <li><a href="/contactus"><span class="dot"></span>Contact Us</a></li>
+          <li><a href="/page/delivery"><span class="dot"></span>Delivery Info</a></li>
+          <li><a href="/page/returns"><span class="dot"></span>Returns Policy</a></li>
+          <li><a href="/page/faq"><span class="dot"></span>FAQ</a></li>
+          <li><a href="/page/privacy"><span class="dot"></span>Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div><!-- /.bhs-ft-main -->
+
+    <!-- ── BOTTOM BAR ── -->
+    <div class="bhs-ft-bottom">
+      <div class="bhs-ft-copy">
+        &#169; <span id="bhs-year">2025</span> Biighands Ltd. All rights reserved.
+        &#183; <a href="/page/terms">Terms</a>
+        &#183; <a href="/page/privacy">Privacy</a>
+      </div>
+
+      <div class="bhs-ft-pay">
+        <span>We accept</span>
+        <span class="bhs-ft-pay-icon">VISA</span>
+        <span class="bhs-ft-pay-icon">MC</span>
+        <span class="bhs-ft-pay-icon">AMEX</span>
+        <span class="bhs-ft-pay-icon">PayPal</span>
+        <span class="bhs-ft-pay-icon">Stripe</span>
+      </div>
+
+      <button class="bhs-ft-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+      </button>
+    </div>
+
+  </div><!-- /#bhs-footer -->
+
+</footer>
+
+<script>
+(function () {
+  var y = document.getElementById('bhs-year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+    </xpath>
+  </field>
+</record>
+
+</data>
+</odoo>
