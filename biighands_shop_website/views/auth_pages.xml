@@ -108,11 +108,10 @@ html:has(.oe_website_login_container) body.bg-100 {
   filter: none !important;
 }
 
-/* ── 8. PAGE TITLES & SUBTITLES ──
+/* ── 8. PAGE TITLES + SUBTITLES ──
    Each form gets its own heading + tagline injected via ::before / ::after.
-   ::before = big heading
-   ::after  = supporting line below heading
-   ──────────────────────────────────── */
+   ::before = big heading, ::after = supporting line below heading
+   ──────────────────────────────────────────────────────────── */
 
 /* Shared heading style */
 #wrapwrap .oe_website_login_container .oe_login_form::before,
