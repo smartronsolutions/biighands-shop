@@ -140,7 +140,7 @@ body { overflow-x: hidden; }
 /* Account dropdown */
 .bhs-acc { position: relative; }
 .bhs-acc-drop {
-  position: absolute; top: calc(100% + 10px); left: 0;
+  position: absolute; top: calc(100% + 10px); right: 0;
   min-width: 215px;
   background: #0C1818; border: 1px solid rgba(19,194,197,.22);
   border-radius: 14px; padding: 8px;
@@ -396,7 +396,12 @@ body { overflow-x: hidden; }
 <!-- ══ MAIN HEADER ════════════════════════════════════ -->
 <div class="bhs-hdr" id="bhsHdr" role="banner">
 
-  <!-- LEFT: Account + Cart + Ham -->
+  <!-- LEFT: Logo -->
+  <a href="/home" class="bhs-hdr-logo">
+    <span class="bhs-hdr-logo-txt">biig<em>hands</em></span>
+  </a>
+
+  <!-- placeholder so search stays centered -->
   <div class="bhs-hdr-left">
 
     <!-- Account -->
@@ -461,10 +466,6 @@ body { overflow-x: hidden; }
     </form>
   </div>
 
-  <!-- RIGHT: Logo -->
-  <a href="/home" class="bhs-hdr-logo">
-    <span class="bhs-hdr-logo-txt">biig<em>hands</em></span>
-  </a>
 
 </div>
 
