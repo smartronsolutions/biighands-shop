@@ -1,5 +1,24 @@
 from odoo import http
+from odoo.addons.theme_prime.controllers.main import ThemePrimeWebsiteSale
 from odoo.http import request
+
+
+class BiighandsThemePrimeWebsiteSale(ThemePrimeWebsiteSale):
+
+    @http.route()
+    def shop(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, tags='', **post):
+        response = super().shop(
+            page=page,
+            category=category,
+            search=search,
+            min_price=min_price,
+            max_price=max_price,
+            tags=tags,
+            **post
+        )
+        if hasattr(response, 'qcontext'):
+            response.qcontext.setdefault('category', False)
+        return response
 
 
 class BiighandsHome(http.Controller):
