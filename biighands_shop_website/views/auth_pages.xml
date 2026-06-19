@@ -14,26 +14,15 @@
    BIIGHANDS SHOP — Auth Pages (login / signup / reset)
    ============================================================ */
 
-/* ── 1. HIDE OUR CUSTOM HEADER ON AUTH PAGES ── */
-html:has(.oe_website_login_container) .bhs-ann,
-html:has(.oe_website_login_container) #bhsAnn,
-html:has(.oe_website_login_container) .bhs-hdr,
-html:has(.oe_website_login_container) #bhsHdr,
-html:has(.oe_website_login_container) .bhs-nav,
-html:has(.oe_website_login_container) #bhsNav,
-html:has(.oe_website_login_container) .bhs-mob,
-html:has(.oe_website_login_container) #bhsMob,
-html:has(.oe_website_login_container) header,
+/* ── 1. HIDE ODOO DEFAULT NAVBAR (our custom header stays) ── */
 html:has(.oe_website_login_container) .o_main_navbar,
 html:has(.oe_website_login_container) .o_website_header {
   display: none !important;
 }
 
-/* ── 2. REMOVE HEADER PADDING FROM MAIN ── */
-html:has(.oe_website_login_container) #wrapwrap > main,
-html:has(.oe_website_login_container) #wrapwrap > main.bhs-page {
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+/* ── 2. PUSH CONTENT BELOW OUR FIXED HEADER (36+72+44=152px) ── */
+html:has(.oe_website_login_container) #wrapwrap > main {
+  padding-top: 152px !important;
 }
 
 /* ── 3. PAGE: pure dark, NO image ── */
@@ -278,31 +267,13 @@ html:has(.oe_website_login_container) body.bg-100 {
 }
 </style>
 
-<!-- JS fallback — hides custom header elements for browsers where :has() is unsupported -->
+<!-- JS fallback for browsers where CSS :has() is unsupported -->
 <script>
 (function () {
   if (!document.querySelector('.oe_website_login_container')) return;
-
-  /* Hide all our custom header elements */
-  var toHide = [
-    '#bhsAnn', '.bhs-ann',
-    '#bhsHdr', '.bhs-hdr',
-    '#bhsNav', '.bhs-nav',
-    '#bhsMob', '.bhs-mob',
-    'header', '.o_main_navbar', '.o_website_header'
-  ];
-  toHide.forEach(function (sel) {
-    document.querySelectorAll(sel).forEach(function (el) {
-      el.style.setProperty('display', 'none', 'important');
-    });
-  });
-
-  /* Zero out the padding-top injected by header.xml */
+  /* Ensure main content clears our 152px fixed header */
   var main = document.querySelector('#wrapwrap > main');
-  if (main) {
-    main.style.setProperty('padding-top', '0', 'important');
-    main.style.setProperty('margin-top', '0', 'important');
-  }
+  if (main) main.style.setProperty('padding-top', '152px', 'important');
 })();
 </script>
     </xpath>
