@@ -1,7 +1,8 @@
-/** BH Shop — hero, USP strip, sidebar professional styling */
+/** BH Shop — hero, USP strip, sidebar styling */
 (function () {
     'use strict';
 
+    /* ── active pill helper ── */
     function activePill() {
         var s = window.location.search;
         if (s.indexOf('list_price') !== -1)      return 'price';
@@ -11,7 +12,7 @@
     }
     function pc(k) { return 'bh-pill' + (activePill() === k ? ' bh-pill-active' : ''); }
 
-    /* ── Hero ── */
+    /* ── Hero banner ── */
     function buildHero() {
         var d = document.createElement('div');
         d.className = 'bh-shop-hero';
@@ -32,7 +33,7 @@
         return d;
     }
 
-    /* ── USP ── */
+    /* ── USP strip ── */
     function buildUsp() {
         var d = document.createElement('div');
         d.className = 'bh-shop-usp';
@@ -46,45 +47,49 @@
         return d;
     }
 
-    /* ── direct element styling ── */
-    function css(el, s) {
-        if (!el) return;
-        Object.keys(s).forEach(function(k) { el.style[k] = s[k]; });
-    }
-
-    function enhanceSidebar() {
-        /* Find the sidebar — try multiple selectors */
-        var sidebar = document.querySelector(
-            'aside.o_wsale_col_filters, ' +
-            '#tp_products_grid_before, ' +
-            '.tp-shop-layout-filters, ' +
-            '.js_sale aside'
-        );
+    /* ══════════════════════════════════════════════
+       FILTER SIDEBAR — targets #tp_products_grid_before
+    ══════════════════════════════════════════════ */
+    function setupFilter() {
+        var sidebar = document.getElementById('tp_products_grid_before');
+        if (!sidebar) {
+            /* fallback selectors */
+            sidebar = document.querySelector(
+                'aside.o_wsale_col_filters, .tp-shop-layout-filters, .js_sale aside'
+            );
+        }
         if (!sidebar) return;
 
-        /* ─ Sidebar card wrapper ─ */
-        css(sidebar, {
-            background: '#fff',
-            border: '1.5px solid #E2E8F0',
-            borderRadius: '14px',
-            overflow: 'hidden',
-            boxShadow: '0 4px 18px rgba(0,0,0,.07)',
-            alignSelf: 'flex-start',   /* don't stretch to full row height */
-            padding: '0'
-        });
+        /* 1. Wrap sidebar in a clean card */
+        sidebar.style.cssText = [
+            'background:#fff',
+            'border:1.5px solid #E2E8F0',
+            'border-radius:14px',
+            'overflow:hidden',
+            'box-shadow:0 4px 18px rgba(0,0,0,.07)',
+            'align-self:flex-start',
+            'padding:0',
+            'margin-bottom:24px'
+        ].join(';');
 
-        /* ─ FILTERS header (inject once) ─ */
-        if (!sidebar.querySelector('.bh-fhead')) {
+        /* 2. Inject FILTERS header (once only) */
+        if (!sidebar.querySelector('.bh-filter-head')) {
             var head = document.createElement('div');
-            head.className = 'bh-fhead';
-            css(head, {
-                background: 'linear-gradient(135deg,#0D2B2B,#095858)',
-                color: '#fff', fontSize: '12px', fontWeight: '800',
-                textTransform: 'uppercase', letterSpacing: '1.5px',
-                padding: '14px 18px', display: 'flex', alignItems: 'center', gap: '8px'
-            });
+            head.className = 'bh-filter-head';
+            head.style.cssText = [
+                'background:linear-gradient(135deg,#0D2B2B,#095858)',
+                'color:#fff',
+                'font-size:12px',
+                'font-weight:800',
+                'text-transform:uppercase',
+                'letter-spacing:1.5px',
+                'padding:14px 18px',
+                'display:flex',
+                'align-items:center',
+                'gap:8px'
+            ].join(';');
             head.innerHTML =
-                '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"' +
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none"' +
                 ' stroke="currentColor" stroke-width="2.5" stroke-linecap="round">' +
                 '<line x1="4" y1="6" x2="20" y2="6"/>' +
                 '<line x1="8" y1="12" x2="16" y2="12"/>' +
@@ -93,160 +98,160 @@
             sidebar.insertBefore(head, sidebar.firstChild);
         }
 
-        /* ─ Style every filter section header:
-               catch ALL possible elements — h5, h6, .card-header,
-               .tp-filter-attribute-title, buttons with collapse toggle ─ */
-        var HEADER_SELECTORS = [
-            '.card-header',
-            '.tp-filter-attribute-title',
-            '[class*="filter-attribute-title"]',
-            '[class*="filter"] > h5',
-            '[class*="filter"] > h6',
-            'h5.collapse-toggle',
-            'h6.collapse-toggle',
-            'button[data-bs-toggle="collapse"]',
-            '.filter-attribute h6',
-            '.filter-attribute h5',
-            'h6.filter-title'
-        ];
-        sidebar.querySelectorAll(HEADER_SELECTORS.join(',')).forEach(function(el) {
-            if (el.classList.contains('bh-fhead') || el.closest('.bh-fhead')) return;
-            css(el, {
-                background: '#F8FAFC',
-                color: '#0D2B2B',
-                fontSize: '12px',
-                fontWeight: '800',
-                textTransform: 'uppercase',
-                letterSpacing: '.8px',
-                padding: '11px 18px',
-                borderLeft: '3px solid #13C2C5',
-                borderBottom: '1px solid #E2E8F0',
-                borderTop: 'none',
-                borderRight: 'none',
-                borderRadius: '0',
-                boxShadow: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-                textAlign: 'left'
-            });
-        });
+        /* 3. Style every filter-section title (Price, Brand, etc.)
+              — scan all direct + nested elements, match by class keyword */
+        var titleCss = [
+            'background:#F8FAFC',
+            'color:#0D2B2B',
+            'font-size:11.5px',
+            'font-weight:800',
+            'text-transform:uppercase',
+            'letter-spacing:.9px',
+            'padding:11px 18px',
+            'border-left:3px solid #13C2C5',
+            'border-bottom:1px solid #E2E8F0',
+            'border-top:none',
+            'border-right:none',
+            'border-radius:0',
+            'box-shadow:none',
+            'display:flex',
+            'align-items:center',
+            'justify-content:space-between',
+            'width:100%',
+            'text-align:left',
+            'cursor:pointer'
+        ].join(';');
 
-        /* ─ Fallback: find filter title by scanning short-text block elements ─ */
-        sidebar.querySelectorAll('div, span, label').forEach(function(el) {
-            /* Skip our injected head and elements with children */
-            if (el.closest('.bh-fhead')) return;
-            var txt = el.textContent.trim();
-            if (
-                el.children.length === 0 &&      /* leaf text node container */
-                txt.length > 1 && txt.length < 40 &&
-                el.parentElement &&
-                el.parentElement.children.length <= 3 &&
-                window.getComputedStyle(el).display !== 'none'
-            ) {
-                var parent = el.parentElement;
-                /* If parent looks like a filter-section header row */
-                if (
-                    parent.style.display === 'flex' ||
-                    window.getComputedStyle(parent).display === 'flex' ||
-                    parent.classList.toString().toLowerCase().indexOf('header') !== -1 ||
-                    parent.classList.toString().toLowerCase().indexOf('title') !== -1
-                ) {
-                    css(parent, {
-                        background: '#F8FAFC',
-                        borderLeft: '3px solid #13C2C5',
-                        borderBottom: '1px solid #E2E8F0',
-                        padding: '11px 18px',
-                        fontWeight: '800',
-                        fontSize: '12px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '.8px',
-                        color: '#0D2B2B'
-                    });
-                }
+        sidebar.querySelectorAll('*').forEach(function (el) {
+            if (el.closest('.bh-filter-head')) return;
+            var cls = (el.className || '').toString().toLowerCase();
+            var tag = el.tagName.toLowerCase();
+            var isHeader =
+                cls.indexOf('card-header') !== -1 ||
+                cls.indexOf('filter-attribute-title') !== -1 ||
+                cls.indexOf('filter-title') !== -1 ||
+                cls.indexOf('tp-filter') !== -1 ||
+                ((tag === 'h5' || tag === 'h6') && el.closest('[class*="filter"]'));
+
+            if (isHeader) {
+                el.style.cssText = titleCss;
             }
         });
 
-        /* ─ Style the RESET button ─ */
-        sidebar.querySelectorAll('a, button').forEach(function(btn) {
-            if (btn.closest('.bh-fhead')) return;
-            var txt = btn.textContent.trim().toUpperCase();
-            if (txt === 'RESET' || txt === 'CLEAR' || txt === 'CLEAR ALL') {
-                css(btn, {
-                    display: 'block',
-                    background: '#fff',
-                    border: '2px solid #CBD5E1',
-                    color: '#475569',
-                    fontWeight: '700',
-                    fontSize: '13px',
-                    borderRadius: '8px',
-                    padding: '9px 0',
-                    margin: '14px 16px',
-                    width: 'calc(100% - 32px)',
-                    textAlign: 'center',
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                    letterSpacing: '.5px',
-                    transition: 'all .18s',
-                    boxSizing: 'border-box'
-                });
-                btn.addEventListener('mouseenter', function() {
+        /* 4. Style collapse body areas */
+        sidebar.querySelectorAll('[class*="card-body"],[class*="collapse-area"]').forEach(function(el){
+            if (el.closest('.bh-filter-head')) return;
+            el.style.cssText = 'padding:14px 18px;background:#fff;border-bottom:1px solid #F0F2F5;';
+        });
+
+        /* 5. Price range inputs → clean bordered style */
+        sidebar.querySelectorAll('input[type="number"],input[type="text"]').forEach(function(inp){
+            inp.style.cssText = [
+                'border:1.5px solid #E2E8F0',
+                'border-radius:8px',
+                'padding:6px 10px',
+                'font-size:13px',
+                'font-weight:600',
+                'color:#0D2B2B',
+                'background:#F8FAFC',
+                'outline:none',
+                'width:100%',
+                'box-sizing:border-box'
+            ].join(';');
+            inp.addEventListener('focus', function(){
+                inp.style.borderColor = '#13C2C5';
+                inp.style.boxShadow = '0 0 0 3px rgba(19,194,197,.15)';
+            });
+            inp.addEventListener('blur', function(){
+                inp.style.borderColor = '#E2E8F0';
+                inp.style.boxShadow = 'none';
+            });
+        });
+
+        /* 6. Teal slider */
+        sidebar.querySelectorAll('input[type="range"]').forEach(function(r){
+            r.style.accentColor = '#13C2C5';
+        });
+
+        /* 7. FILTER / APPLY button → teal pill */
+        sidebar.querySelectorAll('button,a,.btn,input[type="submit"]').forEach(function(btn){
+            if (btn.closest('.bh-filter-head')) return;
+            var txt = (btn.textContent || btn.value || '').trim().toUpperCase();
+            if (txt === 'FILTER' || txt === 'APPLY' || txt === 'SEARCH' || txt === 'GO') {
+                btn.style.cssText = [
+                    'background:#13C2C5',
+                    'border:none',
+                    'color:#fff',
+                    'font-weight:800',
+                    'border-radius:100px',
+                    'padding:8px 22px',
+                    'font-size:12px',
+                    'cursor:pointer',
+                    'display:inline-block',
+                    'text-decoration:none',
+                    'letter-spacing:.4px'
+                ].join(';');
+            }
+        });
+
+        /* 8. RESET / CLEAR button → white outlined */
+        sidebar.querySelectorAll('a,button').forEach(function(btn){
+            if (btn.closest('.bh-filter-head')) return;
+            var txt = (btn.textContent || '').trim().toUpperCase();
+            var href = (btn.getAttribute('href') || '');
+            var isReset = txt === 'RESET' || txt === 'CLEAR' || txt === 'CLEAR ALL'
+                        || href === '/shop' || href === '/shop?';
+            if (isReset) {
+                btn.style.cssText = [
+                    'display:block',
+                    'background:#fff',
+                    'border:2px solid #CBD5E1',
+                    'color:#475569',
+                    'font-weight:700',
+                    'font-size:13px',
+                    'border-radius:8px',
+                    'padding:9px 0',
+                    'margin:14px 16px 16px',
+                    'width:calc(100% - 32px)',
+                    'text-align:center',
+                    'text-decoration:none',
+                    'cursor:pointer',
+                    'letter-spacing:.5px',
+                    'box-sizing:border-box',
+                    'transition:all .18s'
+                ].join(';');
+                btn.addEventListener('mouseenter', function(){
                     btn.style.background = '#13C2C5';
                     btn.style.borderColor = '#13C2C5';
                     btn.style.color = '#fff';
                 });
-                btn.addEventListener('mouseleave', function() {
+                btn.addEventListener('mouseleave', function(){
                     btn.style.background = '#fff';
                     btn.style.borderColor = '#CBD5E1';
                     btn.style.color = '#475569';
                 });
             }
         });
-
-        /* ─ Style FILTER / APPLY buttons inside sidebar (teal) ─ */
-        sidebar.querySelectorAll('button, input[type=submit], .btn').forEach(function(btn) {
-            if (btn.closest('.bh-fhead')) return;
-            var txt = btn.textContent.trim().toUpperCase();
-            if (txt === 'FILTER' || txt === 'APPLY' || txt === 'SEARCH') {
-                css(btn, {
-                    background: '#13C2C5',
-                    borderColor: '#13C2C5',
-                    color: '#fff',
-                    fontWeight: '800',
-                    borderRadius: '100px',
-                    padding: '7px 20px',
-                    fontSize: '12px',
-                    border: 'none'
-                });
-            }
-        });
-
-        /* ─ Teal price range slider ─ */
-        sidebar.querySelectorAll('input[type=range]').forEach(function(r) {
-            r.style.accentColor = '#13C2C5';
-        });
-
-        /* ─ Card body / collapse areas ─ */
-        sidebar.querySelectorAll('.card-body, [class*="collapse-area"], .tp-filter-attribute-collapse-area').forEach(function(el) {
-            css(el, { padding: '14px 18px', background: '#fff' });
-        });
     }
 
-    /* ── Main ── */
-    function inject() {
+    /* ── Main entry ── */
+    function init() {
         var shopPage = document.querySelector('.js_sale.tp-shop-page, .js_sale');
-        if (!shopPage || shopPage.querySelector('.bh-shop-hero')) return;
+        if (!shopPage) return;
 
-        shopPage.insertBefore(buildUsp(), shopPage.firstChild);
-        shopPage.insertBefore(buildHero(), shopPage.firstChild);
+        /* Hero + USP (inject once) */
+        if (!shopPage.querySelector('.bh-shop-hero')) {
+            shopPage.insertBefore(buildUsp(), shopPage.firstChild);
+            shopPage.insertBefore(buildHero(), shopPage.firstChild);
+        }
 
-        setTimeout(enhanceSidebar, 500);
+        /* Filter sidebar — 500 ms so theme JS renders first */
+        setTimeout(setupFilter, 500);
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', inject);
+        document.addEventListener('DOMContentLoaded', init);
     } else {
-        inject();
+        init();
     }
 }());

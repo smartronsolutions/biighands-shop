@@ -155,9 +155,9 @@
 .tp-shop-page [class*="filter-attribute"] > h5,
 .tp-shop-page [class*="filter-attribute"] > h6,
 .tp-shop-page [class*="filter-attribute"] > .card-header,
-.tp-shop-page aside h5:not(.bh-fhead),
-.tp-shop-page aside h6:not(.bh-fhead),
-.tp-shop-page aside .card-header:not(.bh-fhead) {
+.tp-shop-page aside h5:not(.bh-filter-head),
+.tp-shop-page aside h6:not(.bh-filter-head),
+.tp-shop-page aside .card-header:not(.bh-filter-head) {
     background:#F8FAFC !important;
     color:#0D2B2B !important;
     font-size:12px !important; font-weight:800 !important;
