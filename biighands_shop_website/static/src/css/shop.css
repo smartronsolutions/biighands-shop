@@ -129,36 +129,51 @@
 .tp-shop-page .dropdown-item:active { background:#13C2C5 !important; color:#fff !important; }
 
 /* ════════════════════════════════════════════════
-   FILTER SIDEBAR  —  #tp_products_grid_before
+   FILTER SIDEBAR
+   #tp_products_grid_before  =  FILTERS header only
+   aside.o_wsale_col_filters =  actual filter content
+   They sit stacked — styled as one visual card
 ════════════════════════════════════════════════ */
 
-/* 1. Card wrapper — plain grey border all 4 sides, NO teal */
+/* top piece (FILTERS dark header lives here) */
 #tp_products_grid_before {
+    background:transparent !important;
+    border:none !important;
+    padding:0 !important;
+    margin:0 !important;
+    box-shadow:none !important;
+    overflow:visible !important;
+}
+
+/* actual filter card */
+aside.o_wsale_col_filters {
     background:#fff !important;
     border:1.5px solid #E2E8F0 !important;
-    border-radius:14px !important;
+    border-radius:0 0 14px 14px !important;
     padding:0 !important;
     overflow:hidden !important;
     box-shadow:0 4px 18px rgba(0,0,0,.08) !important;
     align-self:flex-start !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
 }
 
-/* 2. Force every .collapse inside sidebar to stay open */
-#tp_products_grid_before .collapse {
+/* Force .collapse to stay open */
+aside.o_wsale_col_filters .collapse {
     display:block !important;
     height:auto !important;
     visibility:visible !important;
 }
 
-/* 3. Hide the —/+ toggle button only (NOT the label text) */
-#tp_products_grid_before [data-bs-toggle="collapse"],
-#tp_products_grid_before [data-toggle="collapse"] {
+/* Hide — / + toggle */
+aside.o_wsale_col_filters [data-bs-toggle="collapse"],
+aside.o_wsale_col_filters [data-toggle="collapse"] {
     display:none !important;
 }
 
-/* 4. PRICE / section title — teal left border ONLY here */
-#tp_products_grid_before .card-header,
-#tp_products_grid_before .tp-filter-attribute-title {
+/* PRICE / section title — teal left border */
+aside.o_wsale_col_filters .card-header,
+aside.o_wsale_col_filters .tp-filter-attribute-title {
     background:#F8FAFC !important;
     color:#0D2B2B !important;
     font-size:11.5px !important;
@@ -174,17 +189,17 @@
     box-shadow:none !important;
 }
 
-/* 5. Filter body */
-#tp_products_grid_before .card-body,
-#tp_products_grid_before .tp-filter-attribute-collapse-area {
+/* Filter body */
+aside.o_wsale_col_filters .card-body,
+aside.o_wsale_col_filters .tp-filter-attribute-collapse-area {
     padding:14px 18px !important;
     background:#fff !important;
     border-bottom:1px solid #F0F2F5 !important;
 }
 
-/* 6. Price inputs */
-#tp_products_grid_before input[type="number"],
-#tp_products_grid_before input[type="text"] {
+/* Price inputs */
+aside.o_wsale_col_filters input[type="number"],
+aside.o_wsale_col_filters input[type="text"] {
     border:1.5px solid #E2E8F0 !important;
     border-radius:8px !important;
     padding:6px 10px !important;
@@ -193,22 +208,24 @@
     color:#0D2B2B !important;
     background:#F8FAFC !important;
     outline:none !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
 }
-#tp_products_grid_before input:focus {
+aside.o_wsale_col_filters input:focus {
     border-color:#13C2C5 !important;
     box-shadow:0 0 0 3px rgba(19,194,197,.12) !important;
 }
 
-/* 7. Slider */
-#tp_products_grid_before input[type="range"] {
+/* Slider */
+aside.o_wsale_col_filters input[type="range"] {
     accent-color:#13C2C5 !important;
 }
 
-/* 8. FILTER apply button */
-#tp_products_grid_before .a-submit,
-#tp_products_grid_before button[type="submit"],
-#tp_products_grid_before input[type="submit"],
-#tp_products_grid_before .btn-primary {
+/* FILTER apply button */
+aside.o_wsale_col_filters .a-submit,
+aside.o_wsale_col_filters button[type="submit"],
+aside.o_wsale_col_filters input[type="submit"],
+aside.o_wsale_col_filters .btn-primary {
     background:#13C2C5 !important;
     border-color:#13C2C5 !important;
     color:#fff !important;
@@ -218,30 +235,35 @@
     padding:8px 22px !important;
 }
 
-/* 9. RESET button */
-#tp_products_grid_before a.btn:not(.btn-primary),
-#tp_products_grid_before .btn-dark,
-#tp_products_grid_before .btn-secondary {
+/* RESET button */
+aside.o_wsale_col_filters a.btn:not(.btn-primary),
+aside.o_wsale_col_filters .btn-dark,
+aside.o_wsale_col_filters .btn-secondary {
+    display:block !important;
     background:#fff !important;
     border:2px solid #CBD5E1 !important;
     color:#475569 !important;
     font-weight:700 !important;
     border-radius:8px !important;
     box-shadow:none !important;
+    text-align:center !important;
+    margin:14px 16px 16px !important;
+    width:calc(100% - 32px) !important;
+    box-sizing:border-box !important;
 }
-#tp_products_grid_before a.btn:not(.btn-primary):hover,
-#tp_products_grid_before .btn-dark:hover,
-#tp_products_grid_before .btn-secondary:hover {
+aside.o_wsale_col_filters a.btn:not(.btn-primary):hover,
+aside.o_wsale_col_filters .btn-dark:hover,
+aside.o_wsale_col_filters .btn-secondary:hover {
     background:#13C2C5 !important;
     border-color:#13C2C5 !important;
     color:#fff !important;
 }
 
-/* 10. Checkboxes */
-#tp_products_grid_before .form-check-input:checked {
+/* Checkboxes */
+aside.o_wsale_col_filters .form-check-input:checked {
     background-color:#13C2C5 !important; border-color:#13C2C5 !important;
 }
-#tp_products_grid_before .form-check-label {
+aside.o_wsale_col_filters .form-check-label {
     font-size:13px !important; color:#374151 !important; font-weight:500 !important;
 }
 
