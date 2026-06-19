@@ -54,7 +54,7 @@ class BiighandsThemePrimeWebsiteSale(ThemePrimeWebsiteSale):
 
 class BiighandsHome(http.Controller):
 
-    @http.route('/home', type='http', auth='public', website=True, sitemap=True)
+    @http.route(['/', '/home'], type='http', auth='public', website=True, sitemap=True)
     def home(self, **kwargs):
         ProductTemplate = request.env['product.template'].sudo()
         products = ProductTemplate.search(
