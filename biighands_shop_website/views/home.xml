@@ -10,11 +10,7 @@
 
 <style>
 /* ============================================================
-   BH SHOP HOME — Screwfix-inspired, cleaner and sharper
-   Images go in:  biighands_shop_website/static/images/
-   banner1.png / banner2.png / banner3.png
-   promo1.png  / promo2.png
-   brand_1.png … brand_6.png  (optional)
+   BIIGHANDS HOME — Full Premium Design
    ============================================================ */
 
 .bhs-page *, .bhs-page *::before, .bhs-page *::after {
@@ -22,553 +18,547 @@
 }
 .bhs-page {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  color: #1A1A1A;
-  background: #fff;
+  color: #1A1A1A; background: #fff;
 }
 
 /* ---------- ANNOUNCEMENT BAR ---------- */
 .bhs-ann {
-  background: #0D2B2B;
-  color: #fff;
-  text-align: center;
-  padding: 9px 16px;
-  font-size: 13px;
-  font-weight: 600;
+  background: #0D2B2B; color: #fff;
+  text-align: center; padding: 9px 16px;
+  font-size: 13px; font-weight: 600; position: relative; z-index: 10;
 }
 .bhs-ann b { color: #AEEBEC; }
 .bhs-ann .d { margin: 0 12px; opacity: .35; }
 
 /* ---------- HERO SLIDER ---------- */
 .bhs-hero { position: relative; overflow: hidden; background: #080E0E; user-select: none; }
-
-.bhs-slide {
-  position: relative;
-  min-height: 500px;
-  display: none;
-  align-items: center;
-}
-.bhs-slide.go { display: flex; animation: bhsIn .5s ease; }
-@keyframes bhsIn { from { opacity: 0; } to { opacity: 1; } }
-
+.bhs-slide { position: relative; min-height: 520px; display: none; align-items: center; }
+.bhs-slide.go { display: flex; animation: bhsIn .6s ease; }
+@keyframes bhsIn { from { opacity: 0; transform: scale(1.03); } to { opacity: 1; transform: scale(1); } }
 .bhs-slide-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 6s ease;
 }
+.bhs-slide.go .bhs-slide-bg { transform: scale(1.05); }
 .bhs-slide-dim {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background: linear-gradient(105deg,
-    rgba(13,27,42,.94) 0%,
-    rgba(13,27,42,.60) 48%,
-    rgba(13,27,42,.08) 100%);
+    rgba(5,15,20,.95) 0%, rgba(13,27,42,.65) 50%, rgba(13,27,42,.1) 100%);
   z-index: 1;
 }
 .bhs-slide-body {
-  position: relative;
-  z-index: 2;
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 90px 64px;
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto; width: 100%; padding: 100px 64px;
 }
-.bhs-tag {
-  display: inline-block;
-  background: #13C2C5;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  padding: 5px 14px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
+.bhs-slide-body .bhs-tag { margin-bottom: 20px; }
 .bhs-slide-body h1 {
-  font-size: clamp(32px, 5vw, 60px);
-  font-weight: 900;
-  color: #fff;
-  line-height: 1.04;
-  letter-spacing: -1.5px;
-  max-width: 600px;
-  margin: 0 0 16px;
+  font-size: clamp(34px, 5vw, 64px); font-weight: 900; color: #fff;
+  line-height: 1.02; letter-spacing: -2px; max-width: 640px; margin: 0 0 18px;
 }
+.bhs-slide-body h1 em { font-style: normal; color: #13C2C5; }
 .bhs-slide-body p {
-  font-size: 18px;
-  color: rgba(255,255,255,.78);
-  max-width: 460px;
-  line-height: 1.65;
-  margin: 0 0 34px;
+  font-size: 17px; color: rgba(255,255,255,.75);
+  max-width: 480px; line-height: 1.7; margin: 0 0 36px;
 }
 .bhs-btns { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-
 .bhs-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 15px 34px;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 800;
-  text-decoration: none;
-  transition: background .2s, transform .15s;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 34px; border-radius: 8px;
+  font-size: 15px; font-weight: 800; text-decoration: none;
+  transition: all .2s;
 }
 .bhs-btn.solid { background: #13C2C5; color: #fff; }
-.bhs-btn.solid:hover { background: #037C7C; color: #fff; transform: translateY(-2px); }
+.bhs-btn.solid:hover { background: #037C7C; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(19,194,197,.4); }
 .bhs-btn.ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.42); }
 .bhs-btn.ghost:hover { background: #fff; color: #1A1A1A; }
-
-/* Carousel controls */
+.bhs-tag {
+  display: inline-block; background: #13C2C5; color: #fff;
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; padding: 5px 14px; border-radius: 4px;
+}
 .bhs-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  width: 50px; height: 50px;
-  border-radius: 50%;
-  background: rgba(0,0,0,.38);
-  border: 1.5px solid rgba(255,255,255,.22);
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(0,0,0,.35); border: 1.5px solid rgba(255,255,255,.2);
+  color: #fff; font-size: 20px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: background .2s;
+  transition: all .2s; backdrop-filter: blur(4px);
 }
-.bhs-arrow:hover { background: #13C2C5; border-color: #13C2C5; }
-.bhs-prev { left: 20px; }
-.bhs-next { right: 20px; }
-
-.bhs-dots {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 20;
-}
-.bhs-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.4);
-  border: none; cursor: pointer; padding: 0;
-  transition: all .25s;
-}
-.bhs-dot.on { background: #13C2C5; width: 24px; border-radius: 4px; }
+.bhs-arrow:hover { background: #13C2C5; border-color: #13C2C5; transform: translateY(-50%) scale(1.08); }
+.bhs-prev { left: 24px; } .bhs-next { right: 24px; }
+.bhs-dots { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 20; }
+.bhs-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.4); border: none; cursor: pointer; padding: 0; transition: all .3s; }
+.bhs-dot.on { background: #13C2C5; width: 28px; border-radius: 4px; }
 
 /* ---------- USP BAR ---------- */
 .bhs-usp { background: #13C2C5; }
-.bhs-usp-g {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.bhs-usp-i {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 15px 26px;
-  border-right: 1px solid rgba(255,255,255,.22);
-}
+.bhs-usp-g { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); }
+.bhs-usp-i { display: flex; align-items: center; gap: 13px; padding: 16px 28px; border-right: 1px solid rgba(255,255,255,.22); }
 .bhs-usp-i:last-child { border-right: none; }
-.bhs-usp-ic { font-size: 24px; line-height: 1; flex-shrink: 0; }
+.bhs-usp-ic { font-size: 26px; line-height: 1; flex-shrink: 0; }
 .bhs-usp-t strong { display: block; color: #fff; font-size: 14px; font-weight: 800; }
 .bhs-usp-t small { color: rgba(255,255,255,.82); font-size: 12px; }
 
-/* ---------- SHARED SECTION UTILS ---------- */
+/* ---------- STATS COUNTER ---------- */
+.bhs-stats { background: #0D2B2B; padding: 56px 24px; }
+.bhs-stats-g {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+}
+.bhs-stat {
+  text-align: center; padding: 20px 24px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  position: relative;
+}
+.bhs-stat:last-child { border-right: none; }
+.bhs-stat-num {
+  font-size: 48px; font-weight: 900; color: #13C2C5;
+  line-height: 1; letter-spacing: -2px; margin-bottom: 8px;
+  display: block;
+}
+.bhs-stat-lbl { font-size: 14px; color: rgba(255,255,255,.65); font-weight: 600; }
+.bhs-stat-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+
+/* ---------- SHARED UTILS ---------- */
 .bhs-w { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-.bhs-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
-.bhs-hd h2 { font-size: 26px; font-weight: 800; color: #0D2B2B; letter-spacing: -0.5px; }
-.bhs-hd h2 em { font-style: normal; color: #13C2C5; }
-.bhs-all { color: #13C2C5; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
-.bhs-all:hover { color: #037C7C; }
+.bhs-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; }
+.bhs-hd-left h2 { font-size: 28px; font-weight: 900; color: #0D2B2B; letter-spacing: -0.8px; }
+.bhs-hd-left h2 em { font-style: normal; color: #13C2C5; }
+.bhs-hd-left p { font-size: 14px; color: #6B7280; margin-top: 4px; }
+.bhs-all { color: #13C2C5; font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; border: 1.5px solid #13C2C5; padding: 8px 18px; border-radius: 6px; transition: all .2s; }
+.bhs-all:hover { background: #13C2C5; color: #fff; }
 
 /* ---------- CATEGORIES ---------- */
-.bhs-cat-s { padding: 60px 0 40px; }
-.bhs-cat-g {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 14px;
-}
+.bhs-cat-s { padding: 70px 0 50px; }
+.bhs-cat-g { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
 .bhs-cat {
-  background: #F4F5F7;
-  border: 1.5px solid #E8E9EC;
-  border-radius: 12px;
-  padding: 22px 12px 18px;
-  text-align: center;
-  text-decoration: none;
-  color: #1A1A1A;
-  transition: all .22s;
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  background: #F8FAFC; border: 1.5px solid #E8EDF2;
+  border-radius: 14px; padding: 24px 12px 20px;
+  text-align: center; text-decoration: none; color: #1A1A1A;
+  transition: all .25s; display: flex; flex-direction: column; align-items: center; gap: 10px;
 }
 .bhs-cat:hover {
-  border-color: #13C2C5;
-  background: #fff;
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(19,194,197,.13);
-  color: #13C2C5;
+  border-color: #13C2C5; background: #fff;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(19,194,197,.15); color: #0D2B2B;
 }
 .bhs-cat-ic {
-  width: 64px; height: 64px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1.5px solid #E8E9EC;
+  width: 68px; height: 68px; border-radius: 16px;
+  background: #fff; border: 1.5px solid #E8EDF2;
   display: flex; align-items: center; justify-content: center;
-  font-size: 28px;
-  transition: border-color .2s;
+  font-size: 30px; transition: all .25s;
 }
-.bhs-cat:hover .bhs-cat-ic { border-color: #13C2C5; }
-.bhs-cat-nm { font-size: 12.5px; font-weight: 700; line-height: 1.35; }
-.bhs-cat-ct { font-size: 11px; color: #6B7280; }
+.bhs-cat:hover .bhs-cat-ic { border-color: #13C2C5; background: rgba(19,194,197,.06); }
+.bhs-cat-nm { font-size: 13px; font-weight: 700; line-height: 1.35; }
+.bhs-cat-ct { font-size: 11px; color: #9CA3AF; }
 
-/* ---------- DEALS ---------- */
-.bhs-deals-s { padding: 50px 0 60px; background: #F4F5F7; }
-.bhs-deals-l {
-  display: grid;
-  grid-template-columns: 270px 1fr;
-  gap: 22px;
+/* ---------- WHY CHOOSE US ---------- */
+.bhs-why { background: linear-gradient(135deg, #F0FDF4 0%, #F0F9FF 100%); padding: 80px 0; }
+.bhs-why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.bhs-why-card {
+  background: #fff; border-radius: 16px; padding: 36px 28px;
+  border: 1.5px solid #E8EDF2;
+  transition: all .25s; position: relative; overflow: hidden;
 }
+.bhs-why-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(to bottom, #13C2C5, #037C7C);
+  border-radius: 4px 0 0 4px;
+}
+.bhs-why-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.09); border-color: #13C2C5; }
+.bhs-why-ic { font-size: 42px; margin-bottom: 18px; display: block; }
+.bhs-why-card h3 { font-size: 18px; font-weight: 800; color: #0D2B2B; margin-bottom: 10px; }
+.bhs-why-card p { font-size: 14px; color: #4B5563; line-height: 1.7; }
+
+/* ---------- DEALS + PRODUCTS ---------- */
+.bhs-deals-s { padding: 70px 0; background: #F4F6F9; }
+.bhs-deals-l { display: grid; grid-template-columns: 280px 1fr; gap: 24px; }
 .bhs-deal-card {
   background: linear-gradient(155deg, #0D2B2B 0%, #080E0E 100%);
-  border-radius: 14px;
-  padding: 36px 28px;
-  display: flex; flex-direction: column;
-  min-height: 440px;
+  border-radius: 16px; padding: 38px 28px;
+  display: flex; flex-direction: column; min-height: 460px;
   position: relative; overflow: hidden;
 }
 .bhs-deal-card::after {
-  content: '';
-  position: absolute;
-  bottom: -55px; right: -55px;
-  width: 210px; height: 210px;
-  border-radius: 50%;
-  background: rgba(19,194,197,.18);
+  content: ''; position: absolute; bottom: -60px; right: -60px;
+  width: 220px; height: 220px; border-radius: 50%;
+  background: rgba(19,194,197,.15);
+}
+.bhs-deal-card::before {
+  content: ''; position: absolute; top: -40px; right: -20px;
+  width: 140px; height: 140px; border-radius: 50%;
+  background: rgba(19,194,197,.07);
 }
 .bhs-deal-top { flex: 1; position: relative; z-index: 1; }
 .bhs-d-badge {
-  display: inline-block;
-  background: #13C2C5;
-  color: #fff;
-  font-size: 10px; font-weight: 900;
-  text-transform: uppercase; letter-spacing: 1.5px;
-  padding: 5px 12px; border-radius: 4px;
-  margin-bottom: 22px;
+  display: inline-block; background: #13C2C5; color: #fff;
+  font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px;
+  padding: 5px 12px; border-radius: 4px; margin-bottom: 24px;
 }
-.bhs-deal-card h3 { font-size: 28px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 14px; }
-.bhs-deal-card p { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.7; }
+.bhs-deal-card h3 { font-size: 30px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 14px; }
+.bhs-deal-card p { font-size: 14px; color: rgba(255,255,255,.62); line-height: 1.75; }
 .bhs-d-cta {
-  display: inline-block;
-  background: #13C2C5; color: #fff;
-  padding: 13px 26px; border-radius: 6px;
-  font-size: 14px; font-weight: 800;
-  text-decoration: none;
-  margin-top: 28px;
-  position: relative; z-index: 1;
-  transition: background .2s;
-}
-.bhs-d-cta:hover { background: #037C7C; color: #fff; }
-
-/* Product cards grid */
-.bhs-prod-g {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-.bhs-prod {
-  background: #fff;
-  border: 1.5px solid #E8E9EC;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex; flex-direction: column;
+  display: inline-block; background: #13C2C5; color: #fff;
+  padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 800;
+  text-decoration: none; margin-top: 30px; position: relative; z-index: 1;
   transition: all .2s;
 }
-.bhs-prod:hover {
-  border-color: #13C2C5;
-  box-shadow: 0 6px 20px rgba(19,194,197,.12);
-  transform: translateY(-3px);
+.bhs-d-cta:hover { background: #037C7C; color: #fff; transform: translateY(-2px); }
+
+/* Product cards */
+.bhs-prod-g { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.bhs-prod {
+  background: #fff; border: 1.5px solid #E8EDF2; border-radius: 14px;
+  overflow: hidden; display: flex; flex-direction: column; transition: all .25s;
+  position: relative;
 }
-.bhs-prod-link {
-  text-decoration: none; color: #1A1A1A;
-  display: flex; flex-direction: column; flex: 1;
-}
+.bhs-prod:hover { border-color: #13C2C5; box-shadow: 0 10px 30px rgba(19,194,197,.14); transform: translateY(-4px); }
+.bhs-prod-link { text-decoration: none; color: #1A1A1A; display: flex; flex-direction: column; flex: 1; }
 .bhs-prod-link:hover { color: #1A1A1A; }
 .bhs-prod-img {
-  height: 180px;
-  background: #F4F5F7;
+  height: 185px; background: #F8FAFC;
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
 }
-.bhs-prod-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
+.bhs-prod-img img { width: 100%; height: 100%; object-fit: contain; padding: 14px; transition: transform .35s; }
+.bhs-prod:hover .bhs-prod-img img { transform: scale(1.08); }
 .bhs-sticker {
   position: absolute; top: 10px; left: 10px;
-  background: #13C2C5; color: #fff;
-  font-size: 10px; font-weight: 800;
-  padding: 3px 8px; border-radius: 3px;
-  text-transform: uppercase;
+  background: #13C2C5; color: #fff; font-size: 10px; font-weight: 800;
+  padding: 3px 8px; border-radius: 4px; text-transform: uppercase;
 }
 .bhs-sticker.nw { background: #0D2B2B; }
-.bhs-prod-b { padding: 14px 16px 12px; display: flex; flex-direction: column; flex: 1; }
-.bhs-prod-cat { font-size: 11px; color: #6B7280; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
-.bhs-prod-nm { font-size: 13.5px; font-weight: 700; line-height: 1.4; margin-bottom: 12px; flex: 1; }
-.bhs-pricing { display: flex; align-items: baseline; gap: 8px; }
+.bhs-prod-b { padding: 14px 16px 10px; display: flex; flex-direction: column; flex: 1; }
+.bhs-prod-cat { font-size: 10.5px; color: #9CA3AF; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+.bhs-prod-nm { font-size: 13.5px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* Star rating */
+.bhs-stars { color: #F59E0B; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; }
+.bhs-stars span { color: #9CA3AF; font-size: 11px; margin-left: 4px; font-weight: 600; }
+.bhs-pricing { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
 .bhs-price { font-size: 22px; font-weight: 900; color: #13C2C5; }
 .bhs-was { font-size: 13px; color: #9CA3AF; text-decoration: line-through; }
-.bhs-atc-form { padding: 0 16px 16px; }
+.bhs-atc-form { padding: 12px 14px 14px; }
 .bhs-atc {
   display: block; width: 100%; text-align: center;
-  background: #0D2B2B; color: #fff;
-  padding: 10px 0; font-size: 13px; font-weight: 800;
-  border-radius: 6px; border: none; cursor: pointer;
-  transition: background .2s;
+  background: #0D2B2B; color: #fff; padding: 11px 0;
+  font-size: 13px; font-weight: 800; border-radius: 8px; border: none;
+  cursor: pointer; transition: all .2s; letter-spacing: .3px;
 }
 .bhs-atc:hover { background: #13C2C5; color: #fff; }
 
-/* ---------- DUAL PROMO ---------- */
-.bhs-promo-s { padding: 60px 0; }
-.bhs-promo-r { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+/* ---------- PROMO BANNERS ---------- */
+.bhs-promo-s { padding: 70px 0; }
+.bhs-promo-r { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .bhs-promo {
-  border-radius: 14px; height: 290px;
-  position: relative; overflow: hidden;
-  display: flex; align-items: center;
-  text-decoration: none;
-  background: #0D2B2B;
+  border-radius: 16px; height: 300px; position: relative; overflow: hidden;
+  display: flex; align-items: center; text-decoration: none; background: #0D2B2B;
 }
 .bhs-promo::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(13,27,42,.88) 0%, rgba(13,27,42,.22) 100%);
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(5,15,20,.92) 0%, rgba(13,27,42,.25) 100%);
   z-index: 1;
 }
 .bhs-promo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.bhs-promo-b { position: relative; z-index: 2; padding: 44px; }
+.bhs-promo-b { position: relative; z-index: 2; padding: 48px; }
 .bhs-promo-b h3 { font-size: 28px; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 10px; }
-.bhs-promo-b p { font-size: 14px; color: rgba(255,255,255,.78); margin-bottom: 22px; line-height: 1.55; }
+.bhs-promo-b p { font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 22px; line-height: 1.6; }
 .bhs-promo-lnk {
   display: inline-block; background: #13C2C5; color: #fff;
-  padding: 11px 24px; border-radius: 6px;
-  font-size: 13px; font-weight: 800; text-decoration: none;
-  transition: background .2s;
+  padding: 12px 26px; border-radius: 8px; font-size: 13px; font-weight: 800;
+  text-decoration: none; transition: all .2s;
 }
 .bhs-promo-lnk:hover { background: #037C7C; color: #fff; }
 
-/* ---------- BRANDS ---------- */
-.bhs-brands-s {
-  background: #F4F5F7;
-  border-top: 1px solid #E8E9EC;
-  border-bottom: 1px solid #E8E9EC;
-  padding: 44px 0;
+/* ---------- REVIEWS ---------- */
+.bhs-reviews { background: #F4F6F9; padding: 80px 0; }
+.bhs-rev-g { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.bhs-rev-card {
+  background: #fff; border-radius: 14px; padding: 28px 26px;
+  border: 1.5px solid #E8EDF2; transition: all .25s;
+  position: relative;
 }
-.bhs-brands-lbl { font-size: 13px; font-weight: 700; color: #6B7280; text-transform: uppercase; letter-spacing: 1.2px; text-align: center; margin-bottom: 28px; }
-.bhs-brands-g { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-.bhs-brand {
-  background: #fff; border: 1.5px solid #E8E9EC; border-radius: 8px;
-  height: 68px;
+.bhs-rev-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.08); border-color: #13C2C5; }
+.bhs-rev-card::before {
+  content: '\201C'; position: absolute; top: 18px; right: 22px;
+  font-size: 60px; color: rgba(19,194,197,.15); line-height: 1;
+  font-family: Georgia, serif; font-weight: 900;
+}
+.bhs-rev-stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+.bhs-rev-text { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+.bhs-rev-author { display: flex; align-items: center; gap: 12px; }
+.bhs-rev-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, #13C2C5, #037C7C);
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 800; color: #0D2B2B;
-  transition: all .2s;
+  color: #fff; font-size: 16px; font-weight: 800; flex-shrink: 0;
 }
-.bhs-brand:hover { border-color: #13C2C5; color: #13C2C5; }
+.bhs-rev-info strong { display: block; font-size: 14px; font-weight: 800; color: #0D2B2B; }
+.bhs-rev-info small { font-size: 12px; color: #9CA3AF; }
+.bhs-rev-badge {
+  display: inline-block; background: rgba(19,194,197,.1); color: #037C7C;
+  font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;
+  margin-top: 3px;
+}
+
+/* ---------- BRANDS ---------- */
+.bhs-brands-s { background: #fff; border-top: 1px solid #E8EDF2; border-bottom: 1px solid #E8EDF2; padding: 48px 0; }
+.bhs-brands-lbl { font-size: 12px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1.5px; text-align: center; margin-bottom: 28px; }
+.bhs-brands-g { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
+.bhs-brand {
+  background: #F8FAFC; border: 1.5px solid #E8EDF2; border-radius: 10px; height: 72px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: #6B7280; transition: all .2s;
+}
+.bhs-brand:hover { border-color: #13C2C5; color: #0D2B2B; background: #fff; box-shadow: 0 4px 14px rgba(19,194,197,.1); }
 
 /* ---------- INFO BAND ---------- */
-.bhs-info {
-  background: linear-gradient(90deg, #080E0E, #0D2B2B);
-  padding: 64px 24px;
-}
-.bhs-info-g {
-  max-width: 1280px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px;
-}
+.bhs-info { background: linear-gradient(105deg, #080E0E 0%, #0D2B2B 100%); padding: 70px 24px; }
+.bhs-info-g { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; }
 .bhs-info-c { text-align: center; }
-.bhs-info-c .ic { font-size: 40px; margin-bottom: 16px; }
-.bhs-info-c h3 { font-size: 19px; font-weight: 800; color: #fff; margin-bottom: 8px; }
-.bhs-info-c p { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.65; }
+.bhs-info-ic {
+  width: 72px; height: 72px; border-radius: 18px;
+  background: rgba(19,194,197,.12); border: 1.5px solid rgba(19,194,197,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; margin: 0 auto 20px;
+}
+.bhs-info-c h3 { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.bhs-info-c p { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.75; }
 .bhs-info-c a { color: #AEEBEC; font-weight: 700; text-decoration: none; }
 .bhs-info-c a:hover { color: #13C2C5; }
 
 /* ---------- NEWSLETTER ---------- */
-.bhs-news-s { padding: 64px 24px; background: #fff; }
-.bhs-news-w { max-width: 560px; margin: 0 auto; text-align: center; }
-.bhs-news-w h2 { font-size: 28px; font-weight: 900; color: #0D2B2B; margin-bottom: 10px; }
-.bhs-news-w p { font-size: 15px; color: #4A5568; margin-bottom: 28px; line-height: 1.6; }
-.bhs-news-f { display: flex; gap: 10px; }
-.bhs-news-f input {
-  flex: 1; padding: 13px 18px;
-  border: 1.5px solid #E8E9EC; border-radius: 6px;
-  font-size: 14px; outline: none;
-  transition: border-color .2s;
+.bhs-news-s {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #0D2B2B 0%, #064444 100%);
+  position: relative; overflow: hidden;
 }
-.bhs-news-f input:focus { border-color: #13C2C5; }
+.bhs-news-s::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: rgba(19,194,197,.08); pointer-events: none;
+}
+.bhs-news-s::after {
+  content: ''; position: absolute; bottom: -100px; left: -60px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(19,194,197,.06); pointer-events: none;
+}
+.bhs-news-w { max-width: 580px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+.bhs-news-w .bhs-tag { background: rgba(19,194,197,.2); color: #AEEBEC; margin-bottom: 18px; }
+.bhs-news-w h2 { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 12px; letter-spacing: -1px; }
+.bhs-news-w p { font-size: 15px; color: rgba(255,255,255,.65); margin-bottom: 32px; line-height: 1.65; }
+.bhs-news-f { display: flex; gap: 10px; background: rgba(255,255,255,.08); padding: 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,.15); }
+.bhs-news-f input {
+  flex: 1; padding: 13px 18px; background: transparent;
+  border: none; font-size: 14px; outline: none; color: #fff;
+}
+.bhs-news-f input::placeholder { color: rgba(255,255,255,.45); }
 .bhs-news-f button {
   background: #13C2C5; color: #fff; border: none;
-  padding: 13px 24px; border-radius: 6px;
-  font-size: 14px; font-weight: 800;
-  cursor: pointer; white-space: nowrap;
-  transition: background .2s;
+  padding: 13px 28px; border-radius: 8px; font-size: 14px; font-weight: 800;
+  cursor: pointer; white-space: nowrap; transition: all .2s;
 }
-.bhs-news-f button:hover { background: #037C7C; }
+.bhs-news-f button:hover { background: #037C7C; transform: translateY(-1px); }
+.bhs-news-trust { display: flex; gap: 20px; justify-content: center; margin-top: 18px; }
+.bhs-news-trust span { font-size: 12px; color: rgba(255,255,255,.5); display: flex; align-items: center; gap: 5px; }
+
+/* ---------- SCROLL REVEAL ---------- */
+.bhs-reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+.bhs-reveal.visible { opacity: 1; transform: translateY(0); }
+.bhs-reveal-d1 { transition-delay: .1s; }
+.bhs-reveal-d2 { transition-delay: .2s; }
+.bhs-reveal-d3 { transition-delay: .3s; }
+.bhs-reveal-d4 { transition-delay: .4s; }
+.bhs-reveal-d5 { transition-delay: .5s; }
+.bhs-reveal-d6 { transition-delay: .6s; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1100px) {
-  .bhs-cat-g { grid-template-columns: repeat(4, 1fr); }
+  .bhs-cat-g { grid-template-columns: repeat(4,1fr); }
   .bhs-deals-l { grid-template-columns: 1fr; }
   .bhs-deal-card { min-height: auto; }
-  .bhs-prod-g { grid-template-columns: repeat(3, 1fr); }
-  .bhs-brands-g { grid-template-columns: repeat(4, 1fr); }
-  .bhs-usp-g { grid-template-columns: repeat(2, 1fr); }
-  .bhs-info-g { grid-template-columns: 1fr; gap: 32px; }
+  .bhs-prod-g { grid-template-columns: repeat(3,1fr); }
+  .bhs-brands-g { grid-template-columns: repeat(4,1fr); }
+  .bhs-usp-g { grid-template-columns: repeat(2,1fr); }
+  .bhs-info-g { grid-template-columns: 1fr; gap: 36px; }
+  .bhs-why-grid { grid-template-columns: 1fr; }
+  .bhs-stats-g { grid-template-columns: repeat(2,1fr); }
+  .bhs-rev-g { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 768px) {
-  .bhs-slide { min-height: 320px; }
-  .bhs-slide-body { padding: 48px 28px; }
-  .bhs-cat-g { grid-template-columns: repeat(3, 1fr); }
-  .bhs-prod-g { grid-template-columns: repeat(2, 1fr); }
+  .bhs-slide { min-height: 340px; }
+  .bhs-slide-body { padding: 52px 28px; }
+  .bhs-cat-g { grid-template-columns: repeat(3,1fr); }
+  .bhs-prod-g { grid-template-columns: repeat(2,1fr); }
   .bhs-promo-r { grid-template-columns: 1fr; }
-  .bhs-brands-g { grid-template-columns: repeat(3, 1fr); }
+  .bhs-brands-g { grid-template-columns: repeat(3,1fr); }
   .bhs-usp-g { grid-template-columns: 1fr; }
   .bhs-news-f { flex-direction: column; }
-  .bhs-hd h2 { font-size: 20px; }
-  .bhs-arrow { width: 40px; height: 40px; font-size: 17px; }
+  .bhs-hd-left h2 { font-size: 22px; }
+  .bhs-rev-g { grid-template-columns: 1fr; }
+  .bhs-stats-g { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 480px) {
   .bhs-slide { min-height: 260px; }
-  .bhs-cat-g { grid-template-columns: repeat(2, 1fr); }
+  .bhs-cat-g { grid-template-columns: repeat(2,1fr); }
   .bhs-prod-g { grid-template-columns: 1fr; }
-  .bhs-brands-g { grid-template-columns: repeat(2, 1fr); }
+  .bhs-brands-g { grid-template-columns: repeat(2,1fr); }
+  .bhs-stats-g { grid-template-columns: 1fr; }
 }
 </style>
 
-<!-- ══════════════════════════════════════════════
-     ANNOUNCEMENT BAR
-════════════════════════════════════════════════ -->
+<!-- ANNOUNCEMENT BAR -->
 <div class="bhs-ann">
   &#128666; <b>FREE DELIVERY</b> on orders over $50
-  <span class="d">|</span>
-  &#128230; Click &amp; Collect Available
-  <span class="d">|</span>
-  &#9889; Same Day Dispatch on orders before 3pm
+  <span class="d">|</span> &#128230; Click &amp; Collect Available
+  <span class="d">|</span> &#9889; Same Day Dispatch before 3pm
 </div>
 
-<!-- ══════════════════════════════════════════════
-     HERO SLIDER
-════════════════════════════════════════════════ -->
+<!-- HERO SLIDER -->
 <div class="bhs-hero" id="bhsHero">
-
   <div class="bhs-slide go">
-    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner1.png'); background-color:#0D2B2B;"></div>
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner1.png');background-color:#0D2B2B;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
-      <div class="bhs-tag">New Season</div>
-      <h1>Professional Tools<br/>for Every Job</h1>
-      <p>Thousands of trade-quality products at unbeatable prices. Power tools, plumbing, electrical and more.</p>
+      <div class="bhs-tag">&#10024; New Season 2025</div>
+      <h1>Professional Tools<br/>for <em>Every Job</em></h1>
+      <p>Thousands of trade-quality products at unbeatable prices — power tools, plumbing, electrical and more.</p>
       <div class="bhs-btns">
         <a href="/shop" class="bhs-btn solid">Shop Now &#8594;</a>
         <a href="/shop" class="bhs-btn ghost">Browse Categories</a>
       </div>
     </div>
   </div>
-
   <div class="bhs-slide">
-    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner2.png'); background-color:#037C7C;"></div>
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner2.png');background-color:#037C7C;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
-      <div class="bhs-tag">&#128293; Hot Deals</div>
-      <h1>Massive Savings<br/>on Power Tools</h1>
-      <p>Up to 40% off selected power tools and accessories this week only. Limited stock.</p>
+      <div class="bhs-tag">&#128293; Hot Deals — This Week Only</div>
+      <h1>Massive Savings on<br/><em>Power Tools</em></h1>
+      <p>Up to 40% off selected power tools and accessories. Limited stock — don't miss out.</p>
       <div class="bhs-btns">
         <a href="/shop" class="bhs-btn solid">View Deals &#8594;</a>
       </div>
     </div>
   </div>
-
   <div class="bhs-slide">
-    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner3.png'); background-color:#080E0E;"></div>
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner3.png');background-color:#080E0E;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
-      <div class="bhs-tag">Trade Accounts</div>
-      <h1>Open a Trade<br/>Account Today</h1>
-      <p>Exclusive pricing, bulk discounts, and a dedicated account manager for your business.</p>
+      <div class="bhs-tag">&#127959; Trade Accounts</div>
+      <h1>Open a <em>Trade Account</em><br/>Today</h1>
+      <p>Exclusive pricing, bulk discounts and a dedicated account manager for your business.</p>
       <div class="bhs-btns">
         <a href="/shop" class="bhs-btn solid">Apply Now &#8594;</a>
         <a href="/shop" class="bhs-btn ghost">Learn More</a>
       </div>
     </div>
   </div>
-
   <button class="bhs-arrow bhs-prev" type="button" onclick="bhsPrev()">&#8592;</button>
   <button class="bhs-arrow bhs-next" type="button" onclick="bhsNext()">&#8594;</button>
   <div class="bhs-dots">
     <button class="bhs-dot on" type="button" onclick="bhsGo(0)"></button>
-    <button class="bhs-dot"    type="button" onclick="bhsGo(1)"></button>
-    <button class="bhs-dot"    type="button" onclick="bhsGo(2)"></button>
+    <button class="bhs-dot"   type="button" onclick="bhsGo(1)"></button>
+    <button class="bhs-dot"   type="button" onclick="bhsGo(2)"></button>
   </div>
-
 </div>
 
-<!-- ══════════════════════════════════════════════
-     USP STRIP
-════════════════════════════════════════════════ -->
+<!-- USP STRIP -->
 <div class="bhs-usp">
   <div class="bhs-usp-g">
-    <div class="bhs-usp-i">
-      <div class="bhs-usp-ic">&#128666;</div>
-      <div class="bhs-usp-t"><strong>Free Delivery</strong><small>On orders over $50</small></div>
-    </div>
-    <div class="bhs-usp-i">
-      <div class="bhs-usp-ic">&#128230;</div>
-      <div class="bhs-usp-t"><strong>Click &amp; Collect</strong><small>Ready in 1 hour</small></div>
-    </div>
-    <div class="bhs-usp-i">
-      <div class="bhs-usp-ic">&#9889;</div>
-      <div class="bhs-usp-t"><strong>Same Day Dispatch</strong><small>Order before 3pm</small></div>
-    </div>
-    <div class="bhs-usp-i">
-      <div class="bhs-usp-ic">&#128260;</div>
-      <div class="bhs-usp-t"><strong>Easy Returns</strong><small>30-day hassle-free</small></div>
-    </div>
+    <div class="bhs-usp-i"><div class="bhs-usp-ic">&#128666;</div><div class="bhs-usp-t"><strong>Free Delivery</strong><small>On orders over $50</small></div></div>
+    <div class="bhs-usp-i"><div class="bhs-usp-ic">&#128230;</div><div class="bhs-usp-t"><strong>Click &amp; Collect</strong><small>Ready in 1 hour</small></div></div>
+    <div class="bhs-usp-i"><div class="bhs-usp-ic">&#9889;</div><div class="bhs-usp-t"><strong>Same Day Dispatch</strong><small>Order before 3pm</small></div></div>
+    <div class="bhs-usp-i"><div class="bhs-usp-ic">&#128260;</div><div class="bhs-usp-t"><strong>Easy Returns</strong><small>30-day hassle-free</small></div></div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     SHOP BY CATEGORY
-════════════════════════════════════════════════ -->
+<!-- STATS COUNTER -->
+<div class="bhs-stats">
+  <div class="bhs-stats-g">
+    <div class="bhs-stat bhs-reveal"><span class="bhs-stat-icon">&#128230;</span><span class="bhs-stat-num" data-target="10000">0</span><span class="bhs-stat-lbl">Products in Stock</span></div>
+    <div class="bhs-stat bhs-reveal bhs-reveal-d2"><span class="bhs-stat-icon">&#128101;</span><span class="bhs-stat-num" data-target="50000">0</span><span class="bhs-stat-lbl">Happy Customers</span></div>
+    <div class="bhs-stat bhs-reveal bhs-reveal-d3"><span class="bhs-stat-icon">&#11088;</span><span class="bhs-stat-num" data-target="15">0</span><span class="bhs-stat-lbl">Years Experience</span></div>
+    <div class="bhs-stat bhs-reveal bhs-reveal-d4"><span class="bhs-stat-icon">&#128666;</span><span class="bhs-stat-num" data-target="99">0</span><span class="bhs-stat-lbl">% On-Time Delivery</span></div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
 <div class="bhs-cat-s">
   <div class="bhs-w">
-    <div class="bhs-hd">
-      <h2>Shop by <em>Category</em></h2>
+    <div class="bhs-hd bhs-reveal">
+      <div class="bhs-hd-left"><h2>Shop by <em>Category</em></h2><p>Browse our full range of professional supplies</p></div>
       <a href="/shop" class="bhs-all">View All &#8594;</a>
     </div>
     <div class="bhs-cat-g">
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#128295;</div><div class="bhs-cat-nm">Power Tools</div><div class="bhs-cat-ct">240+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#128296;</div><div class="bhs-cat-nm">Hand Tools</div><div class="bhs-cat-ct">180+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#129520;</div><div class="bhs-cat-nm">Plumbing</div><div class="bhs-cat-ct">320+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#9889;</div><div class="bhs-cat-nm">Electrical</div><div class="bhs-cat-ct">210+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#129381;</div><div class="bhs-cat-nm">Workwear &amp; PPE</div><div class="bhs-cat-ct">150+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#128297;</div><div class="bhs-cat-nm">Fixings &amp; Fasteners</div><div class="bhs-cat-ct">500+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#127807;</div><div class="bhs-cat-nm">Outdoor &amp; Garden</div><div class="bhs-cat-ct">120+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#128161;</div><div class="bhs-cat-nm">Lighting</div><div class="bhs-cat-ct">190+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#128230;</div><div class="bhs-cat-nm">Storage</div><div class="bhs-cat-ct">90+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#128274;</div><div class="bhs-cat-nm">Adhesives &amp; Sealants</div><div class="bhs-cat-ct">110+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#127777;</div><div class="bhs-cat-nm">Heating &amp; Cooling</div><div class="bhs-cat-ct">80+ Products</div></a>
-      <a href="/shop" class="bhs-cat"><div class="bhs-cat-ic">&#127912;</div><div class="bhs-cat-nm">Decorating</div><div class="bhs-cat-ct">140+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d1"><div class="bhs-cat-ic">&#128295;</div><div class="bhs-cat-nm">Power Tools</div><div class="bhs-cat-ct">240+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d2"><div class="bhs-cat-ic">&#128296;</div><div class="bhs-cat-nm">Hand Tools</div><div class="bhs-cat-ct">180+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d3"><div class="bhs-cat-ic">&#129520;</div><div class="bhs-cat-nm">Plumbing</div><div class="bhs-cat-ct">320+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d4"><div class="bhs-cat-ic">&#9889;</div><div class="bhs-cat-nm">Electrical</div><div class="bhs-cat-ct">210+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d5"><div class="bhs-cat-ic">&#129381;</div><div class="bhs-cat-nm">Workwear &amp; PPE</div><div class="bhs-cat-ct">150+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d6"><div class="bhs-cat-ic">&#128297;</div><div class="bhs-cat-nm">Fixings &amp; Fasteners</div><div class="bhs-cat-ct">500+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d1"><div class="bhs-cat-ic">&#127807;</div><div class="bhs-cat-nm">Outdoor &amp; Garden</div><div class="bhs-cat-ct">120+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d2"><div class="bhs-cat-ic">&#128161;</div><div class="bhs-cat-nm">Lighting</div><div class="bhs-cat-ct">190+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d3"><div class="bhs-cat-ic">&#128230;</div><div class="bhs-cat-nm">Storage</div><div class="bhs-cat-ct">90+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d4"><div class="bhs-cat-ic">&#128274;</div><div class="bhs-cat-nm">Adhesives &amp; Sealants</div><div class="bhs-cat-ct">110+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d5"><div class="bhs-cat-ic">&#127777;</div><div class="bhs-cat-nm">Heating &amp; Cooling</div><div class="bhs-cat-ct">80+ Products</div></a>
+      <a href="/shop" class="bhs-cat bhs-reveal bhs-reveal-d6"><div class="bhs-cat-ic">&#127912;</div><div class="bhs-cat-nm">Decorating</div><div class="bhs-cat-ct">140+ Products</div></a>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     TOP DEALS
-════════════════════════════════════════════════ -->
+<!-- WHY CHOOSE US -->
+<div class="bhs-why">
+  <div class="bhs-w">
+    <div class="bhs-hd bhs-reveal">
+      <div class="bhs-hd-left"><h2>Why Choose <em>Biighands?</em></h2><p>Trusted by thousands of trade professionals</p></div>
+    </div>
+    <div class="bhs-why-grid">
+      <div class="bhs-why-card bhs-reveal bhs-reveal-d1">
+        <span class="bhs-why-ic">&#127959;</span>
+        <h3>Trade-Quality Products</h3>
+        <p>Every product is vetted by our expert team. We only stock items that meet professional trade standards — no compromises on quality.</p>
+      </div>
+      <div class="bhs-why-card bhs-reveal bhs-reveal-d2">
+        <span class="bhs-why-ic">&#128176;</span>
+        <h3>Unbeatable Prices</h3>
+        <p>We work directly with manufacturers and distributors to cut out the middleman, passing the savings directly to you.</p>
+      </div>
+      <div class="bhs-why-card bhs-reveal bhs-reveal-d3">
+        <span class="bhs-why-ic">&#9889;</span>
+        <h3>Fast, Reliable Delivery</h3>
+        <p>Order before 3pm for same-day dispatch. Free delivery on orders over $50, with real-time tracking on every order.</p>
+      </div>
+      <div class="bhs-why-card bhs-reveal bhs-reveal-d1">
+        <span class="bhs-why-ic">&#128101;</span>
+        <h3>Expert Support Team</h3>
+        <p>Our team of trade specialists is available weekdays to help you find the right product for any job, big or small.</p>
+      </div>
+      <div class="bhs-why-card bhs-reveal bhs-reveal-d2">
+        <span class="bhs-why-ic">&#128260;</span>
+        <h3>Hassle-Free Returns</h3>
+        <p>Not satisfied? Return any item within 30 days — no questions asked. We make returns as easy as possible.</p>
+      </div>
+      <div class="bhs-why-card bhs-reveal bhs-reveal-d3">
+        <span class="bhs-why-ic">&#127959;</span>
+        <h3>Trade Account Benefits</h3>
+        <p>Open a free trade account and unlock exclusive pricing, bulk discounts, extended credit terms and priority dispatch.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP DEALS + PRODUCTS -->
 <div class="bhs-deals-s">
   <div class="bhs-w">
-    <div class="bhs-hd">
-      <h2>&#128293; Top Deals This Week</h2>
+    <div class="bhs-hd bhs-reveal">
+      <div class="bhs-hd-left"><h2>&#128293; <em>Top Deals</em> This Week</h2><p>Best-selling products at our lowest prices</p></div>
       <a href="/shop" class="bhs-all">All Deals &#8594;</a>
     </div>
     <div class="bhs-deals-l">
-
-      <div class="bhs-deal-card">
+      <div class="bhs-deal-card bhs-reveal">
         <div class="bhs-deal-top">
           <div class="bhs-d-badge">&#128293; Deal of the Week</div>
           <h3>Power Tool<br/>Bundles</h3>
@@ -576,14 +566,12 @@
         </div>
         <a href="/shop" class="bhs-d-cta">Shop Bundles &#8594;</a>
       </div>
-
       <div class="bhs-prod-g">
         <t t-foreach="featured_products" t-as="product">
-          <div class="bhs-prod">
+          <div class="bhs-prod bhs-reveal">
             <a t-att-href="product.website_url" class="bhs-prod-link">
               <div class="bhs-prod-img">
-                <img t-att-src="'/web/image/product.template/%s/image_512' % product.id"
-                     t-att-alt="product.name"/>
+                <img t-att-src="'/web/image/product.template/%s/image_512' % product.id" t-att-alt="product.name" loading="lazy"/>
                 <t t-if="product.compare_list_price and product.compare_list_price > product.list_price">
                   <span class="bhs-sticker">SALE</span>
                 </t>
@@ -591,14 +579,11 @@
               <div class="bhs-prod-b">
                 <div class="bhs-prod-cat" t-esc="product.categ_id.name"/>
                 <div class="bhs-prod-nm" t-esc="product.name"/>
+                <div class="bhs-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>(4.8)</span></div>
                 <div class="bhs-pricing">
-                  <span class="bhs-price">
-                    <t t-esc="product.currency_id.symbol"/><t t-esc="'%.2f' % product.list_price"/>
-                  </span>
+                  <span class="bhs-price"><t t-esc="product.currency_id.symbol"/><t t-esc="'%.2f' % product.list_price"/></span>
                   <t t-if="product.compare_list_price and product.compare_list_price > product.list_price">
-                    <span class="bhs-was">
-                      <t t-esc="product.currency_id.symbol"/><t t-esc="'%.2f' % product.compare_list_price"/>
-                    </span>
+                    <span class="bhs-was"><t t-esc="product.currency_id.symbol"/><t t-esc="'%.2f' % product.compare_list_price"/></span>
                   </t>
                 </div>
               </div>
@@ -608,138 +593,208 @@
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                 <input type="hidden" name="product_id" t-att-value="product.product_variant_id.id"/>
                 <input type="hidden" name="add_qty" value="1"/>
-                <button type="submit" class="bhs-atc">Add to Cart</button>
+                <button type="submit" class="bhs-atc">&#43; Add to Cart</button>
               </form>
             </div>
           </div>
         </t>
         <t t-if="not featured_products">
-          <div style="grid-column:1/-1;text-align:center;padding:40px;color:#6B7280;font-size:15px;">
-            No featured products yet. Publish products in Odoo to show them here.
-          </div>
+          <div style="grid-column:1/-1;text-align:center;padding:40px;color:#6B7280;">No products yet — publish products in Odoo to show here.</div>
         </t>
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     DUAL PROMO BANNERS
-════════════════════════════════════════════════ -->
+<!-- PROMO BANNERS -->
 <div class="bhs-promo-s">
   <div class="bhs-w">
     <div class="bhs-promo-r">
-      <a href="/shop" class="bhs-promo">
+      <a href="/shop" class="bhs-promo bhs-reveal">
         <img src="/biighands_shop_website/static/images/promo1.png" alt="Trade Accounts"/>
         <div class="bhs-promo-b">
           <h3>Open a<br/>Trade Account</h3>
           <p>Better prices. Priority dispatch.<br/>Dedicated account manager.</p>
-          <span class="bhs-promo-lnk">Apply Now</span>
+          <span class="bhs-promo-lnk">Apply Now &#8594;</span>
         </div>
       </a>
-      <a href="/shop" class="bhs-promo" style="background:#037C7C">
+      <a href="/shop" class="bhs-promo bhs-reveal bhs-reveal-d2" style="background:#037C7C">
         <img src="/biighands_shop_website/static/images/promo2.png" alt="Clearance"/>
         <div class="bhs-promo-b">
           <h3>Clearance<br/>Specials</h3>
           <p>Last chance on hundreds of lines.<br/>Up to 60% off selected stock.</p>
-          <span class="bhs-promo-lnk">Shop Clearance</span>
+          <span class="bhs-promo-lnk">Shop Clearance &#8594;</span>
         </div>
       </a>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     BRANDS
-════════════════════════════════════════════════ -->
-<div class="bhs-brands-s">
+<!-- CUSTOMER REVIEWS -->
+<div class="bhs-reviews">
   <div class="bhs-w">
-    <div class="bhs-brands-lbl">Our Trusted Brands</div>
-    <div class="bhs-brands-g">
-      <div class="bhs-brand">Brand 1</div>
-      <div class="bhs-brand">Brand 2</div>
-      <div class="bhs-brand">Brand 3</div>
-      <div class="bhs-brand">Brand 4</div>
-      <div class="bhs-brand">Brand 5</div>
-      <div class="bhs-brand">Brand 6</div>
+    <div class="bhs-hd bhs-reveal">
+      <div class="bhs-hd-left"><h2>What Our <em>Customers Say</em></h2><p>Trusted by thousands of trade professionals</p></div>
+    </div>
+    <div class="bhs-rev-g">
+      <div class="bhs-rev-card bhs-reveal bhs-reveal-d1">
+        <div class="bhs-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="bhs-rev-text">"Outstanding quality and lightning-fast delivery. Ordered on Monday, had everything on site by Tuesday morning. Will definitely use Biighands for all our future projects."</p>
+        <div class="bhs-rev-author">
+          <div class="bhs-rev-av">JM</div>
+          <div class="bhs-rev-info">
+            <strong>James Mitchell</strong>
+            <small>Master Electrician</small>
+            <div class="bhs-rev-badge">&#9989; Verified Purchase</div>
+          </div>
+        </div>
+      </div>
+      <div class="bhs-rev-card bhs-reveal bhs-reveal-d2">
+        <div class="bhs-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="bhs-rev-text">"Best trade supplier I've found. The prices are incredible for the quality, and their customer support team actually knows their products. Highly recommend the trade account."</p>
+        <div class="bhs-rev-author">
+          <div class="bhs-rev-av">SR</div>
+          <div class="bhs-rev-info">
+            <strong>Sarah Rahman</strong>
+            <small>Building Contractor</small>
+            <div class="bhs-rev-badge">&#9989; Verified Purchase</div>
+          </div>
+        </div>
+      </div>
+      <div class="bhs-rev-card bhs-reveal bhs-reveal-d3">
+        <div class="bhs-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="bhs-rev-text">"Switched from our old supplier 6 months ago and haven't looked back. Consistently great stock levels, competitive prices, and the click &amp; collect is a huge time-saver on busy days."</p>
+        <div class="bhs-rev-author">
+          <div class="bhs-rev-av">TK</div>
+          <div class="bhs-rev-info">
+            <strong>Tom Kowalski</strong>
+            <small>Plumbing Specialist</small>
+            <div class="bhs-rev-badge">&#9989; Verified Purchase</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     INFO BAND
-════════════════════════════════════════════════ -->
+<!-- BRANDS -->
+<div class="bhs-brands-s">
+  <div class="bhs-w">
+    <div class="bhs-brands-lbl">Our Trusted Brands</div>
+    <div class="bhs-brands-g">
+      <div class="bhs-brand bhs-reveal bhs-reveal-d1">Brand 1</div>
+      <div class="bhs-brand bhs-reveal bhs-reveal-d2">Brand 2</div>
+      <div class="bhs-brand bhs-reveal bhs-reveal-d3">Brand 3</div>
+      <div class="bhs-brand bhs-reveal bhs-reveal-d4">Brand 4</div>
+      <div class="bhs-brand bhs-reveal bhs-reveal-d5">Brand 5</div>
+      <div class="bhs-brand bhs-reveal bhs-reveal-d6">Brand 6</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO BAND -->
 <div class="bhs-info">
   <div class="bhs-info-g">
-    <div class="bhs-info-c">
-      <div class="ic">&#128666;</div>
+    <div class="bhs-info-c bhs-reveal">
+      <div class="bhs-info-ic">&#128666;</div>
       <h3>Fast Delivery</h3>
       <p>Free on orders over $50. Same-day dispatch on thousands of lines. <a href="/shop">Shop now</a></p>
     </div>
-    <div class="bhs-info-c">
-      <div class="ic">&#127959;&#65039;</div>
+    <div class="bhs-info-c bhs-reveal bhs-reveal-d2">
+      <div class="bhs-info-ic">&#127959;</div>
       <h3>Trade Accounts</h3>
-      <p>Exclusive trade pricing and bulk discounts tailored for businesses. <a href="/shop">Apply today</a></p>
+      <p>Exclusive trade pricing and bulk discounts tailored for your business. <a href="/shop">Apply today</a></p>
     </div>
-    <div class="bhs-info-c">
-      <div class="ic">&#128222;</div>
+    <div class="bhs-info-c bhs-reveal bhs-reveal-d3">
+      <div class="bhs-info-ic">&#128222;</div>
       <h3>Expert Support</h3>
       <p>Our specialists are ready to help weekdays 9am–5pm. <a href="/contactus">Get in touch</a></p>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     NEWSLETTER
-════════════════════════════════════════════════ -->
+<!-- NEWSLETTER -->
 <div class="bhs-news-s">
-  <div class="bhs-news-w">
+  <div class="bhs-news-w bhs-reveal">
+    <div class="bhs-tag">&#128140; Newsletter</div>
     <h2>Stay in the Loop</h2>
-    <p>Get the latest deals, new arrivals, and trade tips straight to your inbox. No spam, ever.</p>
+    <p>Get the latest deals, new arrivals, and expert trade tips straight to your inbox. No spam, ever.</p>
     <div class="bhs-news-f">
       <input type="email" placeholder="Enter your email address"/>
-      <button type="button">Subscribe</button>
+      <button type="button">Subscribe &#8594;</button>
+    </div>
+    <div class="bhs-news-trust">
+      <span>&#128274; Secure &amp; Private</span>
+      <span>&#10003; No Spam</span>
+      <span>&#10003; Unsubscribe Anytime</span>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     CAROUSEL SCRIPT
-════════════════════════════════════════════════ -->
+<!-- CAROUSEL + SCROLL ANIMATION + STATS COUNTER SCRIPT -->
 <script type="text/javascript">
 (function () {
   "use strict";
+
+  /* ── CAROUSEL ── */
   var hero = document.getElementById("bhsHero");
-  if (!hero) { return; }
-  var slides = hero.querySelectorAll(".bhs-slide");
-  var dots   = hero.querySelectorAll(".bhs-dot");
-  var cur    = 0;
-  var tmr;
-
-  function show(n) {
-    slides[cur].classList.remove("go");
-    dots[cur].classList.remove("on");
-    cur = ((n % slides.length) + slides.length) % slides.length;
-    slides[cur].classList.add("go");
-    dots[cur].classList.add("on");
+  if (hero) {
+    var slides = hero.querySelectorAll(".bhs-slide");
+    var dots   = hero.querySelectorAll(".bhs-dot");
+    var cur = 0, tmr;
+    function show(n) {
+      slides[cur].classList.remove("go"); dots[cur].classList.remove("on");
+      cur = ((n % slides.length) + slides.length) % slides.length;
+      slides[cur].classList.add("go"); dots[cur].classList.add("on");
+    }
+    function tick() { clearInterval(tmr); tmr = setInterval(function(){ show(cur+1); }, 5000); }
+    window.bhsNext = function(){ show(cur+1); tick(); };
+    window.bhsPrev = function(){ show(cur-1); tick(); };
+    window.bhsGo   = function(n){ show(n); tick(); };
+    tick();
   }
 
-  function tick() {
-    clearInterval(tmr);
-    tmr = setInterval(function () { show(cur + 1); }, 5000);
+  /* ── SCROLL REVEAL ── */
+  var revEls = document.querySelectorAll(".bhs-reveal");
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    revEls.forEach(function(el){ obs.observe(el); });
+  } else {
+    revEls.forEach(function(el){ el.classList.add("visible"); });
   }
 
-  window.bhsNext = function () { show(cur + 1); tick(); };
-  window.bhsPrev = function () { show(cur - 1); tick(); };
-  window.bhsGo   = function (n) { show(n);      tick(); };
+  /* ── STATS COUNTER ── */
+  function animateCounter(el, target) {
+    var start = 0, duration = 1800, step = 16;
+    var inc = Math.ceil(target / (duration / step));
+    var t = setInterval(function(){
+      start += inc;
+      if (start >= target) { start = target; clearInterval(t); }
+      var formatted = start >= 1000 ? (start/1000).toFixed(start >= 10000 ? 0 : 1) + "K+" : start + (target === 99 ? "%" : "+");
+      el.textContent = formatted;
+    }, step);
+  }
+  var statNums = document.querySelectorAll(".bhs-stat-num");
+  var statObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) {
+        var target = parseInt(e.target.getAttribute("data-target"));
+        animateCounter(e.target, target);
+        statObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(function(el){ statObs.observe(el); });
 
-  tick();
 }());
 </script>
 
-</div><!-- /bhs-page -->
-</div><!-- /wrap -->
+</div>
+</div>
 </t>
 </template>
 
