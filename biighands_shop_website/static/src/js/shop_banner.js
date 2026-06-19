@@ -127,36 +127,55 @@
             r.style.accentColor = '#13C2C5';
         });
 
-        /* 4. FILTER button → rename to APPLY + make full-width */
-        filterAside.querySelectorAll('button,a,.btn,input[type="submit"]').forEach(function(btn){
-            var txt = (btn.tagName === 'INPUT' ? btn.value : btn.textContent || '').trim().toUpperCase();
-            if (txt === 'FILTER' || txt === 'APPLY') {
-                if (btn.tagName === 'INPUT') {
-                    btn.value = 'APPLY';
-                } else {
-                    btn.textContent = 'APPLY';
-                }
-                btn.style.cssText = [
-                    'display:block',
-                    'width:100%',
-                    'background:#13C2C5',
-                    'border:none',
-                    'color:#fff',
-                    'font-weight:800',
-                    'border-radius:8px',
-                    'padding:13px 0',
-                    'font-size:14px',
-                    'cursor:pointer',
-                    'text-align:center',
-                    'text-decoration:none',
-                    'letter-spacing:.6px',
-                    'margin-top:14px',
-                    'box-sizing:border-box',
-                    'transition:background .18s'
-                ].join(';');
-                btn.addEventListener('mouseenter', function(){ btn.style.background = '#037C7C'; });
-                btn.addEventListener('mouseleave', function(){ btn.style.background = '#13C2C5'; });
+        /* 4. FILTER/APPLY button → full-width teal, text = APPLY
+              Target by CLASS (.a-submit) first, then fall back to text match */
+        var applyBtns = filterAside.querySelectorAll(
+            '.a-submit, button[type="submit"], input[type="submit"]'
+        );
+        /* fallback: also check text if class-based selector found nothing */
+        if (!applyBtns.length) {
+            applyBtns = Array.prototype.filter.call(
+                filterAside.querySelectorAll('button, a, .btn'),
+                function(b){ return (b.textContent||'').trim().toUpperCase() === 'FILTER'; }
+            );
+        }
+        applyBtns.forEach(function(btn){
+            /* rename */
+            if (btn.tagName === 'INPUT') { btn.value = 'APPLY'; }
+            else { btn.textContent = 'APPLY'; }
+
+            /* full-width style — inline so it beats everything */
+            btn.style.cssText = [
+                'display:block',
+                'width:100%',
+                'max-width:100%',
+                'background:#13C2C5',
+                'border:none',
+                'color:#fff',
+                'font-weight:800',
+                'border-radius:8px',
+                'padding:13px 0',
+                'font-size:14px',
+                'cursor:pointer',
+                'text-align:center',
+                'text-decoration:none',
+                'letter-spacing:.5px',
+                'box-sizing:border-box',
+                'margin-top:12px',
+                'transition:background .18s'
+            ].join(';');
+
+            /* fix parent so it doesn't right-align or squeeze the button */
+            var par = btn.parentElement;
+            if (par) {
+                par.style.display    = 'block';
+                par.style.width      = '100%';
+                par.style.textAlign  = 'unset';
+                par.style.justifyContent = 'unset';
             }
+
+            btn.addEventListener('mouseenter', function(){ btn.style.background = '#037C7C'; });
+            btn.addEventListener('mouseleave', function(){ btn.style.background = '#13C2C5'; });
         });
     }
 
