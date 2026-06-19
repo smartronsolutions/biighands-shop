@@ -13,8 +13,9 @@
 <!-- ── 1. Shop layout: inject teal header banner above product grid ── -->
 <template id="bh_shop_layout" inherit_id="theme_prime.shop_layout" name="BH Shop: Header + Teal">
 
-    <!-- Header banner above the container -->
-    <xpath expr="//div[@id='o_wsale_container']" position="before">
+    <!-- Target the oe_structure placeholder that sits at the very top of #wrap,
+         just before o_wsale_container. 'before' puts our banner above it. -->
+    <xpath expr="//div[@id='oe_structure_website_sale_products_1']" position="before">
         <div class="bh-shop-header">
             <div class="bh-shop-header-inner">
                 <div>
@@ -23,31 +24,26 @@
                 </div>
                 <div class="bh-shop-header-pills">
                     <a href="/shop" class="bh-shop-header-pill">All Products</a>
-                    <a href="/shop?order=price+asc" class="bh-shop-header-pill">&#128293; Best Price</a>
-                    <a href="/shop?order=create_date+desc" class="bh-shop-header-pill">&#127381; New Arrivals</a>
-                    <a href="/shop?order=website_sequence+asc" class="bh-shop-header-pill">&#11088; Featured</a>
+                    <a href="/shop?order=price+asc" class="bh-shop-header-pill">Best Price</a>
+                    <a href="/shop?order=create_date+desc" class="bh-shop-header-pill">New Arrivals</a>
+                    <a href="/shop?order=website_sequence+asc" class="bh-shop-header-pill">Featured</a>
                 </div>
             </div>
         </div>
     </xpath>
 
-    <!-- Mobile topbar: replace generic "Shop" with branded heading -->
-    <xpath expr="//div[@class='d-lg-none d-flex align-items-center justify-content-between']/h5" position="replace">
-        <h5 class="mb-0" style="color:#0D2B2B;font-weight:800;">BH Shop</h5>
-    </xpath>
-
 </template>
 
 
-<!-- ── 2. Product card (Grid 1): sharper corners + dark ATC label tweak ── -->
+<!-- ── 2. Product card (Grid 1): sharper corners + content padding ── -->
 <template id="bh_product_item_grid_1" inherit_id="theme_prime.product_item_grid_1" name="BH Shop: Product Card Grid 1">
 
-    <!-- Remove flat border class — our CSS applies a styled border via .tp-product-wrapper -->
+    <!-- Remove default border class — CSS applies a styled border via .tp-product-wrapper -->
     <xpath expr="//div[hasclass('tp-product-wrapper')]" position="attributes">
         <attribute name="class">tp-product-wrapper h-100</attribute>
     </xpath>
 
-    <!-- Product content area: tighten padding -->
+    <!-- Content area: tighten padding to px-3 py-2 -->
     <xpath expr="//div[hasclass('tp-product-content')]" position="attributes">
         <attribute name="class">tp-product-content border-top px-3 py-2 position-relative text-center text-lg-start</attribute>
     </xpath>
@@ -58,7 +54,7 @@
 <!-- ── 3. Price template: teal "% OFF" label ── -->
 <template id="bh_product_item_price" inherit_id="theme_prime.product_item_price" name="BH Shop: Teal Price">
 
-    <!-- Change the discount % small tag style -->
+    <!-- Bold discount % badge -->
     <xpath expr="//small[hasclass('tp-discount-percentage')]" position="attributes">
         <attribute name="class">tp-discount-percentage d-none d-md-inline-block fw-bold</attribute>
     </xpath>
