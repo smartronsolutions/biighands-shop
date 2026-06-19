@@ -117,51 +117,8 @@
             sidebar.insertBefore(head, sidebar.firstChild);
         }
 
-        /* 3. Style every filter-section title (Price, Brand, etc.)
-              — scan all direct + nested elements, match by class keyword */
-        var titleCss = [
-            'background:#F8FAFC',
-            'color:#0D2B2B',
-            'font-size:11.5px',
-            'font-weight:800',
-            'text-transform:uppercase',
-            'letter-spacing:.9px',
-            'padding:11px 18px',
-            'border-left:3px solid #13C2C5',
-            'border-bottom:1px solid #E2E8F0',
-            'border-top:none',
-            'border-right:none',
-            'border-radius:0',
-            'box-shadow:none',
-            'display:flex',
-            'align-items:center',
-            'justify-content:space-between',
-            'width:100%',
-            'text-align:left',
-            'cursor:pointer'
-        ].join(';');
-
-        sidebar.querySelectorAll('*').forEach(function (el) {
-            if (el.closest('.bh-filter-head')) return;
-            var cls = (el.className || '').toString().toLowerCase();
-            var tag = el.tagName.toLowerCase();
-            var isHeader =
-                cls.indexOf('card-header') !== -1 ||
-                cls.indexOf('filter-attribute-title') !== -1 ||
-                cls.indexOf('filter-title') !== -1 ||
-                cls.indexOf('tp-filter') !== -1 ||
-                ((tag === 'h5' || tag === 'h6') && el.closest('[class*="filter"]'));
-
-            if (isHeader) {
-                el.style.cssText = titleCss;
-            }
-        });
-
-        /* 4. Style collapse body areas */
-        sidebar.querySelectorAll('[class*="card-body"],[class*="collapse-area"]').forEach(function(el){
-            if (el.closest('.bh-filter-head')) return;
-            el.style.cssText = 'padding:14px 18px;background:#fff;border-bottom:1px solid #F0F2F5;';
-        });
+        /* 3 & 4. CSS handles filter title + body styling.
+           Only remove the collapse toggle here. */
 
         /* 5. Price range inputs → clean bordered style */
         sidebar.querySelectorAll('input[type="number"],input[type="text"]').forEach(function(inp){

@@ -1,6 +1,5 @@
 /* =============================================================
    BIIGHANDS SHOP — VIP Professional Design
-   CSS overrides for theme_prime shop page
    ============================================================= */
 
 /* ── Bootstrap primary → teal ── */
@@ -83,7 +82,7 @@
 }
 
 /* ════════════════════════════════════════════════
-   TOPBAR  (All Products - 145 items | Sort By)
+   TOPBAR
 ════════════════════════════════════════════════ */
 .tp-shop-page .tp-shop-topbar {
     background:#fff !important;
@@ -103,8 +102,6 @@
     color:#0D2B2B !important; font-weight:700 !important; font-size:13px !important;
 }
 .tp-shop-page .tp-shop-topbar .btn-link:hover { color:#13C2C5 !important; }
-
-/* Grid/List toggle buttons */
 .tp-shop-page .tp-shop-topbar .btn-outline-secondary,
 .tp-shop-page .tp-shop-topbar .btn-secondary {
     border-color:#E2E8F0 !important; color:#64748B !important;
@@ -115,8 +112,6 @@
 .tp-shop-page .tp-shop-topbar .btn-secondary.active {
     background:#13C2C5 !important; border-color:#13C2C5 !important; color:#fff !important;
 }
-
-/* Sort dropdown */
 .tp-shop-page .dropdown-toggle {
     border-radius:8px !important; font-weight:600 !important; font-size:13px !important;
     border-color:#E2E8F0 !important; color:#0D2B2B !important;
@@ -134,123 +129,125 @@
 .tp-shop-page .dropdown-item:active { background:#13C2C5 !important; color:#fff !important; }
 
 /* ════════════════════════════════════════════════
-   FILTER SIDEBAR
+   FILTER SIDEBAR  —  #tp_products_grid_before
 ════════════════════════════════════════════════ */
-/* Sidebar wrapper */
-.tp-shop-page #tp_products_grid_before,
-.tp-shop-page .tp-shop-layout-filters,
-.tp-shop-page aside.o_wsale_col_filters {
+
+/* 1. Card wrapper — plain grey border all 4 sides, NO teal */
+#tp_products_grid_before {
     background:#fff !important;
     border:1.5px solid #E2E8F0 !important;
-    border-left:1.5px solid #E2E8F0 !important; /* NO teal left line on the card itself */
     border-radius:14px !important;
     padding:0 !important;
     overflow:hidden !important;
-    box-shadow:0 4px 16px rgba(0,0,0,.07) !important;
+    box-shadow:0 4px 18px rgba(0,0,0,.08) !important;
     align-self:flex-start !important;
 }
 
-/* Force filter sections to stay EXPANDED — never collapse */
-.tp-shop-page #tp_products_grid_before .collapse,
-.tp-shop-page aside .collapse,
-.tp-shop-page [class*="filter-attribute"] [class*="collapse"],
-.tp-shop-page [class*="filter"] .collapse {
+/* 2. Force every .collapse inside sidebar to stay open */
+#tp_products_grid_before .collapse {
     display:block !important;
     height:auto !important;
     visibility:visible !important;
-    overflow:visible !important;
 }
 
-/* Hide the expand/collapse toggle icon (—/+) */
-.tp-shop-page #tp_products_grid_before .tp-collapse-icon,
-.tp-shop-page aside [class*="collapse-icon"],
-.tp-shop-page aside [data-bs-toggle="collapse"] .fa-minus,
-.tp-shop-page aside [data-bs-toggle="collapse"] .fa-plus {
+/* 3. Hide the —/+ toggle button only (NOT the label text) */
+#tp_products_grid_before [data-bs-toggle="collapse"],
+#tp_products_grid_before [data-toggle="collapse"] {
     display:none !important;
 }
-/* Filter section titles — catch every possible class theme_prime might use */
-.tp-shop-page .filter-attribute .card-header,
-.tp-shop-page .tp-filter-attribute-title,
-.tp-shop-page [class*="filter-attribute-title"],
-.tp-shop-page [class*="filter-attribute"] > h5,
-.tp-shop-page [class*="filter-attribute"] > h6,
-.tp-shop-page [class*="filter-attribute"] > .card-header,
-.tp-shop-page aside h5:not(.bh-filter-head),
-.tp-shop-page aside h6:not(.bh-filter-head),
-.tp-shop-page aside .card-header:not(.bh-filter-head) {
+
+/* 4. PRICE / section title — teal left border ONLY here */
+#tp_products_grid_before .card-header,
+#tp_products_grid_before .tp-filter-attribute-title {
     background:#F8FAFC !important;
     color:#0D2B2B !important;
-    font-size:12px !important; font-weight:800 !important;
-    text-transform:uppercase !important; letter-spacing:1px !important;
+    font-size:11.5px !important;
+    font-weight:800 !important;
+    text-transform:uppercase !important;
+    letter-spacing:.9px !important;
     padding:11px 18px !important;
-    border:none !important; border-radius:0 !important;
+    border:none !important;
+    border-radius:0 !important;
     border-left:3px solid #13C2C5 !important;
     border-bottom:1px solid #E2E8F0 !important;
-    margin:0 !important; box-shadow:none !important;
-    display:flex !important; align-items:center !important;
-    justify-content:space-between !important; width:100% !important;
-    text-align:left !important;
+    margin:0 !important;
+    box-shadow:none !important;
 }
-/* Filter body */
-.tp-shop-page .filter-attribute .card-body,
-.tp-shop-page .tp-filter-attribute-collapse-area,
-.tp-shop-page [class*="filter-attribute"] > .card-body,
-.tp-shop-page [class*="filter-attribute"] [class*="collapse-area"] {
+
+/* 5. Filter body */
+#tp_products_grid_before .card-body,
+#tp_products_grid_before .tp-filter-attribute-collapse-area {
     padding:14px 18px !important;
     background:#fff !important;
     border-bottom:1px solid #F0F2F5 !important;
 }
-/* Price range inputs */
-.tp-shop-page aside input[type="number"],
-.tp-shop-page aside input[type="text"][class*="price"],
-.tp-shop-page .o_wsale_range_col input {
+
+/* 6. Price inputs */
+#tp_products_grid_before input[type="number"],
+#tp_products_grid_before input[type="text"] {
     border:1.5px solid #E2E8F0 !important;
-    border-radius:8px !important; padding:6px 10px !important;
-    font-size:13px !important; font-weight:600 !important;
-    color:#0D2B2B !important; background:#F8FAFC !important;
+    border-radius:8px !important;
+    padding:6px 10px !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    color:#0D2B2B !important;
+    background:#F8FAFC !important;
     outline:none !important;
 }
-.tp-shop-page aside input[type="number"]:focus,
-.tp-shop-page .o_wsale_range_col input:focus {
+#tp_products_grid_before input:focus {
     border-color:#13C2C5 !important;
     box-shadow:0 0 0 3px rgba(19,194,197,.12) !important;
 }
-/* Price range slider */
-.tp-shop-page input[type="range"] { accent-color:#13C2C5 !important; }
-/* "FILTER" apply button */
-.tp-shop-page aside .a-submit,
-.tp-shop-page aside button[type="submit"],
-.tp-shop-page [class*="filter"] .a-submit {
-    background:#13C2C5 !important; border-color:#13C2C5 !important;
-    color:#fff !important; font-weight:800 !important;
-    border-radius:100px !important; font-size:12px !important;
+
+/* 7. Slider */
+#tp_products_grid_before input[type="range"] {
+    accent-color:#13C2C5 !important;
+}
+
+/* 8. FILTER apply button */
+#tp_products_grid_before .a-submit,
+#tp_products_grid_before button[type="submit"],
+#tp_products_grid_before input[type="submit"],
+#tp_products_grid_before .btn-primary {
+    background:#13C2C5 !important;
+    border-color:#13C2C5 !important;
+    color:#fff !important;
+    font-weight:800 !important;
+    border-radius:100px !important;
+    font-size:12px !important;
     padding:8px 22px !important;
 }
-/* Checkboxes */
-.tp-shop-page .form-check { padding:4px 0 4px 24px !important; }
-.tp-shop-page .form-check-input:checked {
+
+/* 9. RESET button */
+#tp_products_grid_before a.btn:not(.btn-primary),
+#tp_products_grid_before .btn-dark,
+#tp_products_grid_before .btn-secondary {
+    background:#fff !important;
+    border:2px solid #CBD5E1 !important;
+    color:#475569 !important;
+    font-weight:700 !important;
+    border-radius:8px !important;
+    box-shadow:none !important;
+}
+#tp_products_grid_before a.btn:not(.btn-primary):hover,
+#tp_products_grid_before .btn-dark:hover,
+#tp_products_grid_before .btn-secondary:hover {
+    background:#13C2C5 !important;
+    border-color:#13C2C5 !important;
+    color:#fff !important;
+}
+
+/* 10. Checkboxes */
+#tp_products_grid_before .form-check-input:checked {
     background-color:#13C2C5 !important; border-color:#13C2C5 !important;
 }
-.tp-shop-page .form-check-input:focus {
-    box-shadow:0 0 0 .2rem rgba(19,194,197,.22) !important;
+#tp_products_grid_before .form-check-label {
+    font-size:13px !important; color:#374151 !important; font-weight:500 !important;
 }
-.tp-shop-page .form-check-label { font-size:13px !important; color:#374151 !important; font-weight:500 !important; }
-/* Filter count badge */
-.tp-shop-page .tp-filter-count {
-    background:rgba(19,194,197,.12) !important; color:#037C7C !important;
-    border-radius:100px !important; font-size:10px !important;
-    font-weight:800 !important; padding:2px 8px !important;
-}
-/* Active filter chips */
-.tp-shop-page .tp-selected-attribute-chip {
-    background:rgba(19,194,197,.1) !important; border:1.5px solid #13C2C5 !important;
-    color:#0D2B2B !important; border-radius:100px !important;
-    font-size:12px !important; font-weight:700 !important;
-    padding:3px 12px !important;
-}
-.tp-shop-page .tp-selected-attribute-chip:hover { background:#13C2C5 !important; color:#fff !important; }
 
-/* ── Filter buttons (Apply / Reset) ── */
+/* ════════════════════════════════════════════════
+   GLOBAL BUTTON OVERRIDES (outside sidebar)
+════════════════════════════════════════════════ */
 .tp-shop-page .btn-primary,
 .tp-shop-page .a-submit.btn-primary {
     background:#13C2C5 !important; border-color:#13C2C5 !important;
@@ -260,25 +257,6 @@
 .tp-shop-page .btn-primary-soft {
     background:rgba(19,194,197,.1) !important; border-color:rgba(19,194,197,.3) !important;
     color:#0D2B2B !important; border-radius:8px !important;
-}
-.tp-shop-page .btn-primary-soft .text-bg-primary { background:#13C2C5 !important; color:#fff !important; }
-
-/* RESET / secondary / dark button in sidebar */
-.tp-shop-page .btn-secondary,
-.tp-shop-page .btn-dark,
-.tp-shop-page a.btn.btn-secondary,
-.tp-shop-page a.btn.btn-dark,
-.tp-shop-page #tp_products_grid_before a.btn,
-.tp-shop-page aside a.btn:not(.btn-primary) {
-    background:#fff !important; border:2px solid #E2E8F0 !important;
-    color:#475569 !important; font-weight:700 !important;
-    border-radius:8px !important; box-shadow:none !important;
-}
-.tp-shop-page .btn-secondary:hover,
-.tp-shop-page .btn-dark:hover,
-.tp-shop-page #tp_products_grid_before a.btn:hover,
-.tp-shop-page aside a.btn:not(.btn-primary):hover {
-    background:#13C2C5 !important; border-color:#13C2C5 !important; color:#fff !important;
 }
 
 /* Category pills */
@@ -311,43 +289,29 @@
     box-shadow:0 12px 36px rgba(19,194,197,.18) !important;
     transform:translateY(-5px) !important;
 }
-
-/* Image area */
 .tp-shop-page .tp-product-top {
     background:linear-gradient(135deg,#F8FAFC 0%,#EEF2F7 100%) !important;
-    position:relative;
-    overflow:hidden;
+    position:relative; overflow:hidden;
 }
-.tp-shop-page .tp-product-top img {
-    transition:transform .35s !important;
-}
-.tp-shop-page .tp-product-wrapper:hover .tp-product-top img {
-    transform:scale(1.08) !important;
-}
-
-/* "Add to Cart" slide-up strip */
+.tp-shop-page .tp-product-top img { transition:transform .35s !important; }
+.tp-shop-page .tp-product-wrapper:hover .tp-product-top img { transform:scale(1.08) !important; }
 .tp-shop-page .tp-add-to-cart-btn .btn,
 .tp-shop-page .tp-add-to-cart-btn a.btn {
     background:#0D2B2B !important; border-color:#0D2B2B !important;
     color:#fff !important; font-weight:800 !important;
     font-size:12.5px !important; letter-spacing:.4px !important;
     border-radius:0 !important; width:100% !important;
-    padding:11px 0 !important;
-    transition:background .2s !important;
+    padding:11px 0 !important; transition:background .2s !important;
 }
 .tp-shop-page .tp-add-to-cart-btn .btn:hover,
 .tp-shop-page .tp-add-to-cart-btn a.btn:hover {
     background:#13C2C5 !important; border-color:#13C2C5 !important;
 }
-
-/* Product content */
 .tp-shop-page .tp-product-content {
     padding:14px 16px 12px !important;
     background:#fff !important;
     border-top:1px solid #F0F2F5 !important;
 }
-
-/* Product title */
 .tp-shop-page .tp-product-title a,
 .tp-shop-page .tp-product-title .tp-link-dark,
 .tp-shop-page .tp-link-dark {
@@ -355,15 +319,10 @@
     font-size:13.5px !important; line-height:1.4 !important;
 }
 .tp-shop-page .tp-product-title a:hover,
-.tp-shop-page .tp-link-dark:hover {
-    color:#13C2C5 !important; text-decoration:none !important;
-}
-
-/* Price */
+.tp-shop-page .tp-link-dark:hover { color:#13C2C5 !important; text-decoration:none !important; }
 .tp-shop-page .product_price .text-primary,
 .tp-shop-page .product_price span.text-primary,
-.tp-shop-page .product_price h6.text-primary,
-.tp-shop-page .product_price .h6.text-primary {
+.tp-shop-page .product_price h6.text-primary {
     color:#13C2C5 !important; font-weight:900 !important; font-size:17px !important;
 }
 .tp-shop-page del, .tp-shop-page s { color:#94A3B8 !important; font-size:12.5px !important; }
@@ -373,8 +332,6 @@
     padding:2px 7px !important; border-radius:4px !important;
     display:inline-block !important;
 }
-
-/* Action buttons (wishlist, quickview, compare) */
 .tp-shop-page .tp-action-buttons a,
 .tp-shop-page .tp-action-buttons button {
     background:#fff !important; color:#0D2B2B !important;
@@ -386,8 +343,6 @@
 .tp-shop-page .tp-action-buttons button:hover {
     background:#13C2C5 !important; border-color:#13C2C5 !important; color:#fff !important;
 }
-
-/* Rating */
 .tp-shop-page .tp-product-rating-count {
     background:#13C2C5 !important; color:#fff !important; border-radius:100px !important;
 }
@@ -398,8 +353,7 @@
 .tp-shop-page .page-link {
     color:#0D2B2B !important; border-color:#E2E8F0 !important;
     border-radius:8px !important; margin:0 2px !important;
-    font-weight:600 !important; font-size:13px !important;
-    transition:all .18s !important;
+    font-weight:600 !important; font-size:13px !important; transition:all .18s !important;
 }
 .tp-shop-page .page-link:hover {
     background:rgba(19,194,197,.08) !important;
@@ -413,13 +367,11 @@
     background:#0D2B2B !important; border-color:#0D2B2B !important;
     color:#fff !important; border-radius:10px !important;
     padding:13px 52px !important; font-weight:800 !important; font-size:14px !important;
-    transition:all .2s !important;
-    box-shadow:0 4px 16px rgba(13,43,43,.2) !important;
+    transition:all .2s !important; box-shadow:0 4px 16px rgba(13,43,43,.2) !important;
 }
 .tp-shop-page #o_wsale_loadmore_button:hover {
     background:#13C2C5 !important; border-color:#13C2C5 !important;
-    box-shadow:0 6px 22px rgba(19,194,197,.3) !important;
-    transform:translateY(-2px) !important;
+    box-shadow:0 6px 22px rgba(19,194,197,.3) !important; transform:translateY(-2px) !important;
 }
 
 /* ════════════════════════════════════════════════
