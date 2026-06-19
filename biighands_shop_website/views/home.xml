@@ -45,6 +45,14 @@
   position: relative; z-index: 2;
   max-width: 1280px; margin: 0 auto; width: 100%; padding: 90px 72px 110px;
 }
+.bhs-slide-panel {
+  display: inline-block; width: auto; max-width: 600px;
+  padding: 28px 34px 32px;
+  background: linear-gradient(135deg, rgba(8,18,20,.82), rgba(8,18,20,.54));
+  border: 1px solid rgba(255,255,255,.18); border-radius: 18px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.34);
+  backdrop-filter: blur(5px);
+}
 .bhs-slide-body .bhs-tag { margin-bottom: 20px; }
 .bhs-slide-body h1 {
   font-size: clamp(34px, 4.4vw, 56px); font-weight: 900; color: #fff;
@@ -90,13 +98,6 @@
   z-index: 3; pointer-events: none;
 }
 .bhs-slide-body > * { position: relative; z-index: 2; }
-.bhs-slide-body::before {
-  content: ''; position: absolute; left: 48px; top: 64px; width: min(560px, 48vw); height: 370px;
-  background: linear-gradient(135deg, rgba(8,18,20,.78), rgba(8,18,20,.46));
-  border: 1px solid rgba(255,255,255,.18); border-radius: 18px;
-  box-shadow: 0 26px 80px rgba(0,0,0,.34);
-  backdrop-filter: blur(5px); z-index: 1;
-}
 
 /* ---------- USP BAR ---------- */
 .bhs-usp { background: #fff; position: relative; z-index: 5; }
@@ -387,7 +388,7 @@
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1100px) {
   .bhs-slide-body { padding-left: 48px; padding-right: 48px; }
-  .bhs-slide-body::before { left: 28px; width: min(540px, 58vw); }
+  .bhs-slide-panel { max-width: 540px; }
   .bhs-slide-body h1 { font-size: clamp(34px, 5vw, 50px); max-width: 500px; }
   .bhs-cat-g { grid-template-columns: repeat(4,1fr); }
   .bhs-deals-l { grid-template-columns: 1fr; }
@@ -410,7 +411,7 @@
       rgba(5,15,20,.18) 0%, rgba(5,15,20,.48) 45%, rgba(5,15,20,.96) 100%);
   }
   .bhs-slide-body { padding: 250px 20px 76px; }
-  .bhs-slide-body::before { display: none; }
+  .bhs-slide-panel { display: block; max-width: 360px; padding: 0; background: transparent; border: none; box-shadow: none; backdrop-filter: none; }
   .bhs-slide-body h1 { font-size: 36px; line-height: 1.08; max-width: 360px; letter-spacing: 0; }
   .bhs-slide-body p { font-size: 14px; line-height: 1.65; max-width: 340px; margin-bottom: 24px; }
   .bhs-tag { font-size: 10px; padding: 5px 10px; letter-spacing: .8px; }
@@ -474,6 +475,7 @@
     <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner1.png');background-color:#0D2B2B;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
+      <div class="bhs-slide-panel">
       <div class="bhs-tag">&#10024; New Season 2025</div>
       <h1>Professional Tools<br/>for <em>Every Job</em></h1>
       <p>Thousands of trade-quality products at unbeatable prices — power tools, plumbing, electrical and more.</p>
@@ -481,17 +483,20 @@
         <a href="/shop" class="bhs-btn solid">Shop Now &#8594;</a>
         <a href="/shop" class="bhs-btn ghost">Browse Categories</a>
       </div>
+      </div>
     </div>
   </div>
   <div class="bhs-slide bhs-slide-2">
     <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner2.png');background-color:#037C7C;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
+      <div class="bhs-slide-panel">
       <div class="bhs-tag">&#128293; Hot Deals — This Week Only</div>
       <h1>Massive Savings on<br/><em>Power Tools</em></h1>
       <p>Up to 40% off selected power tools and accessories. Limited stock — don't miss out.</p>
       <div class="bhs-btns">
         <a href="/shop" class="bhs-btn solid">View Deals &#8594;</a>
+      </div>
       </div>
     </div>
   </div>
@@ -499,12 +504,14 @@
     <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner3.png');background-color:#080E0E;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
+      <div class="bhs-slide-panel">
       <div class="bhs-tag">&#127959; Trade Accounts</div>
       <h1>Open a <em>Trade Account</em><br/>Today</h1>
       <p>Exclusive pricing, bulk discounts and a dedicated account manager for your business.</p>
       <div class="bhs-btns">
         <a href="/shop" class="bhs-btn solid">Apply Now &#8594;</a>
         <a href="/shop" class="bhs-btn ghost">Learn More</a>
+      </div>
       </div>
     </div>
   </div>
