@@ -7,6 +7,7 @@
     'data': [
         'views/header.xml',
         'views/home.xml',
+        'views/auth_pages.xml',
     ],
     'installable': True,
     'license': 'LGPL-3',

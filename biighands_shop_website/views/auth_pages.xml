@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<template id="bhs_auth_login_layout" inherit_id="web.login_layout" name="Biighands Auth Pages">
+  <xpath expr="//div[hasclass('container') and hasclass('py-5')]" position="replace">
+    <t t-set="bhs_is_signup" t-value="request.httprequest.path == '/web/signup'"/>
+    <t t-set="bhs_is_reset" t-value="request.httprequest.path == '/web/reset_password'"/>
+    <style>
+      body.bg-100 {
+        background: #081111 !important;
+        min-height: 100vh;
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      }
+      .bhs-auth {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+        background:
+          linear-gradient(110deg, rgba(8,17,17,.97) 0%, rgba(8,17,17,.86) 48%, rgba(8,17,17,.35) 100%),
+          url('/biighands_shop_website/static/images/banner1.png') center right / cover no-repeat;
+      }
+      .bhs-auth-side {
+        min-height: 100vh;
+        padding: 56px clamp(28px, 5vw, 76px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #fff;
+      }
+      .bhs-auth-logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none !important;
+        color: #fff !important;
+        font-size: 28px;
+        font-weight: 900;
+        line-height: 1;
+      }
+      .bhs-auth-logo em { color: #13C2C5; font-style: normal; }
+      .bhs-auth-copy { max-width: 600px; padding: 70px 0; }
+      .bhs-auth-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #13C2C5;
+        color: #fff;
+        border-radius: 6px;
+        padding: 7px 12px;
+        font-size: 11px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 22px;
+      }
+      .bhs-auth-copy h1 {
+        color: #fff;
+        font-size: clamp(38px, 5vw, 68px);
+        line-height: 1.02;
+        letter-spacing: 0;
+        font-weight: 900;
+        margin: 0 0 18px;
+      }
+      .bhs-auth-copy h1 em { color: #13C2C5; font-style: normal; }
+      .bhs-auth-copy p {
+        color: rgba(255,255,255,.72);
+        font-size: 16px;
+        line-height: 1.75;
+        max-width: 480px;
+        margin: 0;
+      }
+      .bhs-auth-trust {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 620px;
+      }
+      .bhs-auth-chip {
+        border: 1px solid rgba(19,194,197,.24);
+        background: rgba(255,255,255,.06);
+        border-radius: 8px;
+        padding: 14px;
+        color: rgba(255,255,255,.72);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .bhs-auth-chip strong {
+        display: block;
+        color: #fff;
+        font-size: 13px;
+        margin-bottom: 3px;
+      }
+      .bhs-auth-form-wrap {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 38px;
+        background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(246,251,250,.96));
+      }
+      .bhs-auth-card {
+        width: 100%;
+        max-width: 440px;
+        background: #fff;
+        border: 1px solid #E8EDF2;
+        border-radius: 8px;
+        box-shadow: 0 24px 80px rgba(8,17,17,.18);
+        padding: 34px;
+      }
+      .bhs-auth-card .card,
+      .bhs-auth-card .card-body {
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+      .bhs-auth-card .o_database_list {
+        max-width: none !important;
+      }
+      .bhs-auth-brand {
+        margin-bottom: 28px;
+      }
+      .bhs-auth-brand a {
+        text-decoration: none !important;
+        color: #0D2B2B !important;
+        font-size: 26px;
+        font-weight: 900;
+      }
+      .bhs-auth-brand em { color: #13C2C5; font-style: normal; }
+      .bhs-auth-title {
+        color: #0D2B2B;
+        font-size: 26px;
+        line-height: 1.15;
+        font-weight: 900;
+        letter-spacing: 0;
+        margin: 0 0 7px;
+      }
+      .bhs-auth-sub {
+        color: #6B7280;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 0 0 26px;
+      }
+      .bhs-auth-card label {
+        color: #0D2B2B;
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 7px;
+      }
+      .bhs-auth-card .form-control,
+      .bhs-auth-card .form-control-sm {
+        min-height: 48px;
+        border: 1.5px solid #DDE6EA;
+        border-radius: 8px;
+        padding: 11px 14px;
+        color: #111827;
+        font-size: 14px;
+        box-shadow: none !important;
+      }
+      .bhs-auth-card .form-control:focus {
+        border-color: #13C2C5;
+        box-shadow: 0 0 0 3px rgba(19,194,197,.16) !important;
+      }
+      .bhs-auth-card .btn-primary {
+        min-height: 48px;
+        border: 0;
+        border-radius: 8px;
+        background: #13C2C5;
+        color: #fff;
+        font-weight: 900;
+        box-shadow: 0 12px 28px rgba(19,194,197,.24);
+      }
+      .bhs-auth-card .btn-primary:hover,
+      .bhs-auth-card .btn-primary:focus {
+        background: #037C7C;
+        color: #fff;
+      }
+      .bhs-auth-card .btn-link,
+      .bhs-auth-card a {
+        color: #037C7C;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .bhs-auth-card .btn-link:hover,
+      .bhs-auth-card a:hover {
+        color: #13C2C5;
+        text-decoration: none;
+      }
+      .bhs-auth-card .alert {
+        border-radius: 8px;
+        font-size: 13px;
+        border-width: 1px;
+      }
+      .bhs-auth-card .o_login_auth { margin-top: 8px; }
+      .bhs-auth-foot {
+        margin-top: 24px;
+        padding-top: 18px;
+        border-top: 1px solid #E8EDF2;
+        color: #8A96A3;
+        font-size: 12px;
+        text-align: center;
+      }
+      .bhs-auth-foot a { color: #037C7C; }
+      @media (max-width: 980px) {
+        .bhs-auth {
+          grid-template-columns: 1fr;
+          background:
+            linear-gradient(180deg, rgba(8,17,17,.88) 0%, rgba(8,17,17,.65) 42%, rgba(246,251,250,1) 42%, rgba(246,251,250,1) 100%),
+            url('/biighands_shop_website/static/images/banner1.png') center top / cover no-repeat;
+        }
+        .bhs-auth-side {
+          min-height: auto;
+          padding: 28px 20px 22px;
+        }
+        .bhs-auth-copy {
+          padding: 42px 0 22px;
+        }
+        .bhs-auth-copy h1 {
+          font-size: 38px;
+          max-width: 360px;
+        }
+        .bhs-auth-copy p {
+          font-size: 14px;
+          max-width: 340px;
+        }
+        .bhs-auth-trust { display: none; }
+        .bhs-auth-form-wrap {
+          min-height: auto;
+          padding: 18px 16px 34px;
+          background: #F6FBFA;
+        }
+        .bhs-auth-card {
+          max-width: 460px;
+          padding: 26px 20px;
+        }
+      }
+      @media (max-width: 440px) {
+        .bhs-auth-logo { font-size: 24px; }
+        .bhs-auth-copy { padding: 32px 0 14px; }
+        .bhs-auth-copy h1 { font-size: 31px; }
+        .bhs-auth-kicker { font-size: 10px; }
+        .bhs-auth-card { padding: 22px 16px; }
+        .bhs-auth-title { font-size: 23px; }
+      }
+    </style>
+
+    <div class="bhs-auth">
+      <section class="bhs-auth-side">
+        <a href="/" class="bhs-auth-logo">biig<em>hands</em></a>
+        <div class="bhs-auth-copy">
+          <div class="bhs-auth-kicker">
+            <t t-if="bhs_is_signup">Trade account access</t>
+            <t t-elif="bhs_is_reset">Secure recovery</t>
+            <t t-else="">Welcome back</t>
+          </div>
+          <h1>
+            <t t-if="bhs_is_signup">Build better with <em>Biighands</em></t>
+            <t t-elif="bhs_is_reset">Reset and get <em>back to work</em></t>
+            <t t-else="">Sign in to your <em>trade hub</em></t>
+          </h1>
+          <p>
+            <t t-if="bhs_is_signup">Create your account for faster checkout, order tracking, saved details, and access to reliable trade supplies.</t>
+            <t t-elif="bhs_is_reset">Recover your account securely and continue managing your tools, orders, and trade essentials.</t>
+            <t t-else="">Access orders, invoices, saved details, and the latest deals from your Biighands account.</t>
+          </p>
+        </div>
+        <div class="bhs-auth-trust">
+          <div class="bhs-auth-chip"><strong>Fast checkout</strong>Save details for repeat orders.</div>
+          <div class="bhs-auth-chip"><strong>Order tracking</strong>Follow every delivery easily.</div>
+          <div class="bhs-auth-chip"><strong>Trade ready</strong>Built for regular buyers.</div>
+        </div>
+      </section>
+
+      <section class="bhs-auth-form-wrap">
+        <div class="bhs-auth-card">
+          <div class="bhs-auth-brand">
+            <a href="/">biig<em>hands</em></a>
+          </div>
+          <h2 class="bhs-auth-title">
+            <t t-if="bhs_is_signup">Create your account</t>
+            <t t-elif="bhs_is_reset">Reset password</t>
+            <t t-else="">Sign in</t>
+          </h2>
+          <p class="bhs-auth-sub">
+            <t t-if="bhs_is_signup">Join Biighands and start shopping faster.</t>
+            <t t-elif="bhs_is_reset">Enter your email and we will help you recover access.</t>
+            <t t-else="">Welcome back. Enter your details below.</t>
+          </p>
+
+          <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: none;">
+            <div class="card-body">
+              <t t-out="0"/>
+              <div class="bhs-auth-foot" t-if="not disable_footer">
+                <t t-if="not disable_database_manager">
+                  <a class="pe-2 me-1" href="/web/database/manager">Manage Databases</a>
+                </t>
+                <a href="/">Back to shop</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </xpath>
+</template>
+
+</data>
+</odoo>
