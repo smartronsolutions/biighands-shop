@@ -56,11 +56,18 @@ class BiighandsHome(http.Controller):
 
     @http.route('/home', type='http', auth='public', website=True, sitemap=True)
     def home(self, **kwargs):
-        products = request.env['product.template'].sudo().search(
-            [('is_published', '=', True), ('sale_ok', '=', True)],
+        ProductTemplate = request.env['product.template'].sudo()
+        products = ProductTemplate.search(
+            [('website_published', '=', True), ('sale_ok', '=', True)],
             limit=8,
-            order='website_sequence asc',
+            order='create_date desc, id desc',
         )
+        if not products:
+            products = ProductTemplate.search(
+                [('sale_ok', '=', True)],
+                limit=8,
+                order='create_date desc, id desc',
+            )
         return request.render('biighands_shop_website.home', {
             'featured_products': products,
         })
