@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data noupdate="1">
+<data>
 
-<record id="biighands_shop_home_page" model="website.page">
-  <field name="name">Biighands Shop Home</field>
-  <field name="url">/home</field>
-  <field name="type">qweb</field>
-  <field name="is_published">True</field>
-  <field name="website_indexed">True</field>
-  <field name="arch" type="xml">
+<template id="home" name="Biighands Shop Home">
 <t t-name="biighands_shop_website.home">
 <t t-call="website.layout">
 <t t-set="additional_title">Biighands Shop | Professional Tools and Hardware</t>
@@ -290,7 +284,6 @@
   border: 1.5px solid #E8E9EC;
   border-radius: 10px;
   overflow: hidden;
-  text-decoration: none; color: #1A1A1A;
   display: flex; flex-direction: column;
   transition: all .2s;
 }
@@ -299,13 +292,19 @@
   box-shadow: 0 6px 20px rgba(19,194,197,.12);
   transform: translateY(-3px);
 }
+.bhs-prod-link {
+  text-decoration: none; color: #1A1A1A;
+  display: flex; flex-direction: column; flex: 1;
+}
+.bhs-prod-link:hover { color: #1A1A1A; }
 .bhs-prod-img {
   height: 180px;
   background: #F4F5F7;
   display: flex; align-items: center; justify-content: center;
   font-size: 48px;
-  position: relative;
+  position: relative; overflow: hidden;
 }
+.bhs-prod-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; }
 .bhs-sticker {
   position: absolute; top: 10px; left: 10px;
   background: #13C2C5; color: #fff;
@@ -314,18 +313,18 @@
   text-transform: uppercase;
 }
 .bhs-sticker.nw { background: #0D2B2B; }
-.bhs-prod-b { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+.bhs-prod-b { padding: 14px 16px 12px; display: flex; flex-direction: column; flex: 1; }
 .bhs-prod-cat { font-size: 11px; color: #6B7280; font-weight: 600; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
 .bhs-prod-nm { font-size: 13.5px; font-weight: 700; line-height: 1.4; margin-bottom: 12px; flex: 1; }
 .bhs-pricing { display: flex; align-items: baseline; gap: 8px; }
 .bhs-price { font-size: 22px; font-weight: 900; color: #13C2C5; }
 .bhs-was { font-size: 13px; color: #9CA3AF; text-decoration: line-through; }
+.bhs-atc-form { padding: 0 16px 16px; }
 .bhs-atc {
-  display: block; text-align: center;
+  display: block; width: 100%; text-align: center;
   background: #0D2B2B; color: #fff;
-  padding: 10px; font-size: 13px; font-weight: 800;
-  margin-top: 14px; border-radius: 6px;
-  text-decoration: none;
+  padding: 10px 0; font-size: 13px; font-weight: 800;
+  border-radius: 6px; border: none; cursor: pointer;
   transition: background .2s;
 }
 .bhs-atc:hover { background: #13C2C5; color: #fff; }
@@ -636,55 +635,50 @@
         <a href="/shop" class="bhs-d-cta">Shop Bundles &#8594;</a>
       </div>
 
-      <!-- Product cards — replace emoji + text with real Odoo product links -->
+      <!-- Dynamic products from Odoo — controller passes featured_products -->
       <div class="bhs-prod-g">
-        <a href="/shop" class="bhs-prod">
-          <div class="bhs-prod-img">&#128296;<span class="bhs-sticker">SAVE 30%</span></div>
-          <div class="bhs-prod-b">
-            <div class="bhs-prod-cat">Power Tools</div>
-            <div class="bhs-prod-nm">18V Cordless Drill Driver Kit with 2x Batteries</div>
-            <div class="bhs-pricing">
-              <span class="bhs-price">$89.99</span>
-              <span class="bhs-was">$128.99</span>
+        <t t-foreach="featured_products" t-as="product">
+          <div class="bhs-prod">
+            <!-- Clickable image + info → product page -->
+            <a t-att-href="product.website_url" class="bhs-prod-link">
+              <div class="bhs-prod-img">
+                <img t-att-src="'/web/image/product.template/%s/image_512' % product.id"
+                     t-att-alt="product.name"/>
+                <t t-if="product.compare_list_price and product.compare_list_price > product.list_price">
+                  <span class="bhs-sticker">SALE</span>
+                </t>
+              </div>
+              <div class="bhs-prod-b">
+                <div class="bhs-prod-cat" t-esc="product.categ_id.name"/>
+                <div class="bhs-prod-nm" t-esc="product.name"/>
+                <div class="bhs-pricing">
+                  <span class="bhs-price">
+                    <t t-esc="product.currency_id.symbol"/><t t-esc="'%.2f' % product.list_price"/>
+                  </span>
+                  <t t-if="product.compare_list_price and product.compare_list_price > product.list_price">
+                    <span class="bhs-was">
+                      <t t-esc="product.currency_id.symbol"/><t t-esc="'%.2f' % product.compare_list_price"/>
+                    </span>
+                  </t>
+                </div>
+              </div>
+            </a>
+            <!-- Add to Cart — separate form outside anchor -->
+            <div class="bhs-atc-form">
+              <form action="/shop/cart/update" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name="product_id" t-att-value="product.product_variant_id.id"/>
+                <input type="hidden" name="add_qty" value="1"/>
+                <button type="submit" class="bhs-atc">Add to Cart</button>
+              </form>
             </div>
-            <span class="bhs-atc">Add to Cart</span>
           </div>
-        </a>
-        <a href="/shop" class="bhs-prod">
-          <div class="bhs-prod-img">&#129680;<span class="bhs-sticker nw">NEW</span></div>
-          <div class="bhs-prod-b">
-            <div class="bhs-prod-cat">Power Tools</div>
-            <div class="bhs-prod-nm">Cordless Circular Saw 165mm with Carry Case</div>
-            <div class="bhs-pricing">
-              <span class="bhs-price">$74.99</span>
-            </div>
-            <span class="bhs-atc">Add to Cart</span>
+        </t>
+        <t t-if="not featured_products">
+          <div style="grid-column:1/-1;text-align:center;padding:40px;color:#6B7280;font-size:15px;">
+            No featured products yet. Publish products in Odoo to show them here.
           </div>
-        </a>
-        <a href="/shop" class="bhs-prod">
-          <div class="bhs-prod-img">&#128297;<span class="bhs-sticker">SAVE 20%</span></div>
-          <div class="bhs-prod-b">
-            <div class="bhs-prod-cat">Fixings</div>
-            <div class="bhs-prod-nm">Premium Hex Bolt Assortment — 400 Piece Kit</div>
-            <div class="bhs-pricing">
-              <span class="bhs-price">$24.99</span>
-              <span class="bhs-was">$31.99</span>
-            </div>
-            <span class="bhs-atc">Add to Cart</span>
-          </div>
-        </a>
-        <a href="/shop" class="bhs-prod">
-          <div class="bhs-prod-img">&#128161;<span class="bhs-sticker">SALE</span></div>
-          <div class="bhs-prod-b">
-            <div class="bhs-prod-cat">Lighting</div>
-            <div class="bhs-prod-nm">LED Worklight 20W COB Folding Tripod Stand</div>
-            <div class="bhs-pricing">
-              <span class="bhs-price">$39.99</span>
-              <span class="bhs-was">$54.99</span>
-            </div>
-            <span class="bhs-atc">Add to Cart</span>
-          </div>
-        </a>
+        </t>
       </div>
 
     </div>
@@ -810,9 +804,7 @@
 </div><!-- /bhs-page -->
 </div><!-- /wrap -->
 </t>
-</t>
-  </field>
-</record>
+</template>
 
 </data>
 </odoo>
