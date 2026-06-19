@@ -4,7 +4,10 @@ from odoo.http import request
 
 
 class EmptyShopCategory:
+    id = False
     name = 'Shop'
+    parent_id = False
+    child_id = False
 
     def __bool__(self):
         return False
