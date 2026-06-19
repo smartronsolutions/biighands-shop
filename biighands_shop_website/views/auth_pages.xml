@@ -11,59 +11,55 @@
     <xpath expr="//head" position="inside">
 <style>
 /* ============================================================
-   BIIGHANDS SHOP — Auth Pages (login / signup / reset)
+   BIIGHANDS — Auth Pages  (login / signup / reset)
+   Fresh + Clean look, teal brand accents
    ============================================================ */
 
-/* ── 1. HIDE ODOO DEFAULT NAVBAR (our custom header stays) ── */
+/* ── 1. HIDE ODOO DEFAULT NAVBAR ── */
 html:has(.oe_website_login_container) .o_main_navbar,
-html:has(.oe_website_login_container) .o_website_header {
-  display: none !important;
-}
+html:has(.oe_website_login_container) .o_website_header { display: none !important; }
 
-/* ── 2. PUSH CONTENT BELOW OUR FIXED HEADER (36+72+44=152px) ── */
-html:has(.oe_website_login_container) #wrapwrap > main {
-  padding-top: 152px !important;
-}
+/* ── 2. PUSH BELOW OUR 152px FIXED HEADER ── */
+html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 152px !important; }
 
-/* ── 3. PAGE: pure dark, NO image ── */
+/* ── 3. FRESH LIGHT BACKGROUND ── */
 html:has(.oe_website_login_container) body,
 html:has(.oe_website_login_container) body.bg-100 {
-  background: #060D0D !important;
+  background: #EDF7F7 !important;
 }
 
 /* ── 4. AUTH CONTAINER ── */
 #wrapwrap .oe_website_login_container {
-  min-height: 100vh;
-  padding: 48px 20px !important;
-  background: #060D0D !important;
+  min-height: calc(100vh - 152px);
+  padding: 48px 20px 60px !important;
+  background: linear-gradient(160deg, #E4F5F5 0%, #EDF9F8 45%, #F7FFFE 100%) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   position: relative !important;
   overflow: hidden !important;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  color: #fff;
 }
 
-/* Teal glow blobs (no image) */
+/* Soft pastel blobs */
 #wrapwrap .oe_website_login_container::before {
   content: '';
   position: fixed;
-  top: -15%; left: -8%;
-  width: 55vw; height: 55vw; border-radius: 50%;
-  background: radial-gradient(circle, rgba(19,194,197,.13) 0%, transparent 65%);
+  top: 10%; left: -10%;
+  width: 50vw; height: 50vw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(19,194,197,.09) 0%, transparent 65%);
   pointer-events: none; z-index: 0;
 }
 #wrapwrap .oe_website_login_container::after {
   content: '';
   position: fixed;
-  bottom: -15%; right: -8%;
-  width: 45vw; height: 45vw; border-radius: 50%;
-  background: radial-gradient(circle, rgba(3,124,124,.1) 0%, transparent 65%);
+  bottom: 5%; right: -10%;
+  width: 40vw; height: 40vw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(3,150,150,.07) 0%, transparent 65%);
   pointer-events: none; z-index: 0;
 }
 
-/* ── 5. INNER CONTAINER — narrow centered ── */
+/* ── 5. NARROW CENTERED COLUMN ── */
 #wrapwrap .oe_website_login_container > .container {
   max-width: 480px !important;
   width: 100% !important;
@@ -72,7 +68,6 @@ html:has(.oe_website_login_container) body.bg-100 {
   position: relative; z-index: 1;
 }
 
-/* Bootstrap row/col reset inside auth */
 #wrapwrap .oe_website_login_container .row { margin: 0 !important; }
 #wrapwrap .oe_website_login_container .col,
 #wrapwrap .oe_website_login_container [class*="col-"] {
@@ -80,18 +75,16 @@ html:has(.oe_website_login_container) body.bg-100 {
   max-width: 100% !important; flex: 0 0 100% !important;
 }
 
-/* ── 6. GLASSMORPHISM CARD ── */
+/* ── 6. WHITE CARD ── */
 #wrapwrap .oe_website_login_container .o_database_list,
 #wrapwrap .oe_website_login_container .card.o_database_list {
-  background: rgba(19,194,197,.05) !important;
-  backdrop-filter: blur(28px) saturate(1.4) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(1.4) !important;
-  border: 1px solid rgba(19,194,197,.22) !important;
-  border-radius: 24px !important;
+  background: #FFFFFF !important;
+  border: 1.5px solid rgba(19,194,197,.18) !important;
+  border-radius: 20px !important;
   box-shadow:
-    0 40px 100px rgba(0,0,0,.55),
-    inset 0 1px 0 rgba(255,255,255,.07),
-    inset 0 -1px 0 rgba(19,194,197,.05) !important;
+    0 4px 6px rgba(0,0,0,.03),
+    0 20px 60px rgba(19,194,197,.1),
+    0 2px 0 #13C2C5 inset !important;
   overflow: hidden !important;
   max-width: none !important;
   width: 100% !important;
@@ -99,179 +92,212 @@ html:has(.oe_website_login_container) body.bg-100 {
 }
 
 #wrapwrap .oe_website_login_container .card-body {
-  padding: 38px 36px !important;
+  padding: 36px 36px 32px !important;
   background: transparent !important;
 }
 
 /* ── 7. LOGO AREA ── */
 #wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 {
   text-align: center !important;
-  margin-bottom: 26px !important;
-  padding-bottom: 20px !important;
-  border-bottom: 1px solid rgba(19,194,197,.14) !important;
+  margin-bottom: 24px !important;
+  padding-bottom: 18px !important;
+  border-bottom: 1.5px solid #E8F6F6 !important;
 }
 #wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 img {
-  max-height: 44px !important;
-  filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(19,194,197,.4)) !important;
+  max-height: 40px !important;
+  filter: none !important;
 }
 
-/* ── 8. FORM TITLE (injected via ::before) ── */
+/* ── 8. PAGE TITLES & SUBTITLES ──
+   Each form gets its own heading + tagline injected via ::before / ::after.
+   ::before = big heading
+   ::after  = supporting line below heading
+   ──────────────────────────────────── */
+
+/* Shared heading style */
 #wrapwrap .oe_website_login_container .oe_login_form::before,
 #wrapwrap .oe_website_login_container .oe_signup_form::before,
 #wrapwrap .oe_website_login_container .oe_reset_password_form::before {
   display: block;
-  font-size: 26px; font-weight: 900;
-  letter-spacing: -0.6px; line-height: 1.12;
-  color: #fff; margin-bottom: 6px;
+  font-size: 24px; font-weight: 800;
+  letter-spacing: -0.5px; line-height: 1.2;
+  color: #0C2B2B;
+  margin-bottom: 5px;
 }
-#wrapwrap .oe_website_login_container .oe_login_form::before        { content: "Welcome back"; }
-#wrapwrap .oe_website_login_container .oe_signup_form::before       { content: "Create account"; }
-#wrapwrap .oe_website_login_container .oe_reset_password_form::before { content: "Reset password"; }
 
+/* ✏️ SIGN IN heading */
+#wrapwrap .oe_website_login_container .oe_login_form::before {
+  content: "Welcome back!";
+}
+
+/* ✏️ SIGN UP heading */
+#wrapwrap .oe_website_login_container .oe_signup_form::before {
+  content: "Join Biighands";
+}
+
+/* ✏️ FORGOT PASSWORD heading */
+#wrapwrap .oe_website_login_container .oe_reset_password_form::before {
+  content: "Forgot your password?";
+}
+
+/* Shared subtitle style */
 #wrapwrap .oe_website_login_container .oe_login_form::after,
 #wrapwrap .oe_website_login_container .oe_signup_form::after,
 #wrapwrap .oe_website_login_container .oe_reset_password_form::after {
   display: block;
-  font-size: 14px; color: rgba(255,255,255,.45);
-  line-height: 1.65; margin-bottom: 24px;
+  font-size: 14px; font-weight: 400;
+  color: #5E8080;
+  line-height: 1.6; margin-bottom: 22px;
 }
-#wrapwrap .oe_website_login_container .oe_login_form::after          { content: "Sign in to your Biighands trade account."; }
-#wrapwrap .oe_website_login_container .oe_signup_form::after         { content: "Join thousands of trade professionals."; }
-#wrapwrap .oe_website_login_container .oe_reset_password_form::after { content: "We'll send a recovery link to your email."; }
 
-/* Reset form — extra top spacing */
-#wrapwrap .oe_website_login_container .oe_reset_password_form {
-  padding-top: 8px;
+/* ✏️ SIGN IN — what does the user gain by signing in? */
+#wrapwrap .oe_website_login_container .oe_login_form::after {
+  content: "Sign in to your Biighands trade account to continue.";
+}
+
+/* ✏️ SIGN UP — why should they create an account? */
+#wrapwrap .oe_website_login_container .oe_signup_form::after {
+  content: "Create a free account and unlock exclusive trade pricing.";
+}
+
+/* ✏️ FORGOT PASSWORD — reassure them it's easy */
+#wrapwrap .oe_website_login_container .oe_reset_password_form::after {
+  content: "No worries! Enter your email and we'll send a reset link.";
 }
 
 /* ── 9. LABELS ── */
 #wrapwrap .oe_website_login_container label {
-  color: rgba(255,255,255,.72) !important;
+  color: #2A4A4A !important;
   font-size: 13px !important; font-weight: 700 !important;
-  margin-bottom: 7px !important;
+  margin-bottom: 6px !important;
 }
 
 /* ── 10. INPUTS ── */
 #wrapwrap .oe_website_login_container .form-control {
-  min-height: 50px !important;
-  background: rgba(255,255,255,.06) !important;
-  border: 1.5px solid rgba(255,255,255,.12) !important;
-  border-radius: 12px !important;
-  padding: 13px 16px !important;
-  color: #fff !important; font-size: 14px !important;
+  min-height: 48px !important;
+  background: #F5FAFA !important;
+  border: 1.5px solid #D4EDED !important;
+  border-radius: 11px !important;
+  padding: 12px 15px !important;
+  color: #0C2B2B !important;
+  font-size: 14px !important;
   box-shadow: none !important;
   transition: border-color .2s, box-shadow .2s, background .2s !important;
 }
 #wrapwrap .oe_website_login_container .form-control::placeholder {
-  color: rgba(255,255,255,.25) !important;
+  color: #9BBEBE !important;
 }
 #wrapwrap .oe_website_login_container .form-control:focus {
-  background: rgba(19,194,197,.07) !important;
+  background: #FDFFFE !important;
   border-color: #13C2C5 !important;
-  box-shadow: 0 0 0 3px rgba(19,194,197,.16) !important;
-  color: #fff !important; outline: none !important;
+  box-shadow: 0 0 0 3px rgba(19,194,197,.13) !important;
+  color: #0C2B2B !important;
+  outline: none !important;
 }
 #wrapwrap .oe_website_login_container .input-group .btn,
 #wrapwrap .oe_website_login_container .o_show_password {
-  min-height: 50px !important;
-  background: rgba(19,194,197,.07) !important;
-  border-color: rgba(255,255,255,.12) !important;
+  min-height: 48px !important;
+  background: #EEF8F8 !important;
+  border-color: #D4EDED !important;
   color: #13C2C5 !important;
-  border-radius: 0 12px 12px 0 !important;
-}
-#wrapwrap .oe_website_login_container select.form-control option {
-  background: #0D1F1F; color: #fff;
+  border-radius: 0 11px 11px 0 !important;
 }
 
 /* ── 11. SUBMIT BUTTON ── */
 #wrapwrap .oe_website_login_container .btn-primary {
-  min-height: 50px !important; border: 0 !important;
+  min-height: 50px !important;
+  border: 0 !important;
   border-radius: 100px !important;
   background: linear-gradient(135deg, #13C2C5 0%, #037C7C 100%) !important;
-  border-color: transparent !important; color: #fff !important;
-  font-weight: 900 !important; font-size: 15px !important;
-  letter-spacing: 0.3px !important;
-  box-shadow: 0 8px 28px rgba(19,194,197,.32) !important;
-  transition: transform .22s, box-shadow .22s !important;
+  color: #fff !important;
+  font-weight: 800 !important; font-size: 15px !important;
+  letter-spacing: 0.2px !important;
+  box-shadow: 0 6px 22px rgba(19,194,197,.3) !important;
+  transition: transform .2s, box-shadow .2s !important;
 }
 #wrapwrap .oe_website_login_container .btn-primary:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 14px 40px rgba(19,194,197,.45) !important;
+  box-shadow: 0 12px 32px rgba(19,194,197,.4) !important;
 }
 #wrapwrap .oe_website_login_container .btn-primary:active { transform: translateY(0) !important; }
 
-/* ── 12. SECONDARY / PASSKEY BUTTON ── */
+/* ── 12. SECONDARY BUTTON ── */
 #wrapwrap .oe_website_login_container .btn-secondary,
 #wrapwrap .oe_website_login_container .btn-outline-secondary {
-  min-height: 46px !important; border-radius: 100px !important;
-  background: rgba(255,255,255,.06) !important;
-  border: 1px solid rgba(255,255,255,.15) !important;
-  color: rgba(255,255,255,.75) !important;
+  min-height: 46px !important;
+  border-radius: 100px !important;
+  background: #EEF8F8 !important;
+  border: 1.5px solid #C2E8E8 !important;
+  color: #2A6A6A !important;
   font-size: 14px !important; font-weight: 600 !important;
   transition: background .2s, border-color .2s !important;
 }
 #wrapwrap .oe_website_login_container .btn-secondary:hover,
 #wrapwrap .oe_website_login_container .btn-outline-secondary:hover {
-  background: rgba(19,194,197,.12) !important;
-  border-color: rgba(19,194,197,.35) !important;
-  color: #13C2C5 !important;
+  background: #D6F0F0 !important;
+  border-color: #13C2C5 !important;
+  color: #037C7C !important;
 }
 
 /* ── 13. LINKS ── */
 #wrapwrap .oe_website_login_container .btn-link,
 #wrapwrap .oe_website_login_container a {
-  color: #13C2C5 !important; font-weight: 700 !important;
-  text-decoration: none !important; transition: color .18s !important;
+  color: #0D9B9E !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: color .18s !important;
 }
 #wrapwrap .oe_website_login_container .btn-link:hover,
-#wrapwrap .oe_website_login_container a:hover { color: #7DEDED !important; }
+#wrapwrap .oe_website_login_container a:hover { color: #037C7C !important; }
 
 /* ── 14. ALERTS ── */
 #wrapwrap .oe_website_login_container .alert {
-  border-radius: 12px !important; font-size: 13px !important;
-  line-height: 1.55 !important; padding: 12px 16px !important;
+  border-radius: 11px !important;
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  padding: 11px 15px !important;
 }
 #wrapwrap .oe_website_login_container .alert-danger {
-  background: rgba(220,53,69,.1) !important;
-  border: 1px solid rgba(220,53,69,.3) !important; color: #f8a0a8 !important;
+  background: #FEF0F0 !important;
+  border: 1.5px solid #F5C5C5 !important;
+  color: #9B2020 !important;
 }
 #wrapwrap .oe_website_login_container .alert-success,
 #wrapwrap .oe_website_login_container .alert-info {
-  background: rgba(19,194,197,.1) !important;
-  border: 1px solid rgba(19,194,197,.28) !important; color: #7DEDED !important;
+  background: #EAF7F7 !important;
+  border: 1.5px solid #B2E4E4 !important;
+  color: #0A5C5C !important;
 }
 
-/* ── 15. FOOTER SWITCH ── */
+/* ── 15. BOTTOM SWITCH LINK (Already have an account? / etc.) ── */
 #wrapwrap .oe_website_login_container .card-body > .text-center.small {
-  border-top: 1px solid rgba(255,255,255,.08) !important;
-  color: rgba(255,255,255,.35) !important;
-  margin-top: 18px !important; padding-top: 16px !important;
+  border-top: 1.5px solid #EAF3F3 !important;
+  color: #7A9E9E !important;
+  margin-top: 16px !important;
+  padding-top: 16px !important;
   font-size: 13px !important;
 }
-#wrapwrap .oe_website_login_container .o_login_auth em { color: rgba(255,255,255,.35) !important; }
+#wrapwrap .oe_website_login_container .o_login_auth em { color: #7A9E9E !important; }
 #wrapwrap .oe_website_login_container .o_login_auth .list-group-item {
-  background: rgba(255,255,255,.04) !important;
-  border-color: rgba(19,194,197,.14) !important;
-  color: rgba(255,255,255,.72) !important; border-radius: 10px;
+  background: #F2FAFA !important;
+  border-color: #C8E8E8 !important;
+  color: #2A5252 !important;
+  border-radius: 10px;
 }
 
 /* ── 16. RESPONSIVE ── */
 @media (max-width: 540px) {
-  #wrapwrap .oe_website_login_container { padding: 24px 14px !important; }
-  #wrapwrap .oe_website_login_container .card-body { padding: 26px 20px !important; }
+  #wrapwrap .oe_website_login_container { padding: 24px 14px 40px !important; }
+  #wrapwrap .oe_website_login_container .card-body { padding: 24px 18px 20px !important; }
   #wrapwrap .oe_website_login_container .oe_login_form::before,
   #wrapwrap .oe_website_login_container .oe_signup_form::before,
-  #wrapwrap .oe_website_login_container .oe_reset_password_form::before {
-    font-size: 22px !important;
-  }
+  #wrapwrap .oe_website_login_container .oe_reset_password_form::before { font-size: 20px !important; }
 }
 </style>
 
-<!-- JS fallback for browsers where CSS :has() is unsupported -->
 <script>
 (function () {
   if (!document.querySelector('.oe_website_login_container')) return;
-  /* Ensure main content clears our 152px fixed header */
   var main = document.querySelector('#wrapwrap > main');
   if (main) main.style.setProperty('padding-top', '152px', 'important');
 })();
