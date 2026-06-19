@@ -136,7 +136,7 @@
 /* ════════════════════════════════════════════════
    FILTER SIDEBAR
 ════════════════════════════════════════════════ */
-/* Sidebar wrapper */
+/* Sidebar wrapper — align-self so it doesn't stretch to product grid height */
 .tp-shop-page #tp_products_grid_before,
 .tp-shop-page .tp-shop-layout-filters,
 .tp-shop-page aside.o_wsale_col_filters {
@@ -146,26 +146,65 @@
     padding:0 !important;
     overflow:hidden !important;
     box-shadow:0 4px 16px rgba(0,0,0,.07) !important;
+    align-self:flex-start !important;
 }
-/* Filter section titles (PRICE, BRAND, etc.) — LIGHT not dark */
+/* Filter section titles — catch every possible class theme_prime might use */
 .tp-shop-page .filter-attribute .card-header,
-.tp-shop-page .tp-filter-attribute-title {
+.tp-shop-page .tp-filter-attribute-title,
+.tp-shop-page [class*="filter-attribute-title"],
+.tp-shop-page [class*="filter-attribute"] > h5,
+.tp-shop-page [class*="filter-attribute"] > h6,
+.tp-shop-page [class*="filter-attribute"] > .card-header,
+.tp-shop-page aside h5:not(.bh-fhead),
+.tp-shop-page aside h6:not(.bh-fhead),
+.tp-shop-page aside .card-header:not(.bh-fhead) {
     background:#F8FAFC !important;
     color:#0D2B2B !important;
     font-size:12px !important; font-weight:800 !important;
     text-transform:uppercase !important; letter-spacing:1px !important;
-    padding:12px 18px !important;
+    padding:11px 18px !important;
     border:none !important; border-radius:0 !important;
     border-left:3px solid #13C2C5 !important;
     border-bottom:1px solid #E2E8F0 !important;
     margin:0 !important; box-shadow:none !important;
+    display:flex !important; align-items:center !important;
+    justify-content:space-between !important; width:100% !important;
+    text-align:left !important;
 }
 /* Filter body */
 .tp-shop-page .filter-attribute .card-body,
-.tp-shop-page .tp-filter-attribute-collapse-area {
+.tp-shop-page .tp-filter-attribute-collapse-area,
+.tp-shop-page [class*="filter-attribute"] > .card-body,
+.tp-shop-page [class*="filter-attribute"] [class*="collapse-area"] {
     padding:14px 18px !important;
     background:#fff !important;
     border-bottom:1px solid #F0F2F5 !important;
+}
+/* Price range inputs */
+.tp-shop-page aside input[type="number"],
+.tp-shop-page aside input[type="text"][class*="price"],
+.tp-shop-page .o_wsale_range_col input {
+    border:1.5px solid #E2E8F0 !important;
+    border-radius:8px !important; padding:6px 10px !important;
+    font-size:13px !important; font-weight:600 !important;
+    color:#0D2B2B !important; background:#F8FAFC !important;
+    outline:none !important;
+}
+.tp-shop-page aside input[type="number"]:focus,
+.tp-shop-page .o_wsale_range_col input:focus {
+    border-color:#13C2C5 !important;
+    box-shadow:0 0 0 3px rgba(19,194,197,.12) !important;
+}
+/* Price range slider */
+.tp-shop-page input[type="range"] { accent-color:#13C2C5 !important; }
+/* "FILTER" apply button */
+.tp-shop-page aside .a-submit,
+.tp-shop-page aside button[type="submit"],
+.tp-shop-page [class*="filter"] .a-submit {
+    background:#13C2C5 !important; border-color:#13C2C5 !important;
+    color:#fff !important; font-weight:800 !important;
+    border-radius:100px !important; font-size:12px !important;
+    padding:8px 22px !important;
 }
 /* Checkboxes */
 .tp-shop-page .form-check { padding:4px 0 4px 24px !important; }

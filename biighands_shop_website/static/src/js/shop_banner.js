@@ -2,7 +2,6 @@
 (function () {
     'use strict';
 
-    /* ── active pill from URL ── */
     function activePill() {
         var s = window.location.search;
         if (s.indexOf('list_price') !== -1)      return 'price';
@@ -12,7 +11,7 @@
     }
     function pc(k) { return 'bh-pill' + (activePill() === k ? ' bh-pill-active' : ''); }
 
-    /* ── Hero banner ── */
+    /* ── Hero ── */
     function buildHero() {
         var d = document.createElement('div');
         d.className = 'bh-shop-hero';
@@ -33,7 +32,7 @@
         return d;
     }
 
-    /* ── USP strip ── */
+    /* ── USP ── */
     function buildUsp() {
         var d = document.createElement('div');
         d.className = 'bh-shop-usp';
@@ -47,90 +46,150 @@
         return d;
     }
 
-    /* ── Apply styles directly to sidebar elements ── */
-    function applyStyle(el, styles) {
+    /* ── direct element styling ── */
+    function css(el, s) {
         if (!el) return;
-        Object.keys(styles).forEach(function(k) { el.style[k] = styles[k]; });
+        Object.keys(s).forEach(function(k) { el.style[k] = s[k]; });
     }
 
     function enhanceSidebar() {
-        /* 1. Wrap the sidebar in a clean card container */
+        /* Find the sidebar — try multiple selectors */
         var sidebar = document.querySelector(
             'aside.o_wsale_col_filters, ' +
             '#tp_products_grid_before, ' +
-            '.tp-shop-layout-filters'
+            '.tp-shop-layout-filters, ' +
+            '.js_sale aside'
         );
-        if (sidebar && !sidebar.querySelector('.bh-filter-head')) {
-            /* Add "FILTERS" header at top */
+        if (!sidebar) return;
+
+        /* ─ Sidebar card wrapper ─ */
+        css(sidebar, {
+            background: '#fff',
+            border: '1.5px solid #E2E8F0',
+            borderRadius: '14px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 18px rgba(0,0,0,.07)',
+            alignSelf: 'flex-start',   /* don't stretch to full row height */
+            padding: '0'
+        });
+
+        /* ─ FILTERS header (inject once) ─ */
+        if (!sidebar.querySelector('.bh-fhead')) {
             var head = document.createElement('div');
-            head.className = 'bh-filter-head';
-            applyStyle(head, {
+            head.className = 'bh-fhead';
+            css(head, {
                 background: 'linear-gradient(135deg,#0D2B2B,#095858)',
-                color: '#fff',
-                fontSize: '12px',
-                fontWeight: '800',
-                textTransform: 'uppercase',
-                letterSpacing: '1.5px',
-                padding: '14px 18px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                borderRadius: '12px 12px 0 0'
+                color: '#fff', fontSize: '12px', fontWeight: '800',
+                textTransform: 'uppercase', letterSpacing: '1.5px',
+                padding: '14px 18px', display: 'flex', alignItems: 'center', gap: '8px'
             });
-            head.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg> Filters';
+            head.innerHTML =
+                '<svg width="15" height="15" viewBox="0 0 24 24" fill="none"' +
+                ' stroke="currentColor" stroke-width="2.5" stroke-linecap="round">' +
+                '<line x1="4" y1="6" x2="20" y2="6"/>' +
+                '<line x1="8" y1="12" x2="16" y2="12"/>' +
+                '<line x1="11" y1="18" x2="13" y2="18"/>' +
+                '</svg> Filters';
             sidebar.insertBefore(head, sidebar.firstChild);
         }
 
-        /* 2. Style each filter section header (PRICE, BRAND, etc.) */
-        var filterTitles = document.querySelectorAll(
-            '.filter-attribute .card-header, ' +
-            '.tp-filter-attribute-title, ' +
-            '.js_sale aside h6, ' +
-            '.js_sale aside .fw-bold'
-        );
-        filterTitles.forEach(function(el) {
-            applyStyle(el, {
+        /* ─ Style every filter section header:
+               catch ALL possible elements — h5, h6, .card-header,
+               .tp-filter-attribute-title, buttons with collapse toggle ─ */
+        var HEADER_SELECTORS = [
+            '.card-header',
+            '.tp-filter-attribute-title',
+            '[class*="filter-attribute-title"]',
+            '[class*="filter"] > h5',
+            '[class*="filter"] > h6',
+            'h5.collapse-toggle',
+            'h6.collapse-toggle',
+            'button[data-bs-toggle="collapse"]',
+            '.filter-attribute h6',
+            '.filter-attribute h5',
+            'h6.filter-title'
+        ];
+        sidebar.querySelectorAll(HEADER_SELECTORS.join(',')).forEach(function(el) {
+            if (el.classList.contains('bh-fhead') || el.closest('.bh-fhead')) return;
+            css(el, {
                 background: '#F8FAFC',
                 color: '#0D2B2B',
-                fontWeight: '800',
                 fontSize: '12px',
+                fontWeight: '800',
                 textTransform: 'uppercase',
-                letterSpacing: '1px',
-                padding: '12px 18px',
+                letterSpacing: '.8px',
+                padding: '11px 18px',
                 borderLeft: '3px solid #13C2C5',
                 borderBottom: '1px solid #E2E8F0',
                 borderTop: 'none',
                 borderRight: 'none',
                 borderRadius: '0',
-                boxShadow: 'none'
+                boxShadow: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+                textAlign: 'left'
             });
         });
 
-        /* 3. Fix RESET button — find by text content or href="/shop" */
-        var allBtns = document.querySelectorAll(
-            '.js_sale .btn, ' +
-            '#tp_products_grid_before .btn, ' +
-            'aside .btn'
-        );
-        allBtns.forEach(function(btn) {
+        /* ─ Fallback: find filter title by scanning short-text block elements ─ */
+        sidebar.querySelectorAll('div, span, label').forEach(function(el) {
+            /* Skip our injected head and elements with children */
+            if (el.closest('.bh-fhead')) return;
+            var txt = el.textContent.trim();
+            if (
+                el.children.length === 0 &&      /* leaf text node container */
+                txt.length > 1 && txt.length < 40 &&
+                el.parentElement &&
+                el.parentElement.children.length <= 3 &&
+                window.getComputedStyle(el).display !== 'none'
+            ) {
+                var parent = el.parentElement;
+                /* If parent looks like a filter-section header row */
+                if (
+                    parent.style.display === 'flex' ||
+                    window.getComputedStyle(parent).display === 'flex' ||
+                    parent.classList.toString().toLowerCase().indexOf('header') !== -1 ||
+                    parent.classList.toString().toLowerCase().indexOf('title') !== -1
+                ) {
+                    css(parent, {
+                        background: '#F8FAFC',
+                        borderLeft: '3px solid #13C2C5',
+                        borderBottom: '1px solid #E2E8F0',
+                        padding: '11px 18px',
+                        fontWeight: '800',
+                        fontSize: '12px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '.8px',
+                        color: '#0D2B2B'
+                    });
+                }
+            }
+        });
+
+        /* ─ Style the RESET button ─ */
+        sidebar.querySelectorAll('a, button').forEach(function(btn) {
+            if (btn.closest('.bh-fhead')) return;
             var txt = btn.textContent.trim().toUpperCase();
-            var href = btn.getAttribute('href') || '';
-            if (txt === 'RESET' || href === '/shop' || txt.indexOf('RESET') !== -1) {
-                applyStyle(btn, {
+            if (txt === 'RESET' || txt === 'CLEAR' || txt === 'CLEAR ALL') {
+                css(btn, {
+                    display: 'block',
                     background: '#fff',
-                    border: '2px solid #E2E8F0',
+                    border: '2px solid #CBD5E1',
                     color: '#475569',
                     fontWeight: '700',
+                    fontSize: '13px',
                     borderRadius: '8px',
                     padding: '9px 0',
-                    margin: '14px 16px 8px',
+                    margin: '14px 16px',
                     width: 'calc(100% - 32px)',
-                    display: 'block',
                     textAlign: 'center',
-                    fontSize: '13px',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
                     letterSpacing: '.5px',
                     transition: 'all .18s',
-                    boxShadow: 'none'
+                    boxSizing: 'border-box'
                 });
                 btn.addEventListener('mouseenter', function() {
                     btn.style.background = '#13C2C5';
@@ -139,27 +198,42 @@
                 });
                 btn.addEventListener('mouseleave', function() {
                     btn.style.background = '#fff';
-                    btn.style.borderColor = '#E2E8F0';
+                    btn.style.borderColor = '#CBD5E1';
                     btn.style.color = '#475569';
                 });
             }
         });
 
-        /* 4. Fix card-body padding in filters */
-        var filterBodies = document.querySelectorAll(
-            '.filter-attribute .card-body, ' +
-            '.tp-filter-attribute-collapse-area'
-        );
-        filterBodies.forEach(function(el) {
-            applyStyle(el, {
-                padding: '14px 18px',
-                background: '#fff',
-                borderBottom: '1px solid #F0F2F5'
-            });
+        /* ─ Style FILTER / APPLY buttons inside sidebar (teal) ─ */
+        sidebar.querySelectorAll('button, input[type=submit], .btn').forEach(function(btn) {
+            if (btn.closest('.bh-fhead')) return;
+            var txt = btn.textContent.trim().toUpperCase();
+            if (txt === 'FILTER' || txt === 'APPLY' || txt === 'SEARCH') {
+                css(btn, {
+                    background: '#13C2C5',
+                    borderColor: '#13C2C5',
+                    color: '#fff',
+                    fontWeight: '800',
+                    borderRadius: '100px',
+                    padding: '7px 20px',
+                    fontSize: '12px',
+                    border: 'none'
+                });
+            }
+        });
+
+        /* ─ Teal price range slider ─ */
+        sidebar.querySelectorAll('input[type=range]').forEach(function(r) {
+            r.style.accentColor = '#13C2C5';
+        });
+
+        /* ─ Card body / collapse areas ─ */
+        sidebar.querySelectorAll('.card-body, [class*="collapse-area"], .tp-filter-attribute-collapse-area').forEach(function(el) {
+            css(el, { padding: '14px 18px', background: '#fff' });
         });
     }
 
-    /* ── Main inject ── */
+    /* ── Main ── */
     function inject() {
         var shopPage = document.querySelector('.js_sale.tp-shop-page, .js_sale');
         if (!shopPage || shopPage.querySelector('.bh-shop-hero')) return;
@@ -167,8 +241,7 @@
         shopPage.insertBefore(buildUsp(), shopPage.firstChild);
         shopPage.insertBefore(buildHero(), shopPage.firstChild);
 
-        /* Run sidebar enhancement after theme_prime has rendered */
-        setTimeout(enhanceSidebar, 400);
+        setTimeout(enhanceSidebar, 500);
     }
 
     if (document.readyState === 'loading') {
