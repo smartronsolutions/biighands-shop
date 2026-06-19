@@ -384,7 +384,7 @@ body { overflow-x: hidden; }
   .bhs-hdr { top: 0; }
   .bhs-nav { top: 72px; }
   .bhs-mob { top: 72px; }
-  #wrapwrap > main { padding-top: 116px !important; }
+  #wrapwrap > main { padding-top: 72px !important; }
 }
 </style>
 
