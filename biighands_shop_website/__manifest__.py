@@ -3,7 +3,7 @@
     'name': 'Biighands Home',
     'version': '19.0.1.0',
     'category': 'Website',
-    'depends': ['website', 'website_sale', 'theme_prime'],
+    'depends': ['website', 'website_sale'],
     'data': [
         'views/header.xml',
         'views/home.xml',
