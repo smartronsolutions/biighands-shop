@@ -87,22 +87,76 @@
             filterAside.parentNode.insertBefore(head, filterAside);
         }
 
-        /* 2. Force all .collapse sections open + remove toggle */
+        /* 2. Force all .collapse open + kill every possible toggle */
         filterAside.querySelectorAll('.collapse').forEach(function(el){
             el.classList.add('show');
-            el.style.display = 'block';
-            el.style.height  = 'auto';
+            el.style.cssText += ';display:block!important;height:auto!important;visibility:visible!important;';
         });
-        filterAside.querySelectorAll('[data-bs-toggle="collapse"],[data-toggle="collapse"]').forEach(function(btn){
+
+        /* Kill data-bs-toggle buttons */
+        filterAside.querySelectorAll('[data-bs-toggle],[data-toggle]').forEach(function(btn){
             btn.removeAttribute('data-bs-toggle');
             btn.removeAttribute('data-toggle');
             btn.removeAttribute('data-bs-target');
+            btn.removeAttribute('href');
             btn.style.display = 'none';
+        });
+
+        /* Hide ANY element that is ONLY the — or + character (the collapse icon) */
+        filterAside.querySelectorAll('*').forEach(function(el){
+            if (el.children.length > 0) return;
+            var t = (el.textContent || '').trim();
+            if (t === '—' || t === '–' || t === '+' || t === '-' || t === '×') {
+                el.style.display = 'none';
+            }
+            /* Also hide by class name keywords */
+            var cls = (el.className || '').toString().toLowerCase();
+            if (
+                cls.indexOf('collapse-icon') !== -1 ||
+                cls.indexOf('toggle-icon')   !== -1 ||
+                cls.indexOf('tp-toggle')     !== -1 ||
+                cls.indexOf('fa-minus')      !== -1 ||
+                cls.indexOf('fa-plus')       !== -1
+            ) {
+                el.style.display = 'none';
+            }
         });
 
         /* 3. Teal slider */
         filterAside.querySelectorAll('input[type="range"]').forEach(function(r){
             r.style.accentColor = '#13C2C5';
+        });
+
+        /* 4. FILTER button → rename to APPLY + make full-width */
+        filterAside.querySelectorAll('button,a,.btn,input[type="submit"]').forEach(function(btn){
+            var txt = (btn.tagName === 'INPUT' ? btn.value : btn.textContent || '').trim().toUpperCase();
+            if (txt === 'FILTER' || txt === 'APPLY') {
+                if (btn.tagName === 'INPUT') {
+                    btn.value = 'APPLY';
+                } else {
+                    btn.textContent = 'APPLY';
+                }
+                btn.style.cssText = [
+                    'display:block',
+                    'width:100%',
+                    'background:#13C2C5',
+                    'border:none',
+                    'color:#fff',
+                    'font-weight:800',
+                    'border-radius:8px',
+                    'padding:13px 0',
+                    'font-size:14px',
+                    'cursor:pointer',
+                    'text-align:center',
+                    'text-decoration:none',
+                    'letter-spacing:.6px',
+                    'margin-top:14px',
+                    'box-sizing:border-box',
+                    'transition:background .18s'
+                ].join(';');
+                btn.addEventListener('mouseenter', function(){ btn.style.background = '#037C7C'; });
+                btn.addEventListener('mouseleave', function(){ btn.style.background = '#13C2C5'; });
+            }
         });
     }
 

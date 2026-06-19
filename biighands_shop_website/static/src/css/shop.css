@@ -165,10 +165,33 @@ aside.o_wsale_col_filters .collapse {
     visibility:visible !important;
 }
 
-/* Hide — / + toggle */
+/* Hide — / + toggle — every possible class/attr */
 aside.o_wsale_col_filters [data-bs-toggle="collapse"],
-aside.o_wsale_col_filters [data-toggle="collapse"] {
+aside.o_wsale_col_filters [data-toggle="collapse"],
+aside.o_wsale_col_filters .tp-collapse-icon,
+aside.o_wsale_col_filters [class*="collapse-icon"],
+aside.o_wsale_col_filters [class*="toggle-icon"],
+aside.o_wsale_col_filters .fa-minus,
+aside.o_wsale_col_filters .fa-plus {
     display:none !important;
+}
+
+/* APPLY button — full width teal */
+aside.o_wsale_col_filters .a-submit,
+aside.o_wsale_col_filters button[type="submit"],
+aside.o_wsale_col_filters input[type="submit"],
+aside.o_wsale_col_filters .btn-primary {
+    display:block !important;
+    width:100% !important;
+    background:#13C2C5 !important;
+    border:none !important;
+    color:#fff !important;
+    font-weight:800 !important;
+    border-radius:8px !important;
+    padding:13px 0 !important;
+    font-size:14px !important;
+    text-align:center !important;
+    box-sizing:border-box !important;
 }
 
 /* PRICE / section title — teal left border */
