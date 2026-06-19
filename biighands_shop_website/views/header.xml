@@ -403,7 +403,7 @@ body { overflow-x: hidden; }
 <div class="bhs-hdr" id="bhsHdr" role="banner">
 
   <!-- LEFT: Logo -->
-  <a href="/home" class="bhs-hdr-logo">
+  <a href="/" class="bhs-hdr-logo">
     <span class="bhs-hdr-logo-txt">biig<em>hands</em></span>
   </a>
 
