@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!--
+  Fix: theme_prime.shop_layout uses 'category' directly without checking if it
+  exists in context. When /shop is visited without a ?category= param, this
+  causes KeyError: 'category'. We inject a safe default BEFORE theme_prime
+  tries to use it.
+-->
+<record id="bhs_fix_prime_category" model="ir.ui.view">
+  <field name="name">biighands.fix.theme_prime.category</field>
+  <field name="key">biighands_shop_website.fix_prime_category</field>
+  <field name="inherit_id" ref="theme_prime.shop_layout"/>
+  <field name="active">True</field>
+  <field name="arch" type="xml">
+    <xpath expr="//t[@t-call='website.layout']" position="before">
+      <!-- Safely resolve category from URL param; falls back to False -->
+      <t t-set="_bhs_cat_raw" t-value="request.params.get('category', '')"/>
+      <t t-set="category" t-value="
+        request.env['product.public.category'].sudo().browse(int(_bhs_cat_raw))
+        if _bhs_cat_raw and _bhs_cat_raw.isdigit()
+        else False
+      "/>
+    </xpath>
+  </field>
+</record>
+
+</data>
+</odoo>

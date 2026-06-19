@@ -5,6 +5,7 @@
     'category': 'Website',
     'depends': ['website', 'website_sale'],
     'data': [
+        'views/fixes.xml',
         'views/header.xml',
         'views/home.xml',
     ],
