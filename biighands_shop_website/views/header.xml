@@ -10,6 +10,14 @@
   <field name="arch" type="xml">
     <xpath expr="//header" position="before">
 
+<!-- Fix: theme_prime.shop_layout accesses 'category' without checking existence.
+     Set a safe default here so the body slot always finds it. -->
+<t t-set="category" t-value="
+    request.env['product.public.category'].sudo().browse(int(request.params['category']))
+    if request.params.get('category', '').isdigit()
+    else False
+"/>
+
 <!-- ── Fetch Odoo ecommerce categories ── -->
 <t t-set="bhs_cats" t-value="request.env['product.public.category'].sudo().search(
     [('parent_id', '=', False)],
