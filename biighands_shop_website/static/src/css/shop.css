@@ -139,38 +139,31 @@
 /* Sidebar wrapper */
 .tp-shop-page #tp_products_grid_before,
 .tp-shop-page .tp-shop-layout-filters,
-.tp-shop-page aside {
+.tp-shop-page aside.o_wsale_col_filters {
     background:#fff !important;
     border:1.5px solid #E2E8F0 !important;
     border-radius:14px !important;
     padding:0 !important;
     overflow:hidden !important;
-    box-shadow:0 2px 10px rgba(0,0,0,.06) !important;
+    box-shadow:0 4px 16px rgba(0,0,0,.07) !important;
 }
-/* "Categories" / section heading */
-.tp-shop-page aside h6,
-.tp-shop-page .tp-shop-layout-filters h6,
-.tp-shop-page #tp_products_grid_before h6,
+/* Filter section titles (PRICE, BRAND, etc.) — LIGHT not dark */
 .tp-shop-page .filter-attribute .card-header,
-.tp-shop-page .tp-filter-attribute-title {
-    background:linear-gradient(135deg,#0D2B2B,#095858) !important;
-    color:#fff !important;
-    font-size:12px !important; font-weight:800 !important;
-    text-transform:uppercase !important; letter-spacing:1px !important;
-    padding:13px 18px !important;
-    border:none !important; border-radius:0 !important;
-    margin:0 !important;
-}
-/* Filter section titles */
 .tp-shop-page .tp-filter-attribute-title {
     background:#F8FAFC !important;
     color:#0D2B2B !important;
+    font-size:12px !important; font-weight:800 !important;
+    text-transform:uppercase !important; letter-spacing:1px !important;
+    padding:12px 18px !important;
+    border:none !important; border-radius:0 !important;
+    border-left:3px solid #13C2C5 !important;
     border-bottom:1px solid #E2E8F0 !important;
+    margin:0 !important; box-shadow:none !important;
 }
 /* Filter body */
 .tp-shop-page .filter-attribute .card-body,
 .tp-shop-page .tp-filter-attribute-collapse-area {
-    padding:14px 16px !important;
+    padding:14px 18px !important;
     background:#fff !important;
     border-bottom:1px solid #F0F2F5 !important;
 }
@@ -211,14 +204,21 @@
 }
 .tp-shop-page .btn-primary-soft .text-bg-primary { background:#13C2C5 !important; color:#fff !important; }
 
-/* RESET / secondary button */
+/* RESET / secondary / dark button in sidebar */
 .tp-shop-page .btn-secondary,
-.tp-shop-page .btn-outline-primary,
-.tp-shop-page a.btn.btn-secondary {
-    background:#F0F2F5 !important; border-color:#E2E8F0 !important;
-    color:#0D2B2B !important; font-weight:700 !important; border-radius:8px !important;
+.tp-shop-page .btn-dark,
+.tp-shop-page a.btn.btn-secondary,
+.tp-shop-page a.btn.btn-dark,
+.tp-shop-page #tp_products_grid_before a.btn,
+.tp-shop-page aside a.btn:not(.btn-primary) {
+    background:#fff !important; border:2px solid #E2E8F0 !important;
+    color:#475569 !important; font-weight:700 !important;
+    border-radius:8px !important; box-shadow:none !important;
 }
-.tp-shop-page .btn-secondary:hover {
+.tp-shop-page .btn-secondary:hover,
+.tp-shop-page .btn-dark:hover,
+.tp-shop-page #tp_products_grid_before a.btn:hover,
+.tp-shop-page aside a.btn:not(.btn-primary):hover {
     background:#13C2C5 !important; border-color:#13C2C5 !important; color:#fff !important;
 }
 
