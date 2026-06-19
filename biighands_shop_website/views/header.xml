@@ -394,7 +394,7 @@ body { overflow-x: hidden; }
 </div>
 
 <!-- ══ MAIN HEADER ════════════════════════════════════ -->
-<header class="bhs-hdr" id="bhsHdr" role="banner">
+<div class="bhs-hdr" id="bhsHdr" role="banner">
 
   <!-- LEFT: Account + Cart + Ham -->
   <div class="bhs-hdr-left">
@@ -466,7 +466,7 @@ body { overflow-x: hidden; }
     <span class="bhs-hdr-logo-txt">biig<em>hands</em></span>
   </a>
 
-</header>
+</div>
 
 <!-- ══ CATEGORY NAV STRIP ═════════════════════════════ -->
 <nav class="bhs-nav" id="bhsNav" aria-label="Shop categories">
