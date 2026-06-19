@@ -7,7 +7,6 @@
     'depends': ['website', 'website_sale', 'theme_prime'],
     'data': [
         'views/home.xml',
-        'views/shop.xml',
     ],
     'assets': {
         'web.assets_frontend': [
