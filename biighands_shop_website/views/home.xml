@@ -619,6 +619,18 @@
         <a href="/shop" class="bhs-d-cta">Shop Bundles &#8594;</a>
       </div>
       <div class="bhs-prod-g">
+        <t t-set="featured_products" t-value="request.env['product.template'].sudo().search(
+          [('website_published', '=', True), ('sale_ok', '=', True)] + request.website.website_domain(),
+          limit=8,
+          order='create_date desc, id desc'
+        )"/>
+        <t t-if="not featured_products">
+          <t t-set="featured_products" t-value="request.env['product.template'].sudo().search(
+            [('sale_ok', '=', True)] + request.website.website_domain(),
+            limit=8,
+            order='create_date desc, id desc'
+          )"/>
+        </t>
         <t t-foreach="featured_products" t-as="product">
           <div class="bhs-prod bhs-reveal">
             <a t-att-href="product.website_url" class="bhs-prod-link">
