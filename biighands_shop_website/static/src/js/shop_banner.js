@@ -5,9 +5,9 @@
     /* Determine active sort pill from URL */
     function activePill() {
         var s = window.location.search;
-        if (s.indexOf('price') !== -1)       return 'price';
-        if (s.indexOf('create_date') !== -1)  return 'new';
-        if (s.indexOf('website_sequence') !== -1) return 'featured';
+        if (s.indexOf('list_price') !== -1)       return 'price';
+        if (s.indexOf('create_date') !== -1)       return 'new';
+        if (s.indexOf('website_sequence') !== -1)  return 'featured';
         return 'all';
     }
 
@@ -28,9 +28,9 @@
             '  <div class="bh-shop-hero-right">',
             '    <div class="bh-shop-pills">',
             '      <a href="/shop" class="' + pillClass('all') + '">All Products</a>',
-            '      <a href="/shop?order=price+asc" class="' + pillClass('price') + '">&#128308; Best Price</a>',
-            '      <a href="/shop?order=create_date+desc" class="' + pillClass('new') + '">&#127381; New In</a>',
-            '      <a href="/shop?order=website_sequence+asc" class="' + pillClass('featured') + '">&#11088; Featured</a>',
+            '      <a href="/shop?order=list_price+asc" class="' + pillClass('price') + '">Best Price</a>',
+            '      <a href="/shop?order=create_date+desc" class="' + pillClass('new') + '">New In</a>',
+            '      <a href="/shop?order=website_sequence+asc" class="' + pillClass('featured') + '">Featured</a>',
             '    </div>',
             '  </div>',
             '</div>',
@@ -51,14 +51,13 @@
     }
 
     function inject() {
-        /* Find the shop page wrapper — theme_prime uses .js_sale or .tp-shop-page */
+        /* Find the shop page wrapper — theme_prime uses .js_sale + .tp-shop-page */
         var shopPage = document.querySelector('.js_sale.tp-shop-page, .js_sale');
         if (!shopPage) return;
-        if (shopPage.querySelector('.bh-shop-hero')) return; /* already injected */
+        if (shopPage.querySelector('.bh-shop-hero')) return;
 
         var parts = buildBanner();
-        /* Prepend both elements in reverse order so hero ends up first */
-        shopPage.insertBefore(parts[1], shopPage.firstChild); /* USP second */
+        shopPage.insertBefore(parts[1], shopPage.firstChild); /* USP strip */
         shopPage.insertBefore(parts[0], shopPage.firstChild); /* hero first */
     }
 
