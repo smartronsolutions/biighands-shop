@@ -3,6 +3,13 @@ from odoo.addons.theme_prime.controllers.main import ThemePrimeWebsiteSale
 from odoo.http import request
 
 
+class EmptyShopCategory:
+    name = 'Shop'
+
+    def __bool__(self):
+        return False
+
+
 class BiighandsThemePrimeWebsiteSale(ThemePrimeWebsiteSale):
 
     @http.route()
@@ -17,7 +24,7 @@ class BiighandsThemePrimeWebsiteSale(ThemePrimeWebsiteSale):
             **post
         )
         if hasattr(response, 'qcontext'):
-            response.qcontext.setdefault('category', False)
+            response.qcontext.setdefault('category', EmptyShopCategory())
         return response
 
 
