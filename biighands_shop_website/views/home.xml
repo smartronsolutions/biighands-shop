@@ -19,8 +19,8 @@
 /* ============================================================
    BH SHOP HOME — Screwfix-inspired, cleaner and sharper
    Images go in:  biighands_shop_website/static/images/
-   banner1.jpg / banner2.jpg / banner3.jpg
-   promo1.jpg  / promo2.jpg
+   banner1.png / banner2.png / banner3.png
+   promo1.png  / promo2.png
    brand_1.png … brand_6.png  (optional)
    ============================================================ */
 
@@ -458,13 +458,13 @@
 <!-- ══════════════════════════════════════════════
      HERO SLIDER
      Add your images to:  biighands_shop_website/static/images/
-     Files:  banner1.jpg  banner2.jpg  banner3.jpg
+     Files:  banner1.png  banner2.png  banner3.png
 ════════════════════════════════════════════════ -->
 <div class="bhs-hero" id="bhsHero">
 
   <!-- SLIDE 1 -->
   <div class="bhs-slide go">
-    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner1.jpg'); background-color:#1B3A6B;"></div>
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner1.png'); background-color:#1B3A6B;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
       <div class="bhs-tag">New Season</div>
@@ -479,7 +479,7 @@
 
   <!-- SLIDE 2 -->
   <div class="bhs-slide">
-    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner2.jpg'); background-color:#CC5200;"></div>
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner2.png'); background-color:#CC5200;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
       <div class="bhs-tag">&#128293; Hot Deals</div>
@@ -493,7 +493,7 @@
 
   <!-- SLIDE 3 -->
   <div class="bhs-slide">
-    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner3.jpg'); background-color:#0D1B2A;"></div>
+    <div class="bhs-slide-bg" style="background-image:url('/biighands_shop_website/static/images/banner3.png'); background-color:#0D1B2A;"></div>
     <div class="bhs-slide-dim"></div>
     <div class="bhs-slide-body">
       <div class="bhs-tag">Trade Accounts</div>
@@ -693,14 +693,14 @@
 
 <!-- ══════════════════════════════════════════════
      DUAL PROMO BANNERS
-     Add:  biighands_shop_website/static/images/promo1.jpg
-           biighands_shop_website/static/images/promo2.jpg
+     Add:  biighands_shop_website/static/images/promo1.png
+           biighands_shop_website/static/images/promo2.png
 ════════════════════════════════════════════════ -->
 <div class="bhs-promo-s">
   <div class="bhs-w">
     <div class="bhs-promo-r">
       <a href="/shop" class="bhs-promo">
-        <img src="/biighands_shop_website/static/images/promo1.jpg" alt="Trade Accounts"/>
+        <img src="/biighands_shop_website/static/images/promo1.png" alt="Trade Accounts"/>
         <div class="bhs-promo-b">
           <h3>Open a<br/>Trade Account</h3>
           <p>Better prices. Priority dispatch.<br/>Dedicated account manager.</p>
@@ -708,7 +708,7 @@
         </div>
       </a>
       <a href="/shop" class="bhs-promo" style="background:#CC5200">
-        <img src="/biighands_shop_website/static/images/promo2.jpg" alt="Clearance"/>
+        <img src="/biighands_shop_website/static/images/promo2.png" alt="Clearance"/>
         <div class="bhs-promo-b">
           <h3>Clearance<br/>Specials</h3>
           <p>Last chance on hundreds of lines.<br/>Up to 60% off selected stock.</p>
