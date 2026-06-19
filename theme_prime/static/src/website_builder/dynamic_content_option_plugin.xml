@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="theme_prime.DynamicSnippetOption">
+        <BuilderRow label.translate="Manage">
+            <BuilderButton title.translate="Manage" type="'success'" action="'TpSnippetBuilderAction'">Dynamic Snippet</BuilderButton>
+        </BuilderRow>
+    </t>
+    <t t-name="theme_prime.ImageHotWrapperOption">
+        <t t-if="state.canSetHotSpot">
+            <BuilderRow label.translate="Enable Hotspot">
+                <BuilderCheckbox id="'tp_enable_hotspot'" preview="false" action="'tpHotspotTogglerOption'"/>
+                <BuilderButton t-if="state.isHotSpotEnabled" type="'success'" className="'flex-grow-1'" label.translate="Add Hotspot" preview="false" icon="'fa-plus pe-1'" id="'tp_add_hot_spot'" action="'tpAddHotSpot'"/>
+            </BuilderRow>
+        </t>
+    </t>
+    <t t-name="theme_prime.ImageHotSpotNode">
+        <div t-att-id="hotspotID" class="tp_img_hotspot tp-hotspot-light tp_img_hotspot_style_1 bg-white d-flex align-items-center tp-no-padding justify-content-center o_not_editable position-absolute tp-icon-center-2" style="left: 50%; top: 50% !important;">
+            <span class="tp-hotspot-text mb-0 mx-2"/>
+        </div>
+    </t>
+    <t t-name="theme_prime.ImageHotspotOption">
+        <BuilderRow label.translate="Icon">
+            <BuilderButton preview="false" actionParam="'hotSpotNode'" title.translate="Change Icon" type="'primary'" className="'flex-grow-1'" action="'tpMediaReplaceAction'">Change Icon</BuilderButton>
+            <BuilderButton className="'flex-grow-0'" type="'primary'" preview="false" action="'tpRemoveHotSpotIcon'" icon="'fa-times'"></BuilderButton>
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Type">
+            <BuilderSelect dataAttributeAction="'hotspotType'" preview="false">
+                <!-- update allow to remove icon -->
+                <BuilderSelectItem dataAttributeActionValue="'static'" title.translate="Static">Static</BuilderSelectItem>
+                <BuilderSelectItem dataAttributeActionValue="'dynamic'" title.translate="Dynamic">Dynamic</BuilderSelectItem>
+            </BuilderSelect>
+            <BuilderButton t-if="!state.onClickAction" className="'flex-grow-0'" type="'primary'" preview="false" action="'tpPreviewHotspotPopover'" icon="'fa-eye'"></BuilderButton>
+        </BuilderRow>
+        <t t-if="state.hotSpotType === 'dynamic'">
+            <BuilderRow level="1" label.translate="On Click">
+                <BuilderSelect type="'primary'" dataAttributeAction="'onClickAction'" preview="false">
+                    <BuilderSelectItem dataAttributeActionValue="''" title.translate="None">Popover</BuilderSelectItem>
+                    <BuilderSelectItem dataAttributeActionValue="'openModal'" title.translate="Show Popover">Open modal</BuilderSelectItem>
+                    <BuilderSelectItem dataAttributeActionValue="'goToProductPage'" title.translate="Go to Product Page">Go to Product Page</BuilderSelectItem>
+                </BuilderSelect>
+            </BuilderRow>
+            <BuilderRow level="1" label.translate="Select Product">
+                <BuilderMany2Many id="'product_template_ids'" model="'product.template'" limit="5" dataAttributeAction="'productIds'" domain="productDomain" />
+            </BuilderRow>
+        </t>
+        <BuilderRow level="1" label.translate="Title">
+            <BuilderTextInput actionParam="'titleText'" placeholder.translate="e.g. Best in Quality" action="'tpHotspotInputAction'" />
+        </BuilderRow>
+        <t t-if="state.hotSpotType === 'static'">
+            <!-- Hope someday this things are translatable -->
+            <BuilderRow level="1" label.translate="Subtitle">
+                <BuilderTextInput actionParam="'subtitleText'" placeholder.translate="e.g. Theme prime is best theme" action="'tpHotspotInputAction'" />
+            </BuilderRow>
+            <BuilderRow level="1" label.translate="Button Text">
+                <BuilderTextInput actionParam="'buttonText'" placeholder.translate="e.g. Learn More" action="'tpHotspotInputAction'" />
+            </BuilderRow>
+            <BuilderRow level="1" label.translate="Button Link">
+                <BuilderTextInput actionParam="'buttonLink'" placeholder.translate="e.g. https://www.droggol.com" action="'tpHotspotInputAction'" />
+            </BuilderRow>
+            <BuilderRow level="1" label.translate="Popover Image">
+                <BuilderButton actionParam="'popoverNode'" preview="false" title.translate="Set Image" type="'success'" className="'flex-grow-1'" action="'tpMediaReplaceAction'">Set Image</BuilderButton>
+            </BuilderRow>
+        </t>
+        <!-- I don't really like sliders since hotspot introduce :) -->
+        <BuilderRow level="1" label.translate="Top">
+            <BuilderRange displayRangeValue="true" actionParam="'top'" action="'tpHotSpotPositionAction'" min="0" max="100" step="1" unit="'%'"/>
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Left">
+            <BuilderRange displayRangeValue="true" actionParam="'left'" action="'tpHotSpotPositionAction'" min="0" max="100" step="1" unit="'%'"/>
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Hotspot Text">
+            <BuilderTextInput action="'tpHotspotTextAction'" placeholder.translate="Learn More" />
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Text Color">
+            <BuilderColorPicker enabledTabs="['solid', 'custom']" t-if="state.isIcon || state.hasText" styleAction="'color'"/>
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Size">
+            <BuilderSelect>
+                <BuilderSelectItem classAction="'tp-icon-center-1'">Small</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp-icon-center-2'">Medium</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp-icon-center-3'">Large</BuilderSelectItem>
+            </BuilderSelect>
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Effect">
+            <BuilderSelect>
+                <BuilderSelectItem id="'tp_img_hotspot_style_none'" classAction="'tp_img_hotspot_no_effect'">None</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp_img_hotspot_style_1'">Effect 1</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp_img_hotspot_style_2'">Effect 2</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp_img_hotspot_style_3'">Effect 3</BuilderSelectItem>
+            </BuilderSelect>
+        </BuilderRow>
+        <BuilderRow level="1" label.translate="Background Color" t-if="!this.isActiveItem('tp_img_hotspot_style_none')">
+            <BuilderColorPicker enabledTabs="['solid', 'custom']" styleAction="'background-color'"/>
+        </BuilderRow>
+        <BuilderRow t-if="!this.isActiveItem('tp_img_hotspot_style_none')" level="1" label.translate="Color Theme">
+            <BuilderSelect>
+                <BuilderSelectItem classAction="'tp-hotspot-light'">Light</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp-hotspot-dark'">Dark</BuilderSelectItem>
+                <BuilderSelectItem classAction="'tp-hotspot-primary'">Primary</BuilderSelectItem>
+            </BuilderSelect>
+        </BuilderRow>
+        <BorderConfigurator label.translate="Border"/>
+    </t>
+
+    <t t-name="theme_prime.WebsiteBackgroundOption" t-inherit="website.WebsiteBackgroundOption" t-inherit-mode="extension">
+        <xpath expr="//BackgroundShapeOption" position="after">
+            <BuilderRow label.translate="Gradient Animation">
+                <BuilderCheckbox preview="false" classAction="'tp-gradient-animation'"/>
+            </BuilderRow>
+        </xpath>
+    </t>
+    <t t-name="theme_prime.AddToCartOption" t-inherit="website_sale.AddToCartOption" t-inherit-mode="extension">
+        <xpath expr="//BuilderRow[@label.translate=&quot;Action&quot;]" position="after">
+            <BuilderRow label.translate="Button Color">
+                <BuilderSelect>
+                    <BuilderSelectItem applyTo="'.s_add_to_cart_btn'" classAction="'btn-secondary'">Secondary</BuilderSelectItem>
+                    <BuilderSelectItem applyTo="'.s_add_to_cart_btn'" classAction="'btn-primary'">Primary</BuilderSelectItem>
+                </BuilderSelect>
+            </BuilderRow>
+        </xpath>
+    </t>
+
+</templates>

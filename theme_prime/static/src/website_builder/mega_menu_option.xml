@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.MegaMenuOption" t-inherit="website.MegaMenuOption" t-inherit-mode="extension">
+        <xpath expr="//BuilderSelectItem[last()]" position="after">
+            <BuilderSelectItem
+                title.translate="Menus"
+                actionParam="{
+                    view: 'droggol_theme_common.s_mega_menu_prime_1',
+                    templateClass: 's_mega_menu_prime_1',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_1.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem
+                title.translate="Menus - Content"
+                actionParam="{
+                    view: 'droggol_theme_common.s_mega_menu_prime_2',
+                    templateClass: 's_mega_menu_prime_2',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_2.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem
+                title.translate="Menus - Image - Logos"
+                actionParam="{
+                    view: 'droggol_theme_common.s_mega_menu_prime_3',
+                    templateClass: 's_mega_menu_prime_3',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_3.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem
+                title.translate="Content - Menus"
+                actionParam="{
+                    view: 'droggol_theme_common.s_mega_menu_prime_4',
+                    templateClass: 's_mega_menu_prime_4',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_4.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem
+                title.translate="Categories - Info"
+                actionParam="{
+                    view: 'droggol_theme_common.s_mega_menu_prime_5',
+                    templateClass: 's_mega_menu_prime_5',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_5.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem
+                title.translate="Menus - Images"
+                actionParam="{
+                    view: 'droggol_theme_common.s_mega_menu_prime_6',
+                    templateClass: 's_mega_menu_prime_6',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_6.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem
+                title.translate="Categories Listing"
+                actionParam="{
+                    view: 'droggol_theme_common.s_tp_mega_menu_category_snippet',
+                    templateClass: 's_tp_mega_menu_category_snippet',
+                }">
+                <Img class="'w-75 m-auto'" src="'/theme_prime/static/src/img/options/s_mega_menu_prime_6.svg'"/>
+            </BuilderSelectItem>
+        </xpath>
+    </t>
+
+</templates>

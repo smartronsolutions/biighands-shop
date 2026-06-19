@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.HeaderElementsOption" t-inherit="website.HeaderElementsOption" t-inherit-mode="extension">
+        <xpath expr="//BuilderRow[1]" position="attributes">
+            <attribute name="t-if">
+                !(
+                    isActiveItem('tp_header_style_1_opt') ||
+                    isActiveItem('tp_header_style_2_opt') ||
+                    isActiveItem('tp_header_style_3_opt') ||
+                    isActiveItem('tp_header_style_4_opt') ||
+                    isActiveItem('tp_header_style_5_opt') ||
+                    isActiveItem('tp_header_style_6_opt') ||
+                    isActiveItem('tp_header_style_7_opt') ||
+                    isActiveItem('tp_header_style_8_opt')
+                )
+            </attribute>
+        </xpath>
+        <xpath expr="//BuilderRow[2]" position="attributes">
+            <attribute name="t-if">
+                !(
+                    isActiveItem('tp_header_style_1_opt') ||
+                    isActiveItem('tp_header_style_2_opt') ||
+                    isActiveItem('tp_header_style_3_opt') ||
+                    isActiveItem('tp_header_style_4_opt') ||
+                    isActiveItem('tp_header_style_5_opt') ||
+                    isActiveItem('tp_header_style_6_opt') ||
+                    isActiveItem('tp_header_style_7_opt') ||
+                    isActiveItem('tp_header_style_8_opt')
+                )
+            </attribute>
+        </xpath>
+        <xpath expr="//BuilderRow[2]" position="after">
+            <t t-else="">
+                <BuilderRow label.translate="Visuals" action="'websiteConfig'">
+                    <BuilderButton
+                        title.translate="Company Logo"
+                        className="'flex-grow-1'"
+                        actionParam="websiteLogoParams"
+                        iconImg="'/website/static/src/img/snippets_options/header_extra_element_logo.svg'"
+                    />
+                </BuilderRow>
+                <BuilderRow label.translate="Actions" action="'websiteConfig'">
+                    <BuilderButton
+                        title.translate="Sign In"
+                        className="'fa fa-sign-in flex-grow-1'"
+                        actionParam="{
+                            views: ['portal.user_sign_in'],
+                            resetViewArch: true,
+                        }"
+                    />
+                </BuilderRow>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

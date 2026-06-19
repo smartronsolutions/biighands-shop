@@ -1,0 +1,38 @@
+.container-fluid {
+    .droggol_product_slider {
+        @include dr-swiper-arrows-position-style(0px);
+    }
+}
+.droggol_product_slider {
+    @include dr-swiper-arrows-position-style(-45px);
+    .swiper-wrapper {
+        display: flex;
+        align-items: stretch;
+        margin-bottom: 1rem;
+    }
+    &.tp-show-navigation-on-hover {
+        .swiper-navigation > * {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
+        }
+        &:hover {
+            .swiper-navigation > * {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+    .dr-swiper-button-next, .dr-swiper-button-prev {
+        @include dr-swiper-btn-style();
+        .fa,.dri {
+            font-size: 1rem;
+        }
+    }
+}
+
+.swiper-rtl {
+    .dri-arrow-left-l, .dri-arrow-right-l {
+        transform: rotate(180deg);
+    }
+}

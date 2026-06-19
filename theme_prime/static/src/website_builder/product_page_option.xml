@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.ProductPageOption" t-inherit="website_sale.ProductPageOption" t-inherit-mode="extension">
+        <BuilderSelectItem id="cta_large_opt" position="after">
+            <BuilderSelectItem t-if="customDomState.isThemePrime" id="theme_prime_cta_wrapper" actionParam="{ views: ['theme_prime.prime_cta_wrapper'] }">
+                Theme Prime
+            </BuilderSelectItem>
+        </BuilderSelectItem>
+        <BuilderRow label.translate="Search Bar" position="attributes">
+            <attribute name="t-if">!customDomState.isThemePrime</attribute>
+        </BuilderRow>
+    </t>
+
+</templates>

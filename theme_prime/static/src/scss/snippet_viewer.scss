@@ -1,0 +1,26 @@
+.o_add_snippets_preview {
+    .o_snippets_preview_row {
+        .o_snippet_preview_wrap {
+            &[data-snippet-id="s_cover_1"],
+            &[data-snippet-id="s_cover_2"] {
+                height: 680px;
+            }
+            &[data-snippet-id="s_testimonial_3"],
+            &[data-snippet-id="s_testimonial_4"] {
+                height: 430px;
+            }
+            &[data-snippet-id="s_coming_soon_1"],
+            &[data-snippet-id="s_coming_soon_2"] {
+                .s_coming_soon {
+                    position: relative;
+                }
+                .s_coming_soon_1 .tp-coming-soon-container {
+                    min-height: 680px;
+                    .tp-coming-soon-side-block {
+                        min-height: 680px;
+                    }
+                }
+            }
+        }
+    }
+}

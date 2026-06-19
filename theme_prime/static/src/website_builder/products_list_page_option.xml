@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.ProductsListPageOption" t-inherit="website_sale.ProductsListPageOption" t-inherit-mode="extension">
+        <t t-if="this.isActiveItem('grid_view_opt')" position="after">
+            <t t-if="customDomState.isThemePrime">
+                <span class="mx-2">by</span>
+                <BuilderSelect action="'setPpr'">
+                    <BuilderSelectItem actionValue="2">2</BuilderSelectItem>
+                    <BuilderSelectItem actionValue="3">3</BuilderSelectItem>
+                    <BuilderSelectItem actionValue="4">4</BuilderSelectItem>
+                    <BuilderSelectItem actionValue="5">5</BuilderSelectItem>
+                </BuilderSelect>
+            </t>
+        </t>
+        <BuilderSelectItem title.translate="Large Images" position="after">
+            <t t-if="customDomState.isThemePrime">
+                <BuilderSelectItem
+                    actionParam="{views: ['theme_prime.filmstrip_categories_prime_1']}"
+                    title.translate="Prime - 1"
+                >
+                    <Img
+                        src="'/theme_prime/static/src/img/filmstrips/prime_1.svg'"
+                        style="'width:120px;'"
+                    />
+                </BuilderSelectItem>
+                <BuilderSelectItem
+                    actionParam="{views: ['theme_prime.filmstrip_categories_prime_2']}"
+                    title.translate="Prime - 2"
+                >
+                    <Img
+                        src="'/theme_prime/static/src/img/filmstrips/prime_2.svg'"
+                        style="'width:120px;'"
+                    />
+                </BuilderSelectItem>
+                <BuilderSelectItem
+                    actionParam="{views: ['theme_prime.filmstrip_categories_prime_3']}"
+                    title.translate="Prime - 3"
+                >
+                    <Img
+                        src="'/theme_prime/static/src/img/filmstrips/prime_3.svg'"
+                        style="'width:120px;'"
+                    />
+                </BuilderSelectItem>
+                <BuilderSelectItem
+                    actionParam="{views: ['theme_prime.filmstrip_categories_prime_4']}"
+                    title.translate="Prime - 4"
+                >
+                    <Img
+                        src="'/theme_prime/static/src/img/filmstrips/prime_4.svg'"
+                        style="'width:120px;'"
+                    />
+                </BuilderSelectItem>
+                <BuilderSelectItem
+                    actionParam="{views: ['theme_prime.filmstrip_categories_prime_5']}"
+                    title.translate="Prime - 5"
+                >
+                    <Img
+                        src="'/theme_prime/static/src/img/filmstrips/prime_5.svg'"
+                        style="'width:120px;'"
+                    />
+                </BuilderSelectItem>
+            </t>
+        </BuilderSelectItem>
+        <BuilderRow label.translate="Filters" position="replace">
+            <BuilderRow t-if="customDomState.isThemePrime" label.translate="Filters" action="'websiteConfig'">
+                <BuilderButton
+                    title.translate="Show filters into Sidebar"
+                    id="'attributes_opt'"
+                    actionParam="{views: ['website_sale.products_attributes']}"
+                >Enable</BuilderButton>
+            </BuilderRow>
+            <BuilderRow t-else="" label.translate="Filters">
+                <BuilderSelect action="'templatePreviewableWebsiteConfig'">
+                    <BuilderSelectItem
+                            title.translate="Hide all filters"
+                            id="'attributes_hide_opt'"
+                            actionParam="{views: []}"
+                    >Hide</BuilderSelectItem>
+                    <BuilderSelectItem
+                            title.translate="Show filters into Sidebar"
+                            id="'attributes_opt'"
+                            actionParam="{
+                                views: ['website_sale.products_attributes'],
+                                previewClass: 'o_wsale_previewing_sidebar o_wsale_has_sidebar',
+                                templateId: 'website_sale.editor_preview.sidebar',
+                                placeBefore: '#products_grid',
+                                placeExcludeRootClosest: '#o_wsale_container.o_wsale_has_sidebar',
+                            }"
+                    >Sidebar</BuilderSelectItem>
+                    <BuilderSelectItem
+                            title.translate="Render a button to show the Off-screen Menu"
+                            id="'attributes_opt_top'"
+                            actionParam="{
+                                views: ['website_sale.products_attributes_top'],
+                                previewClass: 'o_wsale_previewing_offcanvas',
+                            }"
+                    >Off-screen Menu</BuilderSelectItem>
+                </BuilderSelect>
+            </BuilderRow>
+        </BuilderRow>
+        <BuilderRow label.translate="Collapse sidebar sections" position="attributes">
+            <attribute name="t-if">!customDomState.isThemePrime and (isActiveItem('attributes_opt') or isActiveItem('categories_opt'))</attribute>
+        </BuilderRow>
+        <BuilderButton id="'search_top_opt'" position="attributes">
+            <attribute name="t-if">!customDomState.isThemePrime</attribute>
+        </BuilderButton>
+        <BuilderRow label.translate="Floating" position="attributes">
+            <attribute name="t-if">!customDomState.isThemePrime and (isActiveItem('attributes_opt_top') or isActiveItem('search_top_opt') or isActiveItem('sort_top_opt'))</attribute>
+        </BuilderRow>
+    </t>
+
+</templates>

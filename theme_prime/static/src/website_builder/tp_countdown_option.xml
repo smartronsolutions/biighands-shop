@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.CountdownOptionPlugin">
+        <BuilderContext action="'reloadCountdown'"> <!-- TODO AGAU: remove after merging generalized restart interactions -->
+            <BuilderRow label.translate="Due Date">
+                <BuilderDateTimePicker dataAttributeAction="'dueDate'" acceptEmptyDate="false"/>
+            </BuilderRow>
+            <BuilderRow label.translate="Style">
+                <BuilderButtonGroup dataAttributeAction="'countdownStyle'">
+                    <BuilderButton dataAttributeActionValue="'s_countdown_1'" id="'style_1_opt'" title.translate="1">1</BuilderButton>
+                    <BuilderButton dataAttributeActionValue="'s_countdown_2'" id="'style_2_opt'" title.translate="2">2</BuilderButton>
+                    <BuilderButton dataAttributeActionValue="'s_countdown_3'" id="'style_3_opt'" title.translate="3">3</BuilderButton>
+                    <BuilderButton dataAttributeActionValue="'s_countdown_4'" id="'style_4_opt'" title.translate="4">4</BuilderButton>
+                </BuilderButtonGroup>
+            </BuilderRow>
+            <BuilderRow label.translate="Theme" t-if="this.isActiveItem('style_1_opt') or this.isActiveItem('style_4_opt')">
+                <BuilderButtonGroup>
+                    <BuilderButton title.translate="None" classAction="''" className="'fa fa-fw fa-ban'"/>
+                    <BuilderButton title.translate="Light" classAction="'tp-light'" className="'fa fa-fw fa-sun-o'"/>
+                    <BuilderButton title.translate="Dark" classAction="'tp-dark'" className="'fa fa-fw fa-moon-o'"/>
+                </BuilderButtonGroup>
+            </BuilderRow>
+            <BuilderRow label.translate="Alignment" t-if="this.isActiveItem('style_2_opt') or this.isActiveItem('style_3_opt') or this.isActiveItem('style_4_opt')">
+                <BuilderButtonGroup>
+                    <BuilderButton title.translate="Left" classAction="'position-left'" className="'fa fa-fw fa-align-left'"/>
+                    <BuilderButton title.translate="Center" classAction="'position-center'" className="'fa fa-fw fa-align-center'"/>
+                    <BuilderButton title.translate="Right" classAction="'position-right'" className="'fa fa-fw fa-align-right'"/>
+                </BuilderButtonGroup>
+            </BuilderRow>
+        </BuilderContext>
+    </t>
+
+</templates>

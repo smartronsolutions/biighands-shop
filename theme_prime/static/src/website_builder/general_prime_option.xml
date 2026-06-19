@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="theme_prime.GeneralPrimeBadgeOption">
+    <BuilderRow label.translate="Color">
+        <BuilderSelect>
+            <BuilderSelectItem classAction="'bg-primary'">Primary</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-secondary'">Secondary</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-success'">Success</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-info'">Info</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-warning'">Warning</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-danger'">Danger</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-light'">Light</BuilderSelectItem>
+            <BuilderSelectItem classAction="'bg-dark'">Dark</BuilderSelectItem>
+        </BuilderSelect>
+    </BuilderRow>
+</t>
+
+<t t-name="theme_prime.GeneralPrimeBorderNShadowOption">
+    <WebsiteBackgroundOption
+        withColors="true"
+        withImages="false"
+        withShapes="false"
+        withColorCombinations="true"
+    />
+    <BorderConfigurator label.translate="Border"/>
+    <ShadowOption/>
+</t>
+
+</templates>

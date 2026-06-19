@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.CustomThemeOption">
+        <BuilderContext preview="false">
+            <BuilderRow label.translate="Back To Top Button">
+                <BuilderCheckbox action="'websiteConfig'"
+                    actionParam="{
+                        views: ['theme_prime.option_back_to_top'],
+                        vars: {'tp-back-to-top': 'true'},
+                    }"
+                />
+            </BuilderRow>
+            <BuilderRow label.translate="Border Radius" action="'customizeWebsiteVariable'">
+                <BuilderNumberInput actionParam="'border-radius'" unit="'px'" saveUnit="'rem'"/>
+                <t t-set-slot="collapse">
+                    <BuilderRow label.translate="Small" level="1">
+                        <BuilderNumberInput actionParam="'border-radius-sm'" unit="'px'" saveUnit="'rem'"/>
+                    </BuilderRow>
+                    <BuilderRow label.translate="Large" level="1">
+                        <BuilderNumberInput actionParam="'border-radius-lg'" unit="'px'" saveUnit="'rem'"/>
+                    </BuilderRow>
+                </t>
+            </BuilderRow>
+            <BuilderRow label.translate="Icon Pack">
+                <BuilderSelect action="'websiteConfig'">
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 1"
+                        id="'tp_icon_pack_style_1_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_1'], vars: {'tp-icon-pack': 1}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_1.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 2"
+                        id="'tp_icon_pack_style_2_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_2'], vars: {'tp-icon-pack': 2}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_2.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 3"
+                        id="'tp_icon_pack_style_3_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_3'], vars: {'tp-icon-pack': 3}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_3.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 4"
+                        id="'tp_icon_pack_style_4_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_4'], vars: {'tp-icon-pack': 4}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_4.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 5"
+                        id="'tp_icon_pack_style_5_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_5'], vars: {'tp-icon-pack': 5}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_5.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 6"
+                        id="'tp_icon_pack_style_6_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_6'], vars: {'tp-icon-pack': 6}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_6.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 7"
+                        id="'tp_icon_pack_style_7_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_7'], vars: {'tp-icon-pack': 7}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_7.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Icon Pack - 8"
+                        id="'tp_icon_pack_style_8_opt'"
+                        actionParam="{ views: ['theme_prime.option_icon_pack_8'], vars: {'tp-icon-pack': 8}, checkVars: false }"
+                    >
+                        <Img attrs="{style:'width: 100%;'}" src="'/theme_prime/static/src/img/options/pack_8.svg'"/>
+                    </BuilderSelectItem>
+                </BuilderSelect>
+            </BuilderRow>
+        </BuilderContext>
+    </t>
+
+</templates>

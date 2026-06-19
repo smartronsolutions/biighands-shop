@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_ribbon_form_view_inherit_droggol_theme_common" model="ir.ui.view">
+        <field name="name">product.ribbon.view.form.inherit</field>
+        <field name="model">product.ribbon</field>
+        <field name="inherit_id" ref="website_sale.product_ribbon_form_view"/>
+        <field name="arch" type="xml">
+            <field name="style" position="after">
+                <field name="theme_prime_style" widget="selection_badge"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

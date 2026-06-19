@@ -1,0 +1,125 @@
+$tp-hotspot-light: #ffffff;
+$tp-hotspot-dark: #212529;
+$tp-hotspot-color-pack: (
+    'primary': o-color('primary'),
+    'dark': $tp-hotspot-dark,
+    'light': $tp-hotspot-light,
+);
+
+// keyframes
+@include tp-kf-hotspot(o-color('primary'), pulse-primary);
+@include tp-kf-hotspot($tp-hotspot-light, pulse-light);
+@include tp-kf-hotspot($tp-hotspot-dark, pulse-dark);
+@include tp-kf-hotspot($tp-hotspot-light, pulse-light-pointer, true);
+@include tp-kf-hotspot(o-color('primary'), pulse-primary-pointer, true);
+@include tp-kf-hotspot($tp-hotspot-dark, pulse-dark-pointer, true);
+
+.tp_img_hotspot {
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+    &.tp_img_hotspot_no_effect {
+        transition: transform 600ms cubic-bezier(0.68, -0.55, 0.265, 2.5) !important;
+        &:hover {
+            transform: scale(1.1, 1.1) !important;
+            -webkit-transform: scale(1.1, 1.1) !important;
+        }
+    }
+    .tp-hotspot-text:empty {
+        display: none;
+    }
+}
+
+.tp_img_hotspot_style_1 {
+    @each $color-name, $color-value in $tp-hotspot-color-pack {
+        // &. REF from web_editor.frontend.scss (&.o_#{$module}_#{str-replace($shape, '/', '_')} )
+        &.tp-hotspot-#{$color-name} {
+            box-shadow: 0 0 0 rgba($color-value, 0.8);
+            animation: pulse-#{$color-name} 1.5s infinite !important;
+        }
+    }
+    &.tp-hotspot-light:after {
+        border: 2px solid map-get($grays, '600') !important;
+    }
+}
+
+
+.tp_img_hotspot_style_3 {
+    transition: all .2s ease-out;
+    @each $color-name, $color-value in $tp-hotspot-color-pack {
+        &.tp-hotspot-#{$color-name} {
+            background: $color-value;
+            animation: pulse-#{$color-name}-pointer 2s infinite !important;
+        }
+    }
+}
+
+@keyframes tp-animation-hotspot-4 {
+    0% {
+        -webkit-transform: scale(0.68);
+        transform: scale(0.68);
+    }
+    100% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@mixin tp-hotspot-style-4() {
+    content: "";
+    @include o-position-absolute($top: -27%, $left: -27%);
+    border: 1px solid;
+    border-color: inherit;
+    width: 150%;
+    height: 150%;
+    border-radius: inherit;
+    opacity: 1;
+    -webkit-animation: 1s tp-animation-hotspot-4 linear infinite !important;
+    animation: 1s tp-animation-hotspot-4 linear infinite !important;
+}
+
+.tp_img_hotspot_style_2 {
+    @each $color-name, $color-value in $tp-hotspot-color-pack {
+        &.tp-hotspot-#{$color-name} {
+            &:after, &:before {
+                border-color: $color-value !important;
+            }
+        }
+    }
+    &:after, &:before {
+        @include tp-hotspot-style-4();
+    }
+    &:before {
+        animation-delay: 0.5s !important;
+    }
+}
+/* Only affects custom popovers */
+.tp-hotspot-popover {
+    --popover-max-width: 340px;
+    @include media-breakpoint-down(md) {
+        --popover-max-width: 300px;
+    }
+    @include media-breakpoint-down(sm) {
+        --popover-max-width: 300px;
+    }
+    .popover-body {
+        width: var(--popover-max-width);
+        transform-origin: top center;
+        padding: 0 !important;
+        animation: popoverZoom 0.20s ease-out forwards !important;
+    }
+}
+
+@keyframes popoverZoom {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

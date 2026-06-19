@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="theme_prime.tp_img_hotspot_dynamic_popover_content">
+        <t t-if="records.length">
+            <div t-if="widget.hotSpotData.titleText" class="p-2 border-bottom d-flex justify-content-between align-items-center">
+                <h6 class="mb-0"><t t-esc="widget.hotSpotData.titleText"/></h6>
+                <a t-if="records.length > 1" class="btn btn-sm btn-link tp-popover-view-all-btn" t-att-data-urls="records.map(record => record.website_url)">View All <i class="dri dri-arrow-right-l"/> </a>
+            </div>
+            <div class="p-2">
+                <t t-foreach="records" t-as="recordInfo" t-key="recordInfo.id">
+                    <div class="d-flex">
+                        <div class="text-center align-self-center w-25">
+                            <img t-att-src="recordInfo.img_small" class="img o_object_fit_cover w-100 float-start o_image_64_max img-fluid"/>
+                        </div>
+                        <div class="w-75 d-flex flex-column justify-content-center">
+                            <h6 class="card-text text-truncate fw-normal mb-0 d-product-name">
+                                <a t-att-href="recordInfo.website_url">
+                                    <t t-esc="recordInfo.name"/>
+                                </a>
+                            </h6>
+                            <div class="d-flex flex-column my-1 mb-0">
+                                <t t-call="tp-snippet-product-price">
+                                    <t t-set="item" t-value="recordInfo"/>
+                                    <t t-set="_classes" t-value="'small mb-0'"/>
+                                    <t t-set="_priceClasses" t-value="'fw-bold'"/>
+                                    <t t-set="_subPriceClasses" t-value="'text-muted fw-light'"/>
+                                </t>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <t t-out="recordInfo.rating"/>
+                                    <button t-att-data-product-template-id="recordInfo.product_template_id" t-att-data-product-variant-id="recordInfo.product_variant_id" class="ms-auto tp-popover-button btn btn-primary btn-sm s_add_to_cart_btn">
+                                        <i class="dri dri-cart me-1"/> Buy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-2" t-if="!recordInfo_last"/>
+                </t>
+            </div>
+        </t>
+        <t t-else="">
+            <div class="p-2">
+                <p class="mb-0 text-center text-muted">No Products Found</p>
+            </div>
+        </t>
+    </t>
+    <t t-name="theme_prime.tp_img_static_template">
+        <div class="tp-popover-container d-flex p-2">
+            <div class="text-center align-self-center w-25">
+                <img t-att-src="widget.hotSpotData.imageSrc" class="img float-start o_image_64_max img-fluid"/>
+            </div>
+            <div class="px-2 w-75">
+                <h6 t-if="widget.hotSpotData.titleText" class="card-text mb-1"><t t-esc="widget.hotSpotData.titleText"/></h6>
+                <p t-if="widget.hotSpotData.subtitleText" class="text-muted mb-2"><t t-esc="widget.hotSpotData.subtitleText"/></p>
+                <a t-att-href="widget.hotSpotData.buttonLink" class="btn btn-sm btn-primary"><t t-esc="widget.hotSpotData.buttonText"/></a>
+            </div>
+        </div>
+    </t>
+    <t t-name="tp_img_hotspot_popover_body">
+        <div>
+            <t t-if="widget.hotspotType === 'static'">
+                <t t-call="theme_prime.tp_img_static_template">
+                    <t t-set="data" t-value="widget.data"/>
+                </t>
+            </t>
+            <t t-if="widget.hotspotType === 'dynamic'">
+                <t t-call="theme_prime.tp_img_hotspot_dynamic_popover_content"/>
+            </t>
+        </div>
+    </t>
+</template>

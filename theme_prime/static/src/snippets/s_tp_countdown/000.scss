@@ -1,0 +1,80 @@
+.tp-countdown {
+    &.tp-light {
+        .s_countdown_1, .s_countdown_4 {
+            .tp-counter-block {
+                background: o-color('white');
+                .tp-counter-number {
+                    color: o-color('primary');
+                }
+                hr {
+                    border-color: o-color('200');
+                }
+            }
+        }
+        .s_countdown_1 {
+            .tp-counter-title {
+                color: o-color('800');
+            }
+        }
+        .s_countdown_4 {
+            .tp-counter-title {
+                color: o-color('600');
+            }
+        }
+    }
+    &.tp-dark {
+        .s_countdown_1, .s_countdown_4 {
+            .tp-counter-block {
+                background: o-color('800');
+                .tp-counter-number {
+                    color: o-color('white');
+                }
+                hr {
+                    border-color: rgba(o-color('white'), 0.5);
+                }
+            }
+        }
+        .s_countdown_1 {
+            .tp-counter-title {
+                color: o-color('white');
+            }
+        }
+        .s_countdown_4 {
+            .tp-counter-title {
+                color: o-color('800');
+            }
+        }
+    }
+
+    .s_countdown_1 {
+        .tp-counter-block {
+            padding: 16px 22px;
+            flex: 1;
+            border-radius: $border-radius;
+            min-width: 90px;
+        }
+    }
+    .s_countdown_4 {
+        .tp-counter-block {
+            padding: 0;
+            height: 42px;
+            width: 42px;
+            line-height: 42px;
+            text-align: center;
+            border: 1px solid $border-color;
+            background-color: $light;
+            border-radius: 50rem;
+        }
+    }
+
+    --justify-content: start;
+    &.position-center {
+        --justify-content: center;
+    }
+    &.position-right {
+        --justify-content: end;
+    }
+    .tp-countdown-container {
+        justify-content: var(--justify-content);
+    }
+}

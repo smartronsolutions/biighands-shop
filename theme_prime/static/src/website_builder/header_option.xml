@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.HeaderTemplateOption" t-inherit="website.HeaderTemplateOption" t-inherit-mode="extension">
+        <xpath expr="//BuilderSelectItem" position="before">
+            <BuilderSelectItem title.translate="Prime Header Style - 1" id="'tp_header_style_1_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_1'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_1'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_1.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 2" id="'tp_header_style_2_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_2'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_2'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_2.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 3" id="'tp_header_style_3_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_3'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_3'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_3.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 4" id="'tp_header_style_4_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_4'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_4'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_4.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 5" id="'tp_header_style_5_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_5'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_5'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_5.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 6" id="'tp_header_style_6_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_6'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_6'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_6.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 7" id="'tp_header_style_7_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_7'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_7'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_7.svg'"/>
+            </BuilderSelectItem>
+            <BuilderSelectItem title.translate="Prime Header Style - 8" id="'tp_header_style_8_opt'"
+                actionParam="[
+                    {
+                        action: 'websiteConfig',
+                        actionParam: {
+                            views: ['theme_prime.template_header_style_8'],
+                            vars: {'header-links-style': 'default', 'header-template': 'prime_style_8'},
+                            checkVars: false,
+                        }
+                    }
+                ]"
+            >
+                <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/header_8.svg'"/>
+            </BuilderSelectItem>
+        </xpath>
+
+        <xpath expr="//BuilderRow[2]" position="after">
+            <BuilderRow label.translate="Box" level="1" t-if="isActiveItem('tp_header_style_2_opt') || isActiveItem('tp_header_style_3_opt') || isActiveItem('tp_header_style_4_opt')">
+                <BuilderColorPicker
+                    enabledTabs="['theme', 'custom', 'gradient']"
+                    preview="false"
+                    defaultColor="''"
+                    action="'customizeWebsiteColor'"
+                    actionParam="{
+                        mainParam: 'tp-header-box-color-custom',
+                        gradientColor: 'tp-header-box-color-gradient',
+                        combinationColor: 'tp-header-box-color',
+                        nullValue: 'NULL',
+                    }"/>
+            </BuilderRow>
+        </xpath>
+
+        <xpath expr="//BuilderRow[1]" position="before">
+            <BuilderRow label.translate="Preheader">
+                <BuilderSelect action="'reloadComposite'">
+                    <BuilderSelectItem
+                        title.translate="None"
+                        id="'tp_preheader_style_none_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: [],
+                                    vars: {'tp-preheader-template': 'none'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        None
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Prime Preheader Style - 1"
+                        id="'tp_preheader_style_1_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: ['theme_prime.template_preheader_style_1'],
+                                    vars: {'tp-preheader-template': 'prime_style_1'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/preheader_1.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Prime Preheader Style - 2"
+                        id="'tp_preheader_style_2_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: ['theme_prime.template_preheader_style_2'],
+                                    vars: {'tp-preheader-template': 'prime_style_2'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/preheader_2.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Prime Preheader Style - 3"
+                        id="'tp_preheader_style_3_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: ['theme_prime.template_preheader_style_3'],
+                                    vars: {'tp-preheader-template': 'prime_style_3'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/preheader_3.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Prime Preheader Style - 4"
+                        id="'tp_preheader_style_4_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: ['theme_prime.template_preheader_style_4'],
+                                    vars: {'tp-preheader-template': 'prime_style_4'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/preheader_4.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Prime Preheader Style - 5"
+                        id="'tp_preheader_style_5_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: ['theme_prime.template_preheader_style_5'],
+                                    vars: {'tp-preheader-template': 'prime_style_5'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/preheader_5.svg'"/>
+                    </BuilderSelectItem>
+                    <BuilderSelectItem
+                        title.translate="Prime Preheader Style - 6"
+                        id="'tp_preheader_style_6_opt'"
+                        actionParam="[
+                            {
+                                action: 'websiteConfig',
+                                actionParam: {
+                                    views: ['theme_prime.template_preheader_style_6'],
+                                    vars: {'tp-preheader-template': 'prime_style_6'},
+                                    checkVars: false,
+                                }
+                            }
+                        ]"
+                    >
+                        <Img attrs="{ style: 'width: calc(100% - 0.5rem);' }" src="'/theme_prime/static/src/img/options/preheader_6.svg'"/>
+                    </BuilderSelectItem>
+                </BuilderSelect>
+            </BuilderRow>
+            <BuilderRow t-if="!isActiveItem('tp_preheader_style_none_opt')" label.translate="Background" level="1">
+                <BuilderColorPicker
+                    enabledTabs="['theme', 'custom', 'gradient']"
+                    preview="false"
+                    defaultColor="''"
+                    action="'customizeWebsiteColor'"
+                    actionParam="{
+                        mainParam: 'preheader-custom',
+                        gradientColor: 'preheader-gradient',
+                        combinationColor: 'preheader',
+                        nullValue: 'NULL',
+                    }"/>
+            </BuilderRow>
+        </xpath>
+    </t>
+
+</templates>

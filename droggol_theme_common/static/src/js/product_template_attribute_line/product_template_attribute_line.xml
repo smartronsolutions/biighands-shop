@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="sale.ptav_color" t-inherit-mode="extension">
+        <xpath expr="//t[@t-set='img_style']" position="after">
+            <t t-if="this.props.extraInfo[ptav.id].dr_thumb_image" t-set="img_style"
+                t-value="this.props.extraInfo[ptav.id].dr_thumb_image ? 'background:url(/web/image/product.template.attribute.value/'+ptav.id+'/dr_thumb_image); background-size:cover;' : ''"
+            />
+        </xpath>
+    </t>
+
+</templates>

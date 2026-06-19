@@ -1,0 +1,18 @@
+.o_rtl {
+    .drift-zoom-pane.tp-zoom-pane {
+        direction: rtl;
+    }
+    #o-carousel-product .carousel-control-prev > span, #o-carousel-product .carousel-control-next > span {
+        transform: rotate(-180deg) !important;
+    }
+}
+
+//------------------------------------------------------------------------------
+// swiper RTL
+//------------------------------------------------------------------------------
+.swiper-rtl .swiper-slide {
+    float: left !important;
+}
+.swiper-rtl {
+    direction: ltr !important;
+}

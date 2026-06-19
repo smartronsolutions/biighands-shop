@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <div t-name="theme_prime.attribute_selection_dialog">
+        <div class="o_dialog" t-att-id="id" t-att-class="{ o_inactive_modal: !data.isActive }">
+            <div role="dialog" class="modal d-block" tabindex="-1" t-att-class="{ o_technical_modal: props.technical, o_modal_full: isFullscreen, o_inactive_modal: !data.isActive }" t-ref="modalRef">
+                <div class="modal-dialog tp-attribute-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content" t-att-class="props.contentClass" t-att-style="contentStyle">
+                        <header t-if="props.header" class="modal-header">
+                            <h6 class="modal-title text-break flex-grow-1">
+                                <t t-esc="props.title"/>
+                            </h6>
+                            <button style="transform:scale(0.8);" type="button" class="btn-close" aria-label="Close" tabindex="-1" t-on-click="dismiss"></button>
+                        </header>
+                        <main class="modal-body" t-attf-class="{{ props.bodyClass }} {{ !props.withBodyPadding ? 'p-0': '' }}">
+                            <ul class="list-unstyled" t-ref="content">
+                                <i class="fa my-3 d-block fa-circle-o-notch fa-3x fa-spin text-primary text-center"/>
+                                <p class="text-center mt-3">Loading All <t t-esc="props.attributeName"/> ...</p>
+                            </ul>
+                            <button type="button" class="btn btn-primary w-100 mt-3 d-block" tabindex="-1" t-on-click="_onApplyClick"><i class="fa fa-check"></i> Apply</button>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</templates>

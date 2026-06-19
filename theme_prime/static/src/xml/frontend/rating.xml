@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="tp_rating_snippet_content">
+        <t t-set="userParams" t-value="widget.uiConfigInfo"/>
+        <t t-if="data.length">
+            <div class="droggol_product_slider">
+                <div class="tp-snippet-swiper px-1 overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <t t-foreach="data" t-as="item" t-key="item.id">
+                            <div class="swiper-slide">
+                                <t t-call="#{userParams.style}"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <div class="swiper-navigation">
+                    <div class="dr-swiper-button-next z-1 text-center">
+                        <i class="dri dri-arrow-right-l"></i>
+                    </div>
+                    <div class="dr-swiper-button-prev z-1 text-center">
+                        <i class="dri dri-arrow-left-l"></i>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <t t-elif="widget.noDataTemplate">
+            <t t-call="#{widget.noDataTemplate}"></t>
+        </t>
+    </t>
+
+    <t t-name="tp_small_product_block_no_cart">
+        <div class="d-flex align-items-center mt-0">
+            <img class="img rounded-1 img-fluid o_image_64_cover me-2" t-att-src="item.img_small" />
+            <div class="d-flex align-items-center w-100 justify-content-between ms-2">
+                <div>
+                    <h6 class="card-title mt-1 mb-2 text-truncate tp-hover-color-primary">
+                        <a t-att-href="item.website_url">
+                            <t t-out="item.name"/>
+                        </a>
+                    </h6>
+                    <t t-call="tp-snippet-product-price"/>
+                </div>
+                <a target="_new" class="btn tp-icon-center-1 me-1 btn-light rounded-circle border text-center" t-att-href="item.website_url">
+                    <i class="dri dri-arrow-right-l"></i>
+                </a>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="tp_rating_snippet_style_1">
+        <div t-attf-class="tp-rating-snippet-style-1 bg-white h-100 d-flex flex-column justify-content-between #{_no_border ? '' : 'p-3 rounded border'}">
+            <div class="d-flex align-items-center mb-2">
+                <div>
+                    <h6 class="mb-1" t-out="item.rating_info.res_partner_name"/>
+                    <t t-out="item.rating_info.rating"/>
+                </div>
+            </div>
+            <t t-if="item.rating_info and item.rating_info.comment">
+                <p class="text-muted tp-content-line-3" t-out="item.rating_info.comment"/>
+            </t>
+            <hr class="mt-0"/>
+            <t t-call="tp_small_product_block_no_cart"/>
+        </div>
+    </t>
+
+    <t t-name="tp_rating_snippet_style_2">
+        <div t-attf-class="tp-rating-snippet-style-2 bg-white h-100 d-flex flex-column justify-content-between #{_no_border ? '' : 'p-3 rounded border'}">
+            <div class="mb-2" style="font-size: 1.2rem;">
+                <t t-out="item.rating_info.rating"/>
+            </div>
+            <t t-if="item.rating_info and item.rating_info.comment">
+                <p class="small tp-content-line-3 text-muted" t-out="item.rating_info.comment"/>
+            </t>
+            <div class="d-flex align-items-center mb-3">
+                <div>
+                    <h6 class="mb-1" t-out="item.rating_info.res_partner_name"/>
+                    <div t-if="item.rating_info.res_partner_state || item.rating_info.res_partner_country" class="text-muted small">
+                        <t t-if="item.rating_info.res_partner_state" t-out="item.rating_info.res_partner_state"/>
+                        <t t-if="item.rating_info.res_partner_state &amp;&amp; item.rating_info.res_partner_country">, </t>
+                        <t t-if="item.rating_info.res_partner_country" t-out="item.rating_info.res_partner_country"/>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-0"/>
+            <t t-call="tp_small_product_block_no_cart"/>
+        </div>
+    </t>
+
+    <t t-name="tp_rating_snippet_style_3">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img t-att-src="item.rating_info.attachment_url" class="img-fluid h-100 rounded-start" style="object-fit:cover;" loading="lazy"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <t t-call="tp_rating_snippet_style_1">
+                            <t t-set="_no_border" t-value="true"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="tp_rating_snippet_style_4">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img t-att-src="item.rating_info.attachment_url" class="img-fluid h-100 rounded-start" style="object-fit:cover;" loading="lazy"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <t t-call="tp_rating_snippet_style_2">
+                            <t t-set="_no_border" t-value="true"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>

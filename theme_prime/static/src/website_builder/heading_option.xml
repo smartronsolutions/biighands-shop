@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="theme_prime.HeadingOption1">
+    <BuilderRow label.translate="Line Position">
+        <BuilderButtonGroup>
+            <BuilderButton classAction="'tp-line-top'" title.translate="Top"><i class="fa fa-fw fa-angle-up"/></BuilderButton>
+            <BuilderButton classAction="'tp-line-bottom'" title.translate="Bottom"><i class="fa fa-fw fa-angle-down"/></BuilderButton>
+        </BuilderButtonGroup>
+    </BuilderRow>
+    <BuilderRow label.translate="Alignment">
+        <BuilderButtonGroup>
+            <BuilderButton classAction="'text-start'" title.translate="Left"><i class="fa fa-fw fa-align-left"/></BuilderButton>
+            <BuilderButton classAction="'text-center'" title.translate="Center"><i class="fa fa-fw fa-align-center"/></BuilderButton>
+            <BuilderButton classAction="'text-end'" title.translate="Right"><i class="fa fa-fw fa-align-right"/></BuilderButton>
+        </BuilderButtonGroup>
+    </BuilderRow>
+    <BuilderRow label.translate="Thickness">
+        <BuilderButtonGroup>
+            <BuilderButton classAction="'tp-line-thickness-light'">Light</BuilderButton>
+            <BuilderButton classAction="'tp-line-thickness-normal'">Normal</BuilderButton>
+            <BuilderButton classAction="'tp-line-thickness-bold'">Bold</BuilderButton>
+        </BuilderButtonGroup>
+    </BuilderRow>
+    <BuilderRow label.translate="Width">
+        <BuilderButtonGroup>
+            <BuilderButton classAction="'tp-line-width-short'">Short</BuilderButton>
+            <BuilderButton classAction="'tp-line-width-normal'">Normal</BuilderButton>
+            <BuilderButton classAction="'tp-line-width-long'">Long</BuilderButton>
+        </BuilderButtonGroup>
+    </BuilderRow>
+</t>
+
+<t t-name="theme_prime.HeadingOption2">
+    <BuilderRow label.translate="Dot Position">
+        <BuilderButtonGroup>
+            <BuilderButton classAction="'tp-line-top'" title.translate="Top"><i class="fa fa-fw fa-angle-up"/></BuilderButton>
+            <BuilderButton classAction="'tp-line-bottom'" title.translate="Bottom"><i class="fa fa-fw fa-angle-down"/></BuilderButton>
+        </BuilderButtonGroup>
+    </BuilderRow>
+    <BuilderRow label.translate="Alignment">
+        <BuilderButtonGroup>
+            <BuilderButton classAction="'text-start'" title.translate="Left"><i class="fa fa-fw fa-align-left"/></BuilderButton>
+            <BuilderButton classAction="'text-center'" title.translate="Center"><i class="fa fa-fw fa-align-center"/></BuilderButton>
+            <BuilderButton classAction="'text-end'" title.translate="Right"><i class="fa fa-fw fa-align-right"/></BuilderButton>
+        </BuilderButtonGroup>
+    </BuilderRow>
+</t>
+
+</templates>

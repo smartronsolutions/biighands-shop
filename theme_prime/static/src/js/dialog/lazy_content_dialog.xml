@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_prime.LazyContentDialog">
+        <Dialog size="'lg'" title="props.title" withBodyPadding="false" footer="false">
+            <p class="m-0" t-out="markup(props.body)" t-ref="content"/>
+        </Dialog>
+    </t>
+
+</templates>

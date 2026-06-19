@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="website.MegaMenuOption" t-inherit-mode="extension">
+        <xpath expr="//BuilderRow[@t-if=&quot;productCategories.length&quot;]" position="attributes">
+            <attribute name="t-if">this.primeState.isOptVisible</attribute>
+        </xpath>
+    </t>
+</templates>

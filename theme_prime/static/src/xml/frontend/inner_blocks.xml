@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="s_inner_dynamic_products_block_template">
+        <div class="droggol_product_slider tp-show-navigation-on-hover position-relative">
+            <div t-attf-class="tp-snippet-swiper overflow-hidden">
+                <div class="swiper-wrapper m-0">
+                    <t t-foreach="data" t-as="item" t-key="item.id">
+                        <div class="swiper-slide">
+                            <t t-call="#{widget.uiConfigInfo.style}"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div class="swiper-navigation">
+                <div class="position-absolute dr-prev-sm top-50 translate-middle z-1 start-0 tp-icon-center-1 rounded-circle border bg-white">
+                    <i class="fa my-auto fa-angle-left"></i>
+                </div>
+                <div class="position-absolute dr-next-sm top-50 translate-middle z-1 p-0 text-center start-100 tp-icon-center-1 rounded-circle border bg-white">
+                    <i class="fa my-auto fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- TO-DO s_d_2_col_small_card and tp_category_product_card_style_3 is same adapt it and remove code duplication -->
+    <t t-name="tp_inner_content_card_style_2">
+        <t t-call="tp_category_product_card_style_3">
+            <t t-set="product" t-value="item"/>
+        </t>
+    </t>
+    <t t-name="tp_inner_content_card_style_3">
+        <t t-call="tp_category_product_card_style_1">
+            <t t-set="product" t-value="item"/>
+            <t t-set="cardStyleClasses" t-value="'text-center'"/>
+        </t>
+    </t>
+    <t t-name="tp_inner_content_card_style_1">
+        <div class="d-flex border p-1 rounded align-items-center bg-white" style="margin:1px;">
+            <div class="flex-shrink-0">
+                <img loading="lazy" t-att-alt="item.name" t-att-src="item.img_small" class="img rounded o_image_64_cover img-fluid"/>
+            </div>
+            <div style="max-width: calc(100% - 72px);" class="flex-grow-1 ms-2">
+                <h6 class="card-title m-0 w-100 text-truncate fw-light tp-hover-color-primary">
+                    <a class="d-block text-truncate" t-att-href="item.website_url">
+                        <t t-out="item.name"/>
+                    </a>
+                </h6>
+                <div class="my-1">
+                    <t t-out="item.rating"/>
+                </div>
+                <t t-call="tp-snippet-product-price">
+                    <t t-set="_classes" t-value="'mb-0'"/>
+                    <t t-set="_subPriceClasses" t-value="'text-danger fw-light'"/>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</template>

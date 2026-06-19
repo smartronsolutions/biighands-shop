@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<templates>
+
+    <t t-name="s_d_image_products_block_tmpl">
+        <t t-if="data.length">
+            <div class="s_d_image_products_block_container">
+                <div class="swiper-navigation d-flex justify-content-end">
+                    <div class="dr-swiper-button-prev z-1">
+                        <i class="dri h5 dri-chevron-left-l"></i>
+                    </div>
+                    <div class="dr-swiper-button-next z-1">
+                        <i class="dri h5 dri-chevron-right-l"></i>
+                    </div>
+                </div>
+                <div class="swiper droggol_product_slider_top o_not_editable">
+                    <div class="swiper-wrapper">
+                        <t t-foreach="data" t-as="products" t-key="products_index + 1">
+                            <div class="swiper-slide">
+                                <div t-attf-class="row g-0 #{data.length === 1 ? 'mt-5' : ''}">
+                                    <t t-foreach="products" t-as="item" t-key="item.id">
+                                        <div class="col-lg-3 col-6 mt-2 px-2">
+                                            <div class="card border p-1 mb-2" style="border-radius:4px;">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <div class="d-flex align-items-center h-100 w-100 justify-content-center">
+                                                            <a class="w-100" t-att-href="item.website_url">
+                                                                <img loading="lazy" t-att-src="item.img_medium" class="img w-100 img-fluid d_product_img"/>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-8 ps-2">
+                                                        <div class="card-body h-100 d-flex flex-column justify-content-center p-1">
+                                                            <h6 class="card-title mt-1 mb-1 text-truncate fw-light tp-hover-color-primary">
+                                                                <a t-att-href="item.website_url">
+                                                                    <t t-out="item.name"/>
+                                                                </a>
+                                                            </h6>
+                                                            <div t-if="widget.shopConfig.is_rating_active &amp;&amp; item.rating_avg" class="d-star-rating mb-1 d-none d-md-block">
+                                                                <t t-raw="item.rating"/>
+                                                            </div>
+                                                            <t t-call="tp-snippet-product-price">
+                                                                <t t-set="_classes" t-value="'mb-0'"/>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <t t-elif="widget.noDataTemplate">
+            <t t-call="#{widget.noDataTemplate}"></t>
+        </t>
+    </t>
+</templates>

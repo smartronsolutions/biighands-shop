@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+    ============================================================================
+    Assets
+    ============================================================================
+    -->
+    <template id="layout" inherit_id="website.layout" name="Theme Prime: Layout">
+        <xpath expr="//head/meta[last()]" position="after">
+            <t t-if="request.website.dr_pwa_activated">
+                <link rel="manifest" t-attf-href="/pwa/#{request.website.id}/manifest.json"/>
+                <link rel="apple-touch-icon" sizes="192x192" t-attf-href="/web/image/website/#{request.website.id}/dr_pwa_icon_192/192x192"/>
+                <meta name="theme-color" t-att-content="request.website.dr_pwa_theme_color"/>
+                <meta name="mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-title" t-att-content="request.website.dr_pwa_name"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+            </t>
+        </xpath>
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="preload" href="/theme_prime/static/lib/Droggol-Pack-v1.0/fonts/Droggol-Pack.ttf?4iwoe7" as="font" crossorigin=""/>
+        </xpath>
+    </template>
+
+    <!--
+    ============================================================================
+    Pricelist
+    ============================================================================
+    -->
+    <template id="tp_pricelist_html_data" inherit_id="website.layout" name="Pricelist Attribute" priority="1">
+        <xpath expr="//html" position="before">
+            <t t-set="html_data" t-value="dict(html_data, **{'data-pricelist-id': request.pricelist.id if request.pricelist else '*'})"/>
+        </xpath>
+    </template>
+
+    <!--
+    ============================================================================
+    Bottombar
+    ============================================================================
+    -->
+    <template id="template_bottom_bar" inherit_id="website.layout" name="Theme Prime: Bottombar">
+        <xpath expr="//div[@id='wrapwrap']/header" position="before">
+            <t t-if="request.website._get_dr_theme_config('json_bottom_bar')['show_bottom_bar']">
+                <t t-call="theme_prime.tp_mobile_bottombar_component"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!--
+    ============================================================================
+    Menu Label
+    ============================================================================
+    -->
+    <template id="submenu" inherit_id="website.submenu" name="Theme Prime: Submenu">
+        <xpath expr="//span[@t-field='submenu.name']/.." position="attributes">
+            <attribute name="t-attf-style">#{submenu.dr_is_highlight_menu and 'background-color: %s; color: %s;' % (submenu.dr_highlight_menu_bg_color, submenu.dr_highlight_menu_text_color) or ''}</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='submenu.name']" position="replace">
+            <span>
+                <span t-field="submenu.name"/>
+                <span t-if="submenu.dr_menu_label_id" class="tp-menu-label" t-attf-style="background-color: #{submenu.dr_menu_label_id.background_color}; color: #{submenu.dr_menu_label_id.text_color}">
+                    <span t-field="submenu.dr_menu_label_id.name"/>
+                    <div class="before" t-attf-style="border-color: #{submenu.dr_menu_label_id.background_color};"/>
+                </span>
+            </span>
+        </xpath>
+        <xpath expr="//a[@data-bs-toggle='dropdown']" position="attributes">
+            <attribute name="t-attf-style">#{submenu.dr_is_highlight_menu and 'background-color: %s; color: %s;' % (submenu.dr_highlight_menu_bg_color, submenu.dr_highlight_menu_text_color) or ''}</attribute>
+        </xpath>
+        <xpath expr="//a[@data-bs-toggle='dropdown']/span" position="replace">
+            <span>
+                <span t-field="submenu.name"/>
+                <span t-if="submenu.dr_menu_label_id" class="tp-menu-label" t-attf-style="background-color: #{submenu.dr_menu_label_id.background_color}; color: #{submenu.dr_menu_label_id.text_color}">
+                    <span t-field="submenu.dr_menu_label_id.name"/>
+                    <div class="before" t-attf-style="border-color: #{submenu.dr_menu_label_id.background_color};"/>
+                </span>
+            </span>
+        </xpath>
+        <xpath expr="//span[@t-field='submenu.name']" position="before">
+            <i t-if="submenu.dr_is_highlight_menu and submenu.is_mega_menu" class="dri dri-category me-1"/>
+        </xpath>
+        <xpath expr="//a[@data-bs-toggle='dropdown']/span/span" position="before">
+            <i t-if="submenu.dr_is_highlight_menu and submenu.is_mega_menu" class="dri dri-category me-1"/>
+        </xpath>
+        <xpath expr="//t[@t-set='show_dropdown']" position="after">
+            <t t-set="item_class" t-valuef="#{item_class or ''} #{submenu.dr_is_highlight_menu and 'tp-highlight-menu' or ''} #{submenu.dr_menu_visible_on == 'desktop' and 'd-none d-lg-block' or ''}"/>
+        </xpath>
+    </template>
+
+    <!--
+    ============================================================================
+    Variants
+    ============================================================================
+    -->
+    <template id="variants" inherit_id="website_sale.variants" name="Theme Prime: Variants">
+        <xpath expr="//h6[hasclass('attribute_name')]" position="replace">
+            <div class="d-flex align-items-center mb-2">
+                <h6 class="attribute_name mb-2">
+                    <span t-field="ptal.attribute_id.name"/>
+                    <span t-if="attribute.display_type in ['color', 'image']" class="text-muted">
+                        -
+                        <t
+                            t-set="active_ptavs"
+                            t-value="[ptav for ptav in ptavs if ptav in combination]"
+                        />
+                        <t t-foreach="active_ptavs" t-as="ptav">
+                            <span class="attribute_value" name="attribute_value" t-field="ptav.name"/>
+                        </t>
+                    </span>
+                </h6>
+                <t t-if="show_attribute_guide">
+                    <t t-set="dr_attribute_popup_id" t-value="ptal.dr_attribute_popup_id or ptal.attribute_id.dr_attribute_popup_id"/>
+                    <a t-if="dr_attribute_popup_id.active" class="dr-attribute-instruction-btn tp-lazy-content link-primary ms-4 mb-1" style="display: none;" href="#" data-res-model="dr.website.content" t-att-data-res-id="dr_attribute_popup_id.id" t-att-data-popup-style="dr_attribute_popup_id.popup_style" data-field="content">
+                        <span t-field="dr_attribute_popup_id.name"/> <i class="fa fa-angle-right"/>
+                    </a>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//select/.." position="after">
+            <t t-elif="attribute.display_type == 'pills'">
+                <ul t-att-data-attribute_id="attribute.id"
+                    t-attf-class="dr-attribute-item list-inline o_wsale_product_attribute #{'d-none' if single_and_custom else ''}">
+                    <t t-foreach="ptavs" t-as="ptav">
+                        <li t-attf-class="me-1 list-inline-item js_attribute_value #{'active' if ptav in combination else ''}">
+                            <label>
+                                <div>
+                                    <input type="radio"
+                                        t-attf-class="js_variant_change #{attribute.create_variant} d-none"
+                                        t-att-checked="ptav in combination"
+                                        t-att-name="'ptal-%s' % ptal.id"
+                                        t-att-value="ptav.id"
+                                        t-att-data-value-id="ptav.id"
+                                        t-att-id="ptav.id"
+                                        t-att-data-attribute-value-id="ptav.product_attribute_value_id.id"
+                                        t-att-data-value-name="ptav.name"
+                                        t-att-data-attribute-name="attribute.name"
+                                        t-att-data-is-custom="ptav.is_custom"
+                                        t-att-autocomplete="off"/>
+                                    <div class="radio_input_value d-flex flex-column align-items-center me-0">
+                                        <div t-attf-class="dr-value-item fw-normal #{attribute.dr_attribute_pills_style == 'circle' and 'circle' or 'default'}" t-field="ptav.name"/>
+                                        <t t-call="website_sale.badge_extra_price"/>
+                                    </div>
+                                </div>
+                            </label>
+                        </li>
+                    </t>
+                </ul>
+            </t>
+        </xpath>
+        <t t-set="img_style" position="after">
+            <t t-if="ptav.dr_thumb_image" t-set="img_style"
+                t-value="'background:url(/web/image/product.template.attribute.value/%s/dr_thumb_image); background-size:cover;' % ptav.id if ptav.dr_thumb_image else ''"
+            />
+        </t>
+    </template>
+
+    <!--
+    ============================================================================
+    404 Page
+    ============================================================================
+    -->
+    <template id="404" inherit_id="http_routing.404" name="Theme Prime: 404">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap">
+                <t t-out="0"/>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-6">
+                            <t t-call="theme_prime.tp_svg_404">
+                                <t t-set="_classes" t-value="'mt-4'"/>
+                            </t>
+                        </div>
+                        <div class="col-12 text-center mt32">
+                            <h2>We can't seem to find the page you are looking for</h2>
+                            <p class="mt-3 lead">
+                                Here are some helpful links instead
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure oe_empty">
+                    <div class="container my-4">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-lg-10 col-xl-8">
+                                <div class="row">
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <a class="card" href="/">
+                                            <div class="card-body py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="dri dri-home-l fa-2x text-primary ms-1 me-3"></span>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1">Homepage</h6>
+                                                        <div>Return to homepage</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <a class="card tp-search-sidebar-action" href="#">
+                                            <div class="card-body py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="dri dri-search-l fa-2x text-success ms-1 me-3"></span>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1">Search</h6>
+                                                        <div>Find your product</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-lg-4 mb-3">
+                                        <a class="card" href="/contactus">
+                                            <div class="card-body py-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="dri dri-phone-l fa-2x text-info ms-1 me-3"></span>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1">Contact us</h6>
+                                                        <div>Get in touch with us</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="product_wishlist" inherit_id="website_sale_wishlist.product_wishlist">
+        <t t-set="product_price" position="replace">
+            <t t-set="product_price">
+                <t t-if="request.website._dr_has_b2b_access()">
+                    <br t-if="combination_info['prevent_zero_price_sale']"/>
+                    <div t-else="" class="align-middle o_wish_price">
+                        <span aria-label="Sale price">
+                            <t t-out="combination_info['price']"
+                                t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                            />
+                        </span>
+                        <small
+                            t-if="combination_info['has_discounted_price']"
+                            class="cart_product_base_unit_price text-muted"
+                        >
+                            <del
+                                aria-label="Original price"
+                                t-out="combination_info['list_price']"
+                                class="text-nowrap"
+                                t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                name="product_list_price"
+                            />
+                        </small>
+                    </div>
+                </t>
+                <t t-else="">
+                    <t t-call="theme_prime.tp_b2b_price_label"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="product_compare" inherit_id="website_sale_comparison.product_compare">
+        <span t-if="not combination_info['prevent_zero_price_sale']" position="after">
+            <t t-if="not request.website._dr_has_b2b_access()" t-call="theme_prime.tp_b2b_price_label"/>
+        </span>
+        <span t-if="not combination_info['prevent_zero_price_sale']" position="attributes">
+            <attribute name="t-if">not combination_info['prevent_zero_price_sale'] and request.website._dr_has_b2b_access()</attribute>
+        </span>
+    </template>
+
+    <!--
+    ============================================================================
+    Cart Page
+    ============================================================================
+    -->
+    <template id="cart_lines" inherit_id="website_sale.cart_lines" name="Shopping Cart Lines">
+        <t t-call="website_sale.cart_line_description_following_lines" position="after">
+            <ul class="list-inline mt-2 mb-0 d-none d-md-block" groups="product.group_product_variant">
+                <t t-foreach="line.product_id.product_template_variant_value_ids" t-as="att">
+                    <li class="list-inline-item mb-1">
+                        <span class="badge text-bg-primary">
+                            <span t-field="att.attribute_id.name"/>: <span t-field="att.name"/>
+                        </span>
+                    </li>
+                </t>
+            </ul>
+        </t>
+    </template>
+
+    <template id="suggested_products_list" inherit_id="website_sale.suggested_products_list" name="Alternative Products in my cart">
+        <h5 t-if="suggested_products" position="replace">
+            <h5 t-attf-class="mt32 mb-4" t-if="suggested_products">Suggested Products</h5>
+        </h5>
+    </template>
+
+    <!--
+    ============================================================================
+    Options
+    ============================================================================
+    -->
+    <template id="option_back_to_top" inherit_id="website.layout" active="True">
+        <xpath expr="//div[@id='wrapwrap']" position="inside">
+            <a href="#" class="tp-back-to-top rounded tp-icon-center-2 dr-p-icon o_not_editable shadow-tp d-none position-fixed" contenteditable="false" title="Scroll back to top">
+                <i class="fa fa-angle-up"/>
+            </a>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_1" inherit_id="website.layout" active="True">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-1.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_2" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-2.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_3" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-3.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_4" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-4.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_5" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-5.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_6" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-6.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_7" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-7.css"/>
+        </xpath>
+    </template>
+
+    <template id="option_icon_pack_8" inherit_id="website.layout" active="False">
+        <xpath expr="//head/link[last()]" position="after">
+            <link rel="stylesheet" type="text/css" href="/theme_prime/static/lib/Droggol-Pack-v1.0/droggol-pack-8.css"/>
+        </xpath>
+    </template>
+
+</odoo>
