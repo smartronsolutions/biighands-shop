@@ -3,7 +3,6 @@
 <data>
 
 <template id="home" name="Biighands Shop Home">
-<t t-name="biighands_shop_website.home">
 <t t-call="website.layout">
 <t t-set="additional_title">Biighands Shop | Professional Tools and Hardware</t>
 <div id="wrap">
