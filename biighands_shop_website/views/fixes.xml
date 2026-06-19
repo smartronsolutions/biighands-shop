@@ -2,26 +2,13 @@
 <odoo>
 <data>
 
-<!--
-  Fix: theme_prime.shop_layout evaluates website.shop_page_container which
-  internally does env.context['category'] — raises KeyError when 'category'
-  is absent from env.context (QWeb context != env.context).
-
-  We REPLACE the failing element with an identical expression that first
-  attaches 'category' to the website record's context via with_context(),
-  so the computed field can safely read it.
--->
-<record id="bhs_fix_shop_container" model="ir.ui.view">
-  <field name="name">biighands.fix.theme_prime.shop_container</field>
-  <field name="key">biighands_shop_website.fix_shop_container</field>
+<record id="bhs_fix_shop_title" model="ir.ui.view">
+  <field name="name">biighands.fix.theme_prime.shop_title</field>
+  <field name="key">biighands_shop_website.fix_shop_title</field>
   <field name="inherit_id" ref="theme_prime.shop_layout"/>
   <field name="arch" type="xml">
-    <xpath expr="//t[@t-set='opt_wsale_fullwidth']" position="replace">
-      <t t-set="opt_wsale_fullwidth" t-value="
-        website.with_context(
-          category=int(request.params['category']) if request.params.get('category', '').isdigit() else 0
-        ).shop_page_container == 'fluid'
-      "/>
+    <xpath expr="//t[@t-set='additional_title']" position="replace">
+      <t t-set="additional_title" t-value="category and category.name or 'Shop'"/>
     </xpath>
   </field>
 </record>

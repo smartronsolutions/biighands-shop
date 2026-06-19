@@ -3,7 +3,7 @@
 
     <template id="shop_layout" name="Products">
         <t t-call="website.layout">
-            <t t-set="additional_title" t-value="category.name"/>
+            <t t-set="additional_title" t-value="category and category.name or 'Shop'"/>
 
             <t t-set="opt_wsale_fullwidth" t-value="True"/>
 
