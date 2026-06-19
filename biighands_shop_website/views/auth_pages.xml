@@ -14,104 +14,95 @@
    BIIGHANDS SHOP — Auth Pages (login / signup / reset)
    ============================================================ */
 
-/* ── Hide ALL headers/nav on auth pages ── */
+/* ── 1. HIDE OUR CUSTOM HEADER ON AUTH PAGES ── */
+html:has(.oe_website_login_container) .bhs-ann,
+html:has(.oe_website_login_container) #bhsAnn,
+html:has(.oe_website_login_container) .bhs-hdr,
+html:has(.oe_website_login_container) #bhsHdr,
+html:has(.oe_website_login_container) .bhs-nav,
+html:has(.oe_website_login_container) #bhsNav,
+html:has(.oe_website_login_container) .bhs-mob,
+html:has(.oe_website_login_container) #bhsMob,
 html:has(.oe_website_login_container) header,
-html:has(.oe_website_login_container) #top_menu_container,
-html:has(.oe_website_login_container) #top_menu,
-html:has(.oe_website_login_container) .o_website_header,
-html:has(.oe_website_login_container) .o_top_fixed_element,
-html:has(.oe_website_login_container) .bhs-header-wrap,
-html:has(.oe_website_login_container) .tp-search-block,
-html:has(.oe_website_login_container) .tp-top-categories-wrap,
-html:has(.oe_website_login_container) .o_header_standard,
 html:has(.oe_website_login_container) .o_main_navbar,
-html:has(.oe_website_login_container) nav.navbar,
-html:has(.oe_website_login_container) #wrapwrap > header { display: none !important; }
+html:has(.oe_website_login_container) .o_website_header {
+  display: none !important;
+}
 
-html:has(.oe_website_login_container) #wrapwrap > main {
+/* ── 2. REMOVE HEADER PADDING FROM MAIN ── */
+html:has(.oe_website_login_container) #wrapwrap > main,
+html:has(.oe_website_login_container) #wrapwrap > main.bhs-page {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
-/* ── Page: pure dark, NO image ── */
-html:has(.oe_website_login_container),
+/* ── 3. PAGE: pure dark, NO image ── */
 html:has(.oe_website_login_container) body,
 html:has(.oe_website_login_container) body.bg-100 {
   background: #060D0D !important;
 }
 
+/* ── 4. AUTH CONTAINER ── */
 #wrapwrap .oe_website_login_container {
   min-height: 100vh;
-  padding: 48px 20px;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  padding: 48px 20px !important;
+  background: #060D0D !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   color: #fff;
 }
 
-/* Teal glow blobs — no image, just color atmosphere */
+/* Teal glow blobs (no image) */
 #wrapwrap .oe_website_login_container::before {
   content: '';
   position: fixed;
-  top: -15%;
-  left: -8%;
-  width: 55vw;
-  height: 55vw;
-  border-radius: 50%;
+  top: -15%; left: -8%;
+  width: 55vw; height: 55vw; border-radius: 50%;
   background: radial-gradient(circle, rgba(19,194,197,.13) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 #wrapwrap .oe_website_login_container::after {
   content: '';
   position: fixed;
-  bottom: -15%;
-  right: -8%;
-  width: 45vw;
-  height: 45vw;
-  border-radius: 50%;
+  bottom: -15%; right: -8%;
+  width: 45vw; height: 45vw; border-radius: 50%;
   background: radial-gradient(circle, rgba(3,124,124,.1) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
-/* ── Inner container: narrow centered column ── */
+/* ── 5. INNER CONTAINER — narrow centered ── */
 #wrapwrap .oe_website_login_container > .container {
   max-width: 480px !important;
   width: 100% !important;
   padding: 0 !important;
   margin: 0 auto !important;
-  position: relative;
-  z-index: 1;
+  position: relative; z-index: 1;
 }
 
-/* ── Remove any row/col Bootstrap padding inside ── */
-#wrapwrap .oe_website_login_container .row {
-  margin: 0 !important;
-}
+/* Bootstrap row/col reset inside auth */
+#wrapwrap .oe_website_login_container .row { margin: 0 !important; }
 #wrapwrap .oe_website_login_container .col,
 #wrapwrap .oe_website_login_container [class*="col-"] {
   padding: 0 !important;
-  max-width: 100% !important;
-  flex: 0 0 100% !important;
+  max-width: 100% !important; flex: 0 0 100% !important;
 }
 
-/* ── Glassmorphism card ── */
+/* ── 6. GLASSMORPHISM CARD ── */
 #wrapwrap .oe_website_login_container .o_database_list,
 #wrapwrap .oe_website_login_container .card.o_database_list {
-  background: rgba(19, 194, 197, 0.05) !important;
-  backdrop-filter: blur(28px) saturate(1.3) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(1.3) !important;
+  background: rgba(19,194,197,.05) !important;
+  backdrop-filter: blur(28px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(1.4) !important;
   border: 1px solid rgba(19,194,197,.22) !important;
   border-radius: 24px !important;
   box-shadow:
-    0 40px 100px rgba(0,0,0,.5),
+    0 40px 100px rgba(0,0,0,.55),
     inset 0 1px 0 rgba(255,255,255,.07),
-    inset 0 -1px 0 rgba(19,194,197,.06) !important;
+    inset 0 -1px 0 rgba(19,194,197,.05) !important;
   overflow: hidden !important;
   max-width: none !important;
   width: 100% !important;
@@ -119,15 +110,15 @@ html:has(.oe_website_login_container) body.bg-100 {
 }
 
 #wrapwrap .oe_website_login_container .card-body {
-  padding: 40px 38px !important;
+  padding: 38px 36px !important;
   background: transparent !important;
 }
 
-/* ── Logo at top of card ── */
+/* ── 7. LOGO AREA ── */
 #wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 {
   text-align: center !important;
-  margin-bottom: 28px !important;
-  padding-bottom: 22px !important;
+  margin-bottom: 26px !important;
+  padding-bottom: 20px !important;
   border-bottom: 1px solid rgba(19,194,197,.14) !important;
 }
 #wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 img {
@@ -135,7 +126,7 @@ html:has(.oe_website_login_container) body.bg-100 {
   filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(19,194,197,.4)) !important;
 }
 
-/* ── Form title injected via ::before ── */
+/* ── 8. FORM TITLE (injected via ::before) ── */
 #wrapwrap .oe_website_login_container .oe_login_form::before,
 #wrapwrap .oe_website_login_container .oe_signup_form::before,
 #wrapwrap .oe_website_login_container .oe_reset_password_form::before {
@@ -153,20 +144,25 @@ html:has(.oe_website_login_container) body.bg-100 {
 #wrapwrap .oe_website_login_container .oe_reset_password_form::after {
   display: block;
   font-size: 14px; color: rgba(255,255,255,.45);
-  line-height: 1.65; margin-bottom: 26px;
+  line-height: 1.65; margin-bottom: 24px;
 }
 #wrapwrap .oe_website_login_container .oe_login_form::after          { content: "Sign in to your Biighands trade account."; }
 #wrapwrap .oe_website_login_container .oe_signup_form::after         { content: "Join thousands of trade professionals."; }
 #wrapwrap .oe_website_login_container .oe_reset_password_form::after { content: "We'll send a recovery link to your email."; }
 
-/* ── Labels ── */
+/* Reset form — extra top spacing */
+#wrapwrap .oe_website_login_container .oe_reset_password_form {
+  padding-top: 8px;
+}
+
+/* ── 9. LABELS ── */
 #wrapwrap .oe_website_login_container label {
   color: rgba(255,255,255,.72) !important;
   font-size: 13px !important; font-weight: 700 !important;
   margin-bottom: 7px !important;
 }
 
-/* ── Inputs ── */
+/* ── 10. INPUTS ── */
 #wrapwrap .oe_website_login_container .form-control {
   min-height: 50px !important;
   background: rgba(255,255,255,.06) !important;
@@ -183,10 +179,9 @@ html:has(.oe_website_login_container) body.bg-100 {
 #wrapwrap .oe_website_login_container .form-control:focus {
   background: rgba(19,194,197,.07) !important;
   border-color: #13C2C5 !important;
-  box-shadow: 0 0 0 3px rgba(19,194,197,.15) !important;
+  box-shadow: 0 0 0 3px rgba(19,194,197,.16) !important;
   color: #fff !important; outline: none !important;
 }
-/* Password toggle button */
 #wrapwrap .oe_website_login_container .input-group .btn,
 #wrapwrap .oe_website_login_container .o_show_password {
   min-height: 50px !important;
@@ -199,15 +194,14 @@ html:has(.oe_website_login_container) body.bg-100 {
   background: #0D1F1F; color: #fff;
 }
 
-/* ── Submit button ── */
+/* ── 11. SUBMIT BUTTON ── */
 #wrapwrap .oe_website_login_container .btn-primary {
-  min-height: 50px !important;
-  border: 0 !important;
+  min-height: 50px !important; border: 0 !important;
   border-radius: 100px !important;
   background: linear-gradient(135deg, #13C2C5 0%, #037C7C 100%) !important;
-  border-color: transparent !important;
-  color: #fff !important; font-weight: 900 !important;
-  font-size: 15px !important; letter-spacing: 0.3px !important;
+  border-color: transparent !important; color: #fff !important;
+  font-weight: 900 !important; font-size: 15px !important;
+  letter-spacing: 0.3px !important;
   box-shadow: 0 8px 28px rgba(19,194,197,.32) !important;
   transition: transform .22s, box-shadow .22s !important;
 }
@@ -217,11 +211,10 @@ html:has(.oe_website_login_container) body.bg-100 {
 }
 #wrapwrap .oe_website_login_container .btn-primary:active { transform: translateY(0) !important; }
 
-/* ── Passkey / secondary buttons ── */
+/* ── 12. SECONDARY / PASSKEY BUTTON ── */
 #wrapwrap .oe_website_login_container .btn-secondary,
 #wrapwrap .oe_website_login_container .btn-outline-secondary {
-  min-height: 46px !important;
-  border-radius: 100px !important;
+  min-height: 46px !important; border-radius: 100px !important;
   background: rgba(255,255,255,.06) !important;
   border: 1px solid rgba(255,255,255,.15) !important;
   color: rgba(255,255,255,.75) !important;
@@ -235,23 +228,16 @@ html:has(.oe_website_login_container) body.bg-100 {
   color: #13C2C5 !important;
 }
 
-/* ── "- or -" divider ── */
-#wrapwrap .oe_website_login_container hr,
-#wrapwrap .oe_website_login_container .o_or_divider {
-  border-color: rgba(255,255,255,.1) !important;
-}
-
-/* ── Links ── */
+/* ── 13. LINKS ── */
 #wrapwrap .oe_website_login_container .btn-link,
 #wrapwrap .oe_website_login_container a {
-  color: #13C2C5 !important;
-  font-weight: 700 !important; text-decoration: none !important;
-  transition: color .18s !important;
+  color: #13C2C5 !important; font-weight: 700 !important;
+  text-decoration: none !important; transition: color .18s !important;
 }
 #wrapwrap .oe_website_login_container .btn-link:hover,
 #wrapwrap .oe_website_login_container a:hover { color: #7DEDED !important; }
 
-/* ── Alerts ── */
+/* ── 14. ALERTS ── */
 #wrapwrap .oe_website_login_container .alert {
   border-radius: 12px !important; font-size: 13px !important;
   line-height: 1.55 !important; padding: 12px 16px !important;
@@ -266,7 +252,7 @@ html:has(.oe_website_login_container) body.bg-100 {
   border: 1px solid rgba(19,194,197,.28) !important; color: #7DEDED !important;
 }
 
-/* ── Footer (signup ↔ login switch) ── */
+/* ── 15. FOOTER SWITCH ── */
 #wrapwrap .oe_website_login_container .card-body > .text-center.small {
   border-top: 1px solid rgba(255,255,255,.08) !important;
   color: rgba(255,255,255,.35) !important;
@@ -277,14 +263,13 @@ html:has(.oe_website_login_container) body.bg-100 {
 #wrapwrap .oe_website_login_container .o_login_auth .list-group-item {
   background: rgba(255,255,255,.04) !important;
   border-color: rgba(19,194,197,.14) !important;
-  color: rgba(255,255,255,.72) !important;
-  border-radius: 10px;
+  color: rgba(255,255,255,.72) !important; border-radius: 10px;
 }
 
-/* ── Responsive ── */
+/* ── 16. RESPONSIVE ── */
 @media (max-width: 540px) {
-  #wrapwrap .oe_website_login_container { padding: 24px 14px; }
-  #wrapwrap .oe_website_login_container .card-body { padding: 26px 22px !important; }
+  #wrapwrap .oe_website_login_container { padding: 24px 14px !important; }
+  #wrapwrap .oe_website_login_container .card-body { padding: 26px 20px !important; }
   #wrapwrap .oe_website_login_container .oe_login_form::before,
   #wrapwrap .oe_website_login_container .oe_signup_form::before,
   #wrapwrap .oe_website_login_container .oe_reset_password_form::before {
@@ -292,6 +277,34 @@ html:has(.oe_website_login_container) body.bg-100 {
   }
 }
 </style>
+
+<!-- JS fallback — hides custom header elements for browsers where :has() is unsupported -->
+<script>
+(function () {
+  if (!document.querySelector('.oe_website_login_container')) return;
+
+  /* Hide all our custom header elements */
+  var toHide = [
+    '#bhsAnn', '.bhs-ann',
+    '#bhsHdr', '.bhs-hdr',
+    '#bhsNav', '.bhs-nav',
+    '#bhsMob', '.bhs-mob',
+    'header', '.o_main_navbar', '.o_website_header'
+  ];
+  toHide.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.style.setProperty('display', 'none', 'important');
+    });
+  });
+
+  /* Zero out the padding-top injected by header.xml */
+  var main = document.querySelector('#wrapwrap > main');
+  if (main) {
+    main.style.setProperty('padding-top', '0', 'important');
+    main.style.setProperty('margin-top', '0', 'important');
+  }
+})();
+</script>
     </xpath>
   </field>
 </record>
