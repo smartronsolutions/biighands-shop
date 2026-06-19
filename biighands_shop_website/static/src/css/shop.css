@@ -1,0 +1,327 @@
+/* ==========================================================
+   BH SHOP — Teal brand colour scheme for the shop page
+   Applied to .tp-shop-page (theme_prime's shop wrapper)
+   ========================================================== */
+
+/* ── Override Bootstrap primary → teal ── */
+.tp-shop-page {
+    --bs-primary:            #13C2C5;
+    --bs-primary-rgb:        19, 194, 197;
+    --bs-link-color:         #13C2C5;
+    --bs-link-hover-color:   #037C7C;
+    --bs-link-color-rgb:     19, 194, 197;
+}
+
+/* ── Buttons ── */
+.tp-shop-page .btn-primary,
+.tp-shop-page .a-submit.btn-primary {
+    background-color: #13C2C5 !important;
+    border-color:     #13C2C5 !important;
+    color:            #fff    !important;
+    font-weight:      700;
+}
+.tp-shop-page .btn-primary:hover,
+.tp-shop-page .btn-primary:focus,
+.tp-shop-page .a-submit.btn-primary:hover {
+    background-color: #037C7C !important;
+    border-color:     #037C7C !important;
+}
+
+/* ── Soft/outline variants ── */
+.tp-shop-page .btn-primary-soft {
+    background: rgba(19,194,197,.1) !important;
+    border-color: rgba(19,194,197,.3) !important;
+    color: #0D2B2B !important;
+}
+.tp-shop-page .btn-primary-soft .text-bg-primary,
+.tp-shop-page .tp-open-filter-sidebar .text-bg-primary {
+    background-color: #13C2C5 !important;
+    color: #fff !important;
+}
+
+/* ── Price colour ── */
+.tp-shop-page .product_price .text-primary,
+.tp-shop-page .product_price span.text-primary,
+.tp-shop-page .product_price h6.text-primary,
+.tp-shop-page .product_price .h6.text-primary {
+    color: #13C2C5 !important;
+}
+.tp-shop-page .tp-discount-percentage {
+    color: #037C7C;
+    font-weight: 700;
+}
+
+/* ── Product card ── */
+.tp-shop-page .tp-product-wrapper {
+    border:        1.5px solid #E8E9EC !important;
+    border-radius: 10px               !important;
+    transition:    all .22s;
+}
+.tp-shop-page .tp-product-wrapper:hover {
+    border-color: #13C2C5                          !important;
+    box-shadow:   0 8px 28px rgba(19,194,197,.14)  !important;
+    transform:    translateY(-3px);
+}
+.tp-shop-page .tp-product-top {
+    background: #F4F5F7;
+}
+.tp-shop-page .tp-product-content {
+    background:       #fff;
+    border-top-color: #E8E9EC !important;
+    padding:          10px 12px 12px;
+}
+
+/* ── Product title ── */
+.tp-shop-page .tp-product-title .tp-link-dark,
+.tp-shop-page .tp-link-dark {
+    color: #1A1A1A !important;
+    font-weight: 700;
+}
+.tp-shop-page .tp-product-title .tp-link-dark:hover,
+.tp-shop-page .tp-link-dark:hover {
+    color: #13C2C5 !important;
+    text-decoration: none;
+}
+
+/* ── Slide-up Add to Cart on product card hover ── */
+.tp-shop-page .tp-add-to-cart-btn .btn {
+    background:    #0D2B2B !important;
+    border-color:  #0D2B2B !important;
+    color:         #fff    !important;
+    font-weight:   700;
+    letter-spacing: .3px;
+    border-radius: 0;
+}
+.tp-shop-page .tp-add-to-cart-btn .btn:hover {
+    background:   #13C2C5 !important;
+    border-color: #13C2C5 !important;
+}
+
+/* ── Action buttons (wishlist, quickview, compare) ── */
+.tp-shop-page .tp-action-buttons a,
+.tp-shop-page .tp-action-buttons button {
+    background:   #fff     !important;
+    color:        #0D2B2B  !important;
+    border-color: #E8E9EC  !important;
+}
+.tp-shop-page .tp-action-buttons a:hover,
+.tp-shop-page .tp-action-buttons button:hover {
+    background:   #13C2C5 !important;
+    color:        #fff    !important;
+    border-color: #13C2C5 !important;
+}
+
+/* ── Rating badge on card ── */
+.tp-shop-page .tp-product-rating-count {
+    background:   #13C2C5 !important;
+    color:        #fff    !important;
+    border-radius: 100px;
+}
+.tp-shop-page .tp-product-rating-count .fa-star,
+.tp-shop-page .tp-product-rating-count .text-body {
+    color: #fff !important;
+}
+
+/* ── Topbar ── */
+.tp-shop-page .tp-shop-topbar {
+    background:     #fff;
+    border:         1.5px solid #E8E9EC;
+    border-radius:  10px;
+    padding:        12px 16px;
+    margin-bottom:  20px;
+}
+.tp-shop-page .tp-shop-topbar h6,
+.tp-shop-page .tp-shop-topbar span {
+    color: #4A5568;
+}
+.tp-shop-page .tp-shop-topbar .btn-link {
+    color:       #0D2B2B;
+    font-weight: 600;
+}
+.tp-shop-page .tp-shop-topbar .btn-link:hover {
+    color: #13C2C5;
+}
+
+/* ── Dropdowns ── */
+.tp-shop-page .dropdown-item.active,
+.tp-shop-page .dropdown-item:active {
+    background: #13C2C5 !important;
+    color:      #fff    !important;
+}
+.tp-shop-page .dropdown-item:hover {
+    background: rgba(19,194,197,.08);
+    color:      #0D2B2B;
+}
+
+/* ── Filter sidebar ── */
+.tp-shop-page #tp_products_grid_before .tp-shop-layout-filters,
+.tp-shop-page #tp_products_grid_before > div {
+    border:        1.5px solid #E8E9EC;
+    border-radius: 10px;
+    overflow:      hidden;
+    background:    #fff;
+}
+.tp-shop-page .filter-attribute .card-header,
+.tp-shop-page .tp-filter-attribute-title {
+    color:       #0D2B2B;
+    font-weight: 700;
+}
+.tp-shop-page .tp-filter-count {
+    background:   rgba(19,194,197,.12) !important;
+    color:        #037C7C              !important;
+    border-radius: 100px;
+    font-size:    11px;
+    padding:      1px 8px;
+}
+/* Filter checkbox accent */
+.tp-shop-page .form-check-input:checked {
+    background-color: #13C2C5 !important;
+    border-color:     #13C2C5 !important;
+}
+.tp-shop-page .form-check-input:focus {
+    box-shadow: 0 0 0 .25rem rgba(19,194,197,.25);
+}
+
+/* ── Category pills / filmstrip ── */
+.tp-shop-page .tp-shop-category-pill a,
+.tp-shop-page .filmstrip-categories-item a {
+    border:        1.5px solid #E8E9EC;
+    border-radius: 100px;
+    color:         #1A1A1A;
+    font-weight:   600;
+    transition:    all .18s;
+}
+.tp-shop-page .tp-shop-category-pill a:hover,
+.tp-shop-page .tp-shop-category-pill a.active,
+.tp-shop-page .filmstrip-categories-item a.active,
+.tp-shop-page .filmstrip-categories-item a:hover {
+    background:   #13C2C5 !important;
+    border-color: #13C2C5 !important;
+    color:        #fff    !important;
+}
+
+/* ── Active filter chips ── */
+.tp-shop-page .tp-selected-attribute-chip,
+.tp-shop-page [class*="tp-selected"] .btn {
+    background:  rgba(19,194,197,.1) !important;
+    border:      1px solid #13C2C5  !important;
+    color:       #0D2B2B            !important;
+    border-radius: 100px;
+}
+.tp-shop-page .tp-selected-attribute-chip:hover {
+    background: #13C2C5 !important;
+    color:      #fff    !important;
+}
+.tp-shop-page .tp-selected-attribute-chip .fa-times {
+    color: inherit;
+}
+
+/* ── Pagination ── */
+.tp-shop-page .page-item.active .page-link {
+    background:   #13C2C5 !important;
+    border-color: #13C2C5 !important;
+    color:        #fff    !important;
+}
+.tp-shop-page .page-link {
+    color: #0D2B2B;
+}
+.tp-shop-page .page-link:hover {
+    color:      #13C2C5;
+    border-color: #13C2C5;
+}
+
+/* ── Load more button ── */
+.tp-shop-page #o_wsale_loadmore_button {
+    background:    #0D2B2B;
+    border-color:  #0D2B2B;
+    color:         #fff;
+    border-radius: 8px;
+    padding:       12px 42px;
+    font-weight:   700;
+    font-size:     15px;
+    transition:    all .2s;
+}
+.tp-shop-page #o_wsale_loadmore_button:hover {
+    background:   #13C2C5;
+    border-color: #13C2C5;
+}
+
+/* ── Breadcrumb ── */
+.tp-shop-page .breadcrumb-item a {
+    color: #13C2C5;
+    font-weight: 600;
+}
+.tp-shop-page .breadcrumb-item.active,
+.tp-shop-page .breadcrumb-item + .breadcrumb-item::before {
+    color: #6B7280;
+}
+
+/* ── Off-canvas sort sidebar ── */
+.tp-shop-page .offcanvas-header {
+    background: #0D2B2B;
+    color:      #fff;
+}
+.tp-shop-page .offcanvas-header .btn-close { filter: invert(1); }
+
+/* ══════════════════════════════════════════════════════════
+   BH SHOP HEADER BANNER  (injected via shop.xml)
+   ========================================================== */
+.bh-shop-header {
+    background:  linear-gradient(105deg, #0D2B2B 0%, #13C2C5 100%);
+    padding:     36px 0 32px;
+    margin-bottom: 0;
+}
+.bh-shop-header-inner {
+    max-width:  1280px;
+    margin:     0 auto;
+    padding:    0 24px;
+    display:    flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap:  wrap;
+    gap:        16px;
+}
+.bh-shop-header h1 {
+    font-size:    clamp(22px, 3vw, 32px);
+    font-weight:  900;
+    color:        #fff;
+    letter-spacing: -1px;
+    margin:       0;
+}
+.bh-shop-header p {
+    font-size:  14px;
+    color:      rgba(255,255,255,.78);
+    margin:     6px 0 0;
+}
+.bh-shop-header-pills {
+    display:    flex;
+    gap:        10px;
+    flex-wrap:  wrap;
+}
+.bh-shop-header-pill {
+    display:        inline-block;
+    background:     rgba(255,255,255,.12);
+    border:         1px solid rgba(255,255,255,.28);
+    color:          #fff;
+    font-size:      12px;
+    font-weight:    700;
+    padding:        6px 16px;
+    border-radius:  100px;
+    text-decoration: none;
+    transition:     all .18s;
+}
+.bh-shop-header-pill:hover {
+    background: #fff;
+    color:      #0D2B2B;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+    .tp-shop-page .tp-shop-topbar h5 {
+        font-size:  17px;
+        font-weight: 800;
+        color:      #0D2B2B;
+    }
+    .bh-shop-header { padding: 24px 0 20px; }
+    .bh-shop-header-pills { display: none; }
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- ═══════════════════════════════════════════════════════════
+     BH SHOP — Custom shop page styling
+     Inherits: theme_prime.shop_layout
+               theme_prime.product_item_grid_1
+               theme_prime.product_item_price
+     CSS is loaded via assets (biighands_shop_website/static/src/css/shop.css)
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- ── 1. Shop layout: inject teal header banner above product grid ── -->
+<template id="bh_shop_layout" inherit_id="theme_prime.shop_layout" name="BH Shop: Header + Teal">
+
+    <!-- Header banner above the container -->
+    <xpath expr="//div[@id='o_wsale_container']" position="before">
+        <div class="bh-shop-header">
+            <div class="bh-shop-header-inner">
+                <div>
+                    <h1>Shop All Products</h1>
+                    <p>Trade-quality products at unbeatable prices — fast delivery available</p>
+                </div>
+                <div class="bh-shop-header-pills">
+                    <a href="/shop" class="bh-shop-header-pill">All Products</a>
+                    <a href="/shop?order=price+asc" class="bh-shop-header-pill">&#128293; Best Price</a>
+                    <a href="/shop?order=create_date+desc" class="bh-shop-header-pill">&#127381; New Arrivals</a>
+                    <a href="/shop?order=website_sequence+asc" class="bh-shop-header-pill">&#11088; Featured</a>
+                </div>
+            </div>
+        </div>
+    </xpath>
+
+    <!-- Mobile topbar: replace generic "Shop" with branded heading -->
+    <xpath expr="//div[@class='d-lg-none d-flex align-items-center justify-content-between']/h5" position="replace">
+        <h5 class="mb-0" style="color:#0D2B2B;font-weight:800;">BH Shop</h5>
+    </xpath>
+
+</template>
+
+
+<!-- ── 2. Product card (Grid 1): sharper corners + dark ATC label tweak ── -->
+<template id="bh_product_item_grid_1" inherit_id="theme_prime.product_item_grid_1" name="BH Shop: Product Card Grid 1">
+
+    <!-- Remove flat border class — our CSS applies a styled border via .tp-product-wrapper -->
+    <xpath expr="//div[hasclass('tp-product-wrapper')]" position="attributes">
+        <attribute name="class">tp-product-wrapper h-100</attribute>
+    </xpath>
+
+    <!-- Product content area: tighten padding -->
+    <xpath expr="//div[hasclass('tp-product-content')]" position="attributes">
+        <attribute name="class">tp-product-content border-top px-3 py-2 position-relative text-center text-lg-start</attribute>
+    </xpath>
+
+</template>
+
+
+<!-- ── 3. Price template: teal "% OFF" label ── -->
+<template id="bh_product_item_price" inherit_id="theme_prime.product_item_price" name="BH Shop: Teal Price">
+
+    <!-- Change the discount % small tag style -->
+    <xpath expr="//small[hasclass('tp-discount-percentage')]" position="attributes">
+        <attribute name="class">tp-discount-percentage d-none d-md-inline-block fw-bold</attribute>
+    </xpath>
+
+</template>
+
+</data>
+</odoo>
