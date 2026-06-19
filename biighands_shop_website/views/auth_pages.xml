@@ -19,8 +19,16 @@
 html:has(.oe_website_login_container) .o_main_navbar,
 html:has(.oe_website_login_container) .o_website_header { display: none !important; }
 
-/* ── 2. PUSH BELOW OUR 152px FIXED HEADER ── */
+/* ── 2. PUSH BELOW FIXED HEADER -- mirrors header.xml breakpoints ── */
 html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 152px !important; }
+@media (max-width: 900px) {
+  html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 108px !important; }
+  #wrapwrap .oe_website_login_container { min-height: calc(100vh - 108px); }
+}
+@media (max-width: 440px) {
+  html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 72px !important; }
+  #wrapwrap .oe_website_login_container { min-height: calc(100vh - 72px); }
+}
 
 /* ── 3. DARK SCENE BACKGROUND ── */
 html:has(.oe_website_login_container) body,
@@ -316,8 +324,19 @@ html:has(.oe_website_login_container) body.bg-100 {
 <script>
 (function () {
   if (!document.querySelector('.oe_website_login_container')) return;
-  var main = document.querySelector('#wrapwrap > main');
-  if (main) main.style.setProperty('padding-top', '152px', 'important');
+  function applyPadding() {
+    var total = 0;
+    ['.bhs-ann', '.bhs-hdr', '.bhs-nav'].forEach(function (sel) {
+      var el = document.querySelector(sel);
+      if (el &amp;&amp; window.getComputedStyle(el).display !== 'none') {
+        total += el.offsetHeight;
+      }
+    });
+    var main = document.querySelector('#wrapwrap > main');
+    if (main) main.style.setProperty('padding-top', (total || 108) + 'px', 'important');
+  }
+  applyPadding();
+  window.addEventListener('resize', applyPadding);
 })();
 </script>
     </xpath>
