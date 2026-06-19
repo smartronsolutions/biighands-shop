@@ -5,7 +5,8 @@
         <t t-call="website.layout">
             <t t-set="additional_title" t-value="category.name"/>
 
-            <t t-set="opt_wsale_fullwidth" t-value="website.with_context(category=int(request.params.get('category') or 0) if (request.params.get('category') or '').isdigit() else 0).shop_page_container == 'fluid'"/>
+            <t t-set="_bhs_ctx" t-value="request.update_context(category=int(request.params.get('category') or 0) if (request.params.get('category') or '').isdigit() else 0) if 'category' not in request.env.context else None"/>
+            <t t-set="opt_wsale_fullwidth" t-value="website.shop_page_container == 'fluid'"/>
 
             <t t-if="_config_shop_filters.get('filter_style') == '1'">
                 <t t-set="_filter_collapsible_plus_style" t-value="True"/>
