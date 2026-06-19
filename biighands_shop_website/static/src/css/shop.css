@@ -136,17 +136,37 @@
 /* ════════════════════════════════════════════════
    FILTER SIDEBAR
 ════════════════════════════════════════════════ */
-/* Sidebar wrapper — align-self so it doesn't stretch to product grid height */
+/* Sidebar wrapper */
 .tp-shop-page #tp_products_grid_before,
 .tp-shop-page .tp-shop-layout-filters,
 .tp-shop-page aside.o_wsale_col_filters {
     background:#fff !important;
     border:1.5px solid #E2E8F0 !important;
+    border-left:1.5px solid #E2E8F0 !important; /* NO teal left line on the card itself */
     border-radius:14px !important;
     padding:0 !important;
     overflow:hidden !important;
     box-shadow:0 4px 16px rgba(0,0,0,.07) !important;
     align-self:flex-start !important;
+}
+
+/* Force filter sections to stay EXPANDED — never collapse */
+.tp-shop-page #tp_products_grid_before .collapse,
+.tp-shop-page aside .collapse,
+.tp-shop-page [class*="filter-attribute"] [class*="collapse"],
+.tp-shop-page [class*="filter"] .collapse {
+    display:block !important;
+    height:auto !important;
+    visibility:visible !important;
+    overflow:visible !important;
+}
+
+/* Hide the expand/collapse toggle icon (—/+) */
+.tp-shop-page #tp_products_grid_before .tp-collapse-icon,
+.tp-shop-page aside [class*="collapse-icon"],
+.tp-shop-page aside [data-bs-toggle="collapse"] .fa-minus,
+.tp-shop-page aside [data-bs-toggle="collapse"] .fa-plus {
+    display:none !important;
 }
 /* Filter section titles — catch every possible class theme_prime might use */
 .tp-shop-page .filter-attribute .card-header,

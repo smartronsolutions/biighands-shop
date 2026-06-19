@@ -60,10 +60,10 @@
         }
         if (!sidebar) return;
 
-        /* 1. Wrap sidebar in a clean card */
+        /* 1. Wrap sidebar in a clean card (NO teal left border on wrapper) */
         sidebar.style.cssText = [
             'background:#fff',
-            'border:1.5px solid #E2E8F0',
+            'border:1.5px solid #E2E8F0',   /* plain grey border on all 4 sides */
             'border-radius:14px',
             'overflow:hidden',
             'box-shadow:0 4px 18px rgba(0,0,0,.07)',
@@ -71,6 +71,25 @@
             'padding:0',
             'margin-bottom:24px'
         ].join(';');
+
+        /* 1b. Force all collapsed sections open + remove toggle behaviour */
+        sidebar.querySelectorAll('.collapse').forEach(function(el){
+            el.classList.add('show');
+            el.style.display = 'block';
+            el.style.height   = 'auto';
+        });
+        sidebar.querySelectorAll('[data-bs-toggle="collapse"],[data-toggle="collapse"]').forEach(function(btn){
+            btn.removeAttribute('data-bs-toggle');
+            btn.removeAttribute('data-toggle');
+            btn.removeAttribute('data-bs-target');
+            btn.removeAttribute('href');           /* prevent link-collapse too */
+            btn.style.pointerEvents = 'none';      /* disable click */
+            btn.style.cursor = 'default';
+            /* hide the — / + icon */
+            btn.querySelectorAll('.fa-minus,.fa-plus,[class*="collapse-icon"]').forEach(function(ic){
+                ic.style.display = 'none';
+            });
+        });
 
         /* 2. Inject FILTERS header (once only) */
         if (!sidebar.querySelector('.bh-filter-head')) {
