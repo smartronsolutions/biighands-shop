@@ -1,4 +1,7 @@
+from urllib.parse import urlencode
+
 from odoo import http
+from odoo.addons.website_sale.const import SHOP_PATH
 from odoo.addons.theme_prime.controllers.main import ThemePrimeWebsiteSale
 from odoo.http import request
 
@@ -15,6 +18,22 @@ class EmptyShopCategory:
 
 class BiighandsThemePrimeWebsiteSale(ThemePrimeWebsiteSale):
 
+    def _get_keep_query_url(self):
+        def keep(path=None, **kw):
+            query = request.httprequest.args.to_dict(flat=False)
+            for key, value in kw.items():
+                if value in (None, False, 0, '0'):
+                    query.pop(key, None)
+                elif isinstance(value, (list, tuple, set)):
+                    query[key] = list(value)
+                else:
+                    query[key] = [value]
+
+            url = path or request.httprequest.path
+            query_string = urlencode(query, doseq=True)
+            return query_string and '%s?%s' % (url, query_string) or url
+        return keep
+
     @http.route()
     def shop(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, tags='', **post):
         response = super().shop(
@@ -28,6 +47,8 @@ class BiighandsThemePrimeWebsiteSale(ThemePrimeWebsiteSale):
         )
         if hasattr(response, 'qcontext'):
             response.qcontext.setdefault('category', EmptyShopCategory())
+            response.qcontext.setdefault('keep', self._get_keep_query_url())
+            response.qcontext.setdefault('shop_path', SHOP_PATH)
         return response
 
 
