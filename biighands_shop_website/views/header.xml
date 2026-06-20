@@ -15,7 +15,7 @@
 
 <!-- ── Fetch Odoo ecommerce categories ── -->
 <t t-set="bhs_cats" t-value="request.env['product.public.category'].sudo().search(
-    [('parent_id', '=', False)],
+    ['&amp;', ('parent_id', '=', False), '|', ('product_tmpl_ids', '!=', False), ('child_id.product_tmpl_ids', '!=', False)],
     order='sequence, name', limit=40
 )"/>
 
@@ -496,9 +496,11 @@ body { overflow-x: hidden; }
                   <t t-esc="bcat.name"/>
                 </a>
                 <t t-foreach="bcat.child_id" t-as="sub">
-                  <a t-att-href="'/shop?category=%s' % sub.id" class="bhs-mega-child">
-                    <t t-esc="sub.name"/>
-                  </a>
+                  <t t-if="sub.product_tmpl_ids">
+                    <a t-att-href="'/shop?category=%s' % sub.id" class="bhs-mega-child">
+                      <t t-esc="sub.name"/>
+                    </a>
+                  </t>
                 </t>
               </div>
             </t>
