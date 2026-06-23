@@ -515,6 +515,14 @@ body { overflow-x: hidden; }
       </div>
     </div>
 
+    <!-- Page menu links -->
+    <div class="bhs-nav-links" id="bhsNavLinks">
+      <a href="/">Home</a>
+      <a href="/shop">Shop</a>
+      <a href="/about">About Us</a>
+      <a href="/contactus">Contact</a>
+    </div>
+
     <!-- Right side links -->
     <div class="bhs-nav-end">
       <a href="/shop">⭐ New Arrivals</a>
