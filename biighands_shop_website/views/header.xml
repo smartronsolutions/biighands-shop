@@ -515,13 +515,6 @@ body { overflow-x: hidden; }
       </div>
     </div>
 
-    <!-- Dynamic category links from Odoo -->
-    <div class="bhs-nav-links" id="bhsNavLinks">
-      <t t-foreach="bhs_cats" t-as="bcat">
-        <a t-att-href="'/shop?category=%s' % bcat.id" t-esc="bcat.name"/>
-      </t>
-    </div>
-
     <!-- Right side links -->
     <div class="bhs-nav-end">
       <a href="/shop">⭐ New Arrivals</a>
@@ -555,8 +548,21 @@ body { overflow-x: hidden; }
     </t>
   </div>
 
-  <!-- Dynamic categories -->
-  <p class="bhs-mob-sec">Shop by Category</p>
+  <!-- Section 1: Menu -->
+  <p class="bhs-mob-sec">Menu</p>
+  <ul class="bhs-mob-list">
+    <li><a href="/"><span class="ic">🏠</span> Home</a></li>
+    <li><a href="/shop"><span class="ic">🛍️</span> Shop</a></li>
+    <li><a href="/shop?tag=new"><span class="ic">⭐</span> New Arrivals</a></li>
+    <li><a href="/shop?tag=clearance"><span class="ic">🏷️</span> Clearance</a></li>
+    <li><a href="/about"><span class="ic">ℹ️</span> About Us</a></li>
+    <li><a href="/contactus"><span class="ic">📞</span> Contact</a></li>
+  </ul>
+
+  <div class="bhs-mob-div"></div>
+
+  <!-- Section 2: Departments -->
+  <p class="bhs-mob-sec">Departments</p>
   <ul class="bhs-mob-list">
     <t t-if="bhs_cats">
       <t t-foreach="bhs_cats" t-as="bcat">
@@ -671,17 +677,6 @@ body { overflow-x: hidden; }
   setTimeout(syncCart, 1500);
   document.addEventListener('odoo.product.cart.update', syncCart);
 
-  /* Active category highlight */
-  var qs = window.location.search;
-  var catMatch = qs.match(/[?&amp;]category=(\d+)/);
-  if (catMatch) {
-    var catId = catMatch[1];
-    document.querySelectorAll('.bhs-nav-links a').forEach(function (a) {
-      if (a.href.indexOf('category=' + catId) !== -1) {
-        a.classList.add('act');
-      }
-    });
-  }
 
 })();
 </script>
