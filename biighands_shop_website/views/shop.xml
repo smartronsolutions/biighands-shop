@@ -7,7 +7,7 @@
   <field name="key">biighands_shop_website.shop_layout_branding</field>
   <field name="inherit_id" ref="theme_prime.shop_layout"/>
   <field name="arch" type="xml">
-    <xpath expr="//div[@id='wrap' and contains(@class, 'js_sale')]" position="attributes">
+    <xpath expr="//div[@id='wrap']" position="attributes">
       <attribute name="class" add="bhs-shop-page" separator=" "/>
     </xpath>
 
