@@ -7,9 +7,16 @@
     'data': [
         'views/header.xml',
         'views/home.xml',
+        'views/fixes.xml',
+        'views/shop.xml',
         'views/auth_pages.xml',
         'views/footer.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'biighands_shop_website/static/src/css/shop.css',
+        ],
+    },
     'installable': True,
     'license': 'LGPL-3',
 }
