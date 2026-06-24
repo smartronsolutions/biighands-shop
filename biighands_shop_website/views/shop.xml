@@ -5,84 +5,73 @@
 <record id="bhs_shop_layout_branding" model="ir.ui.view">
   <field name="name">biighands_shop_website.shop_layout_branding</field>
   <field name="key">biighands_shop_website.shop_layout_branding</field>
-  <field name="inherit_id" ref="theme_prime.shop_layout"/>
+  <field name="inherit_id" ref="website.layout"/>
+  <field name="type">qweb</field>
   <field name="arch" type="xml">
-    <xpath expr="//div[@id='o_wsale_container']" position="attributes">
-      <attribute name="class" add="bhs-shop-page bhs-shop-shell" separator=" "/>
-    </xpath>
+    <xpath expr="//main" position="before">
+      <t t-if="request.httprequest.path == '/shop' or request.httprequest.path.startswith('/shop/')">
+        <t t-set="bhs_shop_categories" t-value="request.env['product.public.category'].sudo().search([('parent_id', '=', False)], order='sequence, name', limit=6)"/>
 
-    <xpath expr="//div[contains(@class, 'tp-shop-topbar')]" position="before">
-      <section class="bhs-shop-hero">
-        <div class="bhs-shop-hero-bg"></div>
-        <div class="bhs-shop-hero-glow"></div>
-        <div class="bhs-shop-hero-body">
-          <div class="bhs-shop-copy">
-            <div class="bhs-shop-kicker">
-              <span class="bhs-shop-kicker-dot"></span>
-              Biighands Trade Store
-            </div>
-            <h1>
-              <t t-if="category">
-                <t t-out="category.name"/>
-              </t>
-              <t t-else="">Shop smarter for every job</t>
-            </h1>
-            <p>
-              Explore pro-grade tools, hardware, electricals, plumbing, PPE, and trade essentials with a cleaner, faster shopping experience built for desktop and mobile.
-            </p>
-            <div class="bhs-shop-actions">
-              <a t-att-href="category and ('/shop/category/%s' % category.id) or '/shop'" class="bhs-shop-btn bhs-shop-btn-solid">
-                Browse Products
-              </a>
-              <a href="#products_grid" class="bhs-shop-btn bhs-shop-btn-ghost">
-                View Results
-              </a>
+        <section class="bhs-shop-entry">
+          <div class="container">
+            <div class="bhs-shop-hero">
+              <div class="bhs-shop-hero-bg"></div>
+              <div class="bhs-shop-hero-glow"></div>
+              <div class="bhs-shop-hero-body">
+                <div class="bhs-shop-copy">
+                  <div class="bhs-shop-kicker">
+                    <span class="bhs-shop-kicker-dot"></span>
+                    Biighands Trade Store
+                  </div>
+                  <h1>
+                    <t t-if="category">
+                      <t t-out="category.name"/>
+                    </t>
+                    <t t-else="">Shop smarter for every job</t>
+                  </h1>
+                  <p>
+                    Explore pro-grade tools, hardware, electricals, plumbing, PPE, and trade essentials with a cleaner, faster shopping experience built for desktop and mobile.
+                  </p>
+                  <div class="bhs-shop-actions">
+                    <a href="/shop" class="bhs-shop-btn bhs-shop-btn-solid">Browse Products</a>
+                    <a href="#products_grid" class="bhs-shop-btn bhs-shop-btn-ghost">View Results</a>
+                  </div>
+                </div>
+
+                <div class="bhs-shop-panel">
+                  <div class="bhs-shop-stat-grid">
+                    <div class="bhs-shop-stat-card">
+                      <strong><t t-out="search_count or 0"/></strong>
+                      <span>Products ready to explore</span>
+                    </div>
+                    <div class="bhs-shop-stat-card">
+                      <strong><t t-out="len(bhs_shop_categories)"/></strong>
+                      <span>Popular categories</span>
+                    </div>
+                    <div class="bhs-shop-stat-card">
+                      <strong>24h</strong>
+                      <span>Fast dispatch support</span>
+                    </div>
+                  </div>
+                  <div class="bhs-shop-trust-row">
+                    <span>Free delivery over $50</span>
+                    <span>Trade-ready pricing</span>
+                    <span>Mobile-friendly browsing</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bhs-shop-chip-row" t-if="bhs_shop_categories">
+                <t t-foreach="bhs_shop_categories" t-as="bhs_shop_cat">
+                  <a t-att-href="'/shop/category/%s' % bhs_shop_cat.id" class="bhs-shop-chip">
+                    <span t-field="bhs_shop_cat.name"/>
+                  </a>
+                </t>
+              </div>
             </div>
           </div>
-
-          <div class="bhs-shop-panel">
-            <div class="bhs-shop-stat-grid">
-              <div class="bhs-shop-stat-card">
-                <strong><t t-out="search_count"/></strong>
-                <span>Products ready to explore</span>
-              </div>
-              <div class="bhs-shop-stat-card">
-                <strong><t t-out="len(categories) if categories else 0"/></strong>
-                <span>Popular categories</span>
-              </div>
-              <div class="bhs-shop-stat-card">
-                <strong>24h</strong>
-                <span>Fast dispatch support</span>
-              </div>
-            </div>
-            <div class="bhs-shop-trust-row">
-              <span>Free delivery over $50</span>
-              <span>Trade-ready pricing</span>
-              <span>Responsive mobile browsing</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bhs-shop-chip-row" t-if="categories">
-          <t t-foreach="categories[:6]" t-as="bhs_shop_cat">
-            <a t-att-href="'/shop/category/%s' % bhs_shop_cat.id" class="bhs-shop-chip">
-              <span t-field="bhs_shop_cat.name"/>
-            </a>
-          </t>
-        </div>
-      </section>
-    </xpath>
-
-    <xpath expr="//div[contains(@class, 'tp-shop-topbar')]" position="attributes">
-      <attribute name="class" add="bhs-shop-topbar-card" separator=" "/>
-    </xpath>
-
-    <xpath expr="//div[contains(@class, 'tp-filters-container')]" position="attributes">
-      <attribute name="class" add="bhs-shop-filters" separator=" "/>
-    </xpath>
-
-    <xpath expr="//div[@id='products_grid']" position="attributes">
-      <attribute name="class" add="bhs-shop-grid" separator=" "/>
+        </section>
+      </t>
     </xpath>
   </field>
 </record>
