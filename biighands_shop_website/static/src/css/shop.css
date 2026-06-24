@@ -309,6 +309,42 @@
     padding-left: 10px;
   }
 
+  .tp-shop-page .o_wsale_filmstrip_container {
+    --o-wsale-filmstrip-gap: 0.55rem;
+    --o-wsale-filmstrip-item-width: 92px;
+    --o-wsale-filmstrip-item-image-width: 68px;
+    --o-wsale-filmstrip-item-image-height: 68px;
+    --o-wsale-filmstrip-item-padding-x: 0.15rem;
+    --o-wsale-filmstrip-item-padding-y: 0.15rem;
+    --o-wsale-filmstrip-item-font-size: 12px;
+  }
+
+  .tp-shop-page .o_wsale_filmstrip_container .o_wsale_filmstrip_item {
+    gap: 6px !important;
+  }
+
+  .tp-shop-page .o_wsale_filmstrip_container .o_wsale_filmstrip_image {
+    width: 68px !important;
+    height: 68px !important;
+  }
+
+  .tp-shop-page .tp-shop-page-container > .row:first-child {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .tp-shop-page .tp-shop-page-container > .row:first-child .mb-3 {
+    margin-bottom: 10px !important;
+  }
+
+  .tp-shop-page .tp-shop-page-container > .row:first-child h5 {
+    font-size: 17px;
+  }
+
+  .tp-shop-page .tp-category-action {
+    font-size: 13px;
+  }
+
   .tp-shop-page #products_grid > .o_not_editable > .row {
     --bs-gutter-x: 0.65rem;
     --bs-gutter-y: 0.65rem;
