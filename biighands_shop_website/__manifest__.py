@@ -14,6 +14,7 @@
     'assets': {
         'web.assets_frontend': [
             'biighands_shop_website/static/src/css/shop.css',
+            'biighands_shop_website/static/src/js/shop.js',
         ],
     },
     'installable': True,

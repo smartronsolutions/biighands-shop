@@ -19,19 +19,5 @@
   </field>
 </record>
 
-<record id="bhs_shop_product_view_action" model="ir.ui.view">
-  <field name="name">biighands_shop_website.product_view_action</field>
-  <field name="key">biighands_shop_website.product_view_action</field>
-  <field name="inherit_id" ref="theme_prime.product_item_grid_1"/>
-  <field name="type">qweb</field>
-  <field name="arch" type="xml">
-    <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' tp-add-to-cart-btn ')]/a[1]" position="before">
-      <a t-att-href="product_href" class="bhs-view-product-btn" aria-label="View product">
-        <i class="fa fa-eye me-1"/> View Product
-      </a>
-    </xpath>
-  </field>
-</record>
-
 </data>
 </odoo>
