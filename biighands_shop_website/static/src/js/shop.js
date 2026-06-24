@@ -40,14 +40,29 @@ function addViewProductButtons(root = document) {
 
         const mobileActions = document.createElement("div");
         mobileActions.className = "bhs-mobile-product-actions";
-        mobileActions.innerHTML = `
-            <a href="${productLink.href}" class="bhs-mobile-view-btn">
-                <i class="fa fa-eye"></i><span>View</span>
-            </a>
-            <a href="#" role="button" class="a-submit bhs-mobile-cart-btn" aria-label="Add to cart">
-                <i class="dri dri-cart"></i><span>Add to Cart</span>
-            </a>
-        `;
+
+        const mobileViewButton = document.createElement("a");
+        mobileViewButton.href = productLink.href;
+        mobileViewButton.className = "bhs-mobile-view-btn";
+        mobileViewButton.innerHTML = '<i class="fa fa-eye"></i><span>View</span>';
+        mobileActions.append(mobileViewButton);
+
+        const nativeCartButton = card.querySelector(
+            ".tp-add-to-cart-btn .a-submit, .tp-action-buttons .a-submit"
+        );
+        if (nativeCartButton) {
+            const mobileCartButton = document.createElement("button");
+            mobileCartButton.type = "button";
+            mobileCartButton.className = "bhs-mobile-cart-btn";
+            mobileCartButton.setAttribute("aria-label", "Add to cart");
+            mobileCartButton.innerHTML =
+                '<i class="dri dri-cart"></i><span>Add to Cart</span>';
+            mobileCartButton.addEventListener("click", () => nativeCartButton.click());
+            mobileActions.append(mobileCartButton);
+        } else {
+            mobileActions.classList.add("bhs-mobile-product-actions-view-only");
+        }
+
         price.insertAdjacentElement("afterend", mobileActions);
     });
 }

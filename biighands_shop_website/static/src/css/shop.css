@@ -268,6 +268,10 @@
     margin-top: 10px;
   }
 
+  .tp-shop-page .bhs-mobile-product-actions-view-only {
+    grid-template-columns: 1fr;
+  }
+
   .tp-shop-page .bhs-mobile-view-btn,
   .tp-shop-page .bhs-mobile-cart-btn {
     display: inline-flex;
@@ -290,9 +294,11 @@
   }
 
   .tp-shop-page .bhs-mobile-cart-btn {
+    appearance: none;
     border: 1px solid var(--bhs-accent);
     background: var(--bhs-accent);
     color: #fff !important;
+    cursor: pointer;
   }
 }
 
