@@ -115,12 +115,16 @@
 }
 
 .tp-shop-page .tp-product-image-container {
-  padding: 14px;
+  position: relative;
+  height: auto !important;
+  padding: 0;
+  padding-top: 75% !important;
 }
 
 .tp-shop-page .tp-product-image {
   border-radius: 12px;
   object-fit: contain !important;
+  padding: 12px;
 }
 
 .tp-shop-page .tp-product-content {
@@ -222,7 +226,11 @@
   }
 
   .tp-shop-page .tp-product-image-container {
-    padding: 9px;
+    padding-top: 100% !important;
+  }
+
+  .tp-shop-page .tp-product-image {
+    padding: 8px;
   }
 
   .tp-shop-page .tp-product-content {
