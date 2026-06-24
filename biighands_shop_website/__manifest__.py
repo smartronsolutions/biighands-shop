@@ -7,7 +7,6 @@
     'data': [
         'views/header.xml',
         'views/home.xml',
-        'views/fixes.xml',
         'views/shop.xml',
         'views/auth_pages.xml',
         'views/footer.xml',
