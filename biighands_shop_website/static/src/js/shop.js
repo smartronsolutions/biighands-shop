@@ -16,10 +16,6 @@ function addViewProductButtons(root = document) {
             return;
         }
         const actions = card.querySelector(".tp-add-to-cart-btn");
-        if (!actions || actions.querySelector(".bhs-view-product-btn")) {
-            return;
-        }
-
         const productLink = card.querySelector(
             ".tp-product-image-container[href], .tp-product-title a[href]"
         );
@@ -27,12 +23,32 @@ function addViewProductButtons(root = document) {
             return;
         }
 
-        const viewButton = document.createElement("a");
-        viewButton.href = productLink.href;
-        viewButton.className = "bhs-view-product-btn";
-        viewButton.setAttribute("aria-label", "View product");
-        viewButton.innerHTML = '<i class="fa fa-eye me-1"></i> View Product';
-        actions.prepend(viewButton);
+        if (actions && !actions.querySelector(".bhs-view-product-btn")) {
+            const viewButton = document.createElement("a");
+            viewButton.href = productLink.href;
+            viewButton.className = "bhs-view-product-btn";
+            viewButton.setAttribute("aria-label", "View product");
+            viewButton.innerHTML = '<i class="fa fa-eye me-1"></i> View Product';
+            actions.prepend(viewButton);
+        }
+
+        const content = card.querySelector(".tp-product-content");
+        const price = content?.querySelector(".product_price");
+        if (!content || !price || content.querySelector(".bhs-mobile-product-actions")) {
+            return;
+        }
+
+        const mobileActions = document.createElement("div");
+        mobileActions.className = "bhs-mobile-product-actions";
+        mobileActions.innerHTML = `
+            <a href="${productLink.href}" class="bhs-mobile-view-btn">
+                <i class="fa fa-eye"></i><span>View</span>
+            </a>
+            <a href="#" role="button" class="a-submit bhs-mobile-cart-btn" aria-label="Add to cart">
+                <i class="dri dri-cart"></i><span>Add to Cart</span>
+            </a>
+        `;
+        price.insertAdjacentElement("afterend", mobileActions);
     });
 }
 
