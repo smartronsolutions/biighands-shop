@@ -114,6 +114,32 @@ function startAtelier() {
     document.querySelectorAll(
         ".bhp-home .bhp-manifesto, .bhp-home .bhp-craft, .bhp-home .bhp-process"
     ).forEach((section) => section.remove());
+    const home = document.querySelector(".bhp-home");
+    const featured = home?.querySelector(".bhp-featured");
+    if (featured && !home.querySelector(".bhp-ateliers")) {
+        featured.insertAdjacentHTML("beforebegin", `
+            <section class="bhp-ateliers bhp-shell">
+                <header class="bhp-ateliers-head">
+                    <p class="bhp-kicker">Three Ateliers</p>
+                    <h2>One house, <em>three crafts.</em></h2>
+                </header>
+                <div class="bhp-ateliers-grid">
+                    <a href="/catalogue?collection=windows" class="bhp-atelier-card">
+                        <div><b>01.</b><h3>Aluminium Systems</h3><p>Windows, doors, canopies and profiles — engineered to the millimetre, anodized in-house.</p></div>
+                        <span>Explore aluminium <i>→</i></span>
+                    </a>
+                    <a href="/catalogue?collection=carpentry" class="bhp-atelier-card">
+                        <div><b>02.</b><h3>Bespoke Carpentry</h3><p>Wardrobe walls, timber panelling and display cabinetry in walnut, oak, ash and maple.</p></div>
+                        <span>Explore carpentry <i>→</i></span>
+                    </a>
+                    <a href="/catalogue?collection=curtains" class="bhp-atelier-card">
+                        <div><b>03.</b><h3>Curtains &amp; Drapery</h3><p>Belgian linen sheers, velvet blackouts and wave-heading drapes, cut to your exact drop.</p></div>
+                        <span>Explore drapery <i>→</i></span>
+                    </a>
+                </div>
+            </section>
+        `);
+    }
     const year = document.querySelector("[data-bhp-year]");
     if (year) year.textContent = String(new Date().getFullYear());
     const siteHeader = document.querySelector(".bhp-site-header");
