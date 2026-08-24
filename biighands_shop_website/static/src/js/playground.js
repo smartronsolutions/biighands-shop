@@ -108,6 +108,14 @@ function initConcierge() {
 }
 
 function startAtelier() {
+    const stalePreloaderLogo = document.querySelector(".bhp-villa-preloader-logo:not(img)");
+    if (stalePreloaderLogo) {
+        const logo = document.createElement("img");
+        logo.className = "bhp-villa-preloader-logo";
+        logo.src = "/biighands_shop_website/static/src/img/logo.png";
+        logo.alt = "Playground";
+        stalePreloaderLogo.replaceWith(logo);
+    }
     // Some deployed databases can retain an edited copy of the former homepage
     // view after the module source has changed. Remove those retired bands too,
     // so stale QWeb markup cannot reappear without its old styling.
