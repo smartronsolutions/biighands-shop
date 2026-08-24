@@ -7,7 +7,7 @@
     <t t-set="additional_title">Playground | Architectural Systems &amp; Bespoke Interiors</t>
     <main id="wrap" class="bhp bhp-home">
       <div class="bhp-villa-preloader" data-bhp-villa-preloader="1" role="status" aria-label="Preparing the villa">
-        <div class="bhp-villa-preloader-logo">playground.</div>
+        <img class="bhp-villa-preloader-logo" src="/biighands_shop_website/static/src/img/logo.png" alt="Playground"/>
         <div class="bhp-villa-preloader-progress"><i data-bhp-villa-preloader-line="1"/></div>
         <p>Preparing the villa</p>
       </div>

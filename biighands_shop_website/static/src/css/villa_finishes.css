@@ -20,7 +20,7 @@
 .bhp-villa-is-loading{overflow:hidden}
 .bhp-villa-preloader{position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;transform:translateY(0);will-change:transform}
 .bhp-villa-preloader.is-opening{transform:translateY(-100%);transition:transform .9s cubic-bezier(.76,0,.24,1)}
-.bhp-villa-preloader-logo{color:#f5f5f5;font:700 39px/1 Georgia,"Times New Roman",serif;letter-spacing:-.055em}
+.bhp-villa-preloader-logo{display:block;width:min(260px,62vw);height:auto;object-fit:contain}
 .bhp-villa-preloader-progress{width:176px;height:1px;margin-top:36px;overflow:hidden;background:#222}
 .bhp-villa-preloader-progress i{display:block;width:100%;height:100%;background:#d4af37;transform:translateX(-101%)}
 .bhp-villa-preloader-progress i.is-running{transform:translateX(0);transition:transform 1.6s cubic-bezier(.65,0,.35,1)}
