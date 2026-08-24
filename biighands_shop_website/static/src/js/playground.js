@@ -194,13 +194,16 @@ function initPinnedScenes() {
             const isActive = rect.top <= headerBottom && rect.bottom >= headerBottom + availableHeight;
             const isFinished = rect.bottom < headerBottom + availableHeight;
 
+            // Keep the resting and pinned stages at the exact same viewport
+            // height. Otherwise ResizeObserver changes the camera aspect at the
+            // pin boundary and the 3D object appears to shrink for one frame.
+            stage.style.setProperty("--bhp-pin-height", `${availableHeight}px`);
             stage.classList.toggle("is-bhp-pinned", isActive);
             stage.classList.toggle("is-bhp-finished", !isActive && isFinished);
             if (isActive) {
                 stage.style.setProperty("--bhp-pin-top", `${headerBottom}px`);
                 stage.style.setProperty("--bhp-pin-left", `${rect.left}px`);
                 stage.style.setProperty("--bhp-pin-width", `${rect.width}px`);
-                stage.style.setProperty("--bhp-pin-height", `${availableHeight}px`);
             }
         });
     }
