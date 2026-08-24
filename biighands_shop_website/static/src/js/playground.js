@@ -108,6 +108,12 @@ function initConcierge() {
 }
 
 function startAtelier() {
+    // Some deployed databases can retain an edited copy of the former homepage
+    // view after the module source has changed. Remove those retired bands too,
+    // so stale QWeb markup cannot reappear without its old styling.
+    document.querySelectorAll(
+        ".bhp-home .bhp-manifesto, .bhp-home .bhp-craft, .bhp-home .bhp-process"
+    ).forEach((section) => section.remove());
     const year = document.querySelector("[data-bhp-year]");
     if (year) year.textContent = String(new Date().getFullYear());
     const siteHeader = document.querySelector(".bhp-site-header");
