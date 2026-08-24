@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
+  <template id="remove_unused_fontawesome_preload" inherit_id="web.frontend_layout" name="Remove Unused Font Awesome Preload" priority="200">
+    <xpath expr="//link[@rel='preload' and contains(@href, 'fontawesome-webfont.woff2')]" position="replace"/>
+  </template>
+
   <template id="playground_header" inherit_id="website.layout" name="Playground Atelier Header" priority="120">
     <xpath expr="//header" position="replace">
       <header id="bhp-top" class="bhp-site-header">
