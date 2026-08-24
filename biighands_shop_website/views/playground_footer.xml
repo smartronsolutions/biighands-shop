@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+  <template id="playground_footer" inherit_id="website.layout" name="Playground Atelier Footer" priority="120">
+    <xpath expr="//footer" position="replace">
+      <footer id="footer" class="bhp-site-footer">
+        <div class="bhp-footer-grid">
+          <section class="bhp-footer-brand">
+            <a href="/" class="bhp-footer-logo">playground.</a>
+            <p>Aluminium systems, bespoke carpentry and drapery — for architecture that refuses to be ordinary.</p>
+          </section>
+          <section class="bhp-footer-column">
+            <h2>Collections</h2>
+            <ul>
+              <li><a href="/catalogue?collection=windows">Aluminium Systems</a></li>
+              <li><a href="/catalogue?collection=carpentry">Bespoke Carpentry</a></li>
+              <li><a href="/catalogue?collection=curtains">Curtains &amp; Drapery</a></li>
+            </ul>
+          </section>
+          <section class="bhp-footer-column">
+            <h2>Atelier</h2>
+            <ul>
+              <li t-if="website.company_id.email"><a t-att-href="'mailto:%s' % website.company_id.email" t-esc="website.company_id.email"/></li>
+              <li t-if="website.company_id.phone"><a t-att-href="'tel:%s' % website.company_id.phone" t-esc="website.company_id.phone"/></li>
+              <li t-if="not website.company_id.email"><a href="/contactus">Contact the atelier</a></li>
+              <li>Every profile made to measure</li>
+            </ul>
+          </section>
+        </div>
+        <div class="bhp-footer-bottom">
+          <p>© <span data-bhp-year="1">2026</span> Playground — Precision in every profile</p>
+        </div>
+      </footer>
+    </xpath>
+  </template>
+</data>
+</odoo>

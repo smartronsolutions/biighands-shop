@@ -1,1 +1,0 @@
-# biighands-shop

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+  <record id="product_template_form_atelier" model="ir.ui.view">
+    <field name="name">product.template.form.biighands.atelier</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//notebook" position="inside">
+        <page string="Atelier Configurator" name="biighands_atelier">
+          <group>
+            <group>
+              <field name="bh_collection_id" options="{'no_create': False}"/>
+              <field name="bh_featured"/>
+              <field name="bh_min_width"/>
+              <field name="bh_max_width"/>
+              <field name="bh_min_height"/>
+              <field name="bh_max_height"/>
+            </group>
+            <group>
+              <field name="bh_finishes" placeholder="Natural Silver,Matte Black,Anodized Bronze"/>
+              <field name="bh_glazing" placeholder="Double Glazing,Triple Glazing"/>
+            </group>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="bh_atelier_collection_list" model="ir.ui.view">
+    <field name="name">bh.atelier.collection.list</field>
+    <field name="model">bh.atelier.collection</field>
+    <field name="arch" type="xml">
+      <list editable="bottom">
+        <field name="sequence" widget="handle"/>
+        <field name="name"/>
+        <field name="slug"/>
+        <field name="product_count"/>
+        <field name="active" widget="boolean_toggle"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="bh_atelier_collection_action" model="ir.actions.act_window">
+    <field name="name">Atelier Collections</field>
+    <field name="res_model">bh.atelier.collection</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="bh_atelier_collection_menu" name="Atelier Collections"
+            parent="sale.product_menu_catalog" action="bh_atelier_collection_action"
+            sequence="25" groups="sales_team.group_sale_salesman"/>
+</data>
+</odoo>

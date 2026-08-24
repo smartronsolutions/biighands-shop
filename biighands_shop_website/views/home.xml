@@ -2,9 +2,9 @@
 <odoo>
 <data>
 
-<template id="home" name="Biighands Shop Home">
+<template id="home" name="Playground Shop Home">
 <t t-call="website.layout">
-<t t-set="additional_title">Biighands Shop | Professional Tools and Hardware</t>
+<t t-set="additional_title">Playground Shop | Professional Tools and Hardware</t>
 <div id="wrap">
 <div class="bhs-page">
 
@@ -572,7 +572,7 @@
 <div class="bhs-why">
   <div class="bhs-w">
     <div class="bhs-hd bhs-reveal">
-      <div class="bhs-hd-left"><h2>Why Choose <em>Biighands?</em></h2><p>Trusted by thousands of trade professionals</p></div>
+      <div class="bhs-hd-left"><h2>Why Choose <em>Playground?</em></h2><p>Trusted by thousands of trade professionals</p></div>
     </div>
     <div class="bhs-why-grid">
       <div class="bhs-why-card bhs-reveal bhs-reveal-d1">
@@ -710,7 +710,7 @@
     <div class="bhs-rev-g">
       <div class="bhs-rev-card bhs-reveal bhs-reveal-d1">
         <div class="bhs-rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="bhs-rev-text">"Outstanding quality and lightning-fast delivery. Ordered on Monday, had everything on site by Tuesday morning. Will definitely use Biighands for all our future projects."</p>
+        <p class="bhs-rev-text">"Outstanding quality and lightning-fast delivery. Ordered on Monday, had everything on site by Tuesday morning. Will definitely use Playground for all our future projects."</p>
         <div class="bhs-rev-author">
           <div class="bhs-rev-av">JM</div>
           <div class="bhs-rev-info">
@@ -872,7 +872,7 @@
 <record id="website_page_home" model="website.page">
     <field name="view_id" ref="home"/>
     <field name="url">/</field>
-    <field name="name">Biighands Home</field>
+    <field name="name">Playground Home</field>
     <field name="website_published">True</field>
     <field name="is_published">True</field>
 </record>

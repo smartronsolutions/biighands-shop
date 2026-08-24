@@ -238,8 +238,8 @@
     <!-- ── NEWSLETTER BAND ── -->
     <div class="bhs-ft-news">
       <div class="bhs-ft-news-txt">
-        <h4>Get trade deals in your inbox</h4>
-        <p>Exclusive offers, new arrivals and pricing — no spam, ever.</p>
+        <h4>Atelier notes in your inbox</h4>
+        <p>New systems, material stories and project guidance—only when useful.</p>
       </div>
       <form class="bhs-ft-news-form" action="/website_mass_mailing/subscribe" method="post">
         <input type="email" name="email" placeholder="your@email.com" required="required"/>
@@ -253,20 +253,20 @@
       <!-- Brand -->
       <div class="bhs-ft-brand">
         <a href="/" class="bhs-ft-logo">biig<em>hands</em></a>
-        <p>Your trusted trade supplier for tools, hardware and building materials. Serving professionals across the UK with fast dispatch and exclusive trade pricing.</p>
+        <p>Made-to-measure aluminium systems, architectural carpentry and drapery, resolved as one considered interior.</p>
 
         <div class="bhs-ft-badges">
           <span class="bhs-ft-badge">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#13C2C5" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>
-            Free Delivery over £50
+            Made to Measure
           </span>
           <span class="bhs-ft-badge">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#13C2C5" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            Same Day Dispatch
+            Atelier Reviewed
           </span>
           <span class="bhs-ft-badge">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#13C2C5" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Secure Checkout
+            Secure Client Portal
           </span>
         </div>
 
@@ -288,13 +288,13 @@
 
       <!-- Shop -->
       <div class="bhs-ft-col">
-        <h5>Shop</h5>
+        <h5>Collection</h5>
         <ul>
-          <li><a href="/shop"><span class="dot"></span>All Products</a></li>
-          <li><a href="/shop"><span class="dot"></span>New Arrivals</a></li>
-          <li><a href="/shop"><span class="dot"></span>Clearance Sale</a></li>
-          <li><a href="/shop"><span class="dot"></span>Trade Accounts</a></li>
-          <li><a href="/shop/cart"><span class="dot"></span>My Cart</a></li>
+          <li><a href="/catalogue"><span class="dot"></span>All Systems</a></li>
+          <li><a href="/catalogue?collection=windows"><span class="dot"></span>Windows</a></li>
+          <li><a href="/catalogue?collection=doors"><span class="dot"></span>Doors</a></li>
+          <li><a href="/catalogue?collection=carpentry"><span class="dot"></span>Carpentry</a></li>
+          <li><a href="/catalogue?collection=curtains"><span class="dot"></span>Drapery</a></li>
         </ul>
       </div>
 
@@ -304,7 +304,7 @@
         <ul>
           <li><a href="/web/login"><span class="dot"></span>Sign In</a></li>
           <li><a href="/web/signup"><span class="dot"></span>Register</a></li>
-          <li><a href="/my/orders"><span class="dot"></span>My Orders</a></li>
+          <li><a href="/my/orders"><span class="dot"></span>My Quotations</a></li>
           <li><a href="/my/home"><span class="dot"></span>Dashboard</a></li>
           <li><a href="/my/invoices"><span class="dot"></span>Invoices</a></li>
         </ul>
@@ -315,8 +315,8 @@
         <h5>Help</h5>
         <ul>
           <li><a href="/contactus"><span class="dot"></span>Contact Us</a></li>
-          <li><a href="/page/delivery"><span class="dot"></span>Delivery Info</a></li>
-          <li><a href="/page/returns"><span class="dot"></span>Returns Policy</a></li>
+          <li><a href="/#craft"><span class="dot"></span>Our Craft</a></li>
+          <li><a href="/catalogue?collection=bespoke"><span class="dot"></span>Bespoke Requests</a></li>
           <li><a href="/page/faq"><span class="dot"></span>FAQ</a></li>
           <li><a href="/page/privacy"><span class="dot"></span>Privacy Policy</a></li>
         </ul>
@@ -327,7 +327,7 @@
     <!-- ── BOTTOM BAR ── -->
     <div class="bhs-ft-bottom">
       <div class="bhs-ft-copy">
-        &#169; <span id="bhs-year">2025</span> Biighands Ltd. All rights reserved.
+        &#169; <span id="bhs-year">2025</span> Playground Ltd. All rights reserved.
         &#183; <a href="/page/terms">Terms</a>
         &#183; <a href="/page/privacy">Privacy</a>
       </div>

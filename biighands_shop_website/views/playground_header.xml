@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+  <template id="playground_header" inherit_id="website.layout" name="Playground Atelier Header" priority="120">
+    <xpath expr="//header" position="replace">
+      <header id="bhp-top" class="bhp-site-header">
+        <div class="bhp-header-inner">
+          <a href="/" class="bhp-wordmark" aria-label="Playground home"><img src="/biighands_shop_website/static/src/img/logo.png" alt="Playground"/></a>
+          <nav class="bhp-main-nav" aria-label="Main navigation">
+            <a href="/catalogue">Catalogue</a>
+            <a href="/">Craft</a>
+            <a href="/my/quotes">My Quotes</a>
+          </nav>
+          <div class="bhp-header-account">
+            <a t-if="website.is_public_user()" href="/web/login" class="bhp-login">Client Login</a>
+            <a t-else="" href="/my/home" class="bhp-login">My Account</a>
+            <button type="button" class="bhp-menu-toggle" aria-label="Open menu" aria-expanded="false"><span/><span/></button>
+          </div>
+        </div>
+        <div class="bhp-mobile-menu">
+          <a href="/catalogue">Catalogue</a><a href="/">Craft</a><a href="/my/quotes">My Quotes</a><a href="/contactus">Contact</a>
+        </div>
+      </header>
+    </xpath>
+  </template>
+</data>
+</odoo>

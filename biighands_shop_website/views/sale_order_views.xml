@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+  <record id="sale_order_form_atelier_request" model="ir.ui.view">
+    <field name="name">sale.order.form.atelier.request</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet" position="before">
+        <div class="alert alert-info d-flex align-items-center gap-2" role="alert" invisible="not bh_is_requested_quote">
+          <i class="fa fa-info-circle"/>
+          <strong>This is a customer Requested Quote from the Website Atelier Configurator.</strong>
+        </div>
+      </xpath>
+      <xpath expr="//sheet" position="inside">
+        <widget name="web_ribbon" title="Requested Quote" bg_color="text-bg-info" invisible="not bh_is_requested_quote"/>
+        <field name="bh_is_requested_quote" invisible="1"/>
+      </xpath>
+      <xpath expr="//notebook" position="inside">
+        <page string="Requested Quote" name="bh_requested_quote" invisible="not bh_is_requested_quote">
+          <group>
+            <group string="Request Details">
+              <field name="bh_request_source"/>
+              <field name="bh_request_date"/>
+              <field name="bh_requested_product_id"/>
+              <field name="bh_collection_id"/>
+              <field name="bh_reference_count"/>
+            </group>
+            <group string="Configuration">
+              <field name="bh_width_mm"/>
+              <field name="bh_height_mm"/>
+              <field name="bh_area_sqm"/>
+              <field name="bh_quantity"/>
+              <field name="bh_finish"/>
+              <field name="bh_glazing"/>
+            </group>
+          </group>
+          <group string="Customer Notes">
+            <field name="bh_client_notes" nolabel="1" placeholder="No customer notes were supplied."/>
+          </group>
+        </page>
+      </xpath>
+      <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">
+        <field name="bh_width_mm" optional="show"/>
+        <field name="bh_height_mm" optional="show"/>
+        <field name="bh_finish" optional="show"/>
+        <field name="bh_glazing" optional="show"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="sale_order_list_atelier_request" model="ir.ui.view">
+    <field name="name">sale.order.list.atelier.request</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.sale_order_tree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='name']" position="after">
+        <field name="bh_is_requested_quote" string="Requested Quote" optional="show"/>
+        <field name="bh_collection_id" optional="hide"/>
+        <field name="bh_requested_product_id" optional="hide"/>
+      </xpath>
+    </field>
+  </record>
+</data>
+</odoo>

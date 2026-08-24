@@ -1,0 +1,77 @@
+/* Client readability pass: preserve the reference layout while making micro-copy legible. */
+.bhp{font-size:16px;line-height:1.55}
+.bhp-catalogue .bhp-page-head{max-width:780px}
+.bhp-catalogue .bhp-page-head h1{font-size:clamp(44px,5vw,78px);line-height:1}
+.bhp-config-copy{min-width:0}
+.bhp-config-copy h1{font-size:clamp(38px,4.3vw,68px);line-height:1;overflow-wrap:break-word}
+.bhp-config-copy .bhp-description{font-size:clamp(15px,1.15vw,17px);line-height:1.75}
+.bhp-configurator .bhp-back{font-size:clamp(11px,1vw,12px)}
+.bhp-configurator .bhp-kicker,
+.bhp-configurator .bhp-field-row label,
+.bhp-configurator .bhp-quote-form legend,
+.bhp-configurator .bhp-quantity label,
+.bhp-configurator .bhp-notes,
+.bhp-configurator .bhp-upload{font-size:clamp(11px,1vw,12px)}
+.bhp-configurator .bhp-options span,
+.bhp-configurator .bhp-field-row small,
+.bhp-configurator .bhp-upload small,
+.bhp-configurator input,
+.bhp-configurator textarea{font-size:clamp(12px,1vw,14px)}
+.bhp-configurator .bhp-estimate strong{font-size:clamp(26px,2.2vw,32px)}
+.bhp-configurator .bhp-estimate .bhp-btn{font-size:clamp(11px,1vw,12px)}
+.bhp-wordmark{display:block;width:140px;line-height:0}
+.bhp-wordmark img{display:block;width:100%;height:auto}
+.bhp-main-nav a{font-size:12px;letter-spacing:.22em}
+.bhp-login{min-width:146px;font-size:12px;letter-spacing:.16em}
+
+.bhp-kicker,.bhp-btn,.bhp-craft-card span,.bhp-craft-card a,
+.bhp-section-head>a,.bhp-filters a,.bhp-back,
+.bhp-field-row label,.bhp-quote-form legend,.bhp-quantity label,
+.bhp-notes,.bhp-upload{font-size:12px}
+.bhp-home .bhp-btn{font-size:12px}
+.bhp-home .bhp-scroll,.bhp-scroll{font-size:11px}
+.bhp-villa-loading span{font-size:11px}
+
+.bhp-product-copy>p{font-size:11px}
+.bhp-product-copy>div{font-size:13px}
+.bhp-config-visual>p,.bhp-estimate small{font-size:11px}
+.bhp-options span,.bhp-field-row small,.bhp-upload small{font-size:13px;line-height:1.5}
+
+.bhp-craft-marquee{font-size:11px}
+.bhp-craft-marquee i{font-size:10px}
+.bhp-chapter-heading p{font-size:11px}
+.bhp-chapter-heading small{font-size:10px}
+.bhp-chapter-note b{font-size:13px}
+.bhp-chapter-note p{font-size:16px;line-height:1.65}
+.bhp-chapter-cta a{font-size:12px}
+
+.bhp-villa-late p,.bhp-villa-picker>p,.bhp-villa-late small{font-size:11px}
+.bhp-villa-picker button span{font-size:11px}
+.bhp-villa-preloader p{font-size:11px}
+
+.bhp-footer-column h2{font-size:12px}
+.bhp-footer-column li{font-size:15px}
+.bhp-footer-bottom p{font-size:11px}
+.bhp-quote-row dt,.bhp-quote-refs>small{font-size:11px}
+.bhp-quote-row dd{font-size:14px}
+.bhp-quote-status span,.bhp-quote-status a{font-size:12px}
+.bhp-concierge-panel header b{font-size:12px}
+.bhp-concierge-panel header small,.bhp-concierge-messages p{font-size:14px}
+
+@media(max-width:760px){
+  .bhp-wordmark{width:128px}
+  .bhp-mobile-menu a{font-size:12px}
+  .bhp-villa-picker button span{font-size:10px}
+}
+@media(max-width:620px){
+  .bhp-catalogue .bhp-page-head h1{font-size:clamp(34px,9.5vw,44px);line-height:1.04}
+  .bhp-config-copy h1{font-size:clamp(30px,9vw,40px);line-height:1.04}
+  .bhp-config-copy .bhp-description{font-size:15px;margin:20px 0 34px}
+  .bhp-configurator .bhp-field-row,.bhp-configurator .bhp-quote-form fieldset,
+  .bhp-configurator .bhp-quantity,.bhp-configurator .bhp-notes,
+  .bhp-configurator .bhp-upload{padding-top:22px;padding-bottom:22px}
+  .bhp-product-copy>p{font-size:10px}
+  .bhp-product-copy h3{font-size:18px}
+  .bhp-product-copy>div{font-size:11px}
+  .bhp-product-copy strong{font-size:14px}
+}

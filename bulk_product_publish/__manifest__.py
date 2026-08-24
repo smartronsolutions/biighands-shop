@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Bulk Products Publish',
+    'version': '19.0.1.0.0',
+    'sequence': 0,
+    'category': 'Website',
+    'author': 'PPTS [India] Pvt.Ltd.',
+    'website': 'http://www.pptssolutions.com',
+    'license': 'LGPL-3',
+    'support': 'business@pptservices.com',
+    'description': """
+        Publishing/Unpublishing bulk products on website.
+    """,
+    'depends': ['website_sale'],
+    'data': [
+        'security/ir.model.access.csv',
+        'wizard/product_publish_wizard_view.xml',
+    ],
+    'images': ['static/description/banner.png'],
+    'installable': True,
+    'application': False,
+    'auto_install': False,
+}

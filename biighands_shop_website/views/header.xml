@@ -10,7 +10,7 @@
   <field name="arch" type="xml">
     <xpath expr="//header" position="before">
 
-<!-- Fix: theme_prime.shop_layout accesses 'category' without checking existence.
+<!-- Compatibility fallback for shop layouts accessing 'category' without checking existence.
      Set a safe default here so the body slot always finds it. -->
 
 <!-- ── Fetch Odoo ecommerce categories ── -->
@@ -391,10 +391,10 @@ body { overflow-x: hidden; }
 <!-- ══ ANNOUNCEMENT BAR ══════════════════════════════ -->
 <div class="bhs-ann" id="bhsAnn">
   <div class="bhs-ann-items">
-    <div class="bhs-ann-item">🚚 <span><b>FREE DELIVERY</b> on orders over $50</span></div>
-    <div class="bhs-ann-item">📦 <span>Click &amp; Collect — <b>Ready in 1 Hour</b></span></div>
-    <div class="bhs-ann-item">⚡ <span>Same Day Dispatch <b>before 3pm</b></span></div>
-    <div class="bhs-ann-item" style="border-right:none">🏷️ <span><b>Trade Accounts</b> — Exclusive Pricing</span></div>
+    <div class="bhs-ann-item"><span><b>MADE TO MEASURE</b> to the millimetre</span></div>
+    <div class="bhs-ann-item"><span>Aluminium, timber <b>&amp; drapery</b></span></div>
+    <div class="bhs-ann-item"><span>Every request <b>atelier reviewed</b></span></div>
+    <div class="bhs-ann-item" style="border-right:none"><span><b>Client Portal</b> for quotations</span></div>
   </div>
   <button class="bhs-ann-x" id="bhsAnnX" type="button">&#10005;</button>
 </div>
@@ -411,7 +411,7 @@ body { overflow-x: hidden; }
   <div class="bhs-hdr-search">
     <form action="/shop" method="get" role="search">
       <input type="text" name="search"
-        placeholder="Search 10,000+ products..."
+        placeholder="Search architectural systems..."
         autocomplete="off" aria-label="Search"/>
       <button type="submit" aria-label="Search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -431,7 +431,7 @@ body { overflow-x: hidden; }
       <div class="bhs-acc-drop" id="bhsAccDrop">
         <t t-if="website.is_public_user()">
           <div class="bhs-acc-cta">
-            <p>Sign in for faster checkout,<br/>orders &amp; trade pricing</p>
+            <p>Sign in to configure systems,<br/>request and review quotations</p>
             <a href="/web/login" class="ac-solid">Sign In</a>
             <a href="/web/signup" class="ac-out">Create Account</a>
           </div>
@@ -443,7 +443,7 @@ body { overflow-x: hidden; }
           </a>
           <a href="/my/orders">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            My Orders
+            My Quotations
           </a>
           <a href="/my/invoices">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -462,7 +462,7 @@ body { overflow-x: hidden; }
     <a href="/shop/cart" class="bhs-hic" id="bhsCart" title="Cart">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span class="bhs-cart-badge" id="bhsCartN">0</span>
-      <span class="bhs-hic-lbl">Cart</span>
+      <span class="bhs-hic-lbl">Basket</span>
     </a>
 
     <!-- Hamburger (mobile only) -->
@@ -475,14 +475,14 @@ body { overflow-x: hidden; }
 </div>
 
 <!-- ══ CATEGORY NAV STRIP ═════════════════════════════ -->
-<nav class="bhs-nav" id="bhsNav" aria-label="Shop categories">
+<nav class="bhs-nav" id="bhsNav" aria-label="Atelier collections">
   <div class="bhs-nav-inner">
 
     <!-- All Departments + mega dropdown -->
     <div class="bhs-alldep" id="bhsAllDep">
       <button class="bhs-alldep-btn" type="button">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        All Departments
+        Collections
         <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
 
@@ -518,15 +518,15 @@ body { overflow-x: hidden; }
     <!-- Page menu links -->
     <div class="bhs-nav-links" id="bhsNavLinks">
       <a href="/">Home</a>
-      <a href="/shop">Shop</a>
-      <a href="/about">About Us</a>
+      <a href="/catalogue">Catalogue</a>
+      <a href="/#craft">Our Craft</a>
       <a href="/contactus">Contact</a>
     </div>
 
     <!-- Right side links -->
     <div class="bhs-nav-end">
-      <a href="/shop">⭐ New Arrivals</a>
-      <a href="/shop">🏷️ Clearance</a>
+      <a href="/catalogue?collection=bespoke">◇ Bespoke commissions</a>
+      <a href="/my/orders">□ My quotations</a>
     </div>
   </div>
 </nav>
@@ -537,7 +537,7 @@ body { overflow-x: hidden; }
   <!-- Search -->
   <div class="bhs-mob-head">
     <form action="/shop" method="get">
-      <input type="text" name="search" placeholder="Search products..."/>
+      <input type="text" name="search" placeholder="Search systems..."/>
       <button type="submit">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </button>
@@ -552,7 +552,7 @@ body { overflow-x: hidden; }
     </t>
     <t t-if="not website.is_public_user()">
       <a href="/my/home"   class="bhs-mob-btn tc">My Account</a>
-      <a href="/my/orders" class="bhs-mob-btn ot">My Orders</a>
+      <a href="/my/orders" class="bhs-mob-btn ot">My Quotations</a>
     </t>
   </div>
 
@@ -560,17 +560,17 @@ body { overflow-x: hidden; }
   <p class="bhs-mob-sec">Menu</p>
   <ul class="bhs-mob-list">
     <li><a href="/"><span class="ic">🏠</span> Home</a></li>
-    <li><a href="/shop"><span class="ic">🛍️</span> Shop</a></li>
-    <li><a href="/shop?tag=new"><span class="ic">⭐</span> New Arrivals</a></li>
-    <li><a href="/shop?tag=clearance"><span class="ic">🏷️</span> Clearance</a></li>
-    <li><a href="/about"><span class="ic">ℹ️</span> About Us</a></li>
+    <li><a href="/catalogue"><span class="ic">◫</span> Catalogue</a></li>
+    <li><a href="/catalogue?collection=windows"><span class="ic">□</span> Windows &amp; Doors</a></li>
+    <li><a href="/catalogue?collection=bespoke"><span class="ic">◇</span> Bespoke</a></li>
+    <li><a href="/#craft"><span class="ic">○</span> Our Craft</a></li>
     <li><a href="/contactus"><span class="ic">📞</span> Contact</a></li>
   </ul>
 
   <div class="bhs-mob-div"></div>
 
   <!-- Section 2: Departments -->
-  <p class="bhs-mob-sec">Departments</p>
+  <p class="bhs-mob-sec">Collections</p>
   <ul class="bhs-mob-list">
     <t t-if="bhs_cats">
       <t t-foreach="bhs_cats" t-as="bcat">
@@ -583,7 +583,7 @@ body { overflow-x: hidden; }
       </t>
     </t>
     <t t-if="not bhs_cats">
-      <li><a href="/shop"><span class="ic">🛒</span> All Products</a></li>
+      <li><a href="/catalogue"><span class="ic">◫</span> Full Collection</a></li>
     </t>
   </ul>
 
@@ -592,7 +592,7 @@ body { overflow-x: hidden; }
   <ul class="bhs-mob-list">
     <t t-if="not website.is_public_user()">
       <li><a href="/my/home"><span class="ic">👤</span> My Account</a></li>
-      <li><a href="/my/orders"><span class="ic">📋</span> My Orders</a></li>
+      <li><a href="/my/orders"><span class="ic">□</span> My Quotations</a></li>
       <li><a href="/shop/cart"><span class="ic">🛒</span> Cart</a></li>
       <li><a href="/web/session/logout"><span class="ic">🚪</span> Logout</a></li>
     </t>

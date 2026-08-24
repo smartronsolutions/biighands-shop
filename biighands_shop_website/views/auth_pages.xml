@@ -1,347 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-<data>
-
+<odoo><data>
 <record id="bhs_auth_css" model="ir.ui.view">
-  <field name="name">biighands_shop.auth_css</field>
-  <field name="key">biighands_shop_website.auth_css</field>
-  <field name="inherit_id" ref="website.layout"/>
-  <field name="type">qweb</field>
-  <field name="arch" type="xml">
-    <xpath expr="//head" position="inside">
-<style>
-/* ============================================================
-   BIIGHANDS -- Auth Pages  (login / signup / reset)
-   Full glassmorphism -- dark teal scene + glass card
-   ============================================================ */
-
-/* ── 1. HIDE ODOO DEFAULT NAVBAR ── */
-html:has(.oe_website_login_container) .o_main_navbar,
-html:has(.oe_website_login_container) .o_website_header { display: none !important; }
-
-/* ── 2. PUSH BELOW FIXED HEADER -- mirrors header.xml breakpoints ── */
-html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 152px !important; }
-@media (max-width: 900px) {
-  html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 108px !important; }
-  #wrapwrap .oe_website_login_container { min-height: calc(100vh - 108px); }
-}
-@media (max-width: 440px) {
-  html:has(.oe_website_login_container) #wrapwrap > main { padding-top: 72px !important; }
-  #wrapwrap .oe_website_login_container { min-height: calc(100vh - 72px); }
-}
-
-/* ── 3. DARK SCENE BACKGROUND ── */
-html:has(.oe_website_login_container) body,
-html:has(.oe_website_login_container) body.bg-100 {
-  background: #040D0D !important;
-}
-
-/* ── 4. AUTH CONTAINER -- full viewport scene ── */
-#wrapwrap .oe_website_login_container {
-  min-height: calc(100vh - 152px);
-  padding: 48px 20px 64px !important;
-  background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(19,194,197,.22) 0%, transparent 55%),
-              radial-gradient(ellipse 60% 50% at 80% 80%, rgba(3,124,124,.18) 0%, transparent 55%),
-              radial-gradient(ellipse 50% 40% at 60% 30%, rgba(0,180,180,.1) 0%, transparent 50%),
-              linear-gradient(160deg, #060E0E 0%, #091818 50%, #050C0C 100%) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important;
-  overflow: hidden !important;
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-}
-
-/* Floating glow orbs -- give depth to glass */
-#wrapwrap .oe_website_login_container::before {
-  content: '';
-  position: fixed;
-  top: 8%; left: -12%;
-  width: 60vw; height: 60vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(19,194,197,.28) 0%, rgba(19,194,197,.06) 40%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none; z-index: 0;
-  animation: bhsFloat1 8s ease-in-out infinite alternate;
-}
-#wrapwrap .oe_website_login_container::after {
-  content: '';
-  position: fixed;
-  bottom: 2%; right: -8%;
-  width: 50vw; height: 50vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(3,160,160,.22) 0%, rgba(3,124,124,.05) 40%, transparent 70%);
-  filter: blur(50px);
-  pointer-events: none; z-index: 0;
-  animation: bhsFloat2 10s ease-in-out infinite alternate;
-}
-@keyframes bhsFloat1 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(4%, 3%) scale(1.06); }
-}
-@keyframes bhsFloat2 {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(-3%, -4%) scale(1.08); }
-}
-
-/* ── 5. NARROW CENTERED COLUMN ── */
-#wrapwrap .oe_website_login_container > .container {
-  max-width: 460px !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 auto !important;
-  position: relative; z-index: 1;
-}
-
-#wrapwrap .oe_website_login_container .row { margin: 0 !important; }
-#wrapwrap .oe_website_login_container .col,
-#wrapwrap .oe_website_login_container [class*="col-"] {
-  padding: 0 !important;
-  max-width: 100% !important; flex: 0 0 100% !important;
-}
-
-/* ── 6. GLASS CARD ── */
-#wrapwrap .oe_website_login_container .o_database_list,
-#wrapwrap .oe_website_login_container .card.o_database_list {
-  background: rgba(10, 28, 28, 0.55) !important;
-  backdrop-filter: blur(32px) saturate(1.6) brightness(1.1) !important;
-  -webkit-backdrop-filter: blur(32px) saturate(1.6) brightness(1.1) !important;
-  border: 1px solid rgba(19, 194, 197, 0.2) !important;
-  border-radius: 24px !important;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.05) inset,
-    0 2px 0 rgba(19,194,197,.15) inset,
-    0 32px 80px rgba(0,0,0,.55),
-    0 8px 32px rgba(19,194,197,.08) !important;
-  overflow: hidden !important;
-  max-width: none !important;
-  width: 100% !important;
-  margin: 0 !important;
-}
-
-#wrapwrap .oe_website_login_container .card-body {
-  padding: 38px 36px 32px !important;
-  background: transparent !important;
-}
-
-/* ── 7. LOGO AREA ── */
-#wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 {
-  text-align: center !important;
-  margin-bottom: 24px !important;
-  padding-bottom: 20px !important;
-  border-bottom: 1px solid rgba(19,194,197,.18) !important;
-}
-#wrapwrap .oe_website_login_container .card-body > .text-center.pb-3 img {
-  max-height: 40px !important;
-  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(19,194,197,.5)) !important;
-}
-
-/* ── 8. FORM HEADING + TAGLINE (::before + ::after) ── */
-
-/* Heading -- big bold title */
-#wrapwrap .oe_website_login_container .oe_login_form::before,
-#wrapwrap .oe_website_login_container .oe_signup_form::before,
-#wrapwrap .oe_website_login_container .oe_reset_password_form::before {
-  display: block;
-  font-size: 26px; font-weight: 800;
-  letter-spacing: -0.5px; line-height: 1.2;
-  background: linear-gradient(135deg, #FFFFFF 30%, #7DEDED 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 6px;
-}
-
-/* Sign In */
-#wrapwrap .oe_website_login_container .oe_login_form::before        { content: "Welcome back!"; }
-/* Sign Up */
-#wrapwrap .oe_website_login_container .oe_signup_form::before       { content: "Join Biighands"; }
-/* Forgot Password */
-#wrapwrap .oe_website_login_container .oe_reset_password_form::before { content: "Forgot your password?"; }
-
-/* Tagline -- short supporting sentence */
-#wrapwrap .oe_website_login_container .oe_login_form::after,
-#wrapwrap .oe_website_login_container .oe_signup_form::after,
-#wrapwrap .oe_website_login_container .oe_reset_password_form::after {
-  display: block;
-  font-size: 14px; font-weight: 400;
-  color: rgba(255,255,255,.45);
-  line-height: 1.6; margin-bottom: 22px;
-}
-
-/* Sign In tagline */
-#wrapwrap .oe_website_login_container .oe_login_form::after {
-  content: "Sign in to your Biighands trade account to continue.";
-}
-/* Sign Up tagline */
-#wrapwrap .oe_website_login_container .oe_signup_form::after {
-  content: "Create a free account and unlock exclusive trade pricing.";
-}
-/* Forgot Password tagline */
-#wrapwrap .oe_website_login_container .oe_reset_password_form::after {
-  content: "No worries -- enter your email and we will send a reset link.";
-}
-
-/* ── 9. LABELS ── */
-#wrapwrap .oe_website_login_container label {
-  color: rgba(255,255,255,.65) !important;
-  font-size: 12.5px !important; font-weight: 700 !important;
-  letter-spacing: 0.3px !important;
-  margin-bottom: 6px !important;
-}
-
-/* ── 10. GLASS INPUTS ── */
-#wrapwrap .oe_website_login_container .form-control {
-  min-height: 50px !important;
-  background: rgba(255,255,255,.06) !important;
-  border: 1px solid rgba(255,255,255,.12) !important;
-  border-radius: 12px !important;
-  padding: 13px 16px !important;
-  color: #fff !important;
-  font-size: 14px !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.05) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  transition: border-color .2s, box-shadow .2s, background .2s !important;
-}
-#wrapwrap .oe_website_login_container .form-control::placeholder {
-  color: rgba(255,255,255,.22) !important;
-}
-#wrapwrap .oe_website_login_container .form-control:focus {
-  background: rgba(19,194,197,.08) !important;
-  border-color: rgba(19,194,197,.6) !important;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 0 0 3px rgba(19,194,197,.15) !important;
-  color: #fff !important; outline: none !important;
-}
-#wrapwrap .oe_website_login_container .input-group .btn,
-#wrapwrap .oe_website_login_container .o_show_password {
-  min-height: 50px !important;
-  background: rgba(19,194,197,.08) !important;
-  border-color: rgba(255,255,255,.12) !important;
-  color: #13C2C5 !important;
-  border-radius: 0 12px 12px 0 !important;
-}
-#wrapwrap .oe_website_login_container select.form-control option {
-  background: #0D2020; color: #fff;
-}
-
-/* ── 11. TEAL GRADIENT BUTTON ── */
-#wrapwrap .oe_website_login_container .btn-primary {
-  min-height: 50px !important;
-  border: 0 !important;
-  border-radius: 100px !important;
-  background: linear-gradient(135deg, #17D4D7 0%, #0D9EA0 50%, #037C7C 100%) !important;
-  color: #fff !important;
-  font-weight: 800 !important; font-size: 15px !important;
-  letter-spacing: 0.3px !important;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.1) inset,
-    0 8px 28px rgba(19,194,197,.38) !important;
-  transition: transform .22s, box-shadow .22s, filter .22s !important;
-}
-#wrapwrap .oe_website_login_container .btn-primary:hover {
-  transform: translateY(-2px) !important;
-  filter: brightness(1.08) !important;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.12) inset,
-    0 14px 40px rgba(19,194,197,.5) !important;
-}
-#wrapwrap .oe_website_login_container .btn-primary:active { transform: translateY(0) !important; }
-
-/* ── 12. SECONDARY GLASS BUTTON ── */
-#wrapwrap .oe_website_login_container .btn-secondary,
-#wrapwrap .oe_website_login_container .btn-outline-secondary {
-  min-height: 46px !important; border-radius: 100px !important;
-  background: rgba(255,255,255,.06) !important;
-  border: 1px solid rgba(255,255,255,.14) !important;
-  color: rgba(255,255,255,.75) !important;
-  font-size: 14px !important; font-weight: 600 !important;
-  backdrop-filter: blur(8px) !important;
-  transition: background .2s, border-color .2s !important;
-}
-#wrapwrap .oe_website_login_container .btn-secondary:hover,
-#wrapwrap .oe_website_login_container .btn-outline-secondary:hover {
-  background: rgba(19,194,197,.12) !important;
-  border-color: rgba(19,194,197,.4) !important;
-  color: #7DEDED !important;
-}
-
-/* ── 13. LINKS ── */
-#wrapwrap .oe_website_login_container .btn-link,
-#wrapwrap .oe_website_login_container a {
-  color: #13C2C5 !important;
-  font-weight: 700 !important;
-  text-decoration: none !important;
-  transition: color .18s !important;
-}
-#wrapwrap .oe_website_login_container .btn-link:hover,
-#wrapwrap .oe_website_login_container a:hover { color: #7DEDED !important; }
-
-/* ── 14. ALERTS ── */
-#wrapwrap .oe_website_login_container .alert {
-  border-radius: 12px !important; font-size: 13px !important;
-  line-height: 1.55 !important; padding: 12px 16px !important;
-  backdrop-filter: blur(12px) !important;
-}
-#wrapwrap .oe_website_login_container .alert-danger {
-  background: rgba(200,50,50,.12) !important;
-  border: 1px solid rgba(220,80,80,.3) !important;
-  color: #F5AAAA !important;
-}
-#wrapwrap .oe_website_login_container .alert-success,
-#wrapwrap .oe_website_login_container .alert-info {
-  background: rgba(19,194,197,.1) !important;
-  border: 1px solid rgba(19,194,197,.28) !important;
-  color: #7DEDED !important;
-}
-
-/* ── 15. BOTTOM SWITCH LINK ── */
-#wrapwrap .oe_website_login_container .card-body > .text-center.small {
-  border-top: 1px solid rgba(255,255,255,.08) !important;
-  color: rgba(255,255,255,.35) !important;
-  margin-top: 18px !important; padding-top: 16px !important;
-  font-size: 13px !important;
-}
-#wrapwrap .oe_website_login_container .o_login_auth em { color: rgba(255,255,255,.35) !important; }
-#wrapwrap .oe_website_login_container .o_login_auth .list-group-item {
-  background: rgba(255,255,255,.04) !important;
-  border-color: rgba(19,194,197,.15) !important;
-  color: rgba(255,255,255,.65) !important;
-  border-radius: 10px;
-}
-
-/* ── 16. RESPONSIVE ── */
-@media (max-width: 540px) {
-  #wrapwrap .oe_website_login_container { padding: 24px 14px 40px !important; }
-  #wrapwrap .oe_website_login_container .card-body { padding: 26px 20px 22px !important; }
-  #wrapwrap .oe_website_login_container .oe_login_form::before,
-  #wrapwrap .oe_website_login_container .oe_signup_form::before,
-  #wrapwrap .oe_website_login_container .oe_reset_password_form::before { font-size: 21px !important; }
-}
-</style>
-
-<script>
+<field name="name">biighands_shop.auth_css</field><field name="key">biighands_shop_website.auth_css</field>
+<field name="inherit_id" ref="website.layout"/><field name="type">qweb</field><field name="arch" type="xml">
+<xpath expr="//head" position="inside"><style>
+html:has(.oe_website_login_container) body,html:has(.oe_website_login_container) body.bg-100{background:#050505!important;color:#f3f0e9!important}html:has(.oe_website_login_container) #wrapwrap>main{padding-top:72px!important;background:#050505!important}
+#wrapwrap .oe_website_login_container{position:relative!important;display:grid!important;grid-template-columns:1fr 1fr;align-items:stretch!important;min-height:calc(100vh - 72px)!important;padding:0!important;overflow:hidden!important;background:#050505!important;font-family:Inter,"Segoe UI",Arial,sans-serif}
+#wrapwrap .oe_website_login_container:before{content:'CLIENT ATELIER\A\A “Every frame, made to measure — down to the millimetre.”';white-space:pre-wrap;position:absolute;z-index:2;left:3.4vw;bottom:7%;width:430px;color:#f2f0e9;font:500 23px/1.45 Inter,"Segoe UI",sans-serif;letter-spacing:-.02em;pointer-events:none}
+#wrapwrap .oe_website_login_container:after{content:'';position:absolute;z-index:1;inset:0 50% 0 0;background:linear-gradient(180deg,rgba(3,7,8,.28),rgba(3,7,8,.3) 55%,rgba(3,7,8,.76)),url('/biighands_shop_website/static/src/img/auth-villa.jpg') center/cover no-repeat;pointer-events:none}
+#wrapwrap .oe_website_login_container{padding:7vh clamp(42px,12vw,255px) 7vh calc(50% + clamp(42px,12vw,255px))!important;display:flex!important;flex-direction:column;align-items:stretch!important;justify-content:center;position:relative;z-index:3;background:radial-gradient(circle at 76% 44%,#0a0a09 0,#050505 55%,#030303 100%)}
+#wrapwrap .oe_website_login_container>.bhp-auth-tabs,#wrapwrap .oe_website_login_container>form,#wrapwrap .oe_website_login_container>.alert,#wrapwrap .oe_website_login_container>.bhp-auth-guest,#wrapwrap .oe_website_login_container>.oe_structure,#wrapwrap .oe_website_login_container>owl-component{width:100%!important;max-width:448px!important;margin-left:auto!important;margin-right:auto!important;position:relative;z-index:3}
+.bhp-auth-tabs{display:flex;gap:32px;border-bottom:1px solid #252522;margin:0 0 54px}.bhp-auth-tabs a{position:relative;padding:0 0 18px;color:#8c8b86!important;font:500 11px/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.3em;text-transform:uppercase;text-decoration:none!important}.bhp-auth-tabs a.active{color:#d6ab31!important}.bhp-auth-tabs a.active:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:#d6ab31}
+#wrapwrap .oe_website_login_container .mb-3,#wrapwrap .oe_website_login_container .field-password{margin:0 0 34px!important;padding:0!important}#wrapwrap .oe_website_login_container label{margin:0 0 14px!important;color:#d0cec7!important;font:500 9px/1 ui-monospace,SFMono-Regular,Consolas,monospace!important;letter-spacing:.32em!important;text-transform:uppercase}#wrapwrap .oe_website_login_container .form-control{height:46px!important;padding:5px 0!important;border:0!important;border-bottom:1px solid #292927!important;border-radius:0!important;background:transparent!important;color:#f4f1ea!important;font-size:16px!important;box-shadow:none!important}#wrapwrap .oe_website_login_container .form-control::placeholder{color:#4c4c48!important}#wrapwrap .oe_website_login_container .form-control:focus{border-bottom-color:#b38a2c!important;box-shadow:none!important;background:transparent!important}
+#wrapwrap .oe_website_login_container .o_show_password{height:46px!important;border:0!important;border-bottom:1px solid #292927!important;border-radius:0!important;background:transparent!important;color:#817f78!important}#wrapwrap .oe_website_login_container .btn-primary{width:100%;height:49px!important;border:1px solid #f2f1ed!important;border-radius:0!important;background:#f2f1ed!important;color:#111!important;font:500 11px/1 ui-monospace,SFMono-Regular,Consolas,monospace!important;letter-spacing:.25em!important;text-transform:uppercase;box-shadow:none!important}#wrapwrap .oe_website_login_container .btn-primary:after{content:'  →'}#wrapwrap .oe_website_login_container .btn-primary:hover{background:#d6ab31!important;border-color:#d6ab31!important}
+#wrapwrap .oe_website_login_container .btn-link,#wrapwrap .oe_website_login_container a.btn-link{color:#77756f!important;font:500 9px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace!important;letter-spacing:.2em!important;text-transform:uppercase;text-decoration:none!important}#wrapwrap .oe_website_login_container .btn-link:hover{color:#d6ab31!important}#wrapwrap .oe_website_login_container .alert{border-radius:0!important;background:#221010!important;border:1px solid #5d2929!important;color:#e9b8b8!important;font-size:12px!important}.bhp-auth-guest{display:block;margin-top:38px;text-align:center;color:#4f4e49!important;font:500 8px/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.34em;text-transform:uppercase;text-decoration:none!important}.bhp-auth-guest:hover{color:#d6ab31!important}
+@media(max-width:1050px){#wrapwrap .oe_website_login_container{padding-left:57vw!important;padding-right:7vw!important}}@media(max-width:760px){html:has(.oe_website_login_container) #wrapwrap>main{padding-top:64px!important}#wrapwrap .oe_website_login_container{display:flex!important;min-height:calc(100vh - 64px)!important;padding:42vh 24px 60px!important;background:linear-gradient(180deg,transparent 0,transparent 28vh,#050505 38vh)!important}#wrapwrap .oe_website_login_container:after{inset:0;height:34vh;opacity:.55}#wrapwrap .oe_website_login_container:before{display:none}.bhp-auth-tabs{margin-bottom:42px}}
+</style><script type="text/javascript">
 (function () {
-  if (!document.querySelector('.oe_website_login_container')) return;
-  function applyPadding() {
-    var total = 0;
-    ['.bhs-ann', '.bhs-hdr', '.bhs-nav'].forEach(function (sel) {
-      var el = document.querySelector(sel);
-      if (el &amp;&amp; window.getComputedStyle(el).display !== 'none') {
-        total += el.offsetHeight;
-      }
-    });
-    var main = document.querySelector('#wrapwrap > main');
-    if (main) main.style.setProperty('padding-top', (total || 108) + 'px', 'important');
+  function mountBiighandsAuth() {
+    var host = document.querySelector('.oe_website_login_container');
+    if (!host || host.querySelector('.bhp-auth-tabs')) return;
+    var form = host.querySelector('form.oe_login_form, form.oe_signup_form, form.oe_reset_password_form');
+    if (!form) return;
+    var path = window.location.pathname;
+    var signup = path.indexOf('/web/signup') === 0;
+    var nav = document.createElement('nav');
+    nav.className = 'bhp-auth-tabs';
+    nav.setAttribute('aria-label', 'Account access');
+    nav.innerHTML = '&lt;a href="/web/login" class="' + (signup ? '' : 'active') + '"&gt;Sign In&lt;/a&gt;' +
+      '&lt;a href="/web/signup" class="' + (signup ? 'active' : '') + '"&gt;Create Account&lt;/a&gt;';
+    form.parentNode.insertBefore(nav, form);
+    var guest = document.createElement('a');
+    guest.href = '/catalogue';
+    guest.className = 'bhp-auth-guest';
+    guest.textContent = 'Continue browsing as guest';
+    form.parentNode.insertBefore(guest, form.nextSibling);
   }
-  applyPadding();
-  window.addEventListener('resize', applyPadding);
-})();
-</script>
-    </xpath>
-  </field>
-</record>
-
-</data>
-</odoo>
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountBiighandsAuth);
+  else mountBiighandsAuth();
+  window.addEventListener('pageshow', mountBiighandsAuth);
+}());
+</script></xpath></field></record>
+</data></odoo>

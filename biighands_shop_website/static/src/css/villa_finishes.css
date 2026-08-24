@@ -1,0 +1,30 @@
+.bhp-villa-late{position:absolute;left:48px;bottom:64px;z-index:4;opacity:0;pointer-events:none}
+.bhp-villa-late p,.bhp-villa-picker>p{margin:0;color:#d4af37;font:600 9px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.4em;text-transform:uppercase}
+.bhp-villa-late h2{max-width:390px;margin:12px 0 0;color:#f5f5f5;font:italic 30px/1.2 Georgia,"Times New Roman",serif}
+.bhp-villa-late small{display:block;margin-top:8px;color:#a3a3a3;font:600 9px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.3em;text-transform:uppercase}
+.bhp-villa-picker{position:absolute;right:48px;bottom:64px;z-index:4;width:265px;padding:20px;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);opacity:0;pointer-events:none}
+.bhp-villa-picker>div{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.bhp-villa-picker button{display:flex;align-items:center;gap:12px;width:100%;padding:8px 16px;border:1px solid #222;background:transparent;color:#a3a3a3;cursor:pointer;text-align:left;transition:border-color .3s,color .3s}
+.bhp-villa-picker button.active{border-color:#d4af37;color:#f5f5f5}
+.bhp-villa-picker button i{display:block;width:12px;height:12px;flex:0 0 12px;transform:rotate(45deg);border:1px solid rgba(255,255,255,.2);background:var(--bhp-finish-color)}
+.bhp-villa-picker button span{font:600 9px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.2em;text-transform:uppercase}
+@media(max-width:760px){.bhp-villa-late{left:20px;right:20px;bottom:24px}.bhp-villa-late h2{font-size:24px}.bhp-villa-picker{right:20px;bottom:125px;width:calc(100% - 40px);padding:14px}.bhp-villa-picker>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bhp-villa-picker button{padding:8px}.bhp-villa-picker button span{font-size:7px;letter-spacing:.1em}}
+@keyframes bhp-craft-marquee-slide{to{transform:translateX(-50%)}}
+.bhp-craft-marquee{justify-content:flex-start!important;padding:0!important}
+.bhp-craft-marquee-track{display:flex;width:max-content;will-change:transform;animation:bhp-craft-marquee-slide 55s linear infinite}
+.bhp-craft-marquee-track:hover{animation-play-state:paused}
+.bhp-craft-marquee-track>div{display:flex;flex:0 0 auto;align-items:center}
+.bhp-craft-marquee-track span{margin:0 32px}
+.bhp-craft-marquee-track i{margin:0 4px}
+@media(prefers-reduced-motion:reduce){.bhp-craft-marquee-track{animation-play-state:paused}}
+.bhp-villa-is-loading{overflow:hidden}
+.bhp-villa-preloader{position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;transform:translateY(0);will-change:transform}
+.bhp-villa-preloader.is-opening{transform:translateY(-100%);transition:transform .9s cubic-bezier(.76,0,.24,1)}
+.bhp-villa-preloader-logo{color:#f5f5f5;font:700 39px/1 Georgia,"Times New Roman",serif;letter-spacing:-.055em}
+.bhp-villa-preloader-progress{width:176px;height:1px;margin-top:36px;overflow:hidden;background:#222}
+.bhp-villa-preloader-progress i{display:block;width:100%;height:100%;background:#d4af37;transform:translateX(-101%)}
+.bhp-villa-preloader-progress i.is-running{transform:translateX(0);transition:transform 1.6s cubic-bezier(.65,0,.35,1)}
+.bhp-villa-preloader p{margin:28px 0 0;color:#777;font:600 9px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.45em;text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){.bhp-villa-preloader.is-opening{transition-duration:.01ms}.bhp-villa-preloader-progress i.is-running{transition-duration:.01ms}}
+.bhp-chapter-cta{position:absolute;left:0;right:0;bottom:64px;z-index:4;display:flex;justify-content:center;opacity:0;pointer-events:none}.bhp-chapter-cta a{display:flex;align-items:center;gap:12px;padding:16px 32px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.6);backdrop-filter:blur(16px);color:#f5f5f5!important;font:600 11px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.25em;text-transform:uppercase;transition:border-color .3s,color .3s}.bhp-chapter-cta a:hover{border-color:#d4af37;color:#d4af37!important}.bhp-chapter-cta a:hover span{transform:translateX(4px)}.bhp-chapter-cta span{transition:transform .3s}
+.bhp-scroll-chapter[data-bhp-chapter="door"]{height:340vh}

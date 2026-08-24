@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<template id="playground_home" name="Playground Architectural Atelier">
+  <t t-call="website.layout">
+    <t t-set="additional_title">Playground | Architectural Systems &amp; Bespoke Interiors</t>
+    <main id="wrap" class="bhp bhp-home">
+      <div class="bhp-villa-preloader" data-bhp-villa-preloader="1" role="status" aria-label="Preparing the villa">
+        <div class="bhp-villa-preloader-logo">playground.</div>
+        <div class="bhp-villa-preloader-progress"><i data-bhp-villa-preloader-line="1"/></div>
+        <p>Preparing the villa</p>
+      </div>
+      <section class="bhp-hero" data-bhp-hero="1">
+        <div class="bhp-hero-stage">
+          <canvas class="bhp-villa-canvas" data-bhp-villa-canvas="1" aria-label="Interactive architectural villa"/>
+          <div class="bhp-villa-loading" data-bhp-villa-loading="1"><span>Loading the villa</span></div>
+          <div class="bhp-hero-vignette"/>
+          <div class="bhp-hero-content">
+            <h1><span>Precision</span><em>in metal,</em><span>timber &amp; cloth.</span></h1>
+            <div class="bhp-actions">
+              <a href="/catalogue" class="bhp-btn bhp-btn-light">Explore the catalogue <span>→</span></a>
+              <a href="#craft" class="bhp-btn bhp-btn-ghost">The craft</a>
+            </div>
+          </div>
+          <div class="bhp-villa-late" data-bhp-villa-late="1">
+            <p>Vanta Floor-to-Ceiling</p>
+            <h2>Every piece, made to measure.</h2>
+            <small>Shown in <span data-bhp-finish-label="1">Natural Silver</span></small>
+          </div>
+          <div class="bhp-villa-picker" data-bhp-villa-picker="1">
+            <p>Finish - live on the villa</p>
+            <div>
+              <button type="button" class="active" data-bhp-villa-finish="Natural Silver" data-color="#c9c9c9" data-metalness="1" data-roughness="0.24"><i/><span>Natural Silver</span></button>
+              <button type="button" data-bhp-villa-finish="Matte Black" data-color="#1b1b1b" data-metalness="0.9" data-roughness="0.52"><i/><span>Matte Black</span></button>
+              <button type="button" data-bhp-villa-finish="Anodized Bronze" data-color="#8a6530" data-metalness="1" data-roughness="0.3"><i/><span>Anodized Bronze</span></button>
+              <button type="button" data-bhp-villa-finish="Champagne" data-color="#d8bd8d" data-metalness="1" data-roughness="0.26"><i/><span>Champagne</span></button>
+            </div>
+          </div>
+          <a href="#manifesto" class="bhp-scroll">Scroll — the villa awaits <span>↓</span></a>
+        </div>
+      </section>
+
+      <div class="bhp-craft-marquee" aria-hidden="true">
+        <div class="bhp-craft-marquee-track">
+          <div><span>Precision engineering</span><i>◆</i><span>Architectural harmony</span><i>◆</i><span>Anodized in-house</span><i>◆</i><span>Bespoke carpentry</span><i>◆</i><span>Curtains &amp; drapery</span><i>◆</i><span>Made to measure</span><i>◆</i></div>
+          <div><span>Precision engineering</span><i>◆</i><span>Architectural harmony</span><i>◆</i><span>Anodized in-house</span><i>◆</i><span>Bespoke carpentry</span><i>◆</i><span>Curtains &amp; drapery</span><i>◆</i><span>Made to measure</span><i>◆</i></div>
+        </div>
+      </div>
+
+      <section id="manifesto" class="bhp-scroll-chapter" data-bhp-chapter="door">
+        <div class="bhp-chapter-stage">
+          <canvas data-bhp-craft-canvas="door" aria-label="Exploded architectural door"/>
+          <div class="bhp-chapter-heading"><p>The craft</p><h2>Anatomy of a <em>Playground door</em></h2><small>Keep scrolling — it comes apart</small></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.08,0.24"><b>01.</b><h3>Thermal-broken outer frame</h3><p>6063-T6 architectural aluminium, structurally bonded. The backbone every other detail hangs from.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.24,0.40"><b>02.</b><h3>Slimline sash — 45mm sightline</h3><p>Concealed drainage, brush-sealed interlocks and multi-point locking hidden inside a drawn line.</p></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.40,0.55"><b>03.</b><h3>Triple-glazed unit</h3><p>Three planes of low-iron glass, argon-filled with warm-edge spacers. U-value down to 0.6.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.55,0.68"><b>04.</b><h3>Polyamide thermal break</h3><p>Glass-reinforced polyamide bars decouple the inner and outer shells. No cold bridges, ever.</p></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.68,0.82"><b>05.</b><h3>Concealed pivot bearing</h3><p>A floor-recessed pivot rated for 400kg. The door turns on a pin — and closes like a vault.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.82,0.97"><b>06.</b><h3>Solid bronze pull</h3><p>A full-length solid bronze handle, hand-finished and waxed. It will outlive the building.</p></div>
+          <div class="bhp-chapter-cta" data-bhp-chapter-cta="1"><a href="/catalogue?collection=doors">Configure this door <span>→</span></a></div>
+        </div>
+      </section>
+
+      <section class="bhp-scroll-chapter" data-bhp-chapter="joinery">
+        <div class="bhp-chapter-stage">
+          <canvas data-bhp-craft-canvas="joinery" aria-label="Exploded bespoke cabinet"/>
+          <div class="bhp-chapter-heading"><p>Bespoke carpentry</p><h2>Joinery, <em>taken apart.</em></h2><small>Keep scrolling — the cabinet comes apart</small></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.08,0.26"><b>01.</b><h3>Birch-ply carcass</h3><p>18mm Baltic birch, edged in solid walnut. Square to a tenth of a millimetre, built to be re-covered in fifty years.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.26,0.44"><b>02.</b><h3>Book-matched back panel</h3><p>Veneer leaves mirrored across the cabinet, so the grain flows unbroken from edge to edge.</p></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.44,0.60"><b>03.</b><h3>Shelves on brass pins</h3><p>Solid-lipped shelves resting on invisible turned-brass pins. Adjustable, yet utterly silent.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.60,0.78"><b>04.</b><h3>Dovetailed drawer</h3><p>Hand-cut dovetails, leather-lined, on waxed maple runners that soften with every year of use.</p></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.78,0.95"><b>05.</b><h3>Recessed brass pull</h3><p>Solid brass, inset flush with the drawer face and hand-burnished. You feel it before you see it.</p></div>
+          <div class="bhp-chapter-cta" data-bhp-chapter-cta="1"><a href="/catalogue?collection=carpentry">Configure carpentry <span>→</span></a></div>
+        </div>
+      </section>
+
+      <section class="bhp-scroll-chapter" data-bhp-chapter="drapery">
+        <div class="bhp-chapter-stage">
+          <canvas data-bhp-craft-canvas="drapery" aria-label="Curtain in motion"/>
+          <div class="bhp-chapter-heading"><p>Curtains &amp; drapery</p><h2>Cloth, <em>in motion.</em></h2><small>Keep scrolling — the drape draws open</small></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.08,0.30"><b>01.</b><h3>Recessed track</h3><p>A slim anodized track plastered into the ceiling shadow-gap. The cloth appears to fall from the architecture itself.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.30,0.52"><b>02.</b><h3>Wave heading</h3><p>Every fold an identical S-curve, engineered by the heading tape — open or closed, the rhythm never breaks.</p></div>
+          <div class="bhp-chapter-note" data-bhp-note="0.52,0.74"><b>03.</b><h3>Triple-weave fabric</h3><p>A blackout core woven between two faces of Belgian linen. Darkness and drape in a single cloth, no lining bulk.</p></div>
+          <div class="bhp-chapter-note is-right" data-bhp-note="0.74,0.95"><b>04.</b><h3>Weighted hem</h3><p>A continuous chain-weight sewn into the hem, so the drop falls plumb and settles without a ripple.</p></div>
+          <div class="bhp-chapter-cta" data-bhp-chapter-cta="1"><a href="/catalogue?collection=curtains">Configure drapery <span>→</span></a></div>
+        </div>
+      </section>
+
+      <section class="bhp-manifesto bhp-shell">
+        <p class="bhp-kicker">The Playground atelier</p>
+        <div class="bhp-manifesto-grid">
+          <h2>One language across<br/><em>metal, timber and cloth.</em></h2>
+          <p>We resolve the openings, surfaces and soft layers of a home as one system. Every piece is specified to the millimetre, reviewed by our team and made for its exact setting.</p>
+        </div>
+      </section>
+
+      <section id="craft" class="bhp-craft">
+        <article class="bhp-craft-card bhp-craft-metal">
+          <span>01 / Aluminium</span>
+          <h3>Precision in every junction.</h3>
+          <p>Slim profiles, controlled movement and tested glazing systems for calm, generous openings.</p>
+          <a href="/catalogue?collection=windows">View window systems →</a>
+        </article>
+        <article class="bhp-craft-card bhp-craft-timber">
+          <span>02 / Carpentry</span>
+          <h3>Joinery that belongs.</h3>
+          <p>Wardrobes, wall panelling and display cabinetry composed around your architecture.</p>
+          <a href="/catalogue?collection=carpentry">View architectural joinery →</a>
+        </article>
+        <article class="bhp-craft-card bhp-craft-cloth">
+          <span>03 / Drapery</span>
+          <h3>Light, softened.</h3>
+          <p>Sheers, blackout layers and wave-heading drapes measured for a precise fall.</p>
+          <a href="/catalogue?collection=curtains">View drapery →</a>
+        </article>
+      </section>
+
+      <section class="bhp-featured bhp-shell">
+        <header class="bhp-section-head">
+          <div><p class="bhp-kicker">Selected works</p><h2>The signature collection</h2></div>
+          <a href="/catalogue">Full catalogue →</a>
+        </header>
+        <div class="bhp-product-grid">
+          <t t-foreach="featured_products" t-as="product">
+            <t t-call="biighands_shop_website.playground_product_card"/>
+          </t>
+        </div>
+      </section>
+
+      <section class="bhp-process">
+        <div class="bhp-shell">
+          <p class="bhp-kicker">From idea to installation</p>
+          <h2>Measured. Reviewed. Made.</h2>
+          <div class="bhp-process-grid">
+            <article><b>01</b><h3>Configure</h3><p>Select a system, enter exact dimensions and choose finish and glazing.</p></article>
+            <article><b>02</b><h3>Atelier review</h3><p>Your request becomes an Odoo quotation for technical and commercial review.</p></article>
+            <article><b>03</b><h3>Confirm</h3><p>Review the proposal in your portal, then accept and track it from one account.</p></article>
+            <article><b>04</b><h3>Deliver</h3><p>Production and installation are coordinated against the approved specification.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bhp-cta">
+        <div class="bhp-shell"><p class="bhp-kicker">Have something unique in mind?</p><h2>Bring us the opening.<br/>We will resolve the rest.</h2><a href="/catalogue?collection=bespoke" class="bhp-btn bhp-btn-light">Start a bespoke request →</a></div>
+      </section>
+    </main>
+    <script type="module" src="/biighands_shop_website/static/src/js/playground_villa.js?v=2026082011"></script>
+    <script type="module" src="/biighands_shop_website/static/src/js/playground_craft.js?v=2026082011"></script>
+  </t>
+</template>
+
+<template id="playground_product_card" name="Atelier Product Card">
+  <article class="bhp-product-card">
+    <a t-att-href="'/atelier/product/%s' % product.id" class="bhp-product-image">
+      <img t-if="product.image_1024" t-att-src="'/web/image/product.template/%s/image_1024' % product.id" t-att-alt="product.name"/>
+      <img t-elif="product.bh_slug" t-att-src="'/biighands_shop_website/static/src/img/products/%s.jpg' % product.bh_slug" t-att-alt="product.name"/>
+      <div t-else="" class="bhp-product-placeholder"><span t-esc="(product.bh_collection_id.name or 'atelier')[:1].upper()"/></div>
+      <span class="bhp-product-arrow">↗</span>
+    </a>
+    <div class="bhp-product-copy">
+      <p t-esc="product.bh_collection_id.name or 'Atelier'"/>
+      <h3><a t-att-href="'/atelier/product/%s' % product.id" t-esc="product.name"/></h3>
+      <div><span t-if="product.list_price">From <strong t-field="product.list_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/></span><span t-else="">Priced individually</span></div>
+    </div>
+  </article>
+</template>
+
+<template id="playground_catalogue" name="Playground Atelier Catalogue">
+  <t t-call="website.layout">
+    <t t-set="additional_title">The Collection | Playground</t>
+    <main id="wrap" class="bhp bhp-catalogue bhp-shell">
+      <header class="bhp-page-head"><p class="bhp-kicker">The catalogue</p><h1>Systems for light,<br/><em>timber &amp; cloth.</em></h1><p>Every piece is configurable to your exact dimensions. Choose a system and request a tailored quotation.</p></header>
+      <nav class="bhp-filters">
+        <a href="/catalogue" t-att-class="'active' if active_collection == 'all' else ''">All</a>
+        <t t-foreach="collections.items()" t-as="collection"><a t-att-href="'/catalogue?collection=%s' % collection[0]" t-att-class="'active' if active_collection == collection[0] else ''" t-esc="collection[1]"/></t>
+      </nav>
+      <div class="bhp-product-grid bhp-catalogue-grid"><t t-foreach="products" t-as="product"><t t-call="biighands_shop_website.playground_product_card"/></t></div>
+      <div t-if="not products" class="bhp-empty">No systems are published in this collection yet.</div>
+      <div t-if="pager and pager.get('page_count', 1) &gt; 1" class="bhp-catalogue-pager">
+        <t t-call="website.pager"/>
+      </div>
+    </main>
+  </t>
+</template>
+
+<template id="playground_product" name="Playground Product Configurator">
+  <t t-call="website.layout">
+    <t t-set="additional_title"><t t-esc="product.name"/> | Playground</t>
+    <main id="wrap" class="bhp bhp-configurator bhp-shell">
+      <a href="/catalogue" class="bhp-back">← Back to collection</a>
+      <div class="bhp-config-grid">
+        <section class="bhp-config-visual">
+          <img t-if="product.image_1920" t-att-src="'/web/image/product.template/%s/image_1920' % product.id" t-att-alt="product.name"/>
+          <img t-elif="product.bh_slug" t-att-src="'/biighands_shop_website/static/src/img/products/%s.jpg' % product.bh_slug" t-att-alt="product.name"/>
+          <div t-else="" class="bhp-config-placeholder"><span>PLAYGROUND</span><b>Made to measure</b></div>
+          <p>Live finish preview</p><div class="bhp-finish-swatch" data-bhp-preview="1"/>
+        </section>
+        <section class="bhp-config-copy">
+          <p class="bhp-kicker" t-esc="product.bh_collection_id.name or 'Atelier'"/>
+          <h1 t-esc="product.name"/>
+          <p class="bhp-description" t-esc="product.description_sale"/>
+          <form t-att-action="'/atelier/quote/%s' % product.id" method="post" enctype="multipart/form-data" class="bhp-quote-form" data-bhp-configurator="1">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <div class="bhp-field-row">
+              <label>Width <output data-bhp-width-output="1"/></label>
+              <input type="range" name="width_mm" t-att-min="product.bh_min_width" t-att-max="product.bh_max_width" step="10" t-att-value="(product.bh_min_width + product.bh_max_width) // 2" data-bhp-width="1"/>
+              <small><span t-esc="product.bh_min_width"/>–<span t-esc="product.bh_max_width"/> mm</small>
+            </div>
+            <div class="bhp-field-row">
+              <label>Height <output data-bhp-height-output="1"/></label>
+              <input type="range" name="height_mm" t-att-min="product.bh_min_height" t-att-max="product.bh_max_height" step="10" t-att-value="(product.bh_min_height + product.bh_max_height) // 2" data-bhp-height="1"/>
+              <small><span t-esc="product.bh_min_height"/>–<span t-esc="product.bh_max_height"/> mm</small>
+            </div>
+            <fieldset><legend>Finish</legend><div class="bhp-options"><t t-foreach="finishes" t-as="finish"><label><input type="radio" name="finish" t-att-value="finish" t-att-checked="finish_index == 0"/><span t-esc="finish"/></label></t></div></fieldset>
+            <fieldset><legend>Glazing / lining</legend><div class="bhp-options"><t t-foreach="glazing_options" t-as="option"><label><input type="radio" name="glazing" t-att-value="option" t-att-checked="option_index == 0"/><span t-esc="option"/></label></t></div></fieldset>
+            <div class="bhp-quantity"><label>Quantity</label><input type="number" name="quantity" value="1" min="1" max="100"/></div>
+            <label class="bhp-notes">Notes for the atelier<textarea name="notes" rows="4" placeholder="Site conditions, installation timing, matching existing systems…"/></label>
+            <label t-if="product.bh_collection_id.slug == 'bespoke'" class="bhp-upload">Reference pictures<input type="file" name="reference_images" accept="image/*" multiple="multiple"/><small>Up to 6 reference images</small></label>
+            <div class="bhp-estimate"><div><small>Indicative estimate</small><strong data-bhp-estimate="1" t-att-data-price="product.list_price" t-att-data-price-unit="product.bh_price_unit" t-att-data-currency="website.currency_id.symbol"/></div>
+              <button t-if="not request.env.user._is_public()" type="submit" class="bhp-btn bhp-btn-light">Request quotation →</button>
+              <a t-else="" t-att-href="'/web/login?redirect=/atelier/product/%s' % product.id" class="bhp-btn bhp-btn-light">Sign in to request →</a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+  </t>
+</template>
+
+<template id="playground_quotes" name="Playground Requested Quotes">
+  <t t-call="website.layout">
+    <t t-set="additional_title">Your Requested Quotes | Playground</t>
+    <main id="wrap" class="bhp bhp-quotes bhp-shell">
+      <header class="bhp-page-head"><p class="bhp-kicker">Client atelier</p><h1>Your requested quotes</h1><p>Each specification is reviewed by our team. Open a quotation to see its current commercial status and full details.</p></header>
+      <div t-if="not orders" class="bhp-empty">No quotes yet - <a href="/catalogue">configure your first system.</a></div>
+      <div class="bhp-quote-list">
+        <article t-foreach="orders" t-as="order" class="bhp-quote-row">
+          <div><p class="bhp-kicker" t-esc="order.bh_collection_id.name or 'Atelier'"/><h2 t-esc="order.bh_requested_product_id.name or order.name"/><small t-field="order.bh_request_date"/></div>
+          <dl><div><dt>Size</dt><dd><t t-esc="order.bh_width_mm"/> x <t t-esc="order.bh_height_mm"/> mm</dd></div><div><dt>Finish</dt><dd t-esc="order.bh_finish"/></div><div><dt>Glazing / lining</dt><dd t-esc="order.bh_glazing"/></div><div><dt>Qty</dt><dd t-esc="order.bh_quantity"/></div></dl>
+          <div class="bhp-quote-total"><small>Estimate</small><strong t-field="order.amount_total" t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/></div>
+          <div class="bhp-quote-status"><span t-esc="order.state.replace('_', ' ').title()"/><a t-att-href="order.get_portal_url()">Open quote</a></div>
+          <div t-if="references.get(order.id)" class="bhp-quote-refs"><small>References</small><a t-foreach="references[order.id]" t-as="attachment" t-att-href="'/web/content/%s?download=0' % attachment.id" target="_blank"><img t-att-src="'/web/image/ir.attachment/%s/datas' % attachment.id" alt="Reference image"/></a></div>
+          <p t-if="order.bh_client_notes" class="bhp-quote-note"><b>Atelier request</b><span t-esc="order.bh_client_notes"/></p>
+        </article>
+      </div>
+    </main>
+  </t>
+</template>
+
+<template id="playground_concierge" inherit_id="website.layout" name="Playground Design Concierge" priority="125">
+  <xpath expr="//div[@id='wrapwrap']" position="inside">
+    <aside class="bhp-concierge" data-bhp-concierge="1">
+      <button type="button" class="bhp-concierge-toggle" aria-label="Open design concierge" aria-expanded="false">+</button>
+      <section class="bhp-concierge-panel" aria-hidden="true"><header><div><b>Design Concierge</b><small>Playground product guide</small></div><button type="button" data-bhp-concierge-close="1">x</button></header><div class="bhp-concierge-messages" data-bhp-concierge-messages="1"><p>Good day - tell me whether you need windows, doors, carpentry, curtains, or a bespoke piece.</p></div><form data-bhp-concierge-form="1"><input name="message" autocomplete="off" placeholder="Ask about systems, finishes, dimensions..."/><button type="submit">Send</button></form></section>
+    </aside>
+  </xpath>
+</template>
+
+</data>
+</odoo>
