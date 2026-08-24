@@ -21,7 +21,7 @@ class BiighandsHome(http.Controller):
         ProductTemplate = request.env['product.template'].sudo()
         products = ProductTemplate.search(
             [('website_published', '=', True), ('sale_ok', '=', True), ('bh_featured', '=', True)],
-            limit=6,
+            limit=4,
             order='sequence, id',
         )
         return request.render('biighands_shop_website.playground_home', {

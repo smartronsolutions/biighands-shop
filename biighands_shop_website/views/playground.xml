@@ -17,10 +17,10 @@
           <div class="bhp-villa-loading" data-bhp-villa-loading="1"><span>Loading the villa</span></div>
           <div class="bhp-hero-vignette"/>
           <div class="bhp-hero-content">
-            <h1><span>Precision</span><em>in metal,</em><span>timber &amp; cloth.</span></h1>
+            <h1><span>Precision,</span><em>in metal,</em><span>timber &amp; cloth.</span></h1>
             <div class="bhp-actions">
               <a href="/catalogue" class="bhp-btn bhp-btn-light">Explore the catalogue <span>→</span></a>
-              <a href="#craft" class="bhp-btn bhp-btn-ghost">The craft</a>
+              <a href="#manifesto" class="bhp-btn bhp-btn-ghost">The craft</a>
             </div>
           </div>
           <div class="bhp-villa-late" data-bhp-villa-late="1">
@@ -87,35 +87,6 @@
         </div>
       </section>
 
-      <section class="bhp-manifesto bhp-shell">
-        <p class="bhp-kicker">The Playground atelier</p>
-        <div class="bhp-manifesto-grid">
-          <h2>One language across<br/><em>metal, timber and cloth.</em></h2>
-          <p>We resolve the openings, surfaces and soft layers of a home as one system. Every piece is specified to the millimetre, reviewed by our team and made for its exact setting.</p>
-        </div>
-      </section>
-
-      <section id="craft" class="bhp-craft">
-        <article class="bhp-craft-card bhp-craft-metal">
-          <span>01 / Aluminium</span>
-          <h3>Precision in every junction.</h3>
-          <p>Slim profiles, controlled movement and tested glazing systems for calm, generous openings.</p>
-          <a href="/catalogue?collection=windows">View window systems →</a>
-        </article>
-        <article class="bhp-craft-card bhp-craft-timber">
-          <span>02 / Carpentry</span>
-          <h3>Joinery that belongs.</h3>
-          <p>Wardrobes, wall panelling and display cabinetry composed around your architecture.</p>
-          <a href="/catalogue?collection=carpentry">View architectural joinery →</a>
-        </article>
-        <article class="bhp-craft-card bhp-craft-cloth">
-          <span>03 / Drapery</span>
-          <h3>Light, softened.</h3>
-          <p>Sheers, blackout layers and wave-heading drapes measured for a precise fall.</p>
-          <a href="/catalogue?collection=curtains">View drapery →</a>
-        </article>
-      </section>
-
       <section class="bhp-featured bhp-shell">
         <header class="bhp-section-head">
           <div><p class="bhp-kicker">Selected works</p><h2>The signature collection</h2></div>
@@ -128,21 +99,8 @@
         </div>
       </section>
 
-      <section class="bhp-process">
-        <div class="bhp-shell">
-          <p class="bhp-kicker">From idea to installation</p>
-          <h2>Measured. Reviewed. Made.</h2>
-          <div class="bhp-process-grid">
-            <article><b>01</b><h3>Configure</h3><p>Select a system, enter exact dimensions and choose finish and glazing.</p></article>
-            <article><b>02</b><h3>Atelier review</h3><p>Your request becomes an Odoo quotation for technical and commercial review.</p></article>
-            <article><b>03</b><h3>Confirm</h3><p>Review the proposal in your portal, then accept and track it from one account.</p></article>
-            <article><b>04</b><h3>Deliver</h3><p>Production and installation are coordinated against the approved specification.</p></article>
-          </div>
-        </div>
-      </section>
-
       <section class="bhp-cta">
-        <div class="bhp-shell"><p class="bhp-kicker">Have something unique in mind?</p><h2>Bring us the opening.<br/>We will resolve the rest.</h2><a href="/catalogue?collection=bespoke" class="bhp-btn bhp-btn-light">Start a bespoke request →</a></div>
+        <div class="bhp-shell"><p class="bhp-kicker">Made to measure</p><h2>Specify your dimensions.<br/><em>We engineer the rest.</em></h2><a href="/catalogue" class="bhp-btn bhp-btn-light">Configure &amp; request a quote →</a></div>
       </section>
     </main>
     <script type="module" src="/biighands_shop_website/static/src/js/playground_villa.js?v=2026082011"></script>
