@@ -75,3 +75,120 @@
   .bhp-product-copy>div{font-size:11px}
   .bhp-product-copy strong{font-size:14px}
 }
+
+/* Responsive account access: login, signup and password reset. */
+html:has(.oe_website_login_container),
+html:has(.oe_website_login_container) body,
+html:has(.oe_website_login_container) #wrapwrap{min-height:100%;background:#050505}
+#wrapwrap .oe_website_login_container,
+#wrapwrap .oe_website_login_container *{box-sizing:border-box}
+#wrapwrap .oe_website_login_container{width:100%;overflow:visible!important}
+#wrapwrap .oe_website_login_container>form,
+#wrapwrap .oe_website_login_container>.alert,
+#wrapwrap .oe_website_login_container>.bhp-auth-tabs,
+#wrapwrap .oe_website_login_container>.bhp-auth-guest{width:100%!important;max-width:480px!important}
+#wrapwrap .oe_website_login_container form .mb-3,
+#wrapwrap .oe_website_login_container form .field-login,
+#wrapwrap .oe_website_login_container form .field-password,
+#wrapwrap .oe_website_login_container form .field-confirm_password,
+#wrapwrap .oe_website_login_container form .form-group{width:100%;min-width:0}
+#wrapwrap .oe_website_login_container label{display:block;line-height:1.45!important}
+#wrapwrap .oe_website_login_container .form-control{
+  display:block;width:100%;min-width:0;height:58px!important;min-height:58px;
+  padding:17px 12px 14px!important;line-height:1.45!important;
+  font-size:16px!important;text-align:left;caret-color:#d6ab31
+}
+#wrapwrap .oe_website_login_container textarea.form-control{height:auto!important;min-height:110px}
+#wrapwrap .oe_website_login_container .input-group{display:flex;width:100%;min-width:0;align-items:stretch}
+#wrapwrap .oe_website_login_container .input-group>.form-control{flex:1 1 auto;width:1%;padding-right:14px!important}
+#wrapwrap .oe_website_login_container .input-group>.o_show_password,
+#wrapwrap .oe_website_login_container .o_show_password{
+  display:flex;flex:0 0 52px;align-items:center;justify-content:center;
+  width:52px;height:58px!important;min-height:58px;padding:0!important
+}
+#wrapwrap .oe_website_login_container input:-webkit-autofill,
+#wrapwrap .oe_website_login_container input:-webkit-autofill:hover,
+#wrapwrap .oe_website_login_container input:-webkit-autofill:focus{
+  -webkit-text-fill-color:#f4f1ea;caret-color:#d6ab31;
+  box-shadow:0 0 0 1000px #050505 inset!important;
+  transition:background-color 9999s ease-out
+}
+#wrapwrap .oe_website_login_container .btn-primary{
+  min-height:54px!important;height:auto!important;padding:17px 20px!important;
+  white-space:normal;line-height:1.35!important
+}
+#wrapwrap .oe_website_login_container .btn-link,
+#wrapwrap .oe_website_login_container a{overflow-wrap:anywhere}
+#wrapwrap .oe_website_login_container .alert{line-height:1.55}
+
+@media(max-width:1050px){
+  #wrapwrap .oe_website_login_container{padding-right:clamp(32px,6vw,72px)!important}
+}
+@media(max-width:760px){
+  #wrapwrap .oe_website_login_container{
+    min-height:calc(100dvh - 64px)!important;
+    padding:38vh clamp(20px,6vw,34px) 56px!important;
+    justify-content:flex-start!important
+  }
+  #wrapwrap .oe_website_login_container:after{height:32vh!important}
+  #wrapwrap .oe_website_login_container>.bhp-auth-tabs,
+  #wrapwrap .oe_website_login_container>form,
+  #wrapwrap .oe_website_login_container>.alert,
+  #wrapwrap .oe_website_login_container>.bhp-auth-guest{max-width:520px!important}
+  .bhp-auth-tabs{gap:24px;margin-bottom:38px}
+  #wrapwrap .oe_website_login_container .form-control{height:56px!important;min-height:56px}
+  #wrapwrap .oe_website_login_container .input-group>.o_show_password,
+  #wrapwrap .oe_website_login_container .o_show_password{height:56px!important;min-height:56px}
+}
+@media(max-width:420px){
+  #wrapwrap .oe_website_login_container{padding:34vh 18px 44px!important}
+  #wrapwrap .oe_website_login_container:after{height:28vh!important}
+  .bhp-auth-tabs{gap:18px;margin-bottom:32px}
+  .bhp-auth-tabs a{padding-bottom:15px;letter-spacing:.2em}
+  #wrapwrap .oe_website_login_container .form-control{font-size:16px!important}
+}
+@media(max-width:760px) and (max-height:620px){
+  #wrapwrap .oe_website_login_container{padding-top:32px!important}
+  #wrapwrap .oe_website_login_container:after,
+  #wrapwrap .oe_website_login_container:before{display:none!important}
+}
+
+/* Win over the legacy inline auth view while deployed databases refresh it. */
+html body #wrapwrap .oe_website_login_container{width:100%;overflow:visible!important}
+html body #wrapwrap .oe_website_login_container>form,
+html body #wrapwrap .oe_website_login_container>.alert,
+html body #wrapwrap .oe_website_login_container>.bhp-auth-tabs,
+html body #wrapwrap .oe_website_login_container>.bhp-auth-guest{width:100%!important;max-width:480px!important}
+html body #wrapwrap .oe_website_login_container .form-control{
+  display:block;width:100%;min-width:0;height:58px!important;min-height:58px;
+  padding:17px 12px 14px!important;line-height:1.45!important;
+  font-size:16px!important;text-align:left
+}
+html body #wrapwrap .oe_website_login_container .input-group>.form-control{width:1%;padding-right:14px!important}
+html body #wrapwrap .oe_website_login_container .input-group>.o_show_password,
+html body #wrapwrap .oe_website_login_container .o_show_password{
+  width:52px;height:58px!important;min-height:58px;padding:0!important
+}
+html body #wrapwrap .oe_website_login_container .btn-primary{
+  min-height:54px!important;height:auto!important;padding:17px 20px!important;
+  line-height:1.35!important
+}
+@media(max-width:760px){
+  html body #wrapwrap .oe_website_login_container{
+    min-height:calc(100dvh - 64px)!important;
+    padding:38vh clamp(20px,6vw,34px) 56px!important;
+    justify-content:flex-start!important
+  }
+  html body #wrapwrap .oe_website_login_container:after{height:32vh!important}
+  html body #wrapwrap .oe_website_login_container .form-control,
+  html body #wrapwrap .oe_website_login_container .o_show_password{height:56px!important;min-height:56px}
+}
+@media(max-width:420px){
+  html body #wrapwrap .oe_website_login_container{padding:34vh 18px 44px!important}
+  html body #wrapwrap .oe_website_login_container:after{height:28vh!important}
+}
+@media(max-width:760px) and (max-height:620px){
+  html body #wrapwrap .oe_website_login_container{padding-top:32px!important}
+  html body #wrapwrap .oe_website_login_container:after,
+  html body #wrapwrap .oe_website_login_container:before{display:none!important}
+}
