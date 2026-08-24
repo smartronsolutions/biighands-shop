@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap");
+
 /* Client readability pass: preserve the reference layout while making micro-copy legible. */
 .bhp{font-size:16px;line-height:1.55}
 .bhp-catalogue .bhp-page-head{max-width:780px}
@@ -191,4 +193,51 @@ html body #wrapwrap .oe_website_login_container .btn-primary{
   html body #wrapwrap .oe_website_login_container{padding-top:32px!important}
   html body #wrapwrap .oe_website_login_container:after,
   html body #wrapwrap .oe_website_login_container:before{display:none!important}
+}
+
+/* Reference typography system, shared by every page in this module. */
+:root{
+  --bhp-font-body:"Manrope","Segoe UI",Arial,sans-serif;
+  --bhp-font-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --bhp-font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Consolas,monospace
+}
+.bhp,.bhp-site-header,.bhp-site-footer,.bhp-concierge,
+html body #wrapwrap .oe_website_login_container,
+.bhp-chapter-note p{font-family:var(--bhp-font-body)!important}
+.bhp input,.bhp textarea,.bhp select,
+.bhp-concierge input,
+html body #wrapwrap .oe_website_login_container .form-control,
+html body #wrapwrap .oe_website_login_container:before{
+  font-family:var(--bhp-font-body)!important
+}
+.bhp h1,.bhp h2,.bhp h3,
+.bhp-home .bhp-hero h1,.bhp-villa-late h2,
+.bhp-chapter-heading h2,.bhp-chapter-note h3,
+.bhp-config-placeholder b{
+  font-family:var(--bhp-font-display)!important
+}
+.bhp-ateliers-head h2,.bhp-atelier-card h3,
+.bhp-section-head h2,.bhp-product-copy h3{
+  font-family:var(--bhp-font-body)!important
+}
+.bhp-kicker,.bhp-btn,.bhp-scroll,
+.bhp-main-nav a,.bhp-login,.bhp-mobile-menu a,
+.bhp-craft-marquee,.bhp-chapter-heading>p,.bhp-chapter-heading small,
+.bhp-chapter-note b,.bhp-chapter-cta a,
+.bhp-villa-late p,.bhp-villa-late small,
+.bhp-villa-picker>p,.bhp-villa-picker button span,.bhp-villa-preloader p,
+.bhp-section-head>a,.bhp-product-copy>p,.bhp-product-copy>div,
+.bhp-atelier-card b,.bhp-atelier-card>span,
+.bhp-filters a,.bhp-back,
+.bhp-field-row label,.bhp-quote-form legend,.bhp-quantity label,
+.bhp-notes,.bhp-upload,.bhp-estimate small,.bhp-estimate strong,
+.bhp-footer-column h2,.bhp-footer-bottom p,
+.bhp-quote-row dt,.bhp-quote-refs>small,.bhp-quote-status span,.bhp-quote-status a,
+.bhp-concierge-panel header b,
+html body #wrapwrap .oe_website_login_container label,
+html body #wrapwrap .oe_website_login_container .bhp-auth-tabs a,
+html body #wrapwrap .oe_website_login_container .btn-primary,
+html body #wrapwrap .oe_website_login_container .btn-link,
+html body #wrapwrap .oe_website_login_container .bhp-auth-guest{
+  font-family:var(--bhp-font-mono)!important
 }

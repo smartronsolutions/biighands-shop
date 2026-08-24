@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Playground Website',
-    'version': '19.0.4.0.31',
+    'version': '19.0.4.0.32',
     'category': 'Website',
     'depends': ['website_sale'],
     'data': [
